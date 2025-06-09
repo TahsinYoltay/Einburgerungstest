@@ -1,0 +1,70 @@
+import { StyleSheet } from 'react-native';
+import { AppTheme } from '../../../providers/ThemeProvider';
+
+export const createStyles = (theme: AppTheme) => StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    padding: 24,
+    justifyContent: 'center',
+  },
+  logoContainer: {
+    alignItems: 'center',
+    marginBottom: 32,
+  },
+  logo: {
+    width: 120,
+    height: 120,
+    marginBottom: 16,
+  },
+  title: {
+    color: theme.colors.primary,
+    textAlign: 'center',
+    marginBottom: 8,
+    fontWeight: 'bold',
+  },
+  subtitle: {
+    color: theme.colors.text,
+    textAlign: 'center',
+    marginBottom: 24,
+  },
+  formContainer: {
+    width: '100%',
+  },
+  input: {
+    marginBottom: 16,
+    backgroundColor: theme.colors.surface,
+  },
+  errorText: {
+    color: theme.colors.error,
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  forgotPasswordButton: {
+    alignSelf: 'flex-end',
+    marginBottom: 24,
+  },
+  forgotPasswordText: {
+    color: theme.colors.primary,
+  },
+  loginButton: {
+    marginBottom: 16,
+    paddingVertical: 6,
+  },
+  registerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  registerText: {
+    color: theme.colors.text,
+  },
+  registerButtonText: {
+    color: theme.colors.primary,
+    fontWeight: 'bold',
+  },
+});

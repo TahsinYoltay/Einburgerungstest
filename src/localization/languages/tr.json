@@ -1,0 +1,118 @@
+{
+  "screens": {
+    "home": "Ana Sayfa",
+    "book": "Çalışma Rehberi",
+    "exam": "Sınav",
+    "settings": "Ayarlar"
+  },
+  "home": {
+    "welcome": "İngiltere'de Yaşam Testine Hoş Geldiniz",
+    "examTitle": "Pratik Sınav",
+    "examDescription": "Alıştırma sorularıyla bilginizi test edin",
+    "startExam": "Sınava Başla",
+    "bookTitle": "Çalışma Rehberi",
+    "bookDescription": "Test için bilmeniz gereken her şeyi öğrenin",
+    "openBook": "Çalışma Rehberini Aç"
+  },
+  "exam": {
+    "question": "Soru",
+    "next": "İleri",
+    "previous": "Geri",
+    "flag": "İşaretle",
+    "unflag": "İşareti Kaldır",
+    "submit": "Gönder",
+    "timeRemaining": "Kalan Süre"
+  },
+  "book": {
+    "title": "İngiltere'de Yaşam: Yeni Sakinler için Rehber",
+    "description": "İngiltere'de Yaşam testi için resmi çalışma rehberi",
+    "chapters": "Bölümler",
+    "chapter1": {
+      "title": "İngiltere'nin Değerleri ve İlkeleri",
+      "description": "İngiliz yaşamının temel ilkeleri",
+      "introduction": "Bu bölüm, İngiliz toplumunu ve değerlerini şekillendiren temel ilkeleri kapsar. Demokrasi, hukukun üstünlüğü, bireysel özgürlük ve karşılıklı saygı ve hoşgörünün önemini açıklar.",
+      "section1": {
+        "title": "Demokrasi ve Hukukun Üstünlüğü",
+        "content": "İngiltere, monarkın devlet başkanı olduğu bir parlamenter demokrasidir. Yasama ve yasaları geçirme yetkisi Parlamentoya aittir. İngiltere'de herkes yasa önünde eşit muamele görür. Hukukun üstünlüğü, bireylerin haklarını korur ve hükümetin yapabileceklerini sınırlar."
+      },
+      "section2": {
+        "title": "Bireysel Özgürlük",
+        "content": "İngiltere'de insanlar, yasaları çiğnemedikleri veya başkalarının haklarına müdahale etmedikleri sürece hayatlarını istedikleri gibi yaşama hakkına sahiptir. Buna ifade özgürlüğü, düşünce özgürlüğü, vicdan ve din özgürlüğü ve örgütlenme özgürlüğü dahildir."
+      }
+    },
+    "chapter2": {
+      "title": "İngiltere Nedir?",
+      "description": "İngiltere'nin coğrafyası, ulusları ve bölgeleri",
+      "introduction": "Bu bölüm, Birleşik Krallık'ın yapısını, coğrafyasını ve İngiltere, Galler, İskoçya ve Kuzey İrlanda'nın farklı kimliklerini açıklar.",
+      "section1": {
+        "title": "Politik Bir Varlık Olarak Birleşik Krallık",
+        "content": "Büyük Britanya ve Kuzey İrlanda Birleşik Krallığı (BK), dört ülkeden oluşan bir birliktir: İngiltere, Galler, İskoçya ve Kuzey İrlanda. BK, monarkın devlet başkanı ve Başbakanın hükümet başkanı olduğu parlamenter bir demokrasi ile yönetilir."
+      },
+      "section2": {
+        "title": "Birleşik Krallık'ın Coğrafyası",
+        "content": "BK, Avrupa'nın kuzey batısında yer almaktadır. İrlanda Cumhuriyeti ile kara sınırı vardır ve Atlantik Okyanusu, Kuzey Denizi, Manş Denizi ve İrlanda Denizi ile çevrilidir. BK'nın toplam alanı yaklaşık 94.000 mil kare (243.600 kilometre kare) dir."
+      }
+    },
+    "chapter3": {
+      "title": "Uzun ve Ünlü Bir Tarih",
+      "description": "Romalılardan günümüze Britanya tarihi",
+      "introduction": "Bu bölüm, antik çağlardan günümüze kadar Britanya tarihine genel bir bakış sunarak, modern Britanya'yı şekillendiren önemli olayları, kişileri ve gelişmeleri içerir.",
+      "section1": {
+        "title": "Erken Dönem Britanya",
+        "content": "Romalılar gelmeden önce, Britanya kabile krallıklarının bir ülkesiydi. Romalılar Britanya'yı MS 43'te işgal ettiler ve yollar, su kemerleri ve yazılı bir dil getirerek yaklaşık 400 yıl kaldılar. Roma'nın çekilmesinin ardından Britanya, Anglosaksonlar, Saksonlar, Jütler, Vikingler ve sonunda 1066'da Normanlar dahil olmak üzere çeşitli halklar tarafından işgal edildi."
+      },
+      "section2": {
+        "title": "Orta Çağ'dan Modern Britanya'ya",
+        "content": "Ortaçağ, Parlamentonun ve ortak hukukun gelişmesine tanık oldu. Tudor ve Stuart dönemleri dini çatışmalar ve İngiliz İç Savaşı ile damgalanmıştı. 18. ve 19. yüzyıllar, Sanayi Devrimi ve Britanya İmparatorluğu'nun genişlemesiyle Britanya'nın küresel bir güç haline geldiğine tanık oldu. 20. yüzyıl, iki Dünya Savaşı, refah devletinin oluşturulması ve Britanya'nın dünya meselelerindeki değişen rolü ile tanımlandı."
+      }
+    }
+  },
+  "auth": {
+    "welcomeBack": "Hoş Geldiniz",
+    "loginPrompt": "Devam etmek için giriş yapın",
+    "createAccount": "Hesap Oluştur",
+    "registerPrompt": "Başlamak için kaydolun",
+    "forgotPasswordTitle": "Şifremi Unuttum",
+    "forgotPasswordPrompt": "Şifrenizi sıfırlamak için e-posta adresinizi girin",
+    "email": "E-posta",
+    "password": "Şifre",
+    "confirmPassword": "Şifreyi Onayla",
+    "login": "Giriş",
+    "register": "Kayıt Ol",
+    "forgotPassword": "Şifremi Unuttum?",
+    "resetPassword": "Şifreyi Sıfırla",
+    "backToLogin": "Giriş Ekranına Dön",
+    "noAccount": "Hesabınız yok mu?",
+    "haveAccount": "Zaten hesabınız var mı?",
+    "logout": "Çıkış Yap",
+    "logoutConfirmTitle": "Çıkış Onayı",
+    "logoutConfirmMessage": "Çıkış yapmak istediğinizden emin misiniz?",
+    "resetEmailSent": "Şifre sıfırlama e-postası gönderildi",
+    "errors": {
+      "invalidEmail": "Lütfen geçerli bir e-posta adresi girin",
+      "invalidPassword": "Şifre en az 6 karakter olmalıdır",
+      "passwordMismatch": "Şifreler eşleşmiyor",
+      "loginFailed": "Giriş başarısız. Lütfen kimlik bilgilerinizi kontrol edin.",
+      "registerFailed": "Kayıt başarısız. Lütfen tekrar deneyin.",
+      "resetFailed": "Şifre sıfırlama başarısız. Lütfen tekrar deneyin."
+    }
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir şeyler yanlış gitti",
+    "retry": "Tekrar Dene",
+    "cancel": "İptal",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "back": "Geri"
+  },
+  "settings": {
+    "darkMode": "Karanlık Mod",
+    "lightMode": "Aydınlık Mod",
+    "appearance": "Görünüm"
+  },
+  "drawer": {
+    "subtitle": "Test Hazırlık Uygulaması"
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "screens": {
+    "home": "Home",
+    "book": "Study Guide",
+    "exam": "Exam",
+    "settings": "Settings"
+  },
+  "home": {
+    "welcome": "Welcome to Life in the UK Test",
+    "examTitle": "Practice Exam",
+    "examDescription": "Test your knowledge with practice questions",
+    "startExam": "Start Exam",
+    "bookTitle": "Study Guide",
+    "bookDescription": "Learn everything you need to know for the test",
+    "openBook": "Open Study Guide"
+  },
+  "exam": {
+    "question": "Question",
+    "next": "Next",
+    "previous": "Previous",
+    "flag": "Flag",
+    "unflag": "Unflag",
+    "submit": "Submit",
+    "timeRemaining": "Time Remaining"
+  },
+  "book": {
+    "title": "Life in the UK: A Guide for New Residents",
+    "description": "The official study guide for the Life in the UK test",
+    "chapters": "Chapters",
+    "chapter1": {
+      "title": "The Values and Principles of the UK",
+      "description": "Fundamental principles of British life",
+      "introduction": "This chapter covers the fundamental principles that have shaped British society and values. It explains the importance of democracy, the rule of law, individual liberty, and mutual respect and tolerance.",
+      "section1": {
+        "title": "Democracy and the Rule of Law",
+        "content": "The UK is a parliamentary democracy with the monarch as head of state. The power to make and pass legislation lies with Parliament. Everyone in the UK receives equal treatment under the law. The rule of law protects the rights of individuals and limits what the government can do."
+      },
+      "section2": {
+        "title": "Individual Liberty",
+        "content": "In the UK, people have the right to live their lives as they wish as long as they do not break the law or infringe upon the rights of others. This includes freedom of speech, freedom of thought, conscience and religion, and freedom of association."
+      }
+    },
+    "chapter2": {
+      "title": "What is the UK?",
+      "description": "Geography, nations and regions of the UK",
+      "introduction": "This chapter explains the makeup of the United Kingdom, its geography, and the distinct identities of England, Wales, Scotland and Northern Ireland.",
+      "section1": {
+        "title": "The UK as a Political Entity",
+        "content": "The United Kingdom of Great Britain and Northern Ireland (UK) is a union of four countries: England, Wales, Scotland and Northern Ireland. The UK is governed by a parliamentary democracy with the monarch as head of state and the Prime Minister as head of government."
+      },
+      "section2": {
+        "title": "Geography of the UK",
+        "content": "The UK is located in the north west of Europe. It has a land border with the Republic of Ireland and is surrounded by the Atlantic Ocean, the North Sea, the English Channel and the Irish Sea. The total area of the UK is approximately 94,000 square miles (243,600 square kilometers)."
+      }
+    },
+    "chapter3": {
+      "title": "A Long and Illustrious History",
+      "description": "The history of Britain from the Romans to today",
+      "introduction": "This chapter provides an overview of British history from ancient times to the present day, including key events, people and developments that have shaped modern Britain.",
+      "section1": {
+        "title": "Early Britain",
+        "content": "Before the Romans arrived, Britain was a land of tribal kingdoms. The Romans invaded Britain in 43 AD and remained for nearly 400 years, bringing with them roads, aqueducts, and a written language. Following the Roman withdrawal, Britain was invaded by various peoples including the Angles, Saxons, Jutes, Vikings and eventually the Normans in 1066."
+      },
+      "section2": {
+        "title": "The Middle Ages to Modern Britain",
+        "content": "The medieval period saw the development of Parliament and common law. The Tudor and Stuart periods were marked by religious conflicts and the English Civil War. The 18th and 19th centuries saw Britain become a global power through the Industrial Revolution and the expansion of the British Empire. The 20th century was defined by two World Wars, the creation of the welfare state, and Britain's changing role in world affairs."
+      }
+    }
+  },
+  "auth": {
+    "welcomeBack": "Welcome Back",
+    "loginPrompt": "Sign in to continue",
+    "createAccount": "Create Account",
+    "registerPrompt": "Sign up to get started",
+    "forgotPasswordTitle": "Forgot Password",
+    "forgotPasswordPrompt": "Enter your email to reset your password",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "login": "Login",
+    "register": "Register",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "backToLogin": "Back to Login",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "logout": "Logout",
+    "logoutConfirmTitle": "Confirm Logout",
+    "logoutConfirmMessage": "Are you sure you want to logout?",
+    "resetEmailSent": "Password reset email has been sent",
+    "errors": {
+      "invalidEmail": "Please enter a valid email address",
+      "invalidPassword": "Password must be at least 6 characters",
+      "passwordMismatch": "Passwords do not match",
+      "loginFailed": "Login failed. Please check your credentials.",
+      "registerFailed": "Registration failed. Please try again.",
+      "resetFailed": "Password reset failed. Please try again."
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back"
+  },
+  "settings": {
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "appearance": "Appearance"
+  },
+  "drawer": {
+    "subtitle": "Test Preparation App"
+  }
+}
