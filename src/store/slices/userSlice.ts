@@ -38,10 +38,10 @@ export const loginUser = createAsyncThunk(
           isLoggedIn: true,
           isPremium: false,
         };
-        
+
         // Store user in AsyncStorage for persistence
         await AsyncStorage.setItem('user', JSON.stringify(mockUser));
-        
+
         return mockUser;
       } else {
         return rejectWithValue('Invalid email or password');
@@ -67,10 +67,10 @@ export const registerUser = createAsyncThunk(
           isLoggedIn: true,
           isPremium: false,
         };
-        
+
         // Store user in AsyncStorage for persistence
         await AsyncStorage.setItem('user', JSON.stringify(mockUser));
-        
+
         return mockUser;
       } else {
         return rejectWithValue('Invalid email or password');
@@ -136,8 +136,8 @@ export const userSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
-      })
-    
+      });
+
     // Register
     builder
       .addCase(registerUser.pending, (state) => {
@@ -151,8 +151,8 @@ export const userSlice = createSlice({
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
-      })
-    
+      });
+
     // Logout
     builder
       .addCase(logoutUser.pending, (state) => {
@@ -165,8 +165,8 @@ export const userSlice = createSlice({
       .addCase(logoutUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
-      })
-    
+      });
+
     // Load User
     builder
       .addCase(loadUser.pending, (state) => {

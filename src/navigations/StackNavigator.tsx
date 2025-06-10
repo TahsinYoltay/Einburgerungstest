@@ -4,6 +4,7 @@ import LoginScreen from '../screens/auth/LoginScreen/LoginScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen/RegisterScreen';
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen/ForgotPasswordScreen';
 import ExamScreen from '../screens/exam/ExamScreen/ExamScreen';
+import ExamResults from '../screens/exam/ExamResults/ExamResults';
 import BookScreen from '../screens/book/BookScreen/BookScreen';
 import ChapterScreen from '../screens/book/ChapterScreen/ChapterScreen';
 import { ROUTES } from '../constants/routes';
@@ -16,6 +17,7 @@ export type RootStackParamList = {
   [ROUTES.FORGOT_PASSWORD]: undefined;
   [ROUTES.DRAWER]: undefined;
   [ROUTES.EXAM]: { id: string };
+  [ROUTES.EXAM_RESULTS]: { examId: string };
   [ROUTES.BOOK]: undefined;
   [ROUTES.CHAPTER]: { id: string };
 };
@@ -42,6 +44,7 @@ function RootNavigator() {
         <>
           <Stack.Screen name={ROUTES.DRAWER} component={DrawerNavigator} />
           <Stack.Screen name={ROUTES.EXAM} component={ExamScreen} />
+          <Stack.Screen name={ROUTES.EXAM_RESULTS} component={ExamResults} />
           <Stack.Screen name={ROUTES.BOOK} component={BookScreen} />
           <Stack.Screen name={ROUTES.CHAPTER} component={ChapterScreen} />
         </>

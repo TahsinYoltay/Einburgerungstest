@@ -1,7 +1,6 @@
-import React from 'react';
-import { View, ScrollView } from 'react-native';
+import React, { useEffect } from 'react';
+import { ScrollView } from 'react-native';
 import { Button, Text, Card } from 'react-native-paper';
-import { useAppTheme } from '../../../providers/ThemeProvider';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
@@ -9,17 +8,21 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParamList } from '../../../navigations/StackNavigator';
 import { ROUTES } from '../../../constants/routes';
 import { styles } from './HomeScreen.style';
+import { useAppDispatch } from '../../../store/hooks';
+import { loadExams } from '../../../store/slices/examSlice';
+import ExamHistorySummary from '../../../components/exam/ExamHistorySummary/ExamHistorySummary';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const HomeScreen = () => {
   const { t } = useTranslation();
-  const { theme } = useAppTheme();
   const navigation = useNavigation<HomeScreenNavigationProp>();
+  const dispatch = useAppDispatch();
 
-  const navigateToExam = () => {
-    navigation.navigate(ROUTES.EXAM, { id: '1' });
-  };
+  // Load exam data when the component mounts
+  useEffect(() => {
+    dispatch(loadExams());
+  }, [dispatch]);
 
   const navigateToBook = () => {
     navigation.navigate(ROUTES.BOOK);
@@ -31,20 +34,8 @@ const HomeScreen = () => {
         <Text style={styles.title} variant="headlineMedium">
           {t('home.welcome')}
         </Text>
-        
-        <Card style={styles.card}>
-          <Card.Cover source={require('../../../assets/images/exam.png')} />
-          <Card.Title title={t('home.examTitle')} />
-          <Card.Content>
-            <Text variant="bodyMedium">{t('home.examDescription')}</Text>
-          </Card.Content>
-          <Card.Actions>
-            <Button mode="contained" onPress={navigateToExam}>
-              {t('home.startExam')}
-            </Button>
-          </Card.Actions>
-        </Card>
-
+        {/* Exam History Summary */}
+        <ExamHistorySummary />
         <Card style={styles.card}>
           <Card.Cover source={require('../../../assets/images/book.png')} />
           <Card.Title title={t('home.bookTitle')} />

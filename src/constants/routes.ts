@@ -6,6 +6,7 @@ export const ROUTES = {
   DRAWER: 'Drawer',
   HOME: 'Home',
   EXAM: 'Exam',
+  EXAM_RESULTS: 'ExamResults',
   BOOK: 'Book',
   CHAPTER: 'Chapter',
   SETTINGS: 'Settings',

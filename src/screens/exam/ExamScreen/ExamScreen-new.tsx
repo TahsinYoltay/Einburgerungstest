@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, ScrollView, Alert, ActivityIndicator, Platform } from 'react-native';
-import { Button, Text, ProgressBar, Dialog, Portal, IconButton } from 'react-native-paper';
+import { View, ScrollView, Alert, ActivityIndicator } from 'react-native';
+import { Button, Text, ProgressBar, Dialog, Portal } from 'react-native-paper';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -22,7 +22,8 @@ import {
   updateTimeRemaining,
   updateTimeSpent,
   submitExam,
-} from '../../../store/slices/examSlice';
+  completeExam,
+} from '../../../store/slices/examSlice-new';
 
 type ExamScreenRouteProp = RouteProp<RootStackParamList, typeof ROUTES.EXAM>;
 type ExamScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -55,7 +56,6 @@ const ExamScreen = () => {
   // Local state for UI
   const [showFlaggedDialog, setShowFlaggedDialog] = useState(false);
   const [showTimeWarning, setShowTimeWarning] = useState(false);
-  const [showExitConfirmDialog, setShowExitConfirmDialog] = useState(false);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
 
   // References
@@ -164,26 +164,6 @@ const ExamScreen = () => {
     dispatch(goToNextQuestion());
   };
 
-  // Handle back button press
-  const handleBackPress = () => {
-    // If exam has started but not completed, show confirmation dialog
-    if (examStarted && !examCompleted) {
-      setShowExitConfirmDialog(true);
-    } else {
-      navigation.goBack();
-    }
-  };
-
-  // Handle exit confirmation
-  const handleExitExam = () => {
-    // Clear timer
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-    }
-    setShowExitConfirmDialog(false);
-    navigation.goBack();
-  };
-
   // Handle flag toggling
   const handleToggleFlag = () => {
     if (currentQuestion) {
@@ -280,17 +260,9 @@ const ExamScreen = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <View style={styles.headerRow}>
-          <View style={styles.headerLeft}>
-            <IconButton
-              icon={Platform.OS === 'ios' ? 'chevron-left' : 'arrow-left'}
-              size={24}
-              onPress={handleBackPress}
-              accessibilityLabel={t('common.goBack')}
-            />
-            <Text variant="titleMedium">
-              {t('exam.question')} {currentQuestionIndex + 1}/{questions.length}
-            </Text>
-          </View>
+          <Text variant="titleMedium">
+            {t('exam.question')} {currentQuestionIndex + 1}/{questions.length}
+          </Text>
           <Text variant="titleMedium" style={styles.timer}>
             {formatTime(timeRemaining)}
           </Text>
@@ -375,20 +347,6 @@ const ExamScreen = () => {
           </Dialog.Content>
           <Dialog.Actions>
             <Button onPress={() => setShowTimeWarning(false)}>OK</Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
-
-      {/* Exit Confirmation Dialog */}
-      <Portal>
-        <Dialog visible={showExitConfirmDialog} onDismiss={() => setShowExitConfirmDialog(false)}>
-          <Dialog.Title>{t('exam.exitConfirmTitle', 'Exit Exam')}</Dialog.Title>
-          <Dialog.Content>
-            <Text>{t('exam.exitConfirmMessage', 'Are you sure you want to exit the exam? Your progress will not be saved.')}</Text>
-          </Dialog.Content>
-          <Dialog.Actions>
-            <Button onPress={() => setShowExitConfirmDialog(false)}>{t('common.cancel', 'Cancel')}</Button>
-            <Button onPress={handleExitExam} textColor={theme.colors.error}>{t('common.exit', 'Exit')}</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>

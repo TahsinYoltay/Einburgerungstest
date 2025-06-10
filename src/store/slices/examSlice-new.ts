@@ -282,36 +282,6 @@ const examSlice = createSlice({
     resetExam: (state) => {
       state.currentExam = initialState.currentExam;
     },
-    
-    resetExamData: (state, action: PayloadAction<{ examId?: string }>) => {
-      const { examId } = action.payload;
-      
-      if (examId) {
-        // Reset specific exam
-        state.examHistory = state.examHistory.filter(attempt => attempt.examId !== examId);
-        
-        // Reset lastAttempt in exams array
-        state.exams = state.exams.map(exam => {
-          if (exam.id === examId) {
-            const { attempts, lastAttempt, ...rest } = exam;
-            return { ...rest };
-          }
-          return exam;
-        });
-      } else {
-        // Reset all exams
-        state.examHistory = [];
-        state.exams = state.exams.map(exam => {
-          const { attempts, lastAttempt, ...rest } = exam;
-          return { ...rest };
-        });
-      }
-      
-      // Reset current exam if it matches the examId or if resetting all
-      if (!examId || (examId && state.currentExam.examId === examId)) {
-        state.currentExam = initialState.currentExam;
-      }
-    },
 
     // NAVIGATION
     setCurrentQuestionIndex: (state, action: PayloadAction<number>) => {
@@ -489,7 +459,6 @@ const examSlice = createSlice({
 export const {
   startExam,
   resetExam,
-  resetExamData,
   setCurrentQuestionIndex,
   goToNextQuestion,
   goToPreviousQuestion,

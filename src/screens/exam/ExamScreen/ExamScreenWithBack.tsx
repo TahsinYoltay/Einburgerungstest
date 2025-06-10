@@ -180,6 +180,7 @@ const ExamScreen = () => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
     }
+    
     setShowExitConfirmDialog(false);
     navigation.goBack();
   };
