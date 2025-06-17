@@ -1,0 +1,87 @@
+import React, { useEffect } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { RouteProp, useRoute, useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
+import { ActivityIndicator, Text } from 'react-native-paper';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../../navigations/StackNavigator';
+import { ROUTES } from '../../../constants/routes';
+import { useAppTheme } from '../../../providers/ThemeProvider';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { ReaderProvider } from '../../../reader/ReaderContext';
+import { FontControls } from '../../../components/fontController/FontControls';
+import { ReaderView } from '../../../reader/ReaderView';
+import { useEpubBook } from '../../../reader/useEpubBook';
+
+type EpubReaderScreenRouteProp = RouteProp<RootStackParamList, typeof ROUTES.EPUB_READER>;
+type EpubReaderScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
+const EpubReaderScreen = () => {
+  const route = useRoute<EpubReaderScreenRouteProp>();
+  const navigation = useNavigation<EpubReaderScreenNavigationProp>();
+  const { t } = useTranslation();
+  const { theme } = useAppTheme();
+
+  const { bookPath: routeBookPath, bookTitle } = route.params;
+  const { loading, error, bookUri, isReady } = useEpubBook(routeBookPath);
+
+  // Set up header
+  useEffect(() => {
+    navigation.setOptions({
+      title: bookTitle || t('book.ebook'),
+    });
+  }, [navigation, bookTitle, t]);
+
+  if (loading) {
+    return (
+      <View style={[styles.loadingContainer, { backgroundColor: theme.colors.background }]}>
+        <ActivityIndicator size="large" color={theme.colors.primary} />
+        <Text style={{ color: theme.colors.onBackground, marginTop: 10 }}>
+          {t('book.loadingBook')}
+        </Text>
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={[styles.loadingContainer, { backgroundColor: theme.colors.background }]}>
+        <Text style={{ color: theme.colors.error, textAlign: 'center', padding: 20 }}>
+          Error loading book: {error.message}
+        </Text>
+      </View>
+    );
+  }
+
+  if (!bookUri || !isReady) {
+    return (
+      <View style={[styles.loadingContainer, { backgroundColor: theme.colors.background }]}>
+        <Text style={{ color: theme.colors.onBackground }}>
+          Book not ready
+        </Text>
+      </View>
+    );
+  }
+
+  return (
+    <SafeAreaView style={styles.container} edges={['bottom']}>
+      <ReaderProvider>
+        <FontControls />
+        <ReaderView bookUri={bookUri} />
+      </ReaderProvider>
+    </SafeAreaView>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+export default EpubReaderScreen;

@@ -1,0 +1,201 @@
+{
+  "chapters": [
+    {
+      "id": "chapter1",
+      "title": "The Values and Principles of the UK",
+      "description": "Understanding the fundamental values that define British society",
+      "sections": [
+        {
+          "id": "values-principles",
+          "title": "Values and Principles of the UK",
+          "startIndex": 0,
+          "endIndex": 500
+        },
+        {
+          "id": "history-uk",
+          "title": "History of the UK",
+          "startIndex": 501,
+          "endIndex": 1000
+        },
+        {
+          "id": "religion",
+          "title": "Religion",
+          "startIndex": 1001,
+          "endIndex": 1500
+        },
+        {
+          "id": "customs-traditions",
+          "title": "Customs and Traditions",
+          "startIndex": 1501,
+          "endIndex": 2000
+        }
+      ]
+    },
+    {
+      "id": "chapter2",
+      "title": "What is the UK?",
+      "description": "Geography, nations, and constitutional arrangements",
+      "sections": [
+        {
+          "id": "british-isles",
+          "title": "The British Isles",
+          "startIndex": 0,
+          "endIndex": 400
+        },
+        {
+          "id": "nations-uk",
+          "title": "The Nations of the UK",
+          "startIndex": 401,
+          "endIndex": 800
+        },
+        {
+          "id": "constitutional-arrangements",
+          "title": "Constitutional Arrangements",
+          "startIndex": 801,
+          "endIndex": 1200
+        },
+        {
+          "id": "symbols-anthems",
+          "title": "Symbols and National Anthems",
+          "startIndex": 1201,
+          "endIndex": 1600
+        }
+      ]
+    },
+    {
+      "id": "chapter3",
+      "title": "A Long and Illustrious History",
+      "description": "From early Britain to the modern UK",
+      "sections": [
+        {
+          "id": "early-britain",
+          "title": "Early Britain",
+          "startIndex": 0,
+          "endIndex": 600
+        },
+        {
+          "id": "middle-ages",
+          "title": "The Middle Ages",
+          "startIndex": 601,
+          "endIndex": 1200
+        },
+        {
+          "id": "tudor-stuart",
+          "title": "The Tudors and Stuarts",
+          "startIndex": 1201,
+          "endIndex": 1800
+        },
+        {
+          "id": "union-empire",
+          "title": "A Global Power",
+          "startIndex": 1801,
+          "endIndex": 2400
+        },
+        {
+          "id": "twentieth-century",
+          "title": "The 20th Century",
+          "startIndex": 2401,
+          "endIndex": 3000
+        }
+      ]
+    },
+    {
+      "id": "chapter4",
+      "title": "A Modern, Thriving Society",
+      "description": "Contemporary UK society, culture and achievements",
+      "sections": [
+        {
+          "id": "population",
+          "title": "The UK Today: A Population Snapshot",
+          "startIndex": 0,
+          "endIndex": 500
+        },
+        {
+          "id": "languages-dialects",
+          "title": "Languages and Dialects",
+          "startIndex": 501,
+          "endIndex": 1000
+        },
+        {
+          "id": "leisure",
+          "title": "Leisure",
+          "startIndex": 1001,
+          "endIndex": 1500
+        },
+        {
+          "id": "arts-culture",
+          "title": "Arts and Culture",
+          "startIndex": 1501,
+          "endIndex": 2000
+        },
+        {
+          "id": "sports",
+          "title": "Sports",
+          "startIndex": 2001,
+          "endIndex": 2500
+        }
+      ]
+    },
+    {
+      "id": "chapter5",
+      "title": "The UK Government, the Law and Your Role",
+      "description": "How the UK is governed and the rights and responsibilities of residents",
+      "sections": [
+        {
+          "id": "development-political-system",
+          "title": "The Development of the Political System",
+          "startIndex": 0,
+          "endIndex": 600
+        },
+        {
+          "id": "government-today",
+          "title": "The Government Today",
+          "startIndex": 601,
+          "endIndex": 1200
+        },
+        {
+          "id": "electoral-system",
+          "title": "The Electoral System",
+          "startIndex": 1201,
+          "endIndex": 1800
+        },
+        {
+          "id": "legal-system",
+          "title": "The Legal System",
+          "startIndex": 1801,
+          "endIndex": 2400
+        },
+        {
+          "id": "fundamental-principles",
+          "title": "Fundamental Principles",
+          "startIndex": 2401,
+          "endIndex": 3000
+        },
+        {
+          "id": "your-role",
+          "title": "Your Role in the Community",
+          "startIndex": 3001,
+          "endIndex": 3600
+        },
+        {
+          "id": "housing",
+          "title": "Housing",
+          "startIndex": 3601,
+          "endIndex": 4200
+        },
+        {
+          "id": "services",
+          "title": "Services in Your Area",
+          "startIndex": 4201,
+          "endIndex": 4800
+        },
+        {
+          "id": "taxation",
+          "title": "Taxation",
+          "startIndex": 4801,
+          "endIndex": 5400
+        }
+      ]
+    }
+  ]
+}

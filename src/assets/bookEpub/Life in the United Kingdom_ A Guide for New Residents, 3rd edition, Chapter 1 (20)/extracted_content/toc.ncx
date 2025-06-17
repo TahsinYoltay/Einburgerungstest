@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1" xml:lang="eng">
+  <head>
+    <meta name="dtb:uid" content="493032c3-7512-48cc-a905-8700c8422858"/>
+    <meta name="dtb:depth" content="3"/>
+    <meta name="dtb:generator" content="calibre (7.1.0)"/>
+    <meta name="dtb:totalPageCount" content="5"/>
+    <meta name="dtb:maxPageNumber" content="5"/>
+  </head>
+  <docTitle>
+    <text>Life in the United Kingdom: A Guide for New Residents, 3rd edition</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="num_1" playOrder="1" class="chapter">
+      <navLabel>
+        <text>The values and principles of the UK</text>
+      </navLabel>
+      <content src="OEBPS/part0005.xhtml"/>
+      <navPoint id="num_2" playOrder="2" class="chapter">
+        <navLabel>
+          <text>The values and principles of the UK</text>
+        </navLabel>
+        <content src="OEBPS/part0005.xhtml#a42J"/>
+      </navPoint>
+      <navPoint id="num_3" playOrder="4" class="chapter">
+        <navLabel>
+          <text>Becoming a permanent resident</text>
+        </navLabel>
+        <content src="OEBPS/part0005.xhtml#a42K"/>
+      </navPoint>
+      <navPoint id="num_4" playOrder="7" class="chapter">
+        <navLabel>
+          <text>Taking the Life in the UK test</text>
+        </navLabel>
+        <content src="OEBPS/part0005.xhtml#a42M"/>
+      </navPoint>
+    </navPoint>
+  </navMap>
+  <pageList id="ugKjsP7LEK7Leure2pQjIoE">
+    <pageTarget id="uUIKdIpf69vjJHqMhcPOPD8" value="1" type="normal" playOrder="1">
+      <navLabel>
+        <text>7</text>
+      </navLabel>
+      <content src="OEBPS/part0005.xhtml"/>
+    </pageTarget>
+    <pageTarget id="ubUkMgYUQTLaoVQpBChVqhC" value="2" type="normal" playOrder="3">
+      <navLabel>
+        <text>8</text>
+      </navLabel>
+      <content src="OEBPS/part0005.xhtml#page_8"/>
+    </pageTarget>
+    <pageTarget id="ua8OOwAhf6W5qPevKqHTWL4" value="3" type="normal" playOrder="5">
+      <navLabel>
+        <text>9</text>
+      </navLabel>
+      <content src="OEBPS/part0005.xhtml#page_9"/>
+    </pageTarget>
+    <pageTarget id="uTVIX3RqyVxECbkxzaNw6lD" value="4" type="normal" playOrder="6">
+      <navLabel>
+        <text>10</text>
+      </navLabel>
+      <content src="OEBPS/part0005.xhtml#page_10"/>
+    </pageTarget>
+    <pageTarget id="uIjBWR8bSRXQMtcK44XvcQH" value="5" type="normal" playOrder="8">
+      <navLabel>
+        <text>11</text>
+      </navLabel>
+      <content src="OEBPS/part0005.xhtml#page_11"/>
+    </pageTarget>
+  </pageList>
+</ncx>

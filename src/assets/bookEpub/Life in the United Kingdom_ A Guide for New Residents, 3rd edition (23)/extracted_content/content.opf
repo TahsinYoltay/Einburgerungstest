@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" version="2.0" unique-identifier="uuid_id">
+  <metadata xmlns:opf="http://www.idpf.org/2007/opf" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:calibre="http://calibre.kovidgoyal.net/2009/metadata">
+    <dc:language>en</dc:language>
+    <dc:title>Life in the United Kingdom: A Guide for New Residents, 3rd edition</dc:title>
+    <meta name="calibre:title_sort" content="Life in the United Kingdom: A Guide for New Residents, 3rd edition"/>
+    <dc:contributor opf:role="bkp">calibre (7.1.0) [https://calibre-ebook.com]</dc:contributor>
+    <dc:date>2013-01-28T00:00:00+00:00</dc:date>
+    <meta name="calibre:timestamp" content="2023-12-11T12:08:17.660122+00:00"/>
+    <dc:identifier id="uuid_id" opf:scheme="uuid">d29e598a-f273-4935-902b-6f8dea86bcfc</dc:identifier>
+    <dc:identifier opf:scheme="calibre">d29e598a-f273-4935-902b-6f8dea86bcfc</dc:identifier>
+    <dc:creator opf:role="aut">Unknown</dc:creator>
+    <meta name="cover" content="cover"/>
+  </metadata>
+  <manifest>
+    <item id="cover" href="cover.jpeg" media-type="image/jpeg"/>
+    <item id="titlepage" href="titlepage.xhtml" media-type="application/xhtml+xml"/>
+    <item id="part0008.xhtml" href="OEBPS/part0008.xhtml" media-type="application/xhtml+xml"/>
+    <item id="part0000.xhtml" href="OEBPS/part0000.xhtml" media-type="application/xhtml+xml"/>
+    <item id="font_rsrc47J.ttf" href="OEBPS/font_rsrc47J.ttf" media-type="application/x-font-truetype"/>
+    <item id="image_rsrc1CW.jpg" href="OEBPS/image_rsrc1CW.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1E6.jpg" href="OEBPS/image_rsrc1E6.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1EH.jpg" href="OEBPS/image_rsrc1EH.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1F3.jpg" href="OEBPS/image_rsrc1F3.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1GX.jpg" href="OEBPS/image_rsrc1GX.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1HZ.jpg" href="OEBPS/image_rsrc1HZ.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1M5.jpg" href="OEBPS/image_rsrc1M5.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1S5.jpg" href="OEBPS/image_rsrc1S5.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1WF.jpg" href="OEBPS/image_rsrc1WF.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1WT.jpg" href="OEBPS/image_rsrc1WT.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1X0.jpg" href="OEBPS/image_rsrc1X0.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1X7.jpg" href="OEBPS/image_rsrc1X7.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1XE.jpg" href="OEBPS/image_rsrc1XE.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1XN.jpg" href="OEBPS/image_rsrc1XN.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1XW.jpg" href="OEBPS/image_rsrc1XW.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1Y3.jpg" href="OEBPS/image_rsrc1Y3.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc1YA.jpg" href="OEBPS/image_rsrc1YA.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc15E.jpg" href="OEBPS/image_rsrc15E.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc17C.jpg" href="OEBPS/image_rsrc17C.jpg" media-type="image/jpeg"/>
+    <item id="image_rsrc178.jpg" href="OEBPS/image_rsrc178.jpg" media-type="image/jpeg"/>
+    <item id="page_css" href="page_styles.css" media-type="text/css"/>
+    <item id="css" href="stylesheet.css" media-type="text/css"/>
+    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+    <item id="page-map" href="page-map.xml" media-type="application/oebps-page-map+xml"/>
+  </manifest>
+  <spine toc="ncx" page-map="page-map">
+    <itemref idref="titlepage"/>
+    <itemref idref="part0008.xhtml"/>
+    <itemref idref="part0000.xhtml" linear="no"/>
+  </spine>
+  <guide>
+    <reference type="cover" href="titlepage.xhtml" title="Cover"/>
+  </guide>
+</package>

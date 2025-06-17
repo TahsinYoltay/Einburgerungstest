@@ -3,6 +3,7 @@
     "home": "Home",
     "book": "Study Guide",
     "exam": "Exam",
+    "test": "Practice",
     "settings": "Settings"
   },
   "home": {
@@ -86,6 +87,14 @@
     "title": "Life in the UK: A Guide for New Residents",
     "description": "The official study guide for the Life in the UK test",
     "chapters": "Chapters",
+    "readEbook": "Read E-Book",
+    "ebook": "E-Book Reader",
+    "lifeInTheUk": "Life in the UK: Study Guide",
+    "studyGuideDescription": "Prepare for your Life in the UK test with the official study guide chapters",
+    "readChapter": "Read Chapter",
+    "loadingBook": "Loading book...",
+    "previous": "Previous",
+    "next": "Next",
     "chapter1": {
       "title": "The Values and Principles of the UK",
       "description": "Fundamental principles of British life",

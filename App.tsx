@@ -32,7 +32,6 @@ if (__DEV__) {
 // Main content component that uses the theme
 const AppContent = () => {
   const { theme, isDarkMode, navigationTheme } = useAppTheme();
-  
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer theme={navigationTheme}>

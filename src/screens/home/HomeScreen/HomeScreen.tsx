@@ -6,7 +6,6 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParamList } from '../../../navigations/StackNavigator';
-import { ROUTES } from '../../../constants/routes';
 import { styles } from './HomeScreen.style';
 import { useAppDispatch } from '../../../store/hooks';
 import { loadExams } from '../../../store/slices/examSlice';
@@ -25,7 +24,7 @@ const HomeScreen = () => {
   }, [dispatch]);
 
   const navigateToBook = () => {
-    navigation.navigate(ROUTES.BOOK);
+    navigation.navigate('BookTab');
   };
 
   return (

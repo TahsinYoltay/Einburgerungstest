@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
-import { Text, IconButton, Divider, List, Card } from 'react-native-paper';
+import { Text, IconButton, Divider, Card } from 'react-native-paper';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
@@ -32,9 +32,9 @@ const ChapterScreen = () => {
   const styles = createStyles(theme);
   const route = useRoute<ChapterScreenRouteProp>();
   const navigation = useNavigation<ChapterScreenNavigationProp>();
-  
+
   const { id } = route.params;
-  
+
   // This would come from an API or a local JSON file in a real app
   // For now, we're using dummy data
   const chapters: Record<string, ChapterData> = {
@@ -90,7 +90,7 @@ const ChapterScreen = () => {
       ],
     },
   };
-  
+
   const chapterData = chapters[id] || {
     id: '0',
     title: 'Chapter not found',
@@ -111,7 +111,7 @@ const ChapterScreen = () => {
           {chapterData.title}
         </Text>
       </View>
-      
+
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <Card style={styles.introCard}>
           <Card.Content>
@@ -120,7 +120,7 @@ const ChapterScreen = () => {
             </Text>
           </Card.Content>
         </Card>
-        
+
         {chapterData.sections.map((section) => (
           <View key={section.id} style={styles.sectionContainer}>
             <Text variant="titleMedium" style={styles.sectionTitle}>
@@ -132,7 +132,7 @@ const ChapterScreen = () => {
             <Divider style={styles.divider} />
           </View>
         ))}
-        
+
         <View style={styles.navigationButtons}>
           {parseInt(id) > 1 && (
             <IconButton
@@ -144,7 +144,7 @@ const ChapterScreen = () => {
               iconColor={theme.colors.surface}
             />
           )}
-          
+
           <IconButton
             icon="book-open-variant"
             mode="contained"
@@ -153,7 +153,7 @@ const ChapterScreen = () => {
             containerColor={theme.colors.secondary}
             iconColor={theme.colors.surface}
           />
-          
+
           {parseInt(id) < Object.keys(chapters).length && (
             <IconButton
               icon="arrow-right"

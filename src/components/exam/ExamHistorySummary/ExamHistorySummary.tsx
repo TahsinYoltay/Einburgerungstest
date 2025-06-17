@@ -1,23 +1,36 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, Alert } from 'react-native';
-import { Card, Text, Divider, List, useTheme, Button, IconButton, Dialog, Portal, Chip, ProgressBar } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useTranslation } from 'react-i18next';
-import { useAppSelector, useAppDispatch } from '../../../store/hooks';
-import { RootStackParamList } from '../../../navigations/StackNavigator';
-import { ROUTES } from '../../../constants/routes';
-import { resetExamData } from '../../../store/slices/examSlice';
+import React, {useState} from 'react';
+import {View, ScrollView, Alert} from 'react-native';
+import {
+  Card,
+  Text,
+  Divider,
+  List,
+  useTheme,
+  Button,
+  IconButton,
+  Dialog,
+  Portal,
+  Chip,
+  ProgressBar,
+} from 'react-native-paper';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useTranslation} from 'react-i18next';
+import {useAppSelector, useAppDispatch} from '../../../store/hooks';
+import {RootStackParamList} from '../../../navigations/StackNavigator';
+import {ROUTES} from '../../../constants/routes';
+import {resetExamData} from '../../../store/slices/examSlice';
+import {styles} from './ExamHistorySummary.style';
 
 type HomeNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const ExamHistorySummary = () => {
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const theme = useTheme();
   const navigation = useNavigation<HomeNavigationProp>();
   const dispatch = useAppDispatch();
-  const { exams, examHistory, currentExam } = useAppSelector(state => state.exam);
-  
+  const {exams, examHistory, currentExam} = useAppSelector(state => state.exam);
+
   // Local state for reset dialog
   const [resetDialogVisible, setResetDialogVisible] = useState(false);
   const [examToReset, setExamToReset] = useState<string | null>(null);
@@ -46,37 +59,37 @@ const ExamHistorySummary = () => {
 
   // Start an exam
   const handleStartExam = (examId: string) => {
-    navigation.navigate(ROUTES.EXAM, { id: examId });
+    navigation.navigate(ROUTES.EXAM, {id: examId});
   };
 
   // View results
   const handleViewResults = (examId: string) => {
-    navigation.navigate(ROUTES.EXAM_RESULTS, { examId });
+    navigation.navigate(ROUTES.EXAM_RESULTS, {examId});
   };
-  
+
   // Handle reset exam confirmation dialog
   const showResetConfirmation = (examId?: string) => {
     setExamToReset(examId || null);
     setResetDialogVisible(true);
   };
-  
+
   // Handle reset action
   const handleResetExam = () => {
-    dispatch(resetExamData({ examId: examToReset || undefined }));
+    dispatch(resetExamData({examId: examToReset || undefined}));
     setResetDialogVisible(false);
-    
+
     // Show success message
-    Alert.alert(
-      t('exam.resetSuccess'),
-      '',
-      [{ text: 'OK' }]
-    );
+    Alert.alert(t('exam.resetSuccess'), '', [{text: 'OK'}]);
   };
 
   // Calculate progress for in-progress exams
   const calculateProgress = (examId: string) => {
     // If this is the current exam being taken
-    if (currentExam.examId === examId && currentExam.examStarted && !currentExam.examCompleted) {
+    if (
+      currentExam.examId === examId &&
+      currentExam.examStarted &&
+      !currentExam.examCompleted
+    ) {
       const totalQuestions = currentExam.questions.length;
       const answeredCount = Object.keys(currentExam.answers).length;
       return {
@@ -86,7 +99,7 @@ const ExamHistorySummary = () => {
         timeLeft: currentExam.timeRemaining,
       };
     }
-    
+
     // If it's a saved in-progress exam
     const lastAttempt = exams.find(e => e.id === examId)?.lastAttempt;
     if (lastAttempt && lastAttempt.status === 'in-progress') {
@@ -94,11 +107,14 @@ const ExamHistorySummary = () => {
       return {
         answered: answeredCount,
         remaining: lastAttempt.totalQuestions - answeredCount,
-        progress: lastAttempt.totalQuestions > 0 ? answeredCount / lastAttempt.totalQuestions : 0,
+        progress:
+          lastAttempt.totalQuestions > 0
+            ? answeredCount / lastAttempt.totalQuestions
+            : 0,
         timeLeft: null, // We don't have this info for saved exams
       };
     }
-    
+
     return null;
   };
 
@@ -107,7 +123,7 @@ const ExamHistorySummary = () => {
     const attempts = examHistory.filter(attempt => attempt.examId === examId);
     const passedCount = attempts.filter(a => a.status === 'passed').length;
     const failedCount = attempts.filter(a => a.status === 'failed').length;
-    
+
     return {
       total: attempts.length,
       passedCount,
@@ -122,7 +138,7 @@ const ExamHistorySummary = () => {
       return t('exam.start');
     }
 
-    switch(exam.lastAttempt.status) {
+    switch (exam.lastAttempt.status) {
       case 'in-progress':
         return currentExam.examId === examId && currentExam.examStarted
           ? t('exam.continue')
@@ -153,7 +169,7 @@ const ExamHistorySummary = () => {
     }
 
     const statusKey = status.replace('-', ''); // Remove hyphens for translation keys
-    return <Text style={{ color }}>{t(`exam.status.${statusKey}`)}</Text>;
+    return <Text style={{color}}>{t(`exam.status.${statusKey}`)}</Text>;
   };
 
   if (!exams.length) {
@@ -169,13 +185,14 @@ const ExamHistorySummary = () => {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text variant="titleLarge" style={styles.title}>{t('exam.availableExams')}</Text>
-        <Button 
-          icon="refresh" 
+        <Text variant="titleLarge" style={styles.title}>
+          {t('exam.availableExams')}
+        </Text>
+        <Button
+          icon="refresh"
           mode="text"
           onPress={() => showResetConfirmation()}
-          accessibilityLabel={t('exam.resetExams')}
-        >
+          accessibilityLabel={t('exam.resetExams')}>
           {t('exam.resetExams')}
         </Button>
       </View>
@@ -191,7 +208,10 @@ const ExamHistorySummary = () => {
               <Card key={exam.id} style={styles.examCard}>
                 <Card.Content>
                   <View style={styles.cardHeader}>
-                    <Text variant="titleMedium" numberOfLines={1} style={styles.examTitle}>
+                    <Text
+                      variant="titleMedium"
+                      numberOfLines={1}
+                      style={styles.examTitle}>
                       {exam.name}
                     </Text>
                     <IconButton
@@ -201,8 +221,11 @@ const ExamHistorySummary = () => {
                       accessibilityLabel={t('exam.reset')}
                     />
                   </View>
-                  
-                  <Text variant="bodySmall" style={styles.description} numberOfLines={2}>
+
+                  <Text
+                    variant="bodySmall"
+                    style={styles.description}
+                    numberOfLines={2}>
                     {exam.description}
                   </Text>
 
@@ -214,7 +237,9 @@ const ExamHistorySummary = () => {
 
                     <View style={styles.detailItem}>
                       <Text variant="labelSmall">{t('exam.timeAllowed')}</Text>
-                      <Text variant="bodyMedium">{exam.timeAllowedInMinutes} min</Text>
+                      <Text variant="bodyMedium">
+                        {exam.timeAllowedInMinutes} min
+                      </Text>
                     </View>
 
                     <View style={styles.detailItem}>
@@ -226,12 +251,13 @@ const ExamHistorySummary = () => {
                   {progress && (
                     <View style={styles.progressContainer}>
                       <Text variant="labelSmall">
-                        {t('exam.questionsAnswered')}: {progress.answered}/{progress.answered + progress.remaining}
+                        {t('exam.questionsAnswered')}: {progress.answered}/
+                        {progress.answered + progress.remaining}
                       </Text>
-                      <ProgressBar 
-                        progress={progress.progress} 
-                        color={theme.colors.primary} 
-                        style={styles.progressBar} 
+                      <ProgressBar
+                        progress={progress.progress}
+                        color={theme.colors.primary}
+                        style={styles.progressBar}
                       />
                       {progress.timeLeft && (
                         <Text variant="labelSmall" style={styles.timeLeft}>
@@ -243,18 +269,16 @@ const ExamHistorySummary = () => {
 
                   {stats.total > 0 && (
                     <View style={styles.statsContainer}>
-                      <Chip 
-                        icon="check" 
-                        textStyle={{ color: theme.colors.primary }} 
-                        style={styles.statChip}
-                      >
+                      <Chip
+                        icon="check"
+                        textStyle={{color: theme.colors.primary}}
+                        style={styles.statChip}>
                         {t('exam.passCount')}: {stats.passedCount}
                       </Chip>
-                      <Chip 
-                        icon="close" 
-                        textStyle={{ color: theme.colors.error }}
-                        style={styles.statChip}
-                      >
+                      <Chip
+                        icon="close"
+                        textStyle={{color: theme.colors.error}}
+                        style={styles.statChip}>
                         {t('exam.failCount')}: {stats.failedCount}
                       </Chip>
                     </View>
@@ -265,7 +289,9 @@ const ExamHistorySummary = () => {
                       <Divider style={styles.divider} />
                       <View>
                         <View style={styles.lastAttemptRow}>
-                          <Text variant="labelSmall">{t('exam.lastAttempt')}:</Text>
+                          <Text variant="labelSmall">
+                            {t('exam.lastAttempt')}:
+                          </Text>
                           <Text variant="labelSmall">
                             {formatDate(lastAttempt.startTime)}
                           </Text>
@@ -276,17 +302,18 @@ const ExamHistorySummary = () => {
                           {getStatusLabel(lastAttempt.status)}
                         </View>
 
-                        {lastAttempt.status === 'passed' || lastAttempt.status === 'failed' ? (
+                        {lastAttempt.status === 'passed' ||
+                        lastAttempt.status === 'failed' ? (
                           <View style={styles.lastAttemptRow}>
                             <Text variant="labelSmall">{t('exam.score')}:</Text>
                             <Text
                               variant="bodyMedium"
                               style={{
-                                color: lastAttempt.status === 'passed'
-                                  ? theme.colors.primary
-                                  : theme.colors.error,
-                              }}
-                            >
+                                color:
+                                  lastAttempt.status === 'passed'
+                                    ? theme.colors.primary
+                                    : theme.colors.error,
+                              }}>
                               {lastAttempt.score}%
                             </Text>
                           </View>
@@ -297,19 +324,18 @@ const ExamHistorySummary = () => {
                 </Card.Content>
 
                 <Card.Actions>
-                  {lastAttempt?.status === 'passed' || lastAttempt?.status === 'failed' ? (
+                  {lastAttempt?.status === 'passed' ||
+                  lastAttempt?.status === 'failed' ? (
                     <Button
                       onPress={() => handleViewResults(exam.id)}
-                      mode="text"
-                    >
+                      mode="text">
                       {t('exam.viewResults')}
                     </Button>
                   ) : null}
 
                   <Button
                     onPress={() => handleStartExam(exam.id)}
-                    mode="contained"
-                  >
+                    mode="contained">
                     {getExamButtonText(exam.id)}
                   </Button>
                 </Card.Actions>
@@ -321,7 +347,9 @@ const ExamHistorySummary = () => {
 
       {examHistory.length > 0 && (
         <>
-          <Text variant="titleLarge" style={styles.title}>{t('exam.recentAttempts')}</Text>
+          <Text variant="titleLarge" style={styles.title}>
+            {t('exam.recentAttempts')}
+          </Text>
           <Card style={styles.historyCard}>
             <Card.Content>
               {examHistory.slice(0, 5).map((attempt, index) => {
@@ -332,17 +360,25 @@ const ExamHistorySummary = () => {
                     {index > 0 && <Divider style={styles.divider} />}
                     <List.Item
                       title={exam?.name || t('exam.unknownExam')}
-                      description={`${formatDate(attempt.startTime)} • ${formatTime(attempt.timeSpentInSeconds)}`}
+                      description={`${formatDate(
+                        attempt.startTime,
+                      )} • ${formatTime(attempt.timeSpentInSeconds)}`}
                       left={props => (
                         <List.Icon
                           {...props}
                           icon={
-                            attempt.status === 'passed' ? 'check-circle' :
-                            attempt.status === 'failed' ? 'close-circle' : 'clock-outline'
+                            attempt.status === 'passed'
+                              ? 'check-circle'
+                              : attempt.status === 'failed'
+                              ? 'close-circle'
+                              : 'clock-outline'
                           }
                           color={
-                            attempt.status === 'passed' ? theme.colors.primary :
-                            attempt.status === 'failed' ? theme.colors.error : theme.colors.secondary
+                            attempt.status === 'passed'
+                              ? theme.colors.primary
+                              : attempt.status === 'failed'
+                              ? theme.colors.error
+                              : theme.colors.secondary
                           }
                         />
                       )}
@@ -354,12 +390,12 @@ const ExamHistorySummary = () => {
                               style={[
                                 styles.scoreText,
                                 {
-                                  color: attempt.status === 'passed'
-                                    ? theme.colors.primary
-                                    : theme.colors.error,
+                                  color:
+                                    attempt.status === 'passed'
+                                      ? theme.colors.primary
+                                      : theme.colors.error,
                                 },
-                              ]}
-                            >
+                              ]}>
                               {attempt.score}%
                             </Text>
                           )}
@@ -382,11 +418,15 @@ const ExamHistorySummary = () => {
 
       {/* Reset Confirmation Dialog */}
       <Portal>
-        <Dialog visible={resetDialogVisible} onDismiss={() => setResetDialogVisible(false)}>
+        <Dialog
+          visible={resetDialogVisible}
+          onDismiss={() => setResetDialogVisible(false)}>
           <Dialog.Title>{t('exam.reset')}</Dialog.Title>
           <Dialog.Content>
             <Text>
-              {examToReset ? t('exam.resetExamConfirm') : t('exam.resetExamsConfirm')}
+              {examToReset
+                ? t('exam.resetExamConfirm')
+                : t('exam.resetExamsConfirm')}
             </Text>
           </Dialog.Content>
           <Dialog.Actions>
@@ -403,99 +443,4 @@ const ExamHistorySummary = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: 8,
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginHorizontal: 16,
-    marginTop: 16,
-    marginBottom: 8,
-  },
-  title: {
-    flex: 1,
-  },
-  loadingCard: {
-    margin: 16,
-  },
-  cardsContainer: {
-    flexDirection: 'row',
-    paddingHorizontal: 12,
-    paddingBottom: 8,
-  },
-  examCard: {
-    width: 300,
-    marginHorizontal: 4,
-    marginBottom: 8,
-  },
-  cardHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  examTitle: {
-    flex: 1,
-    marginRight: 8,
-  },
-  description: {
-    marginTop: 4,
-    marginBottom: 8,
-    opacity: 0.7,
-  },
-  detailsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 8,
-    marginBottom: 8,
-  },
-  detailItem: {
-    alignItems: 'center',
-  },
-  progressContainer: {
-    marginTop: 8,
-    marginBottom: 4,
-  },
-  progressBar: {
-    height: 8,
-    borderRadius: 4,
-    marginVertical: 4,
-  },
-  timeLeft: {
-    textAlign: 'right',
-  },
-  statsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginVertical: 8,
-  },
-  statChip: {
-    marginRight: 8,
-    marginTop: 4,
-  },
-  divider: {
-    marginVertical: 12,
-  },
-  lastAttemptRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 4,
-  },
-  historyCard: {
-    marginHorizontal: 16,
-    marginBottom: 16,
-  },
-  scoreContainer: {
-    justifyContent: 'center',
-  },
-  scoreText: {
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
-});
-
 export default ExamHistorySummary;
-
