@@ -46,18 +46,32 @@ const BookScreen = () => {
   };
 
   const openChapter = (chapter: Chapter, targetSectionId?: string) => {
-    // Skip cover pages by targeting the first subsection if no specific section is requested
-    const effectiveTargetId = targetSectionId || chapter.subSections[0]?.id;
+    // Default to first subsection if no specific section is provided
+    const sectionId = targetSectionId || `${chapter.id}-1`;
+    
+    console.log('BookScreen - Opening chapter:', {
+      chapterId: chapter.id,
+      chapterTitle: chapter.title,
+      targetSectionId: sectionId
+    });
     
     navigation.navigate(ROUTES.EPUB_READER, {
-      bookPath: chapter.id, // Pass chapter ID instead of epub path
       bookTitle: chapter.title,
-      targetSectionId: effectiveTargetId,
+      targetSectionId: sectionId,
     });
   };
 
   const openSubSection = (chapter: Chapter, subSection: SubSection) => {
-    openChapter(chapter, subSection.id);
+    console.log('BookScreen - Opening subsection:', {
+      chapterId: chapter.id,
+      subsectionId: subSection.id,
+      subsectionTitle: subSection.title
+    });
+    
+    navigation.navigate(ROUTES.EPUB_READER, {
+      bookTitle: chapter.title,
+      targetSectionId: subSection.id,
+    });
   };
 
   const toggleChapterExpansion = (chapterId: string) => {

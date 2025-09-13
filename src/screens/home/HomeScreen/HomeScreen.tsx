@@ -10,6 +10,8 @@ import { styles } from './HomeScreen.style';
 import { useAppDispatch } from '../../../store/hooks';
 import { loadExams } from '../../../store/slices/examSlice';
 import ExamHistorySummary from '../../../components/exam/ExamHistorySummary/ExamHistorySummary';
+import { FirebaseTest } from '../../../components/common/FirebaseTest/FirebaseTest';
+
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -47,6 +49,12 @@ const HomeScreen = () => {
             </Button>
           </Card.Actions>
         </Card>
+
+        {/* Firebase Test Component */}
+        <FirebaseTest />
+        
+        {/* Firebase Image Test Component */}
+
       </ScrollView>
     </SafeAreaView>
   );

@@ -13,6 +13,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StatusBar } from 'react-native';
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ReaderProvider } from '@epubjs-react-native/core';
 
 // Store
 import { store, persistor } from './src/store';
@@ -21,6 +22,7 @@ import { store, persistor } from './src/store';
 import { LocalizationProvider } from './src/providers/LocalizationProvider';
 import { ThemeProvider, useAppTheme } from './src/providers/ThemeProvider';
 import { AuthProvider } from './src/providers/AuthProvider';
+import { BookProvider } from './src/contexts/BookContext';
 
 // Navigation
 import RootNavigator from './src/navigations/StackNavigator';
@@ -54,7 +56,11 @@ function App(): React.JSX.Element {
             <ThemeProvider>
               <AuthProvider>
                 <LocalizationProvider>
-                  <AppContent />
+                  <ReaderProvider>
+                    <BookProvider>
+                      <AppContent />
+                    </BookProvider>
+                  </ReaderProvider>
                 </LocalizationProvider>
               </AuthProvider>
             </ThemeProvider>

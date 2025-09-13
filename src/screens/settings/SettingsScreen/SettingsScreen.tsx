@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './SettingsScreen.style';
 import { useAppDispatch } from '../../../store/hooks';
 import { resetExamData } from '../../../store/slices/examSlice';
+import NetworkTest from '../../../components/common/NetworkTest/NetworkTest';
 
 const SettingsScreen = () => {
   const { t, i18n } = useTranslation();
@@ -87,6 +88,15 @@ const SettingsScreen = () => {
                 {t('exam.resetExams')}
               </Button>
             </View>
+          </Card.Content>
+        </Card>
+
+        <Card style={styles.card}>
+          <Card.Content>
+            <Text variant="titleMedium" style={{ marginBottom: 8 }}>
+              Network Diagnostics
+            </Text>
+            <NetworkTest />
           </Card.Content>
         </Card>
       </ScrollView>

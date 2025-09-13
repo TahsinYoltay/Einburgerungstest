@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from '@react-native-vector-icons/material-design-icons';
 import { useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 
@@ -18,23 +18,23 @@ const Tab = createBottomTabNavigator();
 
 // Define icon components outside of the render function
 const renderHomeIcon = ({ color, size }: { color: string; size: number }) => (
-  <MaterialCommunityIcons name="home" color={color} size={size} />
+  <Icon name="home" color={color} size={size} />
 );
 
 const renderBookIcon = ({ color, size }: { color: string; size: number }) => (
-  <MaterialCommunityIcons name="book-open-variant" color={color} size={size} />
+  <Icon name="book" color={color} size={size} />
 );
 
 const renderExamIcon = ({ color, size }: { color: string; size: number }) => (
-  <MaterialCommunityIcons name="clipboard-text" color={color} size={size} />
+  <Icon name="book-open-variant-outline" color={color} size={size} />
 );
 
 const renderTestIcon = ({ color, size }: { color: string; size: number }) => (
-  <MaterialCommunityIcons name="format-list-checks" color={color} size={size} />
+  <Icon name="check-decagram" color={color} size={size} />
 );
 
 const renderSettingsIcon = ({ color, size }: { color: string; size: number }) => (
-  <MaterialCommunityIcons name="cog" color={color} size={size} />
+  <Icon name="cog" color={color} size={size} />
 );
 
 const TabNavigator = () => {

@@ -1,4 +1,4 @@
-package com.lifeintheuk
+package com.lif
 import android.os.Bundle;
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

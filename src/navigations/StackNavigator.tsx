@@ -24,7 +24,7 @@ export type RootStackParamList = {
   [ROUTES.EXAM_RESULTS]: { examId: string };
   [ROUTES.BOOK]: undefined;
   [ROUTES.CHAPTER]: { id: string };
-  [ROUTES.EPUB_READER]: { bookPath: string; bookTitle?: string; targetSectionId?: string };
+  [ROUTES.EPUB_READER]: { bookTitle?: string; targetSectionId?: string };
   [ROUTES.TEST]: undefined;
   [ROUTES.SETTINGS]: undefined;
   [ROUTES.PROFILE]: undefined;

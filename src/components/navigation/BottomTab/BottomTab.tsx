@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Animated } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from '@react-native-vector-icons/material-design-icons';
 // Tab route names are used directly
 import { styles } from './BottomTab.style';
 import { BottomTabContext } from '../../../providers/BottomTabProvider';
@@ -23,7 +23,7 @@ const TabItem = ({ label, icon, isActive, onPress }: TabItemProps) => {
   
   return (
     <TouchableOpacity style={styles.tabItem} onPress={onPress} accessibilityRole="button" accessibilityLabel={label}>
-      <MaterialCommunityIcons
+      <Icon
         name={icon}
         size={24}
         color={isActive ? activeColor : inactiveColor}
@@ -46,10 +46,10 @@ const BottomTab = () => {
 
   const tabs = [
     { route: 'HomeTab', label: t('screens.home'), icon: 'home' },
-    { route: 'BookTab', label: t('screens.book'), icon: 'book-open-variant' },
+    { route: 'BookTab', label: t('screens.book'), icon: 'book' },
     { route: 'ExamTab', label: t('screens.exam'), icon: 'clipboard-text' },
-    { route: 'TestTab', label: t('screens.test'), icon: 'format-list-checks' },
-    { route: 'SettingsTab', label: t('screens.settings'), icon: 'cog' },
+    { route: 'TestTab', label: t('screens.test'), icon: 'checklist' },
+    { route: 'SettingsTab', label: t('screens.settings'), icon: 'settings' },
   ];
 
   const handleTabPress = (index: number, route: string) => {
