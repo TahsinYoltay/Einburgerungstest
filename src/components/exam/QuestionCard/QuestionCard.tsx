@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Image, Platform } from 'react-native';
+import { View, Image } from 'react-native';
 import { Card, Text, RadioButton, IconButton, Checkbox, Divider } from 'react-native-paper';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 import { useTranslation } from 'react-i18next';

@@ -1,6 +1,14 @@
 apply plugin: "com.android.application"
+apply plugin: 'com.google.gms.google-services' 
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
+
+// Configure Vector Icons
+project.ext.vectoricons = [
+    iconFontNames: [ 'MaterialIcons.ttf' ]
+]
+
+apply from: file("../../node_modules/@react-native-vector-icons/common/fonts.gradle")
 
 /**
  * This is the configuration block to customize your React Native Android app.
@@ -77,9 +85,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.lifeintheuk"
+    namespace "com.lif"
     defaultConfig {
-        applicationId "com.lifeintheuk"
+        applicationId "com.lif"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

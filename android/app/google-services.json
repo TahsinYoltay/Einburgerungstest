@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "482157943468",
+    "firebase_url": "https://lifeuk-6dff5-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "lifeuk-6dff5",
+    "storage_bucket": "lifeuk-6dff5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482157943468:android:6273d387e3764969211d09",
+        "android_client_info": {
+          "package_name": "com.lif"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "482157943468-5f0bdbauff84rd9lhgf4krokkt87m2u8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS1pH6YW2TunFQGn9xURPhN3Fm1ktBwUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "482157943468-5f0bdbauff84rd9lhgf4krokkt87m2u8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "482157943468-emh57nr0e0iednag3k3cgolimakan5dn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.eywasoft.LIF"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

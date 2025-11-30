@@ -21,6 +21,7 @@ import { store, persistor } from './src/store';
 import { LocalizationProvider } from './src/providers/LocalizationProvider';
 import { ThemeProvider, useAppTheme } from './src/providers/ThemeProvider';
 import { AuthProvider } from './src/providers/AuthProvider';
+import { EpubReaderProvider } from './src/contexts/EpubReaderContext';
 
 // Navigation
 import RootNavigator from './src/navigations/StackNavigator';
@@ -32,7 +33,6 @@ if (__DEV__) {
 // Main content component that uses the theme
 const AppContent = () => {
   const { theme, isDarkMode, navigationTheme } = useAppTheme();
-  
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer theme={navigationTheme}>
@@ -55,7 +55,9 @@ function App(): React.JSX.Element {
             <ThemeProvider>
               <AuthProvider>
                 <LocalizationProvider>
-                  <AppContent />
+                  <EpubReaderProvider>
+                    <AppContent />
+                  </EpubReaderProvider>
                 </LocalizationProvider>
               </AuthProvider>
             </ThemeProvider>

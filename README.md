@@ -1,10 +1,50 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Life in the UK Test App
 
-# Getting Started
+A comprehensive React Native application designed to help users prepare for the "Life in the UK" test. This app includes a study guide with an integrated EPUB reader, practice tests, and progress tracking.
+
+## Features
+
+- **Interactive EPUB Reader**: Read the "Life in the UK" guide directly in the app
+- **Practice Tests**: Test your knowledge with realistic practice questions
+- **Progress Tracking**: Track your progress and identify areas that need improvement
+- **Localization**: App supports multiple languages
+- **Dark/Light Mode**: Comfortable reading experience in any lighting condition
+
+## EPUB Reader Integration
+
+The app includes a fully-featured EPUB reader built with `@epubjs-react-native/core` to display the "Life in the UK" guide content. The reader includes:
+
+- Page navigation controls
+- Progress tracking
+- Automatic bookmark saving
+- Reading position persistence
+
+For information about setting up and customizing the EPUB content, see [EPUB_GUIDE.md](./EPUB_GUIDE.md).
+
+## Getting Started
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
-## Step 1: Start Metro
+### Node version
+
+This project targets Node 20 LTS (see `.nvmrc`, tested with `20.18.0`). If you use [nvm](https://github.com/nvm-sh/nvm), align your version before installing dependencies:
+
+```sh
+nvm install
+nvm use
+```
+
+### Install dependencies (locked)
+
+To avoid pulling unexpected packages from npm, installs are locked to `yarn.lock`. Use Yarn with the frozen lockfile:
+
+```sh
+yarn install --frozen-lockfile
+```
+
+(`.yarnrc` enforces the frozen lockfile flag by default.)
+
+### Step 1: Start Metro
 
 First, you will need to run **Metro**, the JavaScript build tool for React Native.
 
