@@ -1,0 +1,721 @@
+{
+  "chapterID": 23,
+  "chapterName": "Chapter 23",
+  "questions": [
+    {
+      "id": "Q10528",
+      "type": "single_choice",
+      "prompt": "How old do you need to be to buy a lottery ticket or scratch card?",
+      "options": [
+        "16",
+        "18",
+        "21",
+        "25"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "People under 18 are not allowed to participate in the National Lottery.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10529",
+      "type": "single_choice",
+      "prompt": "Where was Catherine of Aragon (the first wife of Henry VIII) from?",
+      "options": [
+        "Spain",
+        "Germany",
+        "England",
+        "French"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Catherine of Aragon was a Spanish princess.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10530",
+      "type": "single_choice",
+      "prompt": "When did motor-car racing start in the UK?",
+      "options": [
+        "In 1889",
+        "In 1901",
+        "In 1902",
+        "In 1922"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Motor-car racing in the UK started in 1902.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10531",
+      "type": "true_false",
+      "prompt": "The Commonwealth is based on the core values of democracy, good government and the rule of law:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Commonwealth is based on the core values of democracy, good government and the rule of law.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10532",
+      "type": "single_choice",
+      "prompt": "How long does it take to donate blood?",
+      "options": [
+        "About half an hour",
+        "About an hour",
+        "About two hours",
+        "About 15 minutes"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Giving blood only takes about an hour to do.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10533",
+      "type": "single_choice",
+      "prompt": "When did the post-war economic boom come to an end?",
+      "options": [
+        "In the early 1970s",
+        "In the late 1970s",
+        "In the early 1960s",
+        "In the late 1960s"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In the late 1970s, the post-war economic boom came to an end.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10534",
+      "type": "true_false",
+      "prompt": "During its government, Margaret Thatcher made structural changes to the economy through the privatisation of nationalised industries and imposed legal controls on trade union powers:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Margaret Thatcher made structural changes to the economy through the privatisation of nationalised industries and imposed legal controls on trade union powers.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10535",
+      "type": "single_choice",
+      "prompt": "Who sat at the House of Commons during the Middle Ages?",
+      "options": [
+        "Knights and wealthy people from towns and cities",
+        "Farmers and blacksmiths",
+        "Great landowners and bishops",
+        "Everyone could sit at the House of Commons"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In the Middle Ages, Knights, who were usually smaller landowners, and wealthy people from towns and cities were elected to sit in the House of Commons.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10536",
+      "type": "single_choice",
+      "prompt": "Which of the following words come from the Anglo-Saxon language?",
+      "options": [
+        "Apple and summer",
+        "Music and dance",
+        "Grimsby and scunthorpe",
+        "Canute and boat"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The words ‘Apple’ and ‘summer’ are based on Anglo-Saxon words.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10537",
+      "type": "multiple_choice",
+      "prompt": "Where do local authorities get funding from (choose TWO answers)?",
+      "options": [
+        "The Queen",
+        "The central government",
+        "Donations made by local residents",
+        "Local taxes"
+      ],
+      "correct_option_indexes": [
+        1,
+        3
+      ],
+      "min_selections": 2,
+      "max_selections": 2,
+      "explanation": "Local authorities provide a range of services in their areas. They are funded by money from central government and by local taxes.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10538",
+      "type": "single_choice",
+      "prompt": "If you are self-employed:",
+      "options": [
+        "You need to pay your own tax",
+        "Tax is automatically taken from your earnings by a specialised agency",
+        "You don’t need to pay tax",
+        "You only needed to pay tax on 50% of your earnings"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "If you are self-employed, you need to pay your own tax through a system called ‘self-assessment’, which includes completing a tax return.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10539",
+      "type": "single_choice",
+      "prompt": "What name is given to the elected members of the Northern Ireland Assembly?",
+      "options": [
+        "MSPs",
+        "MLAs",
+        "MPs",
+        "AMs"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Members of the Northern Ireland Assembly are known as MLAs (members of the Legislative Assembly).",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10540",
+      "type": "single_choice",
+      "prompt": "How long does the Hanukkah celebration last for?",
+      "options": [
+        "Eight days",
+        "40 days",
+        "Five days",
+        "A fortnight"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Hanukkah is in November or December and is celebrated for eight days.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10541",
+      "type": "single_choice",
+      "prompt": "Which of the following areas did the British Empire NOT cover during the Victorian period?",
+      "options": [
+        "Mexico",
+        "Australia",
+        "India",
+        "Large parts of Africa"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "During the Victorian period, the British Empire grew to cover all of India, Australia and large parts of Africa.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10542",
+      "type": "single_choice",
+      "prompt": "What percentage of the total British population is located in Wales?",
+      "options": [
+        "30%",
+        "5%",
+        "8%",
+        "3%"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The total British population located in Wales is around 5%.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10543",
+      "type": "single_choice",
+      "prompt": "Which senior MP is responsible for issues relating to crime, policing and immigration?",
+      "options": [
+        "The Home Secretary",
+        "The Foreign Secretary",
+        "The Chancellor of the Exchequer",
+        "The Prime Minister"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Home Secretary is responsible for crime, policing and immigration.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10544",
+      "type": "single_choice",
+      "prompt": "Which British scientist led the development of the atomic bomb?",
+      "options": [
+        "Howard Florey",
+        "Ernst Chain",
+        "Ernest Rutherford",
+        "Keith Campbell"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Scientists led by Ernest Rutherford, working at Manchester and then Cambridge University, were the first to ‘split the atom’ and took part in the Manhattan Project in the United States, which developed the atomic bomb.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10545",
+      "type": "single_choice",
+      "prompt": "Which of the following movies played an important role in boosting morale during the Second World War?",
+      "options": [
+        "The Ladykillers",
+        "Carry on",
+        "Passport to Pimlico",
+        "In Which We Serve"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "During the Second World War, British movies (for example, In Which We Serve) played an important part in boosting morale.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10546",
+      "type": "true_false",
+      "prompt": "After the Black Death, the growing wealth in the towns led to the development of a strong middle class:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "After the Black Death, new social classes appeared, including owners of large areas of land (later called the gentry), and people left the countryside to live in the towns. In the towns, growing wealth led to the development of a strong middle class.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10547",
+      "type": "single_choice",
+      "prompt": "What was the ability of the Harrier jump jet aircraft?",
+      "options": [
+        "To carry 1,000 passengers",
+        "To take off vertically",
+        "To float on water",
+        "To reach supersonic speeds"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Harrier jump jet, an aircraft capable of taking off vertically, was also designed and developed in the UK.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10548",
+      "type": "single_choice",
+      "prompt": "Who won the 2012 Olympic gold medal in heptathlon?",
+      "options": [
+        "Ellie Simmonds",
+        "Jessica Ennis",
+        "Dame Kelly Holmes",
+        "Jayne Torvill"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Jessica Ennis (1986-) won the 2012 Olympic gold medal in the heptathlon, which includes seven different track and field events. She also holds a number of British athletics records.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10549",
+      "type": "single_choice",
+      "prompt": "What is the name of the annual cultural Welsh festival which includes music, dance, art and original performances largely in Welsh?",
+      "options": [
+        "The Arts Festival of Wales",
+        "The National Eisteddfod of Wales",
+        "The Music Festival of Wales",
+        "The National Performance Festival of Wales"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The National Eisteddfod of Wales is an annual cultural festival which includes music, dance, art and original performances largely in Welsh. It includes a number of important competitions for Welsh poetry.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10550",
+      "type": "single_choice",
+      "prompt": "What is the most well-known rugby league (club) competition?",
+      "options": [
+        "The Grand National",
+        "The All England championship",
+        "The Six Nations championship",
+        "The Super League"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Super League is the most well-known rugby league (club) competition.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10551",
+      "type": "single_choice",
+      "prompt": "Where do the Laurence Olivier Awards take place?",
+      "options": [
+        "In London",
+        "In Manchester",
+        "In Liverpool",
+        "In Edinburgh"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Laurence Olivier Awards take place annually at different venues in London.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 23,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    }
+  ]
+}

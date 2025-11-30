@@ -1,0 +1,717 @@
+{
+  "chapterID": 31,
+  "chapterName": "Chapter 31",
+  "questions": [
+    {
+      "id": "Q10720",
+      "type": "true_false",
+      "prompt": "The UK population is ethnically diverse and changing rapidly, especially in large cities such as London:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The UK population is ethnically diverse and changing rapidly, especially in large cities such as London.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10721",
+      "type": "single_choice",
+      "prompt": "Which of the following is NOT a role of the King:",
+      "options": [
+        "To inaugurate important business in the UK",
+        "To receive foreign ambassadors and high commissioners",
+        "To entertain visiting heads of state",
+        "To make state visits overseas"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The king receives foreign ambassadors and high commissioners, entertains visiting heads of state, and makes state visits overseas in support of diplomatic and relationships with other counties.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10722",
+      "type": "true_false",
+      "prompt": "The Speaker is a neutral MP and does not represent a political party:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Speaker is neutral and does not represent a political party, even though he or she is an MP, represents a constituency and deals with the constituents’ problems like any other MP.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10723",
+      "type": "single_choice",
+      "prompt": "What is the height of the London Eye?",
+      "options": [
+        "125 metres",
+        "135 metres",
+        "140 metres",
+        "152 metres"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The London Eye is situated on the southern bank of the River Thames and is a Ferris wheel that is 443 feet (135 metres) tall.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10724",
+      "type": "multiple_choice",
+      "prompt": "How can a person facing domestic violence find a safe place to stay (choose TWO options)?",
+      "options": [
+        "Going to a hotel away from their home",
+        "Contacting the National Domestic Violence Freephone Helpline",
+        "Contacting the police",
+        "Contacting the hospital"
+      ],
+      "correct_option_indexes": [
+        1,
+        2
+      ],
+      "min_selections": 2,
+      "max_selections": 2,
+      "explanation": "If you are facing domestic violence you can get help from the 24-hour National Domestic Violence Freephone Helpline on 0808 2000 247 at any time, or the police can help you find a safe place to stay.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10725",
+      "type": "single_choice",
+      "prompt": "What name is given to the celebration when people in Great Britain set off fireworks at home or in special displays on the 5th of November?",
+      "options": [
+        "Bonfire night",
+        "Fireworks night",
+        "Bright night",
+        "The candles night"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Bonfire Night, 5 November, is an occasion when people in Great Britain set off fireworks at home or in special displays.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10726",
+      "type": "single_choice",
+      "prompt": "When did the Vikings first visit Britain to raid coastal towns and take away goods and slaves?",
+      "options": [
+        "AD 600",
+        "AD 789",
+        "AD 790",
+        "AD 804"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Vikings came from Denmark and Norway. They first visited Britain in AD 789 to raid coastal towns and take away goods and slaves.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10727",
+      "type": "single_choice",
+      "prompt": "Who has control over policy and laws governing defence, foreign affairs, immigration, taxation and social security in Northern Ireland?",
+      "options": [
+        "The Irish government",
+        "The central UK government",
+        "The Northern Ireland Assembly",
+        "The monarch"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Policy and laws governing defence, foreign affairs, immigration, taxation and social security all remain under central UK government control. However, many other public services, such as education, are controlled by the devolved administrations.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10728",
+      "type": "single_choice",
+      "prompt": "How many National Parks are there in England, Wales and Scotland?",
+      "options": [
+        "10",
+        "12",
+        "15",
+        "25"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "There are 15 national parks in England, Wales and Scotland. They are areas of protected countryside that everyone can visit, and where people live, work and look after the landscape.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10729",
+      "type": "single_choice",
+      "prompt": "Which services can be obtained from veterinary surgeons?",
+      "options": [
+        "They are places where pets can be left when you go on holidays",
+        "They are places where vaccinations and medical treatment for animals is available",
+        "They are places specifically prepare to groom pets",
+        "Amusement places for pets"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Vaccinations and medical treatment for animals are available from veterinary surgeons (vets).",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10730",
+      "type": "true_false",
+      "prompt": "The devolved governments in Scotland, Wales and Northern Ireland cannot control policies and laws governing taxation and social security:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Policy and laws governing defence, foreign affairs, immigration, taxation and social security all remain under central UK government control. However, many other public services, such as education, are controlled by the devolved administrations.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10731",
+      "type": "multiple_choice",
+      "prompt": "The longer life expectancy in the UK has an effect on (choose TWO options):",
+      "options": [
+        "The number of homeless people",
+        "Food scarcity",
+        "The cost of pensions",
+        "Health care"
+      ],
+      "correct_option_indexes": [
+        2,
+        3
+      ],
+      "min_selections": 2,
+      "max_selections": 2,
+      "explanation": "People in the UK are living longer than ever before. This is due to improved living standards and better health care. There are now a record number of people aged 85 and over. This has an impact on the cost of pensions and health care.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10732",
+      "type": "single_choice",
+      "prompt": "What percentage of the total British population is located in Scotland?",
+      "options": [
+        "Over 30%",
+        "Over 5%",
+        "Over 8%",
+        "Over 3%"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The population is very unequally distributed over the four parts of the UK. England more or less consistently makes up 84% of the total population, Wales around 5%, Scotland just over 8%, and Northern Ireland less than 3%.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10733",
+      "type": "true_false",
+      "prompt": "When Cromwell died, his son, Richard, became Lord Protector in his place but was not able to control the army or the government:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "This is true.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10734",
+      "type": "single_choice",
+      "prompt": "Which of the following academy awards are the equivalent of the Oscars in the UK?",
+      "options": [
+        "The Brit Awards",
+        "The BAFTA Awards",
+        "The Mercury Music Prize",
+        "The MTV Awards"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The annual British Academy Film Awards, hosted by the British Academy of Film and Television Arts (BAFTA), are the British equivalent of the Oscars.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10735",
+      "type": "single_choice",
+      "prompt": "Which political party was elected after the Second World War?",
+      "options": [
+        "The Liberal Democrats",
+        "The Green Party",
+        "The Conservative Party",
+        "The Labour Party"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Labour Party won the 1945 election. Clement Attlee was Prime Minister from 1945 to 1951 and led the Labour Party for 20 years.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10736",
+      "type": "single_choice",
+      "prompt": "Which British sportsman was captain of the English cricket team?",
+      "options": [
+        "Bobby Moore",
+        "Sir Ian Botham",
+        "Sir Steve Redgrave",
+        "Sir Jackie Steward"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Sir Ian Botham captained the English cricket team and holds number of English Test cricket records, both for batting and for bowling.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10737",
+      "type": "single_choice",
+      "prompt": "In which Japanese cities did the United States drop atomic bombs in August 1945?",
+      "options": [
+        "Osaka and Nagasaki",
+        "Hiroshima and Osaka",
+        "Osaka and Kyoto",
+        "Hiroshima and Nagasaki"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The war against Japan ended in August 1945 when the United States dropped its newly developed atom bombs on the Japanese cities of Hiroshima and Nagasaki.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10738",
+      "type": "multiple_choice",
+      "prompt": "What is a bank holiday (choose TWO answers)?",
+      "options": [
+        "A festive pagan day",
+        "A private holiday",
+        "A day when banks are closed",
+        "A public holiday"
+      ],
+      "correct_option_indexes": [
+        2,
+        3
+      ],
+      "min_selections": 2,
+      "max_selections": 2,
+      "explanation": "In the UK, there are public holidays each year called bank holidays, when banks and many other businesses are closed for the day.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10739",
+      "type": "true_false",
+      "prompt": "By 1200, the English ruled an area of Scotland known as the Pale, around Edinburgh:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "By 1200, the English ruled an area of Ireland known as the Pale, around Dublin.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10740",
+      "type": "single_choice",
+      "prompt": "Which of the following countries does not take part in the Six Nations Championship?",
+      "options": [
+        "Wales",
+        "Italy",
+        "Germany",
+        "France"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The most famous rugby union competition is the Six Nations Championship between England, Ireland, Scotland, Wales, France and Italy.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10741",
+      "type": "single_choice",
+      "prompt": "Who became Queen after Edward VI?",
+      "options": [
+        "Elizabeth I",
+        "Queen Mary",
+        "Anne Boleyn",
+        "Catherine of Aragon"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Edward VI died at the age of 15 after ruling for just over six years, and his half-sister Mary became queen.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10742",
+      "type": "single_choice",
+      "prompt": "Which of the following is NOT classified as a criminal offence in the UK?",
+      "options": [
+        "Selling alcohol to anyone under the age of 18",
+        "Selling or buying drugs",
+        "Carrying a knife",
+        "Unfair dismissal or discrimination in the workplace"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Cases of unfair dismissal or discrimination in the workplace are considered civil offences.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10743",
+      "type": "true_false",
+      "prompt": "The right to life and the right to liberty and security are some of the principles included in the European Convention of Human Rights:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "This is true.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 31,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    }
+  ]
+}

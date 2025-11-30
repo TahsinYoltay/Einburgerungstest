@@ -1,0 +1,729 @@
+{
+  "chapterID": 8,
+  "chapterName": "Chapter 8",
+  "questions": [
+    {
+      "id": "Q10168",
+      "type": "single_choice",
+      "prompt": "Who was the first wife of Henry VIII?",
+      "options": [
+        "Anne Boleyn",
+        "Catherine of Aragon",
+        "Anne of Cleves",
+        "Catherine Howard"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Catherine of Aragon was the first wife of Henry VIII.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10169",
+      "type": "single_choice",
+      "prompt": "Which of the following flags is not represented in the union flag?",
+      "options": [
+        "Welsh",
+        "Scottish",
+        "English",
+        "Irish"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Welsh flag does not appear on the Union Flag because, when the first Union Flag was created in 1606 from the flags of Scotland and England, the Principality of Wales was already untied with England.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10170",
+      "type": "single_choice",
+      "prompt": "When does the Edinburgh Festival take place?",
+      "options": [
+        "Every summer",
+        "Every spring",
+        "Every winter",
+        "Every autumn"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Edinburgh Festival takes place in Edinburgh, Scotland, every summer.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10171",
+      "type": "single_choice",
+      "prompt": "When did ‘the Concorde’ aircraft fly for the first time?",
+      "options": [
+        "In 1969",
+        "In 1970",
+        "In 1975",
+        "In 1976"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The ‘Concorde’, the world’s only supersonic passenger aircraft, first flew in 1969.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10172",
+      "type": "single_choice",
+      "prompt": "By which other name is the Conservative Party also known as?",
+      "options": [
+        "The Labour Party",
+        "The Whigs",
+        "The Green Party",
+        "The Tories"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The modern Conservative Party is still sometimes referred to as ‘The Tories’.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10173",
+      "type": "single_choice",
+      "prompt": "When was the Northern Ireland Parliament established for the first time?",
+      "options": [
+        "In 1922",
+        "In 1972",
+        "In 1998",
+        "In 1969"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Northern Ireland Parliament was first established in 1922.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10174",
+      "type": "single_choice",
+      "prompt": "What is the opposition?",
+      "options": [
+        "The second largest party in the House of Lords",
+        "The third largest party in the House of Commons",
+        "The second largest party in the House of Commons",
+        "The third largest party in the House of Lords"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The second-largest party in the House of Commons is called the opposition.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10175",
+      "type": "single_choice",
+      "prompt": "Which two languages combined form the basis of the English language?",
+      "options": [
+        "French and Swedish",
+        "Latin and Celtic",
+        "Latin and Greek",
+        "Norman French and Anglo-Saxon"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "After the Norman Conquest, the king and his noblemen had spoken Norman French and the peasants had continued to speak Anglo-Saxon. Gradually these two languages combined to become one English language.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10176",
+      "type": "multiple_choice",
+      "prompt": "Which THREE of the following are known to be main parts of the British government?",
+      "options": [
+        "The cabinet",
+        "The judiciary",
+        "The local organizations",
+        "The police"
+      ],
+      "correct_option_indexes": [
+        0,
+        1,
+        3
+      ],
+      "min_selections": 3,
+      "max_selections": 3,
+      "explanation": "In the UK, there are several different parts of government. The main ones are: the monarchy, the Parliament (the House of Commons and the House of Lords),  the Prime Minister, the cabinet, the judiciary (courts), the police, the civil service and the local government.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10177",
+      "type": "single_choice",
+      "prompt": "When did Adolf Hitler come to power in Germany?",
+      "options": [
+        "In 1922",
+        "In 1931",
+        "In 1933",
+        "In 1942"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Adolf Hitler came to power in Germany in 1933.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10178",
+      "type": "single_choice",
+      "prompt": "Who invented the hovercraft?",
+      "options": [
+        "Sir Frank Whittle",
+        "Sir Christopher Cockrell",
+        "John Logie Baird",
+        "Sir Robert Edwards"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Sir Christopher Cockrell (1910-99), a British inventor, invented the hovercraft in the 1950s.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10179",
+      "type": "single_choice",
+      "prompt": "Which court deals with serious criminal offences in Wales?",
+      "options": [
+        "The Sheriff Court",
+        "The Crown Court",
+        "The High Court",
+        "The Magistrates’ Court"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In England, Wales and Northern Ireland, serious criminal offences are tried in front of a judge and a jury in a Crown Court. In Scotland, serious cases are heard in a Sheriff Court with either a sheriff or a sheriff with a jury.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10180",
+      "type": "single_choice",
+      "prompt": "What is the minimum age requirement to buy alcohol in a pub or night club in the UK?",
+      "options": [
+        "16 years old",
+        "18 years old",
+        "20 years old",
+        "21 years old"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "To buy alcohol in a pub or night club you must be 18 or over, but people under that age may be allowed in some pubs with an adult.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10181",
+      "type": "single_choice",
+      "prompt": "What is the coin with the highest value in the UK?",
+      "options": [
+        "50p",
+        "£2",
+        "£5",
+        "£10"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The coin with the highest value in the UK is the £2 coin.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10182",
+      "type": "single_choice",
+      "prompt": "When were Protection Orders to protect a person from being forced into a marriage introduced in Scotland?",
+      "options": [
+        "2007",
+        "2008",
+        "2010",
+        "2011"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Forced Marriage Protection Orders were introduced in 2008 for England, Wales and Northern Ireland under the Forced Marriage (Civil Protection) Act 2007. Court orders can be obtained to protect a person from being forced into a marriage, or to protect a person in a forced marriage. Similar Protection Orders were introduced in Scotland in November 2011.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10183",
+      "type": "multiple_choice",
+      "prompt": "Which TWO of the following are famous horse racing events in the UK?",
+      "options": [
+        "The Major Race",
+        "The Grand National",
+        "Royal Ascot",
+        "Six Nations Championship"
+      ],
+      "correct_option_indexes": [
+        1,
+        2
+      ],
+      "min_selections": 2,
+      "max_selections": 2,
+      "explanation": "Famous horse-racing events in the UK include Royal Ascot and the Grand National.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10184",
+      "type": "single_choice",
+      "prompt": "Which of the following events relates to the German bombing of London and other British cities at night time during the World War II?",
+      "options": [
+        "The Bombing",
+        "The German raid",
+        "The Blitz",
+        "The Axis"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Blitz relates to the German bombing of London and other British cities at night time during the World War II.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10185",
+      "type": "single_choice",
+      "prompt": "Who wrote an oratorio called ‘Messiah’, which is regularly sung by choirs at Easter time?",
+      "options": [
+        "George Frederick Handel",
+        "Sir Edward Elgar",
+        "Gustav Holst",
+        "Henry Purcell"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "George Frederick Handel wrote an oratorio, Messiah, which is sung regularly by choirs, often at Easter time.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10186",
+      "type": "single_choice",
+      "prompt": "When did hereditary peers lose the automatic right to attend the House of Lords?",
+      "options": [
+        "1985",
+        "1995",
+        "1989",
+        "1999"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Since 1999, hereditary peers have lost the automatic right to attend the House of Lords.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10187",
+      "type": "single_choice",
+      "prompt": "Which of the following is England’s largest national park?",
+      "options": [
+        "The Lake District",
+        "Snowdonia",
+        "South Downs",
+        "Loch Lomond and the Trossachs"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Lake District is England’s largest national park.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10188",
+      "type": "single_choice",
+      "prompt": "Which of the following social changes took place during the ‘Swinging Sixties’?",
+      "options": [
+        "The position of women in the workplace was improved",
+        "Everyone could study in the University for free",
+        "People from the same gender were allowed to get married",
+        "All musical events were free"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The position of women in the workplace was improved during the ‘Swinging Sixties’.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10189",
+      "type": "single_choice",
+      "prompt": "Where was Emmeline Pankhurst born?",
+      "options": [
+        "Liverpool",
+        "Kent",
+        "Manchester",
+        "Chester"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Emmeline Pankhurst was born in Manchester in 1858.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10190",
+      "type": "single_choice",
+      "prompt": "Which of the following is a traditional English food?",
+      "options": [
+        "French fries",
+        "Roast beef",
+        "Haggis",
+        "Ulster fry"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Roast beef is a traditional English food.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10191",
+      "type": "single_choice",
+      "prompt": "What are pantomimes based on?",
+      "options": [
+        "Fairy stories",
+        "Drama stories",
+        "Traditional stories",
+        "War stories"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Pantomimes are based on fairy stories and are light-hearted plays with music and comedy, enjoyed by family audiences.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 8,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    }
+  ]
+}

@@ -1,0 +1,718 @@
+{
+  "chapterID": 33,
+  "chapterName": "Chapter 33",
+  "questions": [
+    {
+      "id": "Q10768",
+      "type": "single_choice",
+      "prompt": "What is the name of the highest mountain in Wales?",
+      "options": [
+        "Lake District",
+        "Snowdon",
+        "South Downs",
+        "Giant’s Causeway"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Snowdon is the highest mountain in Wales.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10769",
+      "type": "single_choice",
+      "prompt": "Where did the Vikings come from?",
+      "options": [
+        "France and Germany",
+        "Sweden and Finland",
+        "Denmark and Norway",
+        "Sweden and Germany"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Vikings came from Denmark and Norway.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10770",
+      "type": "single_choice",
+      "prompt": "Who led a Scottish army against Oliver Cromwell just after England had been declared a Republic?",
+      "options": [
+        "Charles I",
+        "Charles II",
+        "Henry V",
+        "James I"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Charles II was crowned king of Scotland and led a Scottish army into England. Cromwell defeated this army in the Battles of Dunbar and Worcester.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10771",
+      "type": "single_choice",
+      "prompt": "How many pence are there in a pound?",
+      "options": [
+        "100 pence",
+        "50 pence",
+        "60 pence",
+        "10 pence"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "There are 100 pence in a pound.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10772",
+      "type": "single_choice",
+      "prompt": "When are local elections for councillors held in most local authorities?",
+      "options": [
+        "In May",
+        "In March",
+        "In February",
+        "In June"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "For most local authorities, local elections for councillors are held in May every year.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10773",
+      "type": "single_choice",
+      "prompt": "What sort of stories were collected by the Canterbury Tales written by Geoffrey Chaucer?",
+      "options": [
+        "Love stories",
+        "Children's stories",
+        "Travellers’ stories",
+        "War stories"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In the years leading up to 1400, Geoffrey Chaucer wrote a series of poems in English about a group of people going to Canterbury on a pilgrimage. The people decided to tell each other stories on the journey, and the poems describe the travellers and some of the stories they told. This collection poems is called The Canterbury Tales.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10774",
+      "type": "single_choice",
+      "prompt": "When did rugby originate?",
+      "options": [
+        "In the 15th century",
+        "In the 16th century",
+        "In the 18th century",
+        "In the 19th century"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Rugby originated in England in the early 19th century and is very popular in the UK today.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10775",
+      "type": "single_choice",
+      "prompt": "Which of the following lines does NOT form part of the citizenship pledge?",
+      "options": [
+        "I will give my loyalty to the United Kingdom",
+        "I will uphold its democratic values",
+        "Long live our noble Queen!",
+        "I will observe its laws faithfully"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Long live our noble Queen! is the second sentence of the National Anthem of the UK.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10776",
+      "type": "single_choice",
+      "prompt": "Which of the following is NOT protected by the laws of discrimination?",
+      "options": [
+        "Traditional customs",
+        "Disability",
+        "Pregnancy and Maternity",
+        "Religion or Belief"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "UK laws ensure that people are not treated unfairly in any area of life or work because of their age, disability, sex, pregnancy and maternity, race, religion or belief, sexuality or marital status.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10777",
+      "type": "single_choice",
+      "prompt": "Which Act abolished the old pocket and rotten boroughs and allowed more parliamentary seats to the towns and cities?",
+      "options": [
+        "The Reform Act of 1832",
+        "The Reform Act of 1842",
+        "The Emancipation Act 1833",
+        "The Emancipation Act 1835"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Reform Act of 1832 had greatly increased the number of people with the right to vote. The act also abolished the old pocket and rotten boroughs and more parliamentary seats were given to the towns and cities.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10778",
+      "type": "true_false",
+      "prompt": "In the UK, if the jury finds a defendant guilty, the judge decides the penalty:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "This statement is true.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10779",
+      "type": "single_choice",
+      "prompt": "Which of the following countries is a member of the Commonwealth?",
+      "options": [
+        "Greece",
+        "Austria",
+        "Mexico",
+        "Bangladesh"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Bangladesh is a member of the Commonwealth.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10780",
+      "type": "single_choice",
+      "prompt": "During the Crusades, European Christians fought for the control of:",
+      "options": [
+        "The holy land",
+        "Ireland",
+        "Central Europe",
+        "England"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "During the Middle Ages many knights took part in the Crusades, in which European Christians fought for control of the Holy Land.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10781",
+      "type": "single_choice",
+      "prompt": "The line ‘to be or not to be’ belongs to which of the following plays or poems written by William Shakespeare?",
+      "options": [
+        "Romeo and Juliet",
+        "Hamlet",
+        "As You Like It",
+        "Henry V"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "‘To be or not to be’ is a line from William Shakespeare’s play Hamlet.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10782",
+      "type": "true_false",
+      "prompt": "Charles I wanted the worship of the Church of England to include more ceremony and introduced a revised Prayer Book.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "This statement is true.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10783",
+      "type": "single_choice",
+      "prompt": "Which of the following is NOT a principle included in the European Convention of Human Rights?",
+      "options": [
+        "Prohibition of torture",
+        "Prohibition of immoral thoughts",
+        "Freedom of expression (speech)",
+        "Prohibition of slavery and forced labour"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Prohibition of  immoral thoughts is not one of the principles included in the European Convention of Human Rights.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10784",
+      "type": "single_choice",
+      "prompt": "What was the name of the project through which the atomic bomb was developed?",
+      "options": [
+        "The Manhattan project",
+        "The Michigan project",
+        "The Cambridge project",
+        "The Manchester project"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Scientists led by Ernest Rutherford, working at Manchester and then Cambridge University, were the first to ‘split the atom’ and took part in the Manhattan Project in the United States, which developed the atomic bomb.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10785",
+      "type": "single_choice",
+      "prompt": "Who supported the Parliament during the Civil War that began in 1642?",
+      "options": [
+        "The Squareheads",
+        "The Cavaliers",
+        "The Suffragettes",
+        "The Roundheads"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "A civil war between the king and Parliament began in 1642. The country split into those who supported the king (the Cavaliers) and those who supported Parliament (the Roundheads).",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10786",
+      "type": "single_choice",
+      "prompt": "Which of the following poets wrote poems inspired by Scotland and the traditional stories and songs from the area on the borders of Scotland and England?",
+      "options": [
+        "Geoffrey Chaucer",
+        "William Blake",
+        "Sir Walter Scott",
+        "William Wordsworth"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Sir Walter Scott wrote poems inspired by Scotland and the traditional stories and songs from the area on the borders of Scotland and England.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10787",
+      "type": "single_choice",
+      "prompt": "A system of government where the whole adult population gets a say is known as:",
+      "options": [
+        "Monarchy",
+        "Republic",
+        "Communism",
+        "Democracy"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Democracy is a system of government where the whole adult population gets a say. This might be by direct voting or by choosing representatives to make decisions on their behalf.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10788",
+      "type": "statement_choice",
+      "prompt": "Which of the following statements is correct?",
+      "options": [
+        "Arranged marriages refer to marriages where both parties agree to the marriage",
+        "Arranged marriages refer to marriages where one or both parties do not give their consent to enter into the partnership"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Arranged marriages refer to marriages where both parties agree to the marriage.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10789",
+      "type": "true_false",
+      "prompt": "The devolved governments in Scotland, Wales and Northern Ireland have the power to legislate on any issues that affect them:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Devolved governments in Scotland, Wales and Northern Ireland have the power to legislate on certain issues.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10790",
+      "type": "single_choice",
+      "prompt": "What name is given to the members of the House of Commons?",
+      "options": [
+        "MPs",
+        "AMs",
+        "Peers",
+        "MEPs"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "All of the elected MPs form the House of Commons.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10791",
+      "type": "single_choice",
+      "prompt": "Which golf ‘Major’ tournament is held outside the United States?",
+      "options": [
+        "The Masters Tournament",
+        "The U.S. Open",
+        "The Open Championship",
+        "The PGA Championship"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The open championship is the only ‘Major’ tournament held outside the United States.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 33,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    }
+  ]
+}

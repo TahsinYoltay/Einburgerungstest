@@ -24,9 +24,22 @@ const ExamResults = () => {
   const { examHistory, exams, currentExam } = useAppSelector(state => state.exam);
 
   // Find this exam's latest attempt
-  const lastAttempt = examHistory.find(
-    attempt => attempt.examId === examId
-  );
+  const lastAttempt =
+    examHistory.find(attempt => attempt.examId === examId) ||
+    (currentExam.examId === examId && currentExam.examCompleted
+      ? {
+          examId,
+          score: 0,
+          correctAnswers: 0,
+          totalQuestions: currentExam.questions.length,
+          flaggedQuestions: currentExam.flaggedQuestions,
+          timeSpentInSeconds: currentExam.timeSpentInSeconds,
+          status: 'failed',
+          answers: [],
+          id: 'temp',
+          startTime: currentExam.startTime || new Date().toISOString(),
+        }
+      : undefined);
 
   // Find exam details
   const examDetails = exams.find(exam => exam.id === examId);
@@ -38,8 +51,8 @@ const ExamResults = () => {
     return `${minutes}m ${remainingSeconds}s`;
   };
 
-  // Stats data
-  const isPassing = lastAttempt?.score && lastAttempt?.score >= 75;
+  const passMarkPct = Math.round((examDetails?.pass_mark ?? 0.75) * 100);
+  const isPassing = lastAttempt?.score !== undefined ? lastAttempt.score >= passMarkPct : false;
   const totalCorrect = lastAttempt?.correctAnswers || 0;
   const totalQuestions = lastAttempt?.totalQuestions || 0;
   const timeSpent = lastAttempt?.timeSpentInSeconds || 0;
@@ -52,7 +65,7 @@ const ExamResults = () => {
         <View style={styles.errorView}>
           <Text style={styles.errorText}>{t('exam.noResultsFound')}</Text>
           <Button mode="contained" onPress={() => navigation.goBack()}>
-            {t('common.goToHome')}
+            {t('common.goToHome', 'Go Home')}
           </Button>
         </View>
       </SafeAreaView>
@@ -76,7 +89,7 @@ const ExamResults = () => {
             </View>
 
             <Text variant="bodyMedium" style={styles.passText}>
-              {t('exam.passingScore')}: {examDetails.passingScore}%
+              {t('exam.passingScore')}: {passMarkPct}%
             </Text>
 
             <Divider style={styles.divider} />
@@ -87,7 +100,7 @@ const ExamResults = () => {
 
             <List.Item
               title={t('exam.examName')}
-              description={examDetails.name}
+              description={examDetails.title || examId}
               left={props => <List.Icon {...props} icon="book" />}
             />
 

@@ -5,6 +5,7 @@ const { width } = Dimensions.get('window');
 export const styles = StyleSheet.create({
   card: {
     marginBottom: 16,
+    backgroundColor: '#F9FAFB',
   },
   questionHeader: {
     flexDirection: 'row',
@@ -15,19 +16,34 @@ export const styles = StyleSheet.create({
   questionText: {
     flex: 1,
     marginBottom: 16,
-    fontSize: 18,
-    fontWeight: '500',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#212121',
   },
-  optionContainer: {
-    marginBottom: 8,
-    borderRadius: 8,
-    overflow: 'hidden',
+  tileContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: '#D1D5DB',
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+    marginBottom: 12,
+    minHeight: 56,
+  },
+  tileSelected: {
+    borderColor: '#1A73E8',
+    borderWidth: 3,
+    backgroundColor: '#E8F0FE',
   },
   optionText: {
-    fontSize: 16,
+    fontSize: 17,
+    color: '#212121',
   },
-  optionItem: {
-    paddingVertical: 8,
+  optionTextSelected: {
+    fontWeight: '600',
+    color: '#1A73E8',
   },
   imagesContainer: {
     marginBottom: 16,
@@ -46,23 +62,6 @@ export const styles = StyleSheet.create({
     marginBottom: 8,
     borderRadius: 4,
   },
-  videoContainer: {
-    marginBottom: 16,
-    height: 200,
-    backgroundColor: '#eee',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 8,
-  },
-  videoText: {
-    fontSize: 16,
-  },
-  multipleChoiceHeader: {
-    marginBottom: 8,
-    fontSize: 16,
-    fontStyle: 'italic',
-    color: '#666',
-  },
   explainButtonContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -74,7 +73,7 @@ export const styles = StyleSheet.create({
     padding: 0,
   },
   hintText: {
-    color: '#007AFF',
+    color: '#1A73E8',
     fontSize: 14,
     marginLeft: 4,
   },

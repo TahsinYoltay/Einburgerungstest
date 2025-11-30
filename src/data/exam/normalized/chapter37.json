@@ -1,0 +1,721 @@
+{
+  "chapterID": 37,
+  "chapterName": "Chapter 37",
+  "questions": [
+    {
+      "id": "Q10864",
+      "type": "single_choice",
+      "prompt": "Which of the following sports began in the UK?",
+      "options": [
+        "Cricket",
+        "Football",
+        "Rugby",
+        "All of the above"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Many famous sports, including cricket, football, lawn tennis, golf and rugby, began in Britain.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10865",
+      "type": "single_choice",
+      "prompt": "Which famous architect designed Dumfries House?",
+      "options": [
+        "Sir Christopher Wren",
+        "Robert Adam",
+        "Sir Norman Foster",
+        "Dame Zaha Hadid"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Scottish architect Robert Adam designed the inside decoration as well as the building itself in great houses such as Dumfries House in Scotland.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10866",
+      "type": "single_choice",
+      "prompt": "What did the Education Act of 1944 introduce?",
+      "options": [
+        "Free primary education in England and Wales",
+        "Free secondary education in England and Wales",
+        "Free high school education in England and Wales",
+        "Free university education in England and Wales"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Education Act 1944 (often called ‘The Butler Act’), introduced free secondary education in England and Wales.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10867",
+      "type": "single_choice",
+      "prompt": "Which of the following tribes invaded Britain?",
+      "options": [
+        "The Jutes",
+        "The Angles",
+        "The Saxons",
+        "All of the above"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Roman army left Britain in AD 410 to defend other parts of the Roman Empire and never returned. Britain was again invaded by tribes from northern Europe: the Jutes, the Angles and the Saxons.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10868",
+      "type": "true_false",
+      "prompt": "Many schools organise events such as book sales, toy sales or bringing food to sell to raise money for extra equipment or out-of-school activities.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "This statement is TRUE.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10869",
+      "type": "statement_choice",
+      "prompt": "Do you need a TV licence for watching TV on a mobile phone?",
+      "options": [
+        "Yes",
+        "No"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Everyone in the UK with a TV, computer or other medium which can be used for watching TV must have a television licence.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10870",
+      "type": "single_choice",
+      "prompt": "What do you need to apply to become a British citizen?",
+      "options": [
+        "Be single and without children",
+        "Be over 25 years old",
+        "Have lived in the UK for 3 years",
+        "Have a good understanding of life in the UK"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "To apply to become a permanent resident or citizen of the UK, you will need to have a good understanding of life in the UK.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10871",
+      "type": "single_choice",
+      "prompt": "Which of the following is a British overseas territory located in the South Atlantic?",
+      "options": [
+        "Guernsey",
+        "Northern Ireland",
+        "The Falkland Islands",
+        "Jersey"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Falkland Islands, a British overseas territory is located in the South Atlantic.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10872",
+      "type": "single_choice",
+      "prompt": "Who wrote the novel Charlie and the Chocolate Factory?",
+      "options": [
+        "Rudyard Kipling",
+        "Sir William Golding",
+        "Charles Dickens",
+        "Roald Dahl"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Roald Dahl is the author of Charlie and the Chocolate Factory.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10873",
+      "type": "single_choice",
+      "prompt": "The Normans used a system of land ownership known as __________.",
+      "options": [
+        "Clergy",
+        "Chartism",
+        "Feudalism",
+        "Imperialism"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Normans used a system of land ownership known as feudalism.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10874",
+      "type": "single_choice",
+      "prompt": "Who were the Huguenots?",
+      "options": [
+        "Protestant refugees from France",
+        "Catholic refugees from Spain",
+        "Catholic refugees from Italy",
+        "Protestant refugees from Germany"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Between 1680 and 1720 many refugees called Huguenots came from France. They were Protestants and had been persecuted for their religion. Many were educated and skilled and worked as scientists, in banking, or in weaving or other crafts.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10875",
+      "type": "single_choice",
+      "prompt": "Which of the following statements is TRUE?",
+      "options": [
+        "The official name of the country is the United Kingdom of Great Britain and Southern Ireland.",
+        "The official name of the country is Great Britain and Southern Ireland.",
+        "The official name of the country is the United Kingdom of Great Britain and Northern Ireland.",
+        "The official name of the country is the United Kingdom and Great Ireland."
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The official name of the country is the United Kingdom of Great Britain and Northern Ireland.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10876",
+      "type": "single_choice",
+      "prompt": "When was slavery abolished throughout the British Empire?",
+      "options": [
+        "1833",
+        "1843",
+        "1844",
+        "1861"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In 1833 the Emancipation Act abolished slavery throughout the British Empire.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10877",
+      "type": "single_choice",
+      "prompt": "Magistrates and Justices of the Peace (JPs) are members of the _________.",
+      "options": [
+        "Government",
+        "Local community",
+        "British Society",
+        "NHS"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Magistrates and Justices of the Peace (JPs) are members of the local community.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10878",
+      "type": "single_choice",
+      "prompt": "Where can you find details about the small claims procedure?",
+      "options": [
+        "From the local community",
+        "At the police station",
+        "At your local County Court or Sheriff Court",
+        "At any local shop"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "You can get details about the small claims procedure from your local County Court or Sheriff Court.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10879",
+      "type": "single_choice",
+      "prompt": "When is Mothering Sunday?",
+      "options": [
+        "Is the Sunday three weeks before Easter.",
+        "Is the Sunday three weeks after Easter.",
+        "Is the Sunday three weeks before Christmas.",
+        "Is the Sunday three weeks after Christmas."
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Mothering Sunday (or Mother’s day) is the Sunday three weeks before Easter. Children send cards or buy gifts for their mothers.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10880",
+      "type": "single_choice",
+      "prompt": "What should you do if your vehicle is over three years old?",
+      "options": [
+        "Take it to the MOT every year.",
+        "Take it to the MOT 2 years.",
+        "Take it to the MOT 3 years.",
+        "Take it to the MOT six months."
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "If you vehicle is over three years old, you must take it to the Ministry of Transport (MOT) test every year.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10881",
+      "type": "single_choice",
+      "prompt": "Which countries fought alongside Britain against Russia during the Crimean War?",
+      "options": [
+        "France and Cyprus",
+        "Germany and Cyprus",
+        "Germany and Turkey",
+        "France and Turkey"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "From 1853 to 1856, Britain fought with Turkey and France against Russia in the Crimean War.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10882",
+      "type": "true_false",
+      "prompt": "On average, boys leave school with better qualifications than girls.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "On average, girls leave school with better qualifications than boys.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10883",
+      "type": "single_choice",
+      "prompt": "When did William of Orange invade England to proclaim himself king?",
+      "options": [
+        "1689",
+        "1690",
+        "1688",
+        "1687"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In 1688, important Protestants in England asked William of Orange to invade England and proclaim himself king. When William reached England, there was no resistance. James fled to France and William took over the throne, becoming William III in England, Wales and Ireland, and William II of Scotland.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10884",
+      "type": "single_choice",
+      "prompt": "Which British painter is considered to be the artist who raised the profile of landscape painting?",
+      "options": [
+        "Joseph Turner",
+        "David Allan",
+        "John Constable",
+        "Sir John Lavery"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Joseph Turner (1775-1851) was an influential landscape painter in a modern style. He is considered the artist who raised the profile of landscape painting.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10885",
+      "type": "multiple_choice",
+      "prompt": "The development of the Bessemer process during the Industrial Revolution led to the development of which two industries:",
+      "options": [
+        "Shipbuilding industry",
+        "Chemical industry",
+        "Railways industry",
+        "Car industry"
+      ],
+      "correct_option_indexes": [
+        0,
+        2
+      ],
+      "min_selections": 2,
+      "max_selections": 2,
+      "explanation": "The development of the Bessemer process for the mass production of steel led to the development of the shipbuilding industry and the railways.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10886",
+      "type": "single_choice",
+      "prompt": "What is the length of the Bayeux tapestry?",
+      "options": [
+        "130 feet",
+        "230 feet",
+        "330 feet",
+        "320 feet"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Bayeux Tapestry is nearly 70 metres (230 feet) long and is embroidered with coloured wool.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10887",
+      "type": "single_choice",
+      "prompt": "Which of the following countries is not a member of the Commonwealth?",
+      "options": [
+        "Swaziland",
+        "Trinidad and Tobago",
+        "Dominica",
+        "Costa Rica"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Costa Rica is not a member of the Commonwealth.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 37,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    }
+  ]
+}

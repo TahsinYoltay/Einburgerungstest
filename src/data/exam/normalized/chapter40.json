@@ -1,0 +1,727 @@
+{
+  "chapterID": 40,
+  "chapterName": "Chapter 40",
+  "questions": [
+    {
+      "id": "Q10936",
+      "type": "single_choice",
+      "prompt": "Which country invented rugby?",
+      "options": [
+        "India",
+        "Argentina",
+        "England",
+        "France"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Rugby originated in England in the early 19th century and is very popular in the UK today.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10937",
+      "type": "single_choice",
+      "prompt": "Who were the Huguenots?",
+      "options": [
+        "Refugees from France",
+        "Refugees from Italy",
+        "Refugees from Pakistan",
+        "Refugees from Cyprus"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Between 1680 and 1720 many refugees called Huguenots came from France. They were Protestants and had been persecuted for their religion.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10938",
+      "type": "single_choice",
+      "prompt": "Which British scientist showed that gravity applied to the whole universe?",
+      "options": [
+        "Alan Turing",
+        "Alexander Fleming",
+        "Isaac Newton",
+        "Ernest Rutherford"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Isaac Newton most famous published work was Philosophiae Naturalis Principia Mathematica (‘Mathematical Principle of Natural Philosophy’), which showed how gravity applied to the whole universe.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10939",
+      "type": "single_choice",
+      "prompt": "Which composer wrote music for King George I and for his son, George II?",
+      "options": [
+        "George Frederick Handel",
+        "Gustav Holst",
+        "Ralph Vaughan Williams",
+        "Henry Purcell"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "George Frederick Handel wrote the Water Music for King George I and Music for the Royal Fireworks for his son, George II.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10940",
+      "type": "single_choice",
+      "prompt": "When did the English civil war start?",
+      "options": [
+        "1632",
+        "1635",
+        "1642",
+        "1652"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Civil war between the king and Parliament could not now be avoided and began in 1642. The country spilt into those who supported the king (the Cavaliers) and those who supported Parliament (the Roundheads).",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10941",
+      "type": "multiple_choice",
+      "prompt": "During the 19th century, the UK was the world’s major producer of which THREE materials?",
+      "options": [
+        "Coal",
+        "Iron",
+        "Silk",
+        "Cotton cloth"
+      ],
+      "correct_option_indexes": [
+        0,
+        1,
+        3
+      ],
+      "min_selections": 3,
+      "max_selections": 3,
+      "explanation": "British industry led the world in the 19th century. The UK produced more that half of the world’s iron, coal and cotton cloth.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10942",
+      "type": "multiple_choice",
+      "prompt": "Which TWO of the following British athletes have won gold medals in the Olympic Games?",
+      "options": [
+        "Dame Kelly Holmes",
+        "Jenson Button",
+        "Tim henman",
+        "Jessica Enis"
+      ],
+      "correct_option_indexes": [
+        0,
+        3
+      ],
+      "min_selections": 2,
+      "max_selections": 2,
+      "explanation": "Dame Kelly Holmes and Jessica Enis won gold medals in the Olympic Games.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10943",
+      "type": "true_false",
+      "prompt": "The Romans remained in Britain for 500 years.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Romans remained in Britain for 400 years.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10944",
+      "type": "single_choice",
+      "prompt": "Which country invaded the Falkland Islands in 1982?",
+      "options": [
+        "Germany",
+        "The Netherlands",
+        "Argentina",
+        "France"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In 1982, Argentina invaded the Falkland Islands, a British overseas territory in the South Atlantic.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10945",
+      "type": "multiple_choice",
+      "prompt": "Which TWO of the following are examples of criminal offences:",
+      "options": [
+        "Cases of unfair dismissal or discrimination in the workplace",
+        "Selling tobacco to anyone under the age of 18",
+        "A dispute about faulty goods or services",
+        "Smoking in public places"
+      ],
+      "correct_option_indexes": [
+        1,
+        3
+      ],
+      "min_selections": 2,
+      "max_selections": 2,
+      "explanation": "Selling tobacco to anyone under the age of 18 and drinking in public are examples of criminal offences.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10946",
+      "type": "single_choice",
+      "prompt": "Which British landmark was built as part of the UK’s celebration of the new millenium?",
+      "options": [
+        "The O2",
+        "Tower Bridge",
+        "Westminster Abbey",
+        "The London Eye"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The London Eye was originally built as part of the UK’s celebration of the new millennium and continues to be an important part of New Year celebrations.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10947",
+      "type": "single_choice",
+      "prompt": "Where did slaves mainly come from during the slave trade?",
+      "options": [
+        "South America",
+        "West Africa",
+        "Southeast Asia",
+        "North Africa"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Slaves came primarily from West Africa.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10948",
+      "type": "single_choice",
+      "prompt": "Who introduced ‘shampooing’ in Britain?",
+      "options": [
+        "Emmeline Pankhurst",
+        "James Cook",
+        "Sake Dean Mahomet",
+        "Florence Nightingale"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Sake Dean Mahomet and his wife also introduced ‘shampooing’, the Indian art of head massage, to Britain.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10949",
+      "type": "true_false",
+      "prompt": "To be able to vote in England, you have to register at your local council electoral registration office.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "This statement is True.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10950",
+      "type": "single_choice",
+      "prompt": "Where can the Bayeux tapestry be seen?",
+      "options": [
+        "France",
+        "Wales",
+        "Northern Ireland",
+        "England"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Battle of Hastings is commemorated in a great piece of embroidery, known as the Bayeux tapestry, which can still be seen in France today.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10951",
+      "type": "true_false",
+      "prompt": "It is an offence not to have an MOT certificate if your vehicle is more than two years old or without car insurance.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "It is an offence not to have an MOT certificate if your vehicle is more than THREE years old or without car insurance.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10952",
+      "type": "single_choice",
+      "prompt": "What was the Spanish Armada?",
+      "options": [
+        "A large fleet of planes",
+        "A group of radicals",
+        "A group of politicians",
+        "A large fleet of ships"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Spanish Armada was a large fleet of ships, which had been sent by Spain to conquer England and restore Catholicism.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10953",
+      "type": "single_choice",
+      "prompt": "England was split into two groups during the English Civil War of 1642, which were known as:",
+      "options": [
+        "The House of Lords and the House of Commons",
+        "The Puritans and the Chartists",
+        "The Cavaliers and the Roundheads",
+        "The Beefeaters and the Yeoman Warders"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The English Civil war began in 1642. The country split into those who supported the king (the Cavaliers) and those who supported Parliament (the Roundheads).",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10954",
+      "type": "multiple_choice",
+      "prompt": "What are the key roles of the governors and school boards (select THREE answers)?",
+      "options": [
+        "Providing funding for all students",
+        "Setting the strategic direction of the school",
+        "Ensuring accountability",
+        "Monitoring and evaluating school performance"
+      ],
+      "correct_option_indexes": [
+        1,
+        2,
+        3
+      ],
+      "min_selections": 3,
+      "max_selections": 3,
+      "explanation": "Governors and school boards have an important part to play in raising school standards. They have three key roles: setting the strategic direction of the school, ensuring accountability and monitoring and evaluating school performance.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10955",
+      "type": "single_choice",
+      "prompt": "A popular way for people to stay in touch with friends, organise social events, and share photos, videos and opinions is through social networking websites such as:",
+      "options": [
+        "Dropbox and itunes",
+        "Email and Fax",
+        "Ebay and Amazon",
+        "Facebook and Twitter"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Social networking websites such as Facebook and Twitter are a popular way for people to stay in touch with friends, organise social events, and share photos, videos and opinions.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10956",
+      "type": "multiple_choice",
+      "prompt": "Why is it important to recycle (select two answers)?",
+      "options": [
+        "Using recycled materials to make new products uses less energy than using raw materials",
+        "It is a criminal offence and you could be arrested if you do not do it",
+        "To reduce the expenses of the local council",
+        "Less rubbish is created, so the amount being put into landfill is reduced"
+      ],
+      "correct_option_indexes": [
+        0,
+        3
+      ],
+      "min_selections": 2,
+      "max_selections": 2,
+      "explanation": "It is important to recycle as much of your waste as you can. Using recycled materials to make new products uses less energy and means that we do not need to extract more raw materials from the earth. It also means that less rubbish is created, so the amount being put into landfill is reduced.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10957",
+      "type": "single_choice",
+      "prompt": "In Northern Ireland, a newly qualified driver must display an ____ plate for one year after passing the test.",
+      "options": [
+        "S",
+        "N",
+        "R",
+        "L"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In Northern Ireland, a newly qualified driver must display an ‘R’ plate (for restricted driver) for one year after passing the test.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10958",
+      "type": "single_choice",
+      "prompt": "When is the birth of Jesus Christ celebrated?",
+      "options": [
+        "24th December",
+        "25th December",
+        "26th December",
+        "31st December"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Christmas Day, 25 December, celebrates the birth of Jesus Christ.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10959",
+      "type": "single_choice",
+      "prompt": "Prince William is also known as:",
+      "options": [
+        "The Duke of Wellington",
+        "The Prince of Wales",
+        "The Duke of Edinburgh",
+        "The Prince of Northern Ireland"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Prince William is also known as the Prince of Wales.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 40,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    }
+  ]
+}

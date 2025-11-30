@@ -1,0 +1,715 @@
+{
+  "chapterID": 27,
+  "chapterName": "Chapter 27",
+  "questions": [
+    {
+      "id": "Q10624",
+      "type": "single_choice",
+      "prompt": "When did Henry VIII die?",
+      "options": [
+        "In January 1547",
+        "In January 1557",
+        "In February 1547",
+        "In February 1557"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Henry VIII died on the 28th of January 1547.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10625",
+      "type": "single_choice",
+      "prompt": "Which of the following lines from Shakespeare’s plays and poems is often still quoted?",
+      "options": [
+        "The Darling buds of May",
+        "I have nothing to offer but blood, toil, tears and sweat",
+        "Long live our noble Queen",
+        "God save the Queen"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "‘The darling buds of May’ is a line from William Shakespeare’s play Sonnet 18 – Shall I Compare Thee To A Summer’s Day.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10626",
+      "type": "multiple_choice",
+      "prompt": "Which TWO of the following are fundamental principles of British life?",
+      "options": [
+        "Tolerance of those with different faiths and beliefs",
+        "Buying food from local business",
+        "The rule of law",
+        "Doing the military service"
+      ],
+      "correct_option_indexes": [
+        0,
+        2
+      ],
+      "min_selections": 2,
+      "max_selections": 2,
+      "explanation": "Tolerance of those with different faiths and beliefs and the rule of law are fundamental principles of British life.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10627",
+      "type": "single_choice",
+      "prompt": "What is the capital city of the UK?",
+      "options": [
+        "Manchester",
+        "Liverpool",
+        "London",
+        "Cambridge"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The capital city of the UK is London.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10628",
+      "type": "single_choice",
+      "prompt": "Which of the following statements about Mary, Queen of Scotland, is NOT true?",
+      "options": [
+        "She spent most of her childhood in France",
+        "She was a Protestant",
+        "She gave her throne to her Protestant son, James VI of Scotland.",
+        "She was kept her prisoner for 20 years"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The queen of Scotland, Mary Stuart (often now called ‘Mary, Queen of Scots’) was a Catholic.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10629",
+      "type": "single_choice",
+      "prompt": "When did Ireland become unified with England, Wales and Scotland?",
+      "options": [
+        "In 1801",
+        "In 1811",
+        "In 1901",
+        "In 1925"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In 1801, Ireland became unified with England, Scotland and Wales after the Act of Union of 1800. This created the United Kingdom of Great Britain and Ireland.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10630",
+      "type": "single_choice",
+      "prompt": "What is Hogmanay?",
+      "options": [
+        "The equivalent of Christmas Day in Scotland",
+        "The equivalent of New Year’s Eve in Scotland",
+        "The equivalent of Christmas Day in Wales",
+        "The equivalent of New Year’s Eve in Wales"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In Scotland, the 31st of December is called Hogmanay.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10631",
+      "type": "true_false",
+      "prompt": "The devolved administrations of Wales, Scotland and Northern Ireland each have their own civil service:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The devolved administrations each have their own civil service.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10632",
+      "type": "true_false",
+      "prompt": "On Remembrance Day, there is a two-minute silence at 11 AM to commemorate those who died fighting during the First World War.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "On Remembrance Day at 11.00 am there is a two-minute silence and wreaths are laid at the Cenotaph in Whitehall, London.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10633",
+      "type": "single_choice",
+      "prompt": "What is the distance between the north coast of Scotland and the south-west corner of England?",
+      "options": [
+        "470 miles",
+        "490 miles",
+        "840 miles",
+        "870 miles"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In the UK, the longest distance on the mainland is from John O’Groats on the north coast of Scotland to Land’s End in the south-west corner of England. It is about 870 miles (approximately 1,400 kilometres).",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10634",
+      "type": "single_choice",
+      "prompt": "Who was Henry Purcell?",
+      "options": [
+        "A German-born composer",
+        "An organist at Westminster Abbey",
+        "An opera composer",
+        "A jazz musician"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Henry Purcell (1659-95) was the organist at Westminster Abbey. He wrote church music, operas and other pieces, and developed a British style distinct from that elsewhere in Europe.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10635",
+      "type": "single_choice",
+      "prompt": "How are life peers appointed?",
+      "options": [
+        "By the monarch on the advice of the Prime Minister",
+        "By the Prime Minister on the advice of the Queen",
+        "By the shadow cabinet",
+        "By the MPs"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Life peers are appointed by the monarch on the advice of the Prime Minister.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10636",
+      "type": "single_choice",
+      "prompt": "Where is the Giant’s Causeway located?",
+      "options": [
+        "Northern Ireland",
+        "Scotland",
+        "South-east coast of Wales",
+        "South-west coast of England"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Giant’s Causeway is located on the north-east coast of Northern Ireland.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10637",
+      "type": "single_choice",
+      "prompt": "Who proposed that enemy aircrafts could be detected by radio waves and is responsible for the development of the radar?",
+      "options": [
+        "Sir Robert Watson-Watt",
+        "John McLeod",
+        "John Logie Baird",
+        "Alan Turing"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The radar was developed by Scotsman Sir Robert Watson-Watt (1892-1973), who proposed that enemy aircraft could be detected by radio waves. The first successful radar test took place in 1935.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10638",
+      "type": "single_choice",
+      "prompt": "During Halloween people carve lanterns out of ______ and put a candle inside of them.",
+      "options": [
+        "Pumpkins",
+        "Aubergines",
+        "Clay",
+        "Potatoes"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "During Halloween people carve lanterns out of pumpkins and put a candle inside of them.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10639",
+      "type": "true_false",
+      "prompt": "In England, Wales and Northern Ireland, if an accused person is aged 18, the case will be heard in a Youth Court:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In England, Wales and Northern Ireland, if an accused person is aged 10 to 17, the case is normally heard in a Youth Court in front of up to three specially trained magistrates or a District Judge.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10640",
+      "type": "true_false",
+      "prompt": "The Prime Minister appoints about 40 senior MPs to become ministers in charge of departments.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Prime Minister appoints about 20 senior MPs to become ministers in charge of departments.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10641",
+      "type": "true_false",
+      "prompt": "Royal Ascot is a four-day horse race meeting in Berkshire attended by members of the Royal Family:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Royal Ascot , a five-day race meeting in Berkshire attended by members of the Royal Family.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10642",
+      "type": "single_choice",
+      "prompt": "Who sat at the House of Lords during the Middle Ages?",
+      "options": [
+        "Great landowners and bishops",
+        "Knights, who were usually smaller landowners",
+        "Wealthy people from towns and cities",
+        "Farmers and blacksmiths"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "During the Middle Ages, great landowners and bishops sat in the House of Lords.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10643",
+      "type": "single_choice",
+      "prompt": "Which of the following statements regarding Scottish television is TRUE?",
+      "options": [
+        "There is a channel with programmes in the Gaelic language",
+        "There are three channels in the Gaelic language",
+        "All programmes are broadcasted in English",
+        "There are no specific programmes to Scotland"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In Scotland, some Scotland-specific programmes are shown and there is also a channel with programmes in the Gaelic language.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10644",
+      "type": "single_choice",
+      "prompt": "Where does the biggest and most well-known Fringe Festival take place?",
+      "options": [
+        "Cambridge",
+        "Oxford",
+        "Edinburgh",
+        "Cardiff"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The biggest and most well-known Fringe Festival is the Edinburgh Festival Fringe.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10645",
+      "type": "true_false",
+      "prompt": "The UN was set up after the First World War and aims to prevent war and promote international peace and security:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The UN was set up after the Second World War and aims to prevent war and promote international peace and security.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10646",
+      "type": "single_choice",
+      "prompt": "Which of the following countries was NOT part of the Central Powers during the First World War?",
+      "options": [
+        "Germany",
+        "Serbia",
+        "Austria",
+        "Hungary"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "During the First World War Serbia formed part of the Allied powers.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10647",
+      "type": "single_choice",
+      "prompt": "What is played at important national occasions and at events attended by the King or the Royal Family?",
+      "options": [
+        "Folk music",
+        "The Beatles",
+        "The National Anthem",
+        "Opera music"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The National Anthem of the UK is ‘God Save the King’ is played at important national occasions and at events attended by the King or the Royal Family.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 27,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    }
+  ]
+}

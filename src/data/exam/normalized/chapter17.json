@@ -1,0 +1,720 @@
+{
+  "chapterID": 17,
+  "chapterName": "Chapter 17",
+  "questions": [
+    {
+      "id": "Q10384",
+      "type": "single_choice",
+      "prompt": "Which hill fort from the Iron Age can be seen in the county of Dorset?",
+      "options": [
+        "Conwy Castle",
+        "Caernarfon Castle",
+        "Edinburgh Castle",
+        "Maiden Castle"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "A very impressive hill fort from the Iron Age can still be seen today at Maiden Castle, in the English county of Dorset.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10385",
+      "type": "single_choice",
+      "prompt": "On which of the following issues the Northern Ireland Assembly CANNOT make decisions?",
+      "options": [
+        "Health",
+        "Education",
+        "The Environment",
+        "Planning"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Northern Ireland Assembly can make decisions on issues such as education, agriculture, the environment, health and social services.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10386",
+      "type": "single_choice",
+      "prompt": "Who was the first person to sail single-handed around the world in 1966/67?",
+      "options": [
+        "Sir Robin Knox-Johnston",
+        "Sir Francis Chichester",
+        "Sir Francis Drake",
+        "Dame Ellen MacArthur"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "A British sailor, Sir Francis Chichester, was the first person to sail singlehanded around the world, in 1966/67.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10387",
+      "type": "true_false",
+      "prompt": "In 1837, Queen Victoria became queen of the UK at the age of 20.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In 1837, Queen Victoria became queen of the UK at the age of 18.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10388",
+      "type": "single_choice",
+      "prompt": "Who led the group of Catholics who tried to kill the Protestant king with a bomb in the Houses of the Parliament in 1605?",
+      "options": [
+        "Oliver Cromwell",
+        "Alexander II",
+        "Guy Fawkes",
+        "Adrian IV"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In 1605, a group of Catholics led by Guy Fawkes failed in their plan to kill the Protestant king with a bomb in the Houses of Parliament. This is the origin of the Bonfire Night celebration on the 5th November, when people in Great Britain set off fireworks at home or in special displays.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10389",
+      "type": "single_choice",
+      "prompt": "What was the biggest source of employment in Britain before the 18th century?",
+      "options": [
+        "The ship industry",
+        "Agriculture",
+        "Teaching",
+        "Manufacturing jobs"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Before the 18th century, agriculture was the biggest source of employment in Britain.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10390",
+      "type": "single_choice",
+      "prompt": "In which city is the Scottish Parliament building, also known as Holyrood, located?",
+      "options": [
+        "Edinburgh",
+        "Belfast",
+        "Aberdeen",
+        "Glasgow"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In Scotland the elected members, called MSPs, meet in the Scottish Parliament building at Holyrood in Edinburgh.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10391",
+      "type": "true_false",
+      "prompt": "The UK continues to be a world leader in the development and manufacture of motor-sport technology:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "There is a long history of motor sport in the UK, for both cars and motor cycles. Motor-car racing in the UK started in 1902. The UK continues to be a world leader in the development and manufacture of motor-sport technology.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10392",
+      "type": "single_choice",
+      "prompt": "Why was the ‘Habeas Corpus Act’ of 1679 an important piece of legislation?",
+      "options": [
+        "It allowed people over 21 years old to vote",
+        "It guaranteed that no one could be held prisoner unlawfully",
+        "It abolished slavery throughout the British Empire",
+        "It abolished a number of taxes on imported goods in the UK"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Habeas Corpus Act became law in 1679. This was a very important piece of legislation which remains relevant today. The Act guaranteed that no one could be held prisoner unlawfully. Every prisoner has a right to a court hearing.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10393",
+      "type": "single_choice",
+      "prompt": "What British artist was awarded the Turner Prize?",
+      "options": [
+        "David Allan",
+        "Damien Hirst",
+        "Henry Moore",
+        "John Petts"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Damien Hirst.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10394",
+      "type": "single_choice",
+      "prompt": "How many members has the Council of Europe?",
+      "options": [
+        "15",
+        "47",
+        "190",
+        "5"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Council of Europe is separated from the EU. It has 47 member countries, including the UK, and is responsible for the protection and promotion of human rights in those countries.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10395",
+      "type": "single_choice",
+      "prompt": "In the UK, Members of the Parliament (MPs) are elected on the basis of:",
+      "options": [
+        "Personal achievements",
+        "Instant run-off",
+        "First past the post system (the candidate who gets the most votes)",
+        "Proportional representation"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "MPs are elected through a system called ‘first past the post’. In  constituency, the candidate who gets the most votes is elected.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10396",
+      "type": "single_choice",
+      "prompt": "Which of the following statements regarding television in Northern Ireland is TRUE?",
+      "options": [
+        "Some programmes are broadcasted in Irish Gaelic",
+        "There is one Irish-language channel",
+        "All programmes are broadcasted in English",
+        "There are no specific programmes to Northern Ireland"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "There are programmes specific to Northern Ireland and some programmes broadcast in Irish Gaelic.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10397",
+      "type": "single_choice",
+      "prompt": "In the second half of the 19th century there was an important group of artists who painted detailed pictures on religious or literary themes in bright colours. These were known as:",
+      "options": [
+        "The Pre-Raphaelites",
+        "Suffragettes",
+        "Chartists",
+        "Elizabethans"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Pre-Raphaelites were an important group of artists in the second half of the 19th century. They painted detailed pictures on religious or literary themes in bright colours. The group included Holman Hunt, Dante Gabriel Rossetti and Sir John Millais.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10398",
+      "type": "true_false",
+      "prompt": "The Muslim festival known as Eid ul Adha reminds Muslims of their own commitment to God:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Eid ul Adha reminds Muslims of their own commitment to God.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10399",
+      "type": "single_choice",
+      "prompt": "What was the population of the UK in 1901?",
+      "options": [
+        "20 million",
+        "40 million",
+        "30 million",
+        "50 million"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The population of the UK in 1901 was 40 million people.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10400",
+      "type": "single_choice",
+      "prompt": "People in the UK do NOT have to pay tax on:",
+      "options": [
+        "Income from expensive gifts",
+        "Income from savings",
+        "Income from property",
+        "Pensions"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "People in the UK have to pay tax on their income, which includes: wages from paid employment, profits from self-employment, taxable benefits, pensions and income from property, savings and dividends.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10401",
+      "type": "single_choice",
+      "prompt": "Which British scientist co-invented the MRI (magnetic resonance imaging) scanner?",
+      "options": [
+        "Sir Peter Mansfield",
+        "Sir Robert Edwards",
+        "Patrick Steptoe",
+        "Sir Tim Berners-Lee"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Sir Peter Mansfield (1933-), a British scientist, is the co-inventor of the MRI (magnetic resonance imaging) scanner. This enables doctors and researchers to obtain exact and non-invasive images of human internal organs and has revolutionised diagnostic medicine.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10402",
+      "type": "single_choice",
+      "prompt": "Which political party called a referendum on the UK’s membership of the European Union?",
+      "options": [
+        "The Conservative party",
+        "The Labour party",
+        "The Liberal Democrats party",
+        "The Scottish National party"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Conservative government called a referendum on the UK’s membership of the European Union.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10403",
+      "type": "single_choice",
+      "prompt": "Which of the following is a UNESCO World Heritage Site and a popular area for walkers?",
+      "options": [
+        "The Giants Causeway",
+        "Hadrien’s Wall",
+        "The house of the parliament",
+        "Buckingham Palace"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Parts of Hadrien’s Wall, including the forts of Housesteads and Vindolanda is a popular area for walkers and is a UNESCO (United Nations Educational Scientific and Cultural Organization) World Heritage Site.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10404",
+      "type": "single_choice",
+      "prompt": "When did hereditary peers lose the automatic right to attend the House of Lords?",
+      "options": [
+        "1979",
+        "1989",
+        "1999",
+        "2001"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Since 1999, hereditary peers have lost the automatic right to attend the House of Lords. They now elect a few of their number to represent them in the House of Lords.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10405",
+      "type": "single_choice",
+      "prompt": "Which charity works for the preservation of buildings in England?",
+      "options": [
+        "Friends of the Earth",
+        "Oxfam",
+        "The National Trust",
+        "The RSPB"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In the UK, many parts of the countryside and places of interest are kept open by the National Trust in England, Wales and Northern Ireland and the National Trust for Scotland. Both are charities that work to preserve important buildings, coastline and countryside in the UK.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10406",
+      "type": "single_choice",
+      "prompt": "What name is given to the new social classes that appeared after the Black Death plague and who owned large areas of land?",
+      "options": [
+        "Gentry",
+        "Bayeux",
+        "Canute",
+        "Grimsby"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Following the Black Death, the smaller population meant there was less need to grow cereal crops. There were labour shortages and peasants began to demand higher wages. New social classes appeared, including owners of large areas of land (later called the gentry), and people left the countryside to live in the towns. In the towns, growing wealth led to the development of a strong middle class.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10407",
+      "type": "single_choice",
+      "prompt": "Which of the following is a traditional Welsh food?",
+      "options": [
+        "Roast beef",
+        "Welsh cakes",
+        "Haggis",
+        "Ulster fry"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Welsh cakes are a traditional Welsh snack made from flour, dried fruits and spices, and served either hot or cold.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 17,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    }
+  ]
+}

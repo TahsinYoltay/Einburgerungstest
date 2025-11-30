@@ -1,29 +1,14 @@
 import React, { useState } from 'react';
-import { View, Image } from 'react-native';
-import { Card, Text, RadioButton, IconButton, Checkbox, Divider } from 'react-native-paper';
+import { View, Image, Pressable } from 'react-native';
+import { Card, Text, IconButton, Divider } from 'react-native-paper';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 import { useTranslation } from 'react-i18next';
 import { styles } from './QuestionCard.style';
-
-type Option = {
-  id: string;
-  text: string;
-  image?: string;
-};
-
-type Question = {
-  id: string;
-  text: string;
-  options: Option[];
-  type: 'single' | 'multiple';
-  correctAnswers: string[];
-  images?: string[];
-  video?: string;
-  explanation?: string;
-};
+import { NormalizedQuestion } from '../../../types/exam';
+import Icon from '@react-native-vector-icons/material-design-icons';
 
 type QuestionCardProps = {
-  question: Question;
+  question: NormalizedQuestion;
   selectedAnswers?: string[];
   onSelectAnswer: (answerId: string) => void;
   isFlagged: boolean;
@@ -39,22 +24,19 @@ const QuestionCard = ({
   const { theme } = useAppTheme();
   const [showExplanation, setShowExplanation] = useState(false);
 
-  // Function to handle option selection for multiple choice questions
-  const handleMultipleChoice = (answerId: string) => {
-    onSelectAnswer(answerId);
-  };
+  // Reset explanation when question changes
+  React.useEffect(() => {
+    setShowExplanation(false);
+  }, [question.id]);
 
-  // Function to check if an option is selected
-  const isOptionSelected = (optionId: string) => {
-    return selectedAnswers.includes(optionId);
-  };
+  const isOptionSelected = (optionId: string) => selectedAnswers.includes(optionId);
 
   return (
     <Card style={styles.card}>
       <Card.Content>
         <View style={styles.questionHeader}>
           <Text variant="titleLarge" style={styles.questionText}>
-            {question.text}
+            {question.prompt}
           </Text>
           {isFlagged && (
             <IconButton
@@ -66,82 +48,42 @@ const QuestionCard = ({
         </View>
 
         {/* Display images if any */}
-        {question.images && question.images.length > 0 && (
+        {question.media?.image_url && (
           <View style={styles.imagesContainer}>
-            {question.images.map((imageUrl, index) => (
-              <Image
-                key={`img-${index}`}
-                source={{ uri: imageUrl }}
-                style={styles.questionImage}
-                resizeMode="contain"
-              />
-            ))}
-          </View>
-        )}
-
-        {/* Display video if any */}
-        {question.video && (
-          <View style={styles.videoContainer}>
-            <Text style={styles.videoText}>{t('exam.videoQuestion')}</Text>
-            {/* In a real implementation, you would use a video player component here */}
+            <Image
+              source={{ uri: question.media.image_url }}
+              style={styles.questionImage}
+              resizeMode="contain"
+            />
           </View>
         )}
 
         {/* Question options */}
-        {question.type === 'single' ? (
-          // Single choice question
-          <RadioButton.Group
-            onValueChange={onSelectAnswer}
-            value={selectedAnswers.length ? selectedAnswers[0] : ''}
-          >
-            {question.options.map((option) => (
-              <View key={option.id} style={styles.optionContainer}>
-                <RadioButton.Item
-                  label={option.text}
-                  value={option.id}
-                  labelStyle={styles.optionText}
-                  position="leading"
-                  style={styles.optionItem}
-                />
-                {option.image && (
-                  <Image
-                    source={{ uri: option.image }}
-                    style={styles.optionImage}
-                    resizeMode="contain"
-                  />
-                )}
+        {question.options.map((option, idx) => {
+          const optionId = idx.toString();
+          const selected = isOptionSelected(optionId);
+          return (
+            <Pressable
+              key={optionId}
+              onPress={() => onSelectAnswer(optionId)}
+              style={[styles.tileContainer, selected && styles.tileSelected]}
+              android_ripple={{ color: '#E8F0FE' }}
+            >
+              <View style={{ flex: 1 }}>
+                <Text
+                  style={[styles.optionText, selected && styles.optionTextSelected]}
+                  numberOfLines={0}
+                >
+                  {option}
+                </Text>
               </View>
-            ))}
-          </RadioButton.Group>
-        ) : (
-          // Multiple choice question
-          <View>
-            <Text style={styles.multipleChoiceHeader}>
-              {t('exam.selectMultiple')}
-            </Text>
-            {question.options.map((option) => (
-              <View key={option.id} style={styles.optionContainer}>
-                <Checkbox.Item
-                  label={option.text}
-                  status={isOptionSelected(option.id) ? 'checked' : 'unchecked'}
-                  onPress={() => handleMultipleChoice(option.id)}
-                  position="leading"
-                  style={styles.optionItem}
-                />
-                {option.image && (
-                  <Image
-                    source={{ uri: option.image }}
-                    style={styles.optionImage}
-                    resizeMode="contain"
-                  />
-                )}
-              </View>
-            ))}
-          </View>
-        )}
+              {selected && <Icon name="check-circle" size={24} color="#1A73E8" />}
+            </Pressable>
+          );
+        })}
 
-        {/* Explanation button only shown if explanation exists */}
-        {question.explanation && (
+        {/* Hint/Explanation button */}
+        {(question.hint || question.explanation) && (
           <View style={styles.explainButtonContainer}>
             <IconButton
               icon="lightbulb-outline"
@@ -160,11 +102,12 @@ const QuestionCard = ({
         )}
 
         {/* Explanation content only shown when expanded */}
-        {question.explanation && showExplanation && (
+        {(question.hint || question.explanation) && showExplanation && (
           <View style={styles.explanationContainer}>
             <Divider style={styles.divider} />
             <Text style={styles.explanationTitle}>{t('exam.explanation')}</Text>
-            <Text style={styles.explanationText}>{question.explanation}</Text>
+            {question.hint && <Text style={styles.explanationText}>{question.hint}</Text>}
+            {question.explanation && <Text style={styles.explanationText}>{question.explanation}</Text>}
           </View>
         )}
       </Card.Content>

@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import {
   loadExamQuestions,
   startExam,
+  resetExam,
   answerQuestion,
   toggleFlagQuestion,
   goToNextQuestion,
@@ -57,6 +58,9 @@ const ExamScreen = () => {
   const [showTimeWarning, setShowTimeWarning] = useState(false);
   const [showExitConfirmDialog, setShowExitConfirmDialog] = useState(false);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [reviewFlaggedOnly, setReviewFlaggedOnly] = useState(false);
+  const [flaggedOrder, setFlaggedOrder] = useState<number[]>([]);
+  const [flaggedCursor, setFlaggedCursor] = useState(0);
 
   // References
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -77,8 +81,9 @@ const ExamScreen = () => {
   // Check if the current question has been answered
   const isCurrentQuestionAnswered = (): boolean => {
     if (!currentQuestion) {return false;}
-    const questionAnswers = answers[currentQuestion.id];
-    return !!questionAnswers && questionAnswers.length > 0;
+    const questionAnswers = answers[currentQuestion.id] || [];
+    const min = currentQuestion.min_selections || 1;
+    return questionAnswers.length >= min;
   };
 
   // Check if the question is flagged
@@ -88,11 +93,15 @@ const ExamScreen = () => {
 
   // Initialize the exam
   useEffect(() => {
-    if (examId && !examStarted) {
+    if (examId) {
+      dispatch(resetExam());
       dispatch(startExam({ examId }));
       dispatch(loadExamQuestions(examId));
     }
-  }, [dispatch, examId, examStarted]);
+    return () => {
+      timerRef.current && clearInterval(timerRef.current);
+    };
+  }, [dispatch, examId]);
 
   // Setup timer
   useEffect(() => {
@@ -141,7 +150,8 @@ const ExamScreen = () => {
     dispatch(answerQuestion({
       questionId,
       answerId,
-      isMultiple: currentQuestion?.type === 'multiple',
+      type: currentQuestion?.type,
+      maxSelections: currentQuestion?.max_selections || 1,
     }));
   };
 
@@ -161,7 +171,18 @@ const ExamScreen = () => {
       return;
     }
 
-    dispatch(goToNextQuestion());
+    if (reviewFlaggedOnly) {
+      if (flaggedCursor < flaggedOrder.length - 1) {
+        const nextCursor = flaggedCursor + 1;
+        setFlaggedCursor(nextCursor);
+        dispatch(setCurrentQuestionIndex(flaggedOrder[nextCursor]));
+      } else {
+        // finished reviewing flagged, submit
+        dispatch(submitExam());
+      }
+    } else {
+      dispatch(goToNextQuestion());
+    }
   };
 
   // Handle back button press
@@ -204,7 +225,6 @@ const ExamScreen = () => {
           {
             text: t('exam.reviewQuestions'),
             onPress: () => {
-              // Go to first unanswered question
               const firstUnansweredIndex = questions.findIndex(q => !answers[q.id] || answers[q.id].length === 0);
               if (firstUnansweredIndex >= 0) {
                 dispatch(setCurrentQuestionIndex(firstUnansweredIndex));
@@ -221,13 +241,11 @@ const ExamScreen = () => {
       return;
     }
 
-    // Check if there are flagged questions
     if (flaggedQuestions.length > 0) {
       setShowFlaggedDialog(true);
       return;
     }
 
-    // Submit
     dispatch(submitExam());
   };
 
@@ -235,10 +253,17 @@ const ExamScreen = () => {
   const handleGoToFlaggedQuestion = () => {
     setShowFlaggedDialog(false);
 
-    // Find the first flagged question
-    const flaggedIndex = questions.findIndex(q => flaggedQuestions.includes(q.id));
-    if (flaggedIndex >= 0) {
-      dispatch(setCurrentQuestionIndex(flaggedIndex));
+    // Prepare review of only flagged questions
+    const order: number[] = questions
+      .map((q, idx) => ({ q, idx }))
+      .filter(item => flaggedQuestions.includes(item.q.id))
+      .map(item => item.idx);
+
+    if (order.length > 0) {
+      setReviewFlaggedOnly(true);
+      setFlaggedOrder(order);
+      setFlaggedCursor(0);
+      dispatch(setCurrentQuestionIndex(order[0]));
     }
   };
 
@@ -282,9 +307,9 @@ const ExamScreen = () => {
         <View style={styles.headerRow}>
           <View style={styles.headerLeft}>
             <IconButton
-              icon={Platform.OS === 'ios' ? 'chevron-left' : 'arrow-left'}
-              size={24}
-              onPress={handleBackPress}
+          icon={Platform.OS === 'ios' ? 'chevron-left' : 'arrow-left'}
+          size={24}
+          onPress={handleBackPress}
               accessibilityLabel={t('common.goBack')}
             />
             <Text variant="titleMedium">
@@ -328,7 +353,16 @@ const ExamScreen = () => {
           {isQuestionFlagged(currentQuestion.id) ? t('exam.unflag') : t('exam.flag')}
         </Button>
 
-        {currentQuestionIndex < questions.length - 1 ? (
+        {reviewFlaggedOnly ? (
+          <Button
+            mode="contained"
+            onPress={handleNext}
+            style={styles.button}
+            contentStyle={styles.buttonContent}
+          >
+            {flaggedCursor < flaggedOrder.length - 1 ? t('exam.next') : t('exam.finishReview')}
+          </Button>
+        ) : currentQuestionIndex < questions.length - 1 ? (
           <Button
             mode="contained"
             onPress={handleNext}
@@ -357,7 +391,9 @@ const ExamScreen = () => {
             <Text>{t('exam.flaggedQuestionsMessage', { count: flaggedQuestions.length })}</Text>
           </Dialog.Content>
           <Dialog.Actions>
-            <Button onPress={handleGoToFlaggedQuestion}>{t('exam.reviewFlagged')}</Button>
+            <Button onPress={handleGoToFlaggedQuestion}>
+              {t('exam.reviewFlagged', { count: flaggedQuestions.length })}
+            </Button>
             <Button onPress={() => {
               setShowFlaggedDialog(false);
               dispatch(submitExam());

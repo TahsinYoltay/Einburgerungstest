@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 // Screens
 import HomeScreen from '../screens/home/HomeScreen/HomeScreen';
 import BookScreen from '../screens/book/BookScreen/BookScreen';
-import ExamScreen from '../screens/exam/ExamScreen/ExamScreen';
+import ExamListScreen from '../screens/exam/ExamList/ExamListScreen';
 import TestScreen from '../screens/test/TestScreen/TestScreen';
 import SettingsScreen from '../screens/settings/SettingsScreen/SettingsScreen';
 
@@ -95,7 +95,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="ExamTab"
-        component={ExamScreen}
+        component={ExamListScreen}
         options={{
           tabBarLabel: t('screens.exam'),
           tabBarIcon: renderExamIcon,

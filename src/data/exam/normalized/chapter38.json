@@ -1,0 +1,721 @@
+{
+  "chapterID": 38,
+  "chapterName": "Chapter 38",
+  "questions": [
+    {
+      "id": "Q10888",
+      "type": "single_choice",
+      "prompt": "In which of the following years did England win the World Cup?",
+      "options": [
+        "1974",
+        "1986",
+        "1982",
+        "1966"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "England won the World Cup in 1966 when it was captained by Bobby Moore.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10889",
+      "type": "single_choice",
+      "prompt": "During the Battle of Trafalgar Britain fought against:",
+      "options": [
+        "France and Belgium",
+        "France and Spain",
+        "France and Italy",
+        "Italy and Spain"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Britain’s navy fought against combined French and Spanish fleets, winning the Battle of Trafalgar in 1805.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10890",
+      "type": "single_choice",
+      "prompt": "What is the name given to the first formal anti-slavery groups set up in the late 1700s?",
+      "options": [
+        "Beefeaters",
+        "Suffragettes",
+        "Quakers",
+        "Canutes"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The first formal anti-slavery groups were set up by the Quakers in the late 1700s, and they petitioned Parliament to ban the practice.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10891",
+      "type": "true_false",
+      "prompt": "More women than men study at university.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "This statement is TRUE.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10892",
+      "type": "single_choice",
+      "prompt": "Why did Ireland suffer a famine in the middle of the 19th century?",
+      "options": [
+        "There was a heat wave",
+        "The whole country was flooded",
+        "The potato crop failed",
+        "There were not enough farmers"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In the middle of the century the potato crop failed, and Ireland suffered a famine. A million people died from disease and starvation.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10893",
+      "type": "single_choice",
+      "prompt": "What sort of battle was ‘the Battle of Britain’?",
+      "options": [
+        "A naval battle against the Spanish.",
+        "An aerial battle against the French.",
+        "An aerial battle against the Germans.",
+        "A naval battle against the French."
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Hitler wanted to invade Britain, but before sending in troops, Germany needed to control the air campaign against Britain, but the British resisted with their fighter planes and eventually won the crucial aerial battle against the Germans, called ‘the Battle of Britain’, in the summer of 1940.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10894",
+      "type": "single_choice",
+      "prompt": "Who is in charge of appointing the local Chief Constable?",
+      "options": [
+        "A judge",
+        "Police and Crime Commissioners",
+        "The mayor",
+        "The local community members"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "PCCs (Police and Crime Commissioners) set local police priorities and the local policing budget. They also appoint the local Chief Constable.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10895",
+      "type": "multiple_choice",
+      "prompt": "What does the money from the National Insurance Contributions pay for (CHOOSE TWO)?",
+      "options": [
+        "Police force salaries",
+        "State retirement pensions",
+        "National Health Service",
+        "University fees"
+      ],
+      "correct_option_indexes": [
+        1,
+        2
+      ],
+      "min_selections": 2,
+      "max_selections": 2,
+      "explanation": "The money raised from National Insurance Contributions is used to pay for state benefits and services such as the state retirement pension and the National Health Service (NHS).",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10896",
+      "type": "single_choice",
+      "prompt": "How many British died on the first day alone of the Battle of Somme?",
+      "options": [
+        "60,000",
+        "65,000",
+        "40,000",
+        "55,000"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The British attack of the Somme in July 1916, resulted in about 60,000 British casualties on the first day alone.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10897",
+      "type": "single_choice",
+      "prompt": "When was the first Union flag created?",
+      "options": [
+        "1515",
+        "1616",
+        "1505",
+        "1606"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The first Union Flag was created in 1606 from the flags of Scotland and England, the Principality of Wales was already untied with England.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10898",
+      "type": "single_choice",
+      "prompt": "Which of the following territories is not part of the UK?",
+      "options": [
+        "Northern Ireland",
+        "The Isle of Man",
+        "Wales",
+        "Scotland"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The UK comprises England, Wales, Scotland and Northern Ireland. There are several islands which are closely linked with the UK but are not part of it: the Channel Islands and the Isle of Man.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10899",
+      "type": "single_choice",
+      "prompt": "Which of the following is NOT a fundamental principle of British life?",
+      "options": [
+        "Individual liberty",
+        "Democracy",
+        "Communism",
+        "Participation in community life"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The fundamental principles of British life include: democracy, the rule of law, individual liberty, tolerance of those with different faiths and beliefs and participation in community life.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10900",
+      "type": "single_choice",
+      "prompt": "What do Sir Terence Conran, Clarice Cliff and Thomas Chippendale have in common?",
+      "options": [
+        "They were British designers",
+        "They developed the atomic bomb",
+        "They were British explorers",
+        "They were British poets"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Britain has produced many great designers, from Thomas Chippendale (who designed furniture in the 18th century) to Clarice Cliff (who designed Art Deco ceramics) to Sir Terence Conran (a 20th-century interior designer).",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10901",
+      "type": "single_choice",
+      "prompt": "Which of the following cities is not in Wales?",
+      "options": [
+        "Cardiff",
+        "Swansea",
+        "Bradford",
+        "Newport"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Bradford is located in England.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10902",
+      "type": "true_false",
+      "prompt": "People on the electoral register with ages between 18 and 70 can be asked to serve on a jury.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "As well as getting the right to vote, people on the electoral register are randomly selected to serve on a jury. Anyone who is on the electoral register and is aged 18 to 70 can be asked to do this.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10903",
+      "type": "single_choice",
+      "prompt": "Which Saxon king of England was killed at the Battle of Hastings in 1066?",
+      "options": [
+        "Kenneth MacAlpin",
+        "Harold",
+        "William the Conqueror",
+        "Henry V"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In 1066, an invasion led by William, the Duke of Normandy (in what is now northern France), defeated Harold, the Saxon king of England, at the Battle of Hastings. Harold was killed in the battle.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10904",
+      "type": "single_choice",
+      "prompt": "During the ‘swinging sixties’ Britain experienced a growth in:",
+      "options": [
+        "Sports such as rowing and cycling",
+        "Fashion, cinema and popular music",
+        "Holistic therapies",
+        "People going to university"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The decade of the 1960s was a period of significant social change. It was known as the ‘swinging sixties’. There was growth in British fashion, cinema and popular music.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10905",
+      "type": "single_choice",
+      "prompt": "As a permanent resident or citizen of the UK you should:",
+      "options": [
+        "Treat other with fairness",
+        "Look after yourself and your family",
+        "Look after the area in which you live and the environment",
+        "All the answers are correct"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "If you wish to be a permanent resident or citizen of the UK, you should: respect and obey the law, respect the rights of others, including their right to their own opinions, treat others with fairness, look after yourself and your family and look after the area in which you live and the environment.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10906",
+      "type": "single_choice",
+      "prompt": "When did the BBC start the world’s first regular television service?",
+      "options": [
+        "1922",
+        "1932",
+        "1936",
+        "1944"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The BBC started radio broadcasts in 1922 and began the world’s first regular television service in 1936.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10907",
+      "type": "true_false",
+      "prompt": "Women in Britain today make up about one third of the workforce.",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Women in Britain today make up about half of the workforce.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10908",
+      "type": "single_choice",
+      "prompt": "The evacuation of British and French soldiers from France in a huge naval operation during WWII gave rise to which phrase:",
+      "options": [
+        "The Harbour spirit",
+        "The Blitz operation",
+        "The Dunkirk spirit",
+        "The D-Day operation"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "During WWII as France fell, the British decided to evacuate British and French soldiers from France in a huge naval operation. Many civilian volunteers in small pleasure and fishing boats from Britain helped the Navy to rescue more than 300,000 men from the beaches around Dunkirk. The evacuation gave rise to the phrase ‘the Dunkirk spirit’.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10909",
+      "type": "single_choice",
+      "prompt": "Which programme helps 16 and 17 year-olds develop their skills and are part in community projects?",
+      "options": [
+        "The Youth Working Programme",
+        "The National Development Programme",
+        "The National Citizen Service Programme",
+        "The Skills Development Programme"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The National Citizen Service programme gives 16- and 17-year-olds the opportunity to enjoy outdoor activities, develop their skills and take part in a community project.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10910",
+      "type": "single_choice",
+      "prompt": "Queen Victoria became queen in:",
+      "options": [
+        "1837",
+        "1847",
+        "1835",
+        "1836"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In 1837, Queen Victoria became queen of the UK at the age of 18.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10911",
+      "type": "single_choice",
+      "prompt": "Who wrote the books ‘Pride and Prejudice’ and ‘Sense and Sensibility’?",
+      "options": [
+        "Charles Dickens",
+        "Robert Louis Stevenson",
+        "Evelyn Waugh",
+        "Jane Austen"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Jane Austen (1775-1817) was an English novelist. Her books include Pride and Prejudice and Sense and Sensibility.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 38,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    }
+  ]
+}

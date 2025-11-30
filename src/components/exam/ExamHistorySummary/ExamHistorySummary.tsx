@@ -20,6 +20,7 @@ import {useAppSelector, useAppDispatch} from '../../../store/hooks';
 import {RootStackParamList} from '../../../navigations/StackNavigator';
 import {ROUTES} from '../../../constants/routes';
 import {resetExamData} from '../../../store/slices/examSlice';
+import {ExamAttempt} from '../../../types/exam';
 import {styles} from './ExamHistorySummary.style';
 
 type HomeNavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -101,7 +102,7 @@ const ExamHistorySummary = () => {
     }
 
     // If it's a saved in-progress exam
-    const lastAttempt = exams.find(e => e.id === examId)?.lastAttempt;
+    const lastAttempt = (exams.find(e => e.id === examId) as any)?.lastAttempt as ExamAttempt | undefined;
     if (lastAttempt && lastAttempt.status === 'in-progress') {
       const answeredCount = lastAttempt.answers.length;
       return {
@@ -133,22 +134,16 @@ const ExamHistorySummary = () => {
 
   // Get the button text based on exam status
   const getExamButtonText = (examId: string) => {
-    const exam = exams.find(e => e.id === examId);
-    if (!exam || !exam.lastAttempt) {
-      return t('exam.start');
+    const exam = exams.find(e => e.id === examId) as any;
+    const lastAttempt = exam?.lastAttempt as ExamAttempt | undefined;
+    if (!lastAttempt) return t('exam.start');
+    if (lastAttempt.status === 'passed' || lastAttempt.status === 'failed') return t('exam.start');
+    if (lastAttempt.status === 'in-progress') {
+      return currentExam.examId === examId && currentExam.examStarted
+        ? t('exam.continue')
+        : t('exam.resume');
     }
-
-    switch (exam.lastAttempt.status) {
-      case 'in-progress':
-        return currentExam.examId === examId && currentExam.examStarted
-          ? t('exam.continue')
-          : t('exam.resume');
-      case 'passed':
-      case 'failed':
-        return t('exam.start');
-      default:
-        return t('exam.start');
-    }
+    return t('exam.start');
   };
 
   // Get the status label with color
@@ -200,7 +195,7 @@ const ExamHistorySummary = () => {
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View style={styles.cardsContainer}>
           {exams.map(exam => {
-            const lastAttempt = exam.lastAttempt;
+            const lastAttempt = (exam as any).lastAttempt as ExamAttempt | undefined;
             const progress = calculateProgress(exam.id);
             const stats = getAttemptStats(exam.id);
 
@@ -212,7 +207,7 @@ const ExamHistorySummary = () => {
                       variant="titleMedium"
                       numberOfLines={1}
                       style={styles.examTitle}>
-                      {exam.name}
+                      {exam.title || exam.id}
                     </Text>
                     <IconButton
                       icon="refresh"
@@ -226,19 +221,19 @@ const ExamHistorySummary = () => {
                     variant="bodySmall"
                     style={styles.description}
                     numberOfLines={2}>
-                    {exam.description}
+                    {exam.mode ? t(`exam.modes.${exam.mode}`, exam.mode) : ''}
                   </Text>
 
                   <View style={styles.detailsContainer}>
                     <View style={styles.detailItem}>
                       <Text variant="labelSmall">{t('exam.questions')}</Text>
-                      <Text variant="bodyMedium">{exam.totalQuestions}</Text>
+                      <Text variant="bodyMedium">{exam.questions_per_exam}</Text>
                     </View>
 
                     <View style={styles.detailItem}>
                       <Text variant="labelSmall">{t('exam.timeAllowed')}</Text>
                       <Text variant="bodyMedium">
-                        {exam.timeAllowedInMinutes} min
+                        {exam.time_limit_minutes} min
                       </Text>
                     </View>
 
@@ -353,13 +348,13 @@ const ExamHistorySummary = () => {
           <Card style={styles.historyCard}>
             <Card.Content>
               {examHistory.slice(0, 5).map((attempt, index) => {
-                const exam = exams.find(e => e.id === attempt.examId);
+                const exam = exams.find(e => e.id === attempt.examId) as any;
 
                 return (
                   <View key={attempt.id}>
                     {index > 0 && <Divider style={styles.divider} />}
                     <List.Item
-                      title={exam?.name || t('exam.unknownExam')}
+                      title={exam?.title || t('exam.unknownExam')}
                       description={`${formatDate(
                         attempt.startTime,
                       )} • ${formatTime(attempt.timeSpentInSeconds)}`}

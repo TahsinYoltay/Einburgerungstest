@@ -1,0 +1,730 @@
+{
+  "chapterID": 26,
+  "chapterName": "Chapter 26",
+  "questions": [
+    {
+      "id": "Q10600",
+      "type": "single_choice",
+      "prompt": "How many weeks does the orchestral classical music event known as ‘the Proms’ last for?",
+      "options": [
+        "Three weeks",
+        "Four weeks",
+        "Six weeks",
+        "Eight weeks"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Proms is an eight-week summer season of orchestral classical music that takes place in various venues, including the Royal Albert Hall in London.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10601",
+      "type": "single_choice",
+      "prompt": "When did King Charles III start reining?",
+      "options": [
+        "In 2020",
+        "In 2021",
+        "In 2022",
+        "In 2023"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The King has reigned since his mother’s death in September 2022.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10602",
+      "type": "single_choice",
+      "prompt": "What did the Chartists campaign for?",
+      "options": [
+        "The right to vote for women over 30 years old",
+        "The right to vote for the working classes and other people without property",
+        "The right to vote for women and men over 30 years old",
+        "The right to vote for every citizen"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Chartists, demanded the vote for the working classes and other people without property.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10603",
+      "type": "single_choice",
+      "prompt": "What is the name of the land formation consisting of columns made of volcanic lava located on the north-east coast of Northern Ireland?",
+      "options": [
+        "Eden Project",
+        "The Giant’s Causeway",
+        "Loch Lomond",
+        "Snowdonia"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Located on the north-east coast of Northern Ireland, the Giant’s Causeway is a land formation of columns made from volcanic lava.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10604",
+      "type": "true_false",
+      "prompt": "Members of the public are not allowed in Youth Courts, and the name or photographs of the accused young person cannot be published in newspapers or used by the media:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "This statement is true.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10605",
+      "type": "single_choice",
+      "prompt": "A set of principles by which a country is governed and which includes all of the institutions that are responsible for running the country and how their power is kept in check is the definition for:",
+      "options": [
+        "Revolution",
+        "Constitution",
+        "Monarchy",
+        "Democracy"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "A constitution is a set of principles by which a country is governed. It includes all of the institutions that are responsible for running the country and how their power is kept in check.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10606",
+      "type": "single_choice",
+      "prompt": "When did Emmeline Pankhurst die?",
+      "options": [
+        "1928",
+        "1935",
+        "1936",
+        "1930"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Emmeline Pankhurst died in 1928. Shortly before Emmeline’s death, women were given the right to vote at the age of 21, the same as men.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10607",
+      "type": "multiple_choice",
+      "prompt": "What TWO houses were confronted during the Wars of the Roses?",
+      "options": [
+        "The House of Lancaster",
+        "The House of Leicester",
+        "The House of Canterbury",
+        "The House of York"
+      ],
+      "correct_option_indexes": [
+        0,
+        3
+      ],
+      "min_selections": 2,
+      "max_selections": 2,
+      "explanation": "The Wars of the Roses were fought between the supporters of two families: the House of Lancaster and the House of York.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10608",
+      "type": "single_choice",
+      "prompt": "What is the National Anthem of the UK?",
+      "options": [
+        "God save the King",
+        "God save the Queen",
+        "United kingdoms",
+        "God save the land"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The National Anthem of the UK is ‘God Save the King’.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10609",
+      "type": "single_choice",
+      "prompt": "Who was the first woman to become Prime Minister in the UK?",
+      "options": [
+        "J K Rowling",
+        "Margaret Thatcher",
+        "Jane Austen",
+        "Hillary Clinton"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Margaret Thatcher, Britain’s first woman Prime Minister, led the Conservative government from 1979 to 1990.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10610",
+      "type": "single_choice",
+      "prompt": "When did the Brexit referendum take place?",
+      "options": [
+        "23rd June 2016",
+        "23rd July 2016",
+        "23rd June 2015",
+        "23rd July 2015"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The referendum on the UK’s membership of the European Union or Brexit referendum was held on 23 June 2016.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10611",
+      "type": "single_choice",
+      "prompt": "Which one of the following gardens is located in Northern Ireland?",
+      "options": [
+        "Bodnant Garden",
+        "Mount Stewart",
+        "Sissinghurst",
+        "Hidcote"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Mount Stewart is located in Northern Ireland, Bodnant Garden in Wales and Sissinghurst and Hidcote in England.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10612",
+      "type": "single_choice",
+      "prompt": "When is the Mercury Music Prize awarded?",
+      "options": [
+        "July",
+        "August",
+        "September",
+        "October"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Mercury Music Prize is awarded each September for the best album from the UK and Ireland.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10613",
+      "type": "single_choice",
+      "prompt": "Which of the following statements is true?",
+      "options": [
+        "To apply to become a permanent resident or citizen of the UK, you will need to have a university degree",
+        "To apply to become a permanent resident or citizen of the UK, you will need to have a good understanding of life in the UK",
+        "To apply to become a permanent resident or citizen of the UK, you will need to have British relatives",
+        "To apply to become a permanent resident or citizen of the UK, you will need to have knowledge of the British laws"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "To apply to become a permanent resident or citizen of the UK, you will need to have a good understanding of life in the UK and be able to speak and read English.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10614",
+      "type": "single_choice",
+      "prompt": "Who invented the cash-dispensing ATM (automatic teller machine) or ‘cashpoint’?",
+      "options": [
+        "Sir Peter Mansfield",
+        "James Goodfellow",
+        "Patrick Steptoe",
+        "Sir Tim Berners-Lee"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In the 1960s, James Goodfellow (1937-) invented the cash-dispensing ATM (automatic teller machine) or ‘cashpoint’. The first of these was put into use by Barclays Bank in Enfield, north London in 1967.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10615",
+      "type": "single_choice",
+      "prompt": "What is the name of the only ‘Grand Slam’ tennis event played on grass?",
+      "options": [
+        "The Australian open",
+        "The Wimbledon Championships",
+        "The U.S. open",
+        "The Queen’s open"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Wimbledon Championships is the oldest tennis tournament in the world and the only ‘Grand Slam’ event played on grass.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10616",
+      "type": "single_choice",
+      "prompt": "What is the meaning of the term ‘Habeas corpus’?",
+      "options": [
+        "You must present the person in court",
+        "You must obey the law",
+        "You should go to court",
+        "You should not be judged"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Habeas corpus is Latin for ‘you must present the person in court’. The Habeas Corpus Act guaranteed that no one could be held prisoner unlawfully. Every prisoner has a right to a court hearing.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10617",
+      "type": "single_choice",
+      "prompt": "What name is given to the candelabrum lit during the eight-day holiday of Hanukkah?",
+      "options": [
+        "Menorah",
+        "Diwali",
+        "Ramadan",
+        "Baisakhi"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Hanukkah is in November or December and is celebrated for eight days. On each day of the festival a candle is lit on a stand of eight candles (called a menorah) to remember the story of the festival, where oil that should have lasted only a day did so for eight.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10618",
+      "type": "single_choice",
+      "prompt": "Which of the following statements is TRUE?",
+      "options": [
+        "It is against the law to walk your dog on the beach",
+        "It is against the law to treat a pet cruelly or to neglect it",
+        "It is against the law to take pets into public places",
+        "It is against the law to feed your pet in public places"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "It is against the law to treat a pet cruelly or to neglect it.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10619",
+      "type": "single_choice",
+      "prompt": "Which German princess got married with Henry VIII?",
+      "options": [
+        "Jane Seymour",
+        "Anne of Cleves",
+        "Catherine Parr",
+        "Anne Boleyn"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Anne of Cleves was a German princess who married Henry VIII for political reasons.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10620",
+      "type": "multiple_choice",
+      "prompt": "In which of the following matters can the Scottish Parliament legislate (choose FIVE options)?",
+      "options": [
+        "Additional tax-raising powers",
+        "Economic development",
+        "Health",
+        "Education",
+        "Civil and criminal law",
+        "Immigration",
+        "Planning"
+      ],
+      "correct_option_indexes": [
+        0,
+        2,
+        3,
+        4,
+        6
+      ],
+      "min_selections": 5,
+      "max_selections": 5,
+      "explanation": "The Scottish Parliament can legislate on: civil and criminal law, health, education, planning and additional tax-raising powers.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10621",
+      "type": "true_false",
+      "prompt": "Drinking in public can be a criminal offence and you can be fined or arrested for it:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Drinking in public: some places have alcohol-free zones where you cannot drink in public. The police can also confiscate alcohol or move young people on from public places. You can be fined or arrested.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10622",
+      "type": "single_choice",
+      "prompt": "What was the most spoken language during the Iron Age?",
+      "options": [
+        "Anglo-Saxon",
+        "French",
+        "Celtic",
+        "Irish"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The language spoken during the Iron Age was part of the Celtic language family.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10623",
+      "type": "single_choice",
+      "prompt": "What charity works for the preservation of important buildings, coastline and countryside in the UK?",
+      "options": [
+        "The National Trust",
+        "The RSPB",
+        "Shelter",
+        "Oxfam"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The National Trust works for the preservation of important buildings, coastline and countryside in the UK.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 26,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    }
+  ]
+}

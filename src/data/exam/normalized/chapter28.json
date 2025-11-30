@@ -1,0 +1,722 @@
+{
+  "chapterID": 28,
+  "chapterName": "Chapter 28",
+  "questions": [
+    {
+      "id": "Q10648",
+      "type": "single_choice",
+      "prompt": "For which purpose was the Statute of Rhuddlan introduced?",
+      "options": [
+        "To annex Scotland to the Crown of England",
+        "To annex Northern Ireland to the Crown of England",
+        "To annex Ireland to the Crown of England",
+        "To annex Wales to the Crown of England"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In 1284 King Edward I of England introduced the Statute of Rhuddlan, which annexed Wales to the Crown of England.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10649",
+      "type": "single_choice",
+      "prompt": "How can a person be protected from being forced into a marriage?",
+      "options": [
+        "By giving them a place to stay away from their family",
+        "Court orders can be obtained to protect a person from being forced into a marriage",
+        "By speaking to the person’s parents",
+        "There are no laws in the UK to avoid this"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Court orders can be obtained to protect a person from being forced into a marriage, or to protect a person in a forced marriage.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10650",
+      "type": "single_choice",
+      "prompt": "When was the first tennis club founded in the UK?",
+      "options": [
+        "1772",
+        "1872",
+        "1862",
+        "1762"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The first tennis club was founded in Leamington Spa in 1872.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10651",
+      "type": "single_choice",
+      "prompt": "Which of the following is NOT classified as a criminal offence in the UK?",
+      "options": [
+        "Smoking in public places",
+        "Selling or buying drugs",
+        "Carrying a weapon",
+        "Unfair dismissal or discrimination in the workplace"
+      ],
+      "correct_option_indexes": [
+        3
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Unfair dismissal or discrimination in the workplace is classified as a civil offence.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10652",
+      "type": "single_choice",
+      "prompt": "When did Henry VIII start reining?",
+      "options": [
+        "In April 1509",
+        "In June 1497",
+        "In March 1515",
+        "In August 1495"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Henry VIII was king of England from 21 April 1509 until his death on 28 January 1547.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10653",
+      "type": "single_choice",
+      "prompt": "What is the currency in the UK?",
+      "options": [
+        "Euro",
+        "Dollar",
+        "Pound",
+        "Dinar"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The currency in the UK is the pound sterling (symbol £).",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10654",
+      "type": "true_false",
+      "prompt": "In May 2010, the Conservative and Liberal Democrat parties formed a coalition and the leader",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "In May 2010, and for the first time in the UK since February 1974, no political party won an overall majority in the General Election. The Conservative and Liberal Democrat parties formed a coalition and the leader of the Conservative Party, David Cameron, became Prime Minister.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10655",
+      "type": "single_choice",
+      "prompt": "When is Diwali normally celebrated?",
+      "options": [
+        "June or July",
+        "October or November",
+        "November or December",
+        "March or April"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Diwali normally falls in October or November and lasts for five days.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10656",
+      "type": "single_choice",
+      "prompt": "Which of the following is NOT considered to be a main part of the British government?",
+      "options": [
+        "The monarchy",
+        "The European Council",
+        "The Prime Minister",
+        "The local government"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The European Council is not part of the British government.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10657",
+      "type": "multiple_choice",
+      "prompt": "Which TWO universities compete with each other on a rowing race along the River Thames every year?",
+      "options": [
+        "University College of London",
+        "Imperial College",
+        "Cambridge University",
+        "Oxford University"
+      ],
+      "correct_option_indexes": [
+        2,
+        3
+      ],
+      "min_selections": 2,
+      "max_selections": 2,
+      "explanation": "There is a popular yearly rowing race on the Thames between Oxford and Cambridge Universities.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10658",
+      "type": "single_choice",
+      "prompt": "What is the name of Admiral Nelson’s ship?",
+      "options": [
+        "HMS Victory",
+        "Golden Hind",
+        "Canute",
+        "Grimsby"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Admiral Nelson’s ship was known as the HMS Victory.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10659",
+      "type": "single_choice",
+      "prompt": "When driving in the UK, where do you need to display the tax disc which shows that the annual road tax has been paid?",
+      "options": [
+        "Anywhere inside the car",
+        "The windowscreen of the car",
+        "The wheel of the car",
+        "The boot of the car"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "When driving in the UK, you must pay an annual road tax and display the tax disc, which shows that the tax has been paid, on the windowscreen.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10660",
+      "type": "single_choice",
+      "prompt": "What is the capital of the UK?",
+      "options": [
+        "Edinburgh",
+        "London",
+        "Belfast",
+        "Cardiff"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The capital city of the UK is London.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10661",
+      "type": "single_choice",
+      "prompt": "Which of the following is NOT a British film?",
+      "options": [
+        "Lawrence of Arabia",
+        "The 39 Steps",
+        "The Lord of the Rings",
+        "Women in Love"
+      ],
+      "correct_option_indexes": [
+        2
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Lord of the Rings is not the British film.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10662",
+      "type": "statement_choice",
+      "prompt": "Which of the following statements is TRUE?",
+      "options": [
+        "A jury is made up of members of the public who have applied to be part of it",
+        "A jury is made up of members of the public chosen at random from the local electoral register"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "A jury is made up of members of the public chosen at random from the local electoral register.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10663",
+      "type": "single_choice",
+      "prompt": "When is St David’s Day, patron of Wales?",
+      "options": [
+        "1st of March",
+        "17th of March",
+        "23rd of April",
+        "30th of November"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "St David’s Day, patron of Wales is celebrated on the 1st of March.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10664",
+      "type": "single_choice",
+      "prompt": "What name is given to the red flowers found on the battlefields of the First World War and which people wear during Remembrance Day?",
+      "options": [
+        "Blitzs",
+        "Poppies",
+        "Daffodils",
+        "Carnations"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Remembrance Day people wear poppies (the red flower found on the battlefields of the First World War).",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10665",
+      "type": "true_false",
+      "prompt": "It is a civil offence to cause harassment, alarm or distress to someone because of their religion or ethnic origin:",
+      "options": [
+        "True",
+        "False"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "It is a criminal offence to cause harassment, alarm or distress to someone because of their religion or ethnic origin.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10666",
+      "type": "multiple_choice",
+      "prompt": "Where can you get contact details for all your representatives and their parties (choose TWO options)?",
+      "options": [
+        "At bookshops",
+        "Your local supermarket",
+        "Your local library",
+        "www.parliament.uk"
+      ],
+      "correct_option_indexes": [
+        2,
+        3
+      ],
+      "min_selections": 2,
+      "max_selections": 2,
+      "explanation": "You can get contact details for all your representatives and their parties from your local library and from http://www.parliament.uk.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10667",
+      "type": "single_choice",
+      "prompt": "What is the Old Bailey?",
+      "options": [
+        "A Famous criminal Court",
+        "A Scottish drink",
+        "The name of a traditional Welsh cake",
+        "A British national park"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "The Old Bailey is probably the most famous criminal court in the world.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10668",
+      "type": "single_choice",
+      "prompt": "What is the name of the oldest continuously working film studio facility in the world?",
+      "options": [
+        "Ealing Studios",
+        "Pinewood Studios Group",
+        "Pixar Animation Studios",
+        "Time Warner"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Ealing Studios has a claim to being the oldest continuously working film studio facility in the world.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10669",
+      "type": "single_choice",
+      "prompt": "What are the British scientists Sir Ian Wilmot and Keith Campbell famous for?",
+      "options": [
+        "The first ‘test-tube baby’",
+        "The cloning of the first mammal, Dolly the sheep",
+        "The invention of the MRI (magnetic resonance imaging) scanner",
+        "The invention of the World Wide Web"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Sir Ian Wilmot and Keith Campbell led a team which was the first to succeed in cloning a mammal, Dolly the sheep.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10670",
+      "type": "single_choice",
+      "prompt": "By which name is London’s west end known for?",
+      "options": [
+        "Theatreland",
+        "Operaland",
+        "Home of rugby",
+        "Home of golf"
+      ],
+      "correct_option_indexes": [
+        0
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "London’s west end is also known as ‘Theatreland’.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    },
+    {
+      "id": "Q10671",
+      "type": "single_choice",
+      "prompt": "Which of the following was one of the commanders in the defeat of the Spanish Armada and one",
+      "options": [
+        "Alan Turing",
+        "Sir Francis Drake",
+        "James VI of Scotland",
+        "Oliver Cromwell"
+      ],
+      "correct_option_indexes": [
+        1
+      ],
+      "min_selections": 1,
+      "max_selections": 1,
+      "explanation": "Sir Francis Drake was one of the commanders in the defeat of the Spanish Armada and one of the founders of England’s naval tradition.",
+      "hint": null,
+      "media": {
+        "image_url": null,
+        "audio_prompt_url": null,
+        "audio_option_urls": []
+      },
+      "meta": {
+        "chapter_id": 28,
+        "tags": [],
+        "difficulty": "medium",
+        "source": "handbook",
+        "updated_at": "2025-11-30T14:34:13.210Z"
+      }
+    }
+  ]
+}
