@@ -25,6 +25,25 @@ For information about setting up and customizing the EPUB content, see [EPUB_GUI
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
+### Node version
+
+This project targets Node 20 LTS (see `.nvmrc`, tested with `20.18.0`). If you use [nvm](https://github.com/nvm-sh/nvm), align your version before installing dependencies:
+
+```sh
+nvm install
+nvm use
+```
+
+### Install dependencies (locked)
+
+To avoid pulling unexpected packages from npm, installs are locked to `yarn.lock`. Use Yarn with the frozen lockfile:
+
+```sh
+yarn install --frozen-lockfile
+```
+
+(`.yarnrc` enforces the frozen lockfile flag by default.)
+
 ### Step 1: Start Metro
 
 First, you will need to run **Metro**, the JavaScript build tool for React Native.

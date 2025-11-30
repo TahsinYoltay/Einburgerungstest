@@ -51,4 +51,6 @@ export interface EpubSection {
   content: string;
   index: number;
   spineIndex: number;
-} 
+  assetBasePath?: string;
+  rootBasePath?: string;
+}

@@ -9,7 +9,11 @@ const localImages = {
   'image_rsrcDY.jpg': require('../assets/content/images/image_rsrcDY.jpg'),
   'image_rsrcE2.jpg': require('../assets/content/images/image_rsrcE2.jpg'),
   'image_rsrc111.jpg': require('../assets/content/images/image_rsrc111.jpg'),
+  'image_rsrc10P.jpg': require('../assets/content/images/image_rsrc10P.jpg'),
+  'image_rsrc13V.jpg': require('../assets/content/images/image_rsrc13V.jpg'),
+  'image_rsrc23.jpg': require('../assets/content/images/image_rsrc23.jpg'),
   'image_rsrcG9.jpg': require('../assets/content/images/image_rsrcG9.jpg'),
+  'image_rsrcG.jpg': require('../assets/content/images/image_rsrcG.jpg'),
   'image_rsrcGT.jpg': require('../assets/content/images/image_rsrcGT.jpg'),
   'image_rsrcH7.jpg': require('../assets/content/images/image_rsrcH7.jpg'),
   'image_rsrcK2.jpg': require('../assets/content/images/image_rsrcK2.jpg'),
@@ -50,7 +54,13 @@ const localImages = {
   'image_rsrc2YN.jpg': require('../assets/content/images/image_rsrc2YN.jpg'),
   'image_rsrc380.jpg': require('../assets/content/images/image_rsrc380.jpg'),
   'image_rsrc3BE.jpg': require('../assets/content/images/image_rsrc3BE.jpg'),
+  'image_rsrc3EH.jpg': require('../assets/content/images/image_rsrc3EH.jpg'),
   'image_rsrcET.jpg': require('../assets/content/images/image_rsrcET.jpg'),
+  'image_rsrcW1.jpg': require('../assets/content/images/image_rsrcW1.jpg'),
+  'image_rsrcW6.jpg': require('../assets/content/images/image_rsrcW6.jpg'),
+  'image_rsrcWD.jpg': require('../assets/content/images/image_rsrcWD.jpg'),
+  'image_rsrcWY.jpg': require('../assets/content/images/image_rsrcWY.jpg'),
+  'image_rsrcZ.jpg': require('../assets/content/images/image_rsrcZ.jpg'),
 };
 
 /**

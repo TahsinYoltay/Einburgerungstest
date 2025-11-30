@@ -4,8 +4,7 @@ import LoginScreen from '../screens/auth/LoginScreen/LoginScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen/RegisterScreen';
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen/ForgotPasswordScreen';
 import ExamResults from '../screens/exam/ExamResults/ExamResults';
-import ChapterScreen from '../screens/book/ChapterScreen/ChapterScreen';
-import EpubReaderScreen from '../screens/book/EpubReaderScreen/EpubReaderScreen';
+import EpubReaderScreen from '../screens/book/EpubReaderScreen';
 import { ROUTES } from '../constants/routes';
 import TabNavigator from './TabNavigator';
 
@@ -24,7 +23,7 @@ export type RootStackParamList = {
   [ROUTES.EXAM_RESULTS]: { examId: string };
   [ROUTES.BOOK]: undefined;
   [ROUTES.CHAPTER]: { id: string };
-  [ROUTES.EPUB_READER]: { bookTitle?: string; targetSectionId?: string };
+  [ROUTES.EPUB_READER]: { bookTitle?: string; chapterId?: string; targetSectionId?: string };
   [ROUTES.TEST]: undefined;
   [ROUTES.SETTINGS]: undefined;
   [ROUTES.PROFILE]: undefined;
@@ -54,11 +53,10 @@ function RootNavigator() {
           <Stack.Screen name={ROUTES.HOME} component={TabNavigator} />
           {/* Screens that should open as standalone pages with back navigation */}
           <Stack.Screen name={ROUTES.EXAM_RESULTS} component={ExamResults} />
-          <Stack.Screen name={ROUTES.CHAPTER} component={ChapterScreen} />
           <Stack.Screen
             name={ROUTES.EPUB_READER}
             component={EpubReaderScreen}
-            options={{ headerShown: true, title: 'E-Book Reader' }}
+            options={{ headerShown: false }}
           />
         </>
       )}

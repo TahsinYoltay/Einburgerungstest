@@ -1,68 +1,85 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { clearProgress, loadProgress, updateSectionProgress } from '../services/readingProgressService';
 
-const READING_PROGRESS_KEY = 'reading_progress';
+const BOOK_ID = 'life-in-the-uk';
+const DEFAULT_USER = 'local';
 
 export interface ReadingProgress {
   [sectionId: string]: {
     isRead: boolean;
     lastReadAt: string;
     timeSpent: number; // in seconds
+    scrollProgress?: number;
   };
 }
 
-export const getReadingProgress = async (): Promise<ReadingProgress> => {
+const toLegacyShape = (data: Awaited<ReturnType<typeof loadProgress>>): ReadingProgress => {
+  const legacy: ReadingProgress = {};
+  Object.entries(data.sections).forEach(([id, entry]) => {
+    legacy[id] = {
+      isRead: entry.status === 'done',
+      lastReadAt: entry.lastReadAt,
+      timeSpent: entry.timeSpentSec,
+      scrollProgress: entry.scrollProgress,
+    };
+  });
+  return legacy;
+};
+
+export const getReadingProgress = async (userId: string = DEFAULT_USER): Promise<ReadingProgress> => {
   try {
-    const progress = await AsyncStorage.getItem(READING_PROGRESS_KEY);
-    return progress ? JSON.parse(progress) : {};
+    const progress = await loadProgress({ bookId: BOOK_ID, userId });
+    return toLegacyShape(progress);
   } catch (error) {
     console.error('Error getting reading progress:', error);
     return {};
   }
 };
 
-export const markSectionAsRead = async (sectionId: string, timeSpent: number = 0): Promise<void> => {
+export const markSectionAsRead = async (sectionId: string, timeSpent: number = 0, userId: string = DEFAULT_USER): Promise<void> => {
   try {
-    const currentProgress = await getReadingProgress();
-    const updatedProgress = {
-      ...currentProgress,
-      [sectionId]: {
-        isRead: true,
-        lastReadAt: new Date().toISOString(),
-        timeSpent: (currentProgress[sectionId]?.timeSpent || 0) + timeSpent,
-      },
-    };
-    await AsyncStorage.setItem(READING_PROGRESS_KEY, JSON.stringify(updatedProgress));
+    await updateSectionProgress({
+      bookId: BOOK_ID,
+      userId,
+      sectionId,
+      timeSpentSec: timeSpent,
+      markDone: true,
+      totalSections: undefined,
+      syncMode: userId === DEFAULT_USER ? 'local-only' : 'local+remote',
+    });
   } catch (error) {
     console.error('Error marking section as read:', error);
   }
 };
 
-export const markSectionAsUnread = async (sectionId: string): Promise<void> => {
+export const markSectionAsUnread = async (sectionId: string, userId: string = DEFAULT_USER): Promise<void> => {
   try {
-    const currentProgress = await getReadingProgress();
-    if (currentProgress[sectionId]) {
-      currentProgress[sectionId].isRead = false;
-    }
-    await AsyncStorage.setItem(READING_PROGRESS_KEY, JSON.stringify(currentProgress));
+    // Reuse updateSectionProgress with in_progress
+    await updateSectionProgress({
+      bookId: BOOK_ID,
+      userId,
+      sectionId,
+      markDone: false,
+      syncMode: userId === DEFAULT_USER ? 'local-only' : 'local+remote',
+    });
   } catch (error) {
     console.error('Error marking section as unread:', error);
   }
 };
 
-export const isSectionRead = async (sectionId: string): Promise<boolean> => {
+export const isSectionRead = async (sectionId: string, userId: string = DEFAULT_USER): Promise<boolean> => {
   try {
-    const progress = await getReadingProgress();
-    return progress[sectionId]?.isRead || false;
+    const progress = await loadProgress({ bookId: BOOK_ID, userId });
+    return progress.sections[sectionId]?.status === 'done';
   } catch (error) {
     console.error('Error checking if section is read:', error);
     return false;
   }
 };
 
-export const getChapterProgress = async (chapterSections: string[]): Promise<{ completed: number; total: number; percentage: number }> => {
+export const getChapterProgress = async (chapterSections: string[], userId: string = DEFAULT_USER): Promise<{ completed: number; total: number; percentage: number }> => {
   try {
-    const progress = await getReadingProgress();
-    const completed = chapterSections.filter(sectionId => progress[sectionId]?.isRead).length;
+    const progress = await loadProgress({ bookId: BOOK_ID, userId });
+    const completed = chapterSections.filter(sectionId => progress.sections[sectionId]?.status === 'done').length;
     const total = chapterSections.length;
     const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
     
@@ -73,9 +90,9 @@ export const getChapterProgress = async (chapterSections: string[]): Promise<{ c
   }
 };
 
-export const clearAllProgress = async (): Promise<void> => {
+export const clearAllProgress = async (userId: string = DEFAULT_USER): Promise<void> => {
   try {
-    await AsyncStorage.removeItem(READING_PROGRESS_KEY);
+    await clearProgress(BOOK_ID, userId);
   } catch (error) {
     console.error('Error clearing reading progress:', error);
   }

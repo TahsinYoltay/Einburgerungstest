@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './TestScreen.style';
 import FileSystemDemo from '../../../components/common/FileSystemDemo/FileSystemDemo';
-import EpubReaderDemo from '../../../components/book/EpubReaderDemo/EpubReaderDemo';
 
 const TestScreen = () => {
   const { t } = useTranslation();
@@ -31,12 +30,6 @@ const TestScreen = () => {
         <Card style={styles.card}>
           <Card.Content>
             <FileSystemDemo />
-          </Card.Content>
-        </Card>
-
-        <Card style={styles.card}>
-          <Card.Content>
-            <EpubReaderDemo />
           </Card.Content>
         </Card>
       </ScrollView>

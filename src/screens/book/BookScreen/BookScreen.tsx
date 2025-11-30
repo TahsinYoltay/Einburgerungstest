@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, ScrollView, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { Card, Text, ProgressBar, List, Badge, IconButton, Surface } from 'react-native-paper';
@@ -13,6 +13,7 @@ import { getAvailableChapters } from '../../../data/book/chapters';
 import type { Chapter, SubSection } from '../../../data/book/chapters';
 import { getReadingProgress, getChapterProgress } from '../../../utils/readingProgress';
 import type { ReadingProgress } from '../../../utils/readingProgress';
+import { useAppSelector } from '../../../store/hooks';
 
 type BookScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -21,6 +22,7 @@ const BookScreen = () => {
   const navigation = useNavigation<BookScreenNavigationProp>();
   const { theme } = useAppTheme();
   const styles = createStyles(theme);
+  const userId = useAppSelector(state => state.user.user?.id);
 
   const [readingProgress, setReadingProgress] = useState<ReadingProgress>({});
   const [chapterProgresses, setChapterProgresses] = useState<{ [chapterId: string]: { completed: number; total: number; percentage: number } }>({});
@@ -28,21 +30,28 @@ const BookScreen = () => {
   
   const chapters = getAvailableChapters();
 
-  useEffect(() => {
-    loadReadingProgress();
-  }, []);
+  // Refresh progress every time screen gains focus
+  useFocusEffect(
+    React.useCallback(() => {
+      loadReadingProgress();
+    }, [userId])
+  );
 
   const loadReadingProgress = async () => {
-    const progress = await getReadingProgress();
+    console.log('📊 BookScreen - Loading reading progress...');
+    const progress = await getReadingProgress(userId || undefined);
+    console.log('📊 Loaded progress:', Object.keys(progress).length, 'sections');
     setReadingProgress(progress);
     
     // Calculate progress for each chapter
     const progresses: { [chapterId: string]: { completed: number; total: number; percentage: number } } = {};
     for (const chapter of chapters) {
       const sectionIds = chapter.subSections.map(section => section.id);
-      progresses[chapter.id] = await getChapterProgress(sectionIds);
+      progresses[chapter.id] = await getChapterProgress(sectionIds, userId || undefined);
+      console.log(`📊 Chapter ${chapter.id} progress:`, progresses[chapter.id]);
     }
     setChapterProgresses(progresses);
+    console.log('📊 Progress refresh complete!');
   };
 
   const openChapter = (chapter: Chapter, targetSectionId?: string) => {
@@ -57,6 +66,7 @@ const BookScreen = () => {
     
     navigation.navigate(ROUTES.EPUB_READER, {
       bookTitle: chapter.title,
+      chapterId: chapter.id,
       targetSectionId: sectionId,
     });
   };
@@ -70,6 +80,7 @@ const BookScreen = () => {
     
     navigation.navigate(ROUTES.EPUB_READER, {
       bookTitle: chapter.title,
+      chapterId: chapter.id,
       targetSectionId: subSection.id,
     });
   };
