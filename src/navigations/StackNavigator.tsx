@@ -18,9 +18,8 @@ export type RootStackParamList = {
   HomeTab: undefined;
   BookTab: undefined;
   ExamTab: { id?: string };
-  TestTab: undefined;
   SettingsTab: undefined;
-  [ROUTES.EXAM]: { id: string };
+  [ROUTES.EXAM]: { id: string; restart?: boolean };
   [ROUTES.EXAM_RESULTS]: { examId: string };
   [ROUTES.BOOK]: undefined;
   [ROUTES.CHAPTER]: { id: string };

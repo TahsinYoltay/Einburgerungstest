@@ -75,6 +75,7 @@
     "viewAllAttempts": "View All Attempts",
     "videoQuestion": "This question includes a video",
     "explanation": "Explanation",
+    "finishReview": "Finish Review",
     "status": {
       "not-started": "Not Started",
       "in-progress": "In Progress",
@@ -196,7 +197,11 @@
     "edit": "Edit",
     "back": "Back",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "ok": "OK",
+    "minutes_short": "m",
+    "seconds_short": "s",
+    "download": "Download"
   },
   "firebase": {
     "imageLoading": "Loading image...",
@@ -226,7 +231,12 @@
   "settings": {
     "darkMode": "Dark Mode",
     "lightMode": "Light Mode",
-    "appearance": "Appearance"
+    "appearance": "Appearance",
+    "language": "Language",
+    "appLanguage": "Language",
+    "examContent": "Exam Content Packages",
+    "dataManagement": "Data Management",
+    "downloadingLanguage": "Downloading language pack..."
   },
   "drawer": {
     "subtitle": "Test Preparation App"

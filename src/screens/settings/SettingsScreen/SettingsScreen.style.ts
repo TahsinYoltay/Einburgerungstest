@@ -1,20 +1,37 @@
 import { StyleSheet } from 'react-native';
+import { MD3Theme } from 'react-native-paper';
 
-export const styles = StyleSheet.create({
+export const createStyles = (theme: MD3Theme) => StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: theme.colors.background,
+  },
+  scrollContent: {
     padding: 16,
+    paddingBottom: 32,
   },
   title: {
     marginBottom: 16,
+    color: theme.colors.onBackground,
   },
   card: {
-    marginVertical: 8,
+    marginBottom: 16,
+    backgroundColor: theme.colors.surface,
+    borderRadius: 12,
+    borderWidth: theme.dark ? 1 : 0,
+    borderColor: theme.colors.outline,
+    elevation: theme.dark ? 0 : 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: theme.dark ? 0 : 0.1,
+    shadowRadius: 4,
   },
   settingItem: {
     marginVertical: 4,
   },
   divider: {
     marginVertical: 8,
+    backgroundColor: theme.colors.outline,
+    height: 1,
   },
 });

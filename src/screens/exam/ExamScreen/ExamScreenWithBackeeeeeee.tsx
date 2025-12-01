@@ -98,21 +98,7 @@ const ExamScreen = () => {
   useEffect(() => {
     if (examStarted && !examCompleted) {
       timerRef.current = setInterval(() => {
-        // Update time remaining
-        dispatch(updateTimeRemaining(timeRemaining - 1));
-
-        // Update elapsed time
-        setElapsedSeconds(prev => prev + 1);
-
-        // Update time spent every 10 seconds
-        if (elapsedSeconds % 10 === 0) {
-          dispatch(updateTimeSpent(elapsedSeconds));
-        }
-
-        // Show warning when 5 minutes remaining
-        if (timeRemaining === 300) { // 5 minutes = 300 seconds
-          setShowTimeWarning(true);
-        }
+        dispatch(tickTime());
       }, 1000);
 
       return () => {
@@ -121,7 +107,7 @@ const ExamScreen = () => {
         }
       };
     }
-  }, [dispatch, examStarted, examCompleted, timeRemaining, elapsedSeconds]);
+  }, [dispatch, examStarted, examCompleted]);
 
   // Handle exam completion
   useEffect(() => {
@@ -156,7 +142,7 @@ const ExamScreen = () => {
       Alert.alert(
         t('exam.questionNotAnswered'),
         t('exam.mustSelectOption'),
-        [{ text: 'OK' }]
+        [{ text: t('common.ok') }]
       );
       return;
     }
@@ -193,7 +179,9 @@ const ExamScreen = () => {
   };
 
   // Submit exam
-  const handleSubmitExam = () => {
+  const navigateToResults = () => navigation.navigate(ROUTES.EXAM_RESULTS, { examId });
+
+  const handleSubmitExam = async () => {
     // Check if all questions are answered
     const unansweredQuestions = questions.filter(q => !answers[q.id] || answers[q.id].length === 0);
 
@@ -214,7 +202,14 @@ const ExamScreen = () => {
           },
           {
             text: t('exam.submitAnyway'),
-            onPress: () => dispatch(submitExam()),
+            onPress: async () => {
+              try {
+                await dispatch(submitExam()).unwrap();
+                navigateToResults();
+              } catch (err) {
+                Alert.alert(t('exam.submitError', 'Could not submit exam'), String(err));
+              }
+            },
             style: 'destructive',
           },
         ]
@@ -229,7 +224,12 @@ const ExamScreen = () => {
     }
 
     // Submit
-    dispatch(submitExam());
+    try {
+      await dispatch(submitExam()).unwrap();
+      navigateToResults();
+    } catch (err) {
+      Alert.alert(t('exam.submitError', 'Could not submit exam'), String(err));
+    }
   };
 
   // Go to a flagged question
@@ -359,10 +359,19 @@ const ExamScreen = () => {
           </Dialog.Content>
           <Dialog.Actions>
             <Button onPress={handleGoToFlaggedQuestion}>{t('exam.reviewFlagged')}</Button>
-            <Button onPress={() => {
-              setShowFlaggedDialog(false);
-              dispatch(submitExam());
-            }}>{t('exam.submitAnyway')}</Button>
+            <Button
+              onPress={async () => {
+                setShowFlaggedDialog(false);
+                try {
+                  await dispatch(submitExam()).unwrap();
+                  navigateToResults();
+                } catch (err) {
+                  Alert.alert(t('exam.submitError', 'Could not submit exam'), String(err));
+                }
+              }}
+            >
+              {t('exam.submitAnyway')}
+            </Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>
@@ -375,7 +384,7 @@ const ExamScreen = () => {
             <Text>{t('exam.timeWarningMessage')}</Text>
           </Dialog.Content>
           <Dialog.Actions>
-            <Button onPress={() => setShowTimeWarning(false)}>OK</Button>
+            <Button onPress={() => setShowTimeWarning(false)}>{t('common.ok')}</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>

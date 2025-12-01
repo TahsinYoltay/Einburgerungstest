@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -21,7 +21,7 @@ const BookScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation<BookScreenNavigationProp>();
   const { theme } = useAppTheme();
-  const styles = createStyles(theme);
+  const styles = useMemo(() => createStyles(theme), [theme]);
   const userId = useAppSelector(state => state.user.user?.id);
 
   const [readingProgress, setReadingProgress] = useState<ReadingProgress>({});
@@ -40,7 +40,6 @@ const BookScreen = () => {
   const loadReadingProgress = async () => {
     console.log('📊 BookScreen - Loading reading progress...');
     const progress = await getReadingProgress(userId || undefined);
-    console.log('📊 Loaded progress:', Object.keys(progress).length, 'sections');
     setReadingProgress(progress);
     
     // Calculate progress for each chapter
@@ -48,21 +47,13 @@ const BookScreen = () => {
     for (const chapter of chapters) {
       const sectionIds = chapter.subSections.map(section => section.id);
       progresses[chapter.id] = await getChapterProgress(sectionIds, userId || undefined);
-      console.log(`📊 Chapter ${chapter.id} progress:`, progresses[chapter.id]);
     }
     setChapterProgresses(progresses);
-    console.log('📊 Progress refresh complete!');
   };
 
   const openChapter = (chapter: Chapter, targetSectionId?: string) => {
     // Default to first subsection if no specific section is provided
     const sectionId = targetSectionId || `${chapter.id}-1`;
-    
-    console.log('BookScreen - Opening chapter:', {
-      chapterId: chapter.id,
-      chapterTitle: chapter.title,
-      targetSectionId: sectionId
-    });
     
     navigation.navigate(ROUTES.EPUB_READER, {
       bookTitle: chapter.title,
@@ -72,12 +63,6 @@ const BookScreen = () => {
   };
 
   const openSubSection = (chapter: Chapter, subSection: SubSection) => {
-    console.log('BookScreen - Opening subsection:', {
-      chapterId: chapter.id,
-      subsectionId: subSection.id,
-      subsectionTitle: subSection.title
-    });
-    
     navigation.navigate(ROUTES.EPUB_READER, {
       bookTitle: chapter.title,
       chapterId: chapter.id,
@@ -99,7 +84,7 @@ const BookScreen = () => {
 
   const getSectionStatusColor = (sectionId: string) => {
     const isRead = readingProgress[sectionId]?.isRead;
-    return isRead ? theme.colors.primary : theme.colors.outline;
+    return isRead ? theme.colors.primary : theme.colors.outline; // Use outline instead of hardcoded gray
   };
 
   const renderSubSection = (chapter: Chapter, subSection: SubSection) => {
@@ -109,25 +94,21 @@ const BookScreen = () => {
     return (
       <Surface
         key={subSection.id}
-        style={{
-          marginVertical: 4,
-          marginHorizontal: 16,
-          borderRadius: 12,
-          elevation: isRead ? 2 : 1,
-          backgroundColor: isRead 
-            ? `${theme.colors.primaryContainer}20` 
-            : theme.colors.surface,
-        }}
+        style={[
+          styles.sectionSurface,
+          {
+            elevation: isRead ? 2 : 1,
+            backgroundColor: isRead 
+              ? theme.colors.surfaceVariant // Use theme color instead of hex alpha
+              : theme.colors.surface,
+          }
+        ]}
       >
         <TouchableOpacity
           onPress={() => openSubSection(chapter, subSection)}
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            padding: 16,
-          }}
+          style={styles.sectionTouchable}
         >
-          <View style={{ marginRight: 12 }}>
+          <View style={styles.sectionIconContainer}>
             <IconButton
               icon={getSectionStatusIcon(subSection.id)}
               iconColor={getSectionStatusColor(subSection.id)}
@@ -136,23 +117,22 @@ const BookScreen = () => {
             />
           </View>
           
-          <View style={{ flex: 1 }}>
+          <View style={styles.sectionTextContainer}>
             <Text
               variant="titleSmall"
-              style={{
-                color: isRead ? theme.colors.primary : theme.colors.onSurface,
-                fontWeight: isRead ? '600' : '500',
-              }}
+              style={[
+                styles.sectionTitle,
+                {
+                  color: isRead ? theme.colors.primary : theme.colors.onSurface,
+                  fontWeight: isRead ? '600' : '500',
+                }
+              ]}
             >
               {subSection.title}
             </Text>
             <Text
               variant="bodySmall"
-              style={{
-                color: theme.colors.onSurface,
-                opacity: 0.7,
-                marginTop: 2,
-              }}
+              style={styles.sectionSubtitle}
             >
               Section {subSection.order}
               {timeSpent && ` • ${Math.round(timeSpent / 60)}min read`}
@@ -178,24 +158,19 @@ const BookScreen = () => {
     const progressPercentage = progress ? progress.percentage / 100 : 0;
     
     return (
-      <Card key={chapter.id} style={{ marginVertical: 8, marginHorizontal: 16 }}>
+      <Card key={chapter.id} style={styles.chapterCard}>
         <TouchableOpacity
           onPress={() => toggleChapterExpansion(chapter.id)}
           style={{ padding: 0 }}
         >
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <View style={styles.chapterHeaderRow}>
             <Card.Cover 
               source={chapter.image} 
-              style={{ 
-                width: 80, 
-                height: 80, 
-                margin: 16,
-                borderRadius: 8,
-              }} 
+              style={styles.chapterImage} 
             />
-            <View style={{ flex: 1, paddingRight: 16 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
-                <Text variant="titleMedium" style={{ flex: 1, fontWeight: '600' }}>
+            <View style={styles.chapterContent}>
+              <View style={styles.chapterTitleRow}>
+                <Text variant="titleMedium" style={styles.chapterTitle}>
                   {chapter.title}
                 </Text>
                 <IconButton
@@ -208,32 +183,24 @@ const BookScreen = () => {
               
               <Text 
                 variant="bodySmall" 
-                style={{ 
-                  color: theme.colors.onSurface, 
-                  opacity: 0.8,
-                  marginBottom: 8,
-                }}
+                style={styles.chapterDescription}
                 numberOfLines={2}
               >
                 {chapter.description}
               </Text>
               
               {progress && (
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={styles.progressBarContainer}>
                   <View style={{ flex: 1, marginRight: 12 }}>
                     <ProgressBar 
                       progress={progressPercentage} 
                       color={theme.colors.primary}
-                      style={{ height: 6, borderRadius: 3 }}
+                      style={styles.progressBar}
                     />
                   </View>
                   <Text 
                     variant="bodySmall" 
-                    style={{ 
-                      color: theme.colors.primary,
-                      fontWeight: '600',
-                      minWidth: 45,
-                    }}
+                    style={styles.progressTextSmall}
                   >
                     {progress.completed}/{progress.total}
                   </Text>
@@ -244,21 +211,16 @@ const BookScreen = () => {
         </TouchableOpacity>
         
         {isExpanded && (
-          <View style={{ paddingBottom: 16 }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 8 }}>
-              <Text variant="titleSmall" style={{ flex: 1, fontWeight: '600' }}>
+          <View style={styles.expandedContent}>
+            <View style={styles.expandedHeader}>
+              <Text variant="titleSmall" style={styles.sectionsTitle}>
                 Sections
               </Text>
               <TouchableOpacity
                 onPress={() => openChapter(chapter)}
-                style={{
-                  backgroundColor: theme.colors.primary,
-                  paddingHorizontal: 16,
-                  paddingVertical: 8,
-                  borderRadius: 20,
-                }}
+                style={styles.readButton}
               >
-                <Text style={{ color: theme.colors.onPrimary, fontWeight: '600' }}>
+                <Text style={styles.readButtonText}>
                   Start Reading
                 </Text>
               </TouchableOpacity>
@@ -286,16 +248,11 @@ const BookScreen = () => {
           </Text>
           
           {/* Overall Progress Summary */}
-          <Surface style={{
-            marginTop: 16,
-            padding: 16,
-            borderRadius: 12,
-            backgroundColor: `${theme.colors.primaryContainer}20`,
-          }}>
-            <Text variant="titleSmall" style={{ fontWeight: '600', marginBottom: 8 }}>
+          <Surface style={styles.progressSurface}>
+            <Text variant="titleSmall" style={styles.progressTitle}>
               Your Progress
             </Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <View style={styles.progressBarContainer}>
               <View style={{ flex: 1, marginRight: 12 }}>
                 <ProgressBar 
                   progress={
@@ -303,7 +260,7 @@ const BookScreen = () => {
                     (Object.keys(chapterProgresses).length * 100) || 0
                   }
                   color={theme.colors.primary}
-                  style={{ height: 8, borderRadius: 4 }}
+                  style={styles.progressBar}
                 />
               </View>
               <Text variant="bodySmall" style={{ 

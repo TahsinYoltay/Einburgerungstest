@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useMemo} from 'react';
 import {View, ScrollView, Alert} from 'react-native';
 import {
   Card,
   Text,
   Divider,
   List,
-  useTheme,
   Button,
   IconButton,
   Dialog,
@@ -21,13 +20,15 @@ import {RootStackParamList} from '../../../navigations/StackNavigator';
 import {ROUTES} from '../../../constants/routes';
 import {resetExamData} from '../../../store/slices/examSlice';
 import {ExamAttempt} from '../../../types/exam';
-import {styles} from './ExamHistorySummary.style';
+import {createStyles} from './ExamHistorySummary.style';
+import {useAppTheme} from '../../../providers/ThemeProvider';
 
 type HomeNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const ExamHistorySummary = () => {
   const {t} = useTranslation();
-  const theme = useTheme();
+  const {theme} = useAppTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
   const navigation = useNavigation<HomeNavigationProp>();
   const dispatch = useAppDispatch();
   const {exams, examHistory, currentExam} = useAppSelector(state => state.exam);
@@ -35,6 +36,8 @@ const ExamHistorySummary = () => {
   // Local state for reset dialog
   const [resetDialogVisible, setResetDialogVisible] = useState(false);
   const [examToReset, setExamToReset] = useState<string | null>(null);
+
+  // ... (keep format functions)
 
   // Format date
   const formatDate = (dateString?: string) => {
@@ -157,7 +160,7 @@ const ExamHistorySummary = () => {
         color = theme.colors.error;
         break;
       case 'in-progress':
-        color = '#FFA500'; // Orange for in-progress
+        color = theme.colors.notification; // Use theme notification color (orange-ish)
         break;
       default:
         color = theme.colors.secondary;

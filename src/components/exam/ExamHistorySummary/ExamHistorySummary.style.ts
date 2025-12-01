@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
+import { MD3Theme } from 'react-native-paper';
 
-export const styles = StyleSheet.create({
+export const createStyles = (theme: MD3Theme) => StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: 8,
@@ -15,9 +16,19 @@ export const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
+    color: theme.colors.onBackground,
   },
   loadingCard: {
     margin: 16,
+    backgroundColor: theme.colors.surface,
+    borderRadius: 12,
+    borderWidth: theme.dark ? 1 : 0,
+    borderColor: theme.colors.outline,
+    elevation: theme.dark ? 0 : 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: theme.dark ? 0 : 0.1,
+    shadowRadius: 4,
   },
   cardsContainer: {
     flexDirection: 'row',
@@ -28,6 +39,15 @@ export const styles = StyleSheet.create({
     width: 300,
     marginHorizontal: 4,
     marginBottom: 8,
+    backgroundColor: theme.colors.surface,
+    borderRadius: 12,
+    borderWidth: theme.dark ? 1 : 0,
+    borderColor: theme.colors.outline,
+    elevation: theme.dark ? 0 : 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: theme.dark ? 0 : 0.1,
+    shadowRadius: 4,
   },
   cardHeader: {
     flexDirection: 'row',
@@ -37,11 +57,13 @@ export const styles = StyleSheet.create({
   examTitle: {
     flex: 1,
     marginRight: 8,
+    color: theme.colors.onSurface,
   },
   description: {
     marginTop: 4,
     marginBottom: 8,
     opacity: 0.7,
+    color: theme.colors.onSurface,
   },
   detailsContainer: {
     flexDirection: 'row',
@@ -63,6 +85,7 @@ export const styles = StyleSheet.create({
   },
   timeLeft: {
     textAlign: 'right',
+    color: theme.colors.onSurface,
   },
   statsContainer: {
     flexDirection: 'row',
@@ -72,6 +95,7 @@ export const styles = StyleSheet.create({
   statChip: {
     marginRight: 8,
     marginTop: 4,
+    backgroundColor: theme.colors.surfaceVariant,
   },
   divider: {
     marginVertical: 12,
@@ -84,6 +108,15 @@ export const styles = StyleSheet.create({
   historyCard: {
     marginHorizontal: 16,
     marginBottom: 16,
+    backgroundColor: theme.colors.surface,
+    borderRadius: 12,
+    borderWidth: theme.dark ? 1 : 0,
+    borderColor: theme.colors.outline,
+    elevation: theme.dark ? 0 : 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: theme.dark ? 0 : 0.1,
+    shadowRadius: 4,
   },
   scoreContainer: {
     justifyContent: 'center',

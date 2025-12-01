@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { ScrollView } from 'react-native';
 import { Button, Text, Card } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
@@ -6,17 +6,20 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RootStackParamList } from '../../../navigations/StackNavigator';
-import { styles } from './HomeScreen.style';
+import { createStyles } from './HomeScreen.style';
 import { useAppDispatch } from '../../../store/hooks';
 import { loadExams } from '../../../store/slices/examSlice';
 import ExamHistorySummary from '../../../components/exam/ExamHistorySummary/ExamHistorySummary';
 import { FirebaseTest } from '../../../components/common/FirebaseTest/FirebaseTest';
+import { useAppTheme } from '../../../providers/ThemeProvider';
 
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const HomeScreen = () => {
   const { t } = useTranslation();
+  const { theme } = useAppTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const dispatch = useAppDispatch();
 

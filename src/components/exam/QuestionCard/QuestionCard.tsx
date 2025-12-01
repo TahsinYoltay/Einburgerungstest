@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { View, Image, Pressable } from 'react-native';
 import { Card, Text, IconButton, Divider } from 'react-native-paper';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 import { useTranslation } from 'react-i18next';
-import { styles } from './QuestionCard.style';
+import { createStyles } from './QuestionCard.style';
 import { NormalizedQuestion } from '../../../types/exam';
 import Icon from '@react-native-vector-icons/material-design-icons';
 
@@ -12,6 +12,8 @@ type QuestionCardProps = {
   selectedAnswers?: string[];
   onSelectAnswer: (answerId: string) => void;
   isFlagged: boolean;
+  isFavorite?: boolean;
+  onToggleFavorite?: () => void;
 };
 
 const QuestionCard = ({
@@ -19,10 +21,20 @@ const QuestionCard = ({
   selectedAnswers = [],
   onSelectAnswer,
   isFlagged,
+  isFavorite = false,
+  onToggleFavorite,
 }: QuestionCardProps) => {
   const { t } = useTranslation();
   const { theme } = useAppTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
   const [showExplanation, setShowExplanation] = useState(false);
+  
+  const palette = {
+    primary: theme.colors.primary,
+    selectedBg: theme.colors.secondaryContainer, // Use container color for selected state
+    border: theme.colors.outline,
+    text: theme.colors.onSurface,
+  };
 
   // Reset explanation when question changes
   React.useEffect(() => {
@@ -38,13 +50,6 @@ const QuestionCard = ({
           <Text variant="titleLarge" style={styles.questionText}>
             {question.prompt}
           </Text>
-          {isFlagged && (
-            <IconButton
-              icon="flag"
-              size={20}
-              iconColor={theme.colors.error}
-            />
-          )}
         </View>
 
         {/* Display images if any */}
@@ -66,49 +71,70 @@ const QuestionCard = ({
             <Pressable
               key={optionId}
               onPress={() => onSelectAnswer(optionId)}
-              style={[styles.tileContainer, selected && styles.tileSelected]}
-              android_ripple={{ color: '#E8F0FE' }}
+              style={[
+                styles.tileContainer,
+                { borderColor: selected ? palette.primary : palette.border },
+                selected && { borderWidth: 2, backgroundColor: palette.selectedBg },
+              ]}
+              android_ripple={{ color: palette.selectedBg }}
             >
               <View style={{ flex: 1 }}>
                 <Text
-                  style={[styles.optionText, selected && styles.optionTextSelected]}
+                  style={[
+                    styles.optionText,
+                    { color: selected ? theme.colors.onSecondaryContainer : palette.text },
+                    selected && { fontWeight: '600' },
+                  ]}
                   numberOfLines={0}
                 >
                   {option}
                 </Text>
               </View>
-              {selected && <Icon name="check-circle" size={24} color="#1A73E8" />}
+              {selected && <Icon name="check-circle" size={24} color={palette.primary} />}
             </Pressable>
           );
         })}
 
-        {/* Hint/Explanation button */}
+        {/* Hint/Explanation + Favorite aligned on bottom row */}
         {(question.hint || question.explanation) && (
           <View style={styles.explainButtonContainer}>
-            <IconButton
-              icon="lightbulb-outline"
-              size={20}
-              iconColor={theme.colors.primary}
+            <Pressable 
               onPress={() => setShowExplanation(!showExplanation)}
-              style={styles.hintButton}
-            />
-            <Text
-              style={styles.hintText}
-              onPress={() => setShowExplanation(!showExplanation)}
+              style={{ flexDirection: 'row', alignItems: 'center' }}
             >
-              {showExplanation ? t('exam.hideHint') : t('exam.showHint')}
-            </Text>
+              <Icon
+                name="lightbulb-outline"
+                size={22} // Matched size with favorite icon
+                color={theme.colors.primary}
+              />
+              <Text style={styles.hintText}>
+                {showExplanation ? t('exam.hideHint') : t('exam.showHint')}
+              </Text>
+            </Pressable>
+            {onToggleFavorite && (
+              <IconButton
+                icon={isFavorite ? 'thumb-up' : 'thumb-up-outline'}
+                size={22}
+                iconColor={isFavorite ? theme.colors.primary : theme.colors.onSurfaceVariant}
+                onPress={() => {
+                  onToggleFavorite();
+                }}
+                style={{ margin: 0 }}
+              />
+            )}
           </View>
         )}
 
         {/* Explanation content only shown when expanded */}
         {(question.hint || question.explanation) && showExplanation && (
-          <View style={styles.explanationContainer}>
+          <>
             <Divider style={styles.divider} />
-            <Text style={styles.explanationTitle}>{t('exam.explanation')}</Text>
-            {question.hint && <Text style={styles.explanationText}>{question.hint}</Text>}
-            {question.explanation && <Text style={styles.explanationText}>{question.explanation}</Text>}
-          </View>
+            <View style={styles.explanationContainer}>
+              <Text style={styles.explanationTitle}>{t('exam.explanation')}</Text>
+              {question.hint && <Text style={styles.explanationText}>{question.hint}</Text>}
+              {question.explanation && <Text style={styles.explanationText}>{question.explanation}</Text>}
+            </View>
+          </>
         )}
       </Card.Content>
     </Card>

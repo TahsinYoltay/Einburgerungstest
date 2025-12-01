@@ -6,12 +6,35 @@ import {
   NormalizedQuestion,
 } from '../../types/exam';
 import examsManifest from '../../data/exam/normalized/exams.json';
-import normalizedChapters from '../../data/exam/normalized/allChaptersData.normalized.json';
+import defaultChaptersData from '../../data/exam/normalized/allChaptersData.normalized.json';
+import { languageManager, ChaptersData } from '../../services/LanguageManager';
 
 type AnswerMap = Record<string, string[]>; // questionId -> array of option index strings
 
 type ExamState = {
   exams: ExamManifestEntry[];
+  // Store the chapters data in Redux to allow dynamic switching
+  chaptersData: ChaptersData;
+  currentLanguage: string;
+  isDownloadingLanguage: boolean;
+  downloadProgress: number;
+  inProgress: Record<
+    string,
+    {
+      examId: string;
+      attemptId: string | null;
+      questions: NormalizedQuestion[];
+      currentQuestionIndex: number;
+      answers: AnswerMap;
+      flaggedQuestions: string[];
+      startTime: string | null;
+      timeRemaining: number;
+      timeSpentInSeconds: number;
+      examCompleted: boolean;
+      examStarted: boolean;
+      lastSaved: string | null;
+    }
+  >;
   currentExam: {
     examId: string | null;
     attemptId: string | null;
@@ -27,12 +50,26 @@ type ExamState = {
     lastSaved: string | null;
   };
   examHistory: ExamAttempt[];
+  questionStats: Record<
+    string,
+    {
+      attempts: number;
+      correct: number;
+      incorrect: number;
+    }
+  >;
+  favoriteQuestions: string[];
   loading: boolean;
   error: string | null;
 };
 
 const initialState: ExamState = {
   exams: examsManifest as ExamManifestEntry[],
+  chaptersData: defaultChaptersData as ChaptersData,
+  currentLanguage: 'en',
+  isDownloadingLanguage: false,
+  downloadProgress: 0,
+  inProgress: {},
   currentExam: {
     examId: null,
     attemptId: null,
@@ -48,22 +85,26 @@ const initialState: ExamState = {
     lastSaved: null,
   },
   examHistory: [],
+  questionStats: {},
+  favoriteQuestions: [],
   loading: false,
   error: null,
 };
 
-const chaptersData = (normalizedChapters as any).data as Record<
-  string,
-  { questions: NormalizedQuestion[] }
->;
-
 const examsManifestTyped = examsManifest as ExamManifestEntry[];
 
-const getQuestionsForExam = (manifest: ExamManifestEntry): NormalizedQuestion[] => {
+// Helper to get questions from the dynamic chapters data in state
+const getQuestionsForExam = (manifest: ExamManifestEntry, currentChaptersData: ChaptersData): NormalizedQuestion[] => {
   const pool: NormalizedQuestion[] = [];
 
+  // Cast to any to access data property safely, matching the structure
+  const chaptersDataAny = (currentChaptersData as any).data as Record<
+    string,
+    { questions: NormalizedQuestion[] }
+  >;
+
   const index: Record<string, NormalizedQuestion> = {};
-  Object.values(chaptersData).forEach(ch => {
+  Object.values(chaptersDataAny).forEach(ch => {
     ch.questions.forEach(q => {
       index[q.id] = q;
     });
@@ -76,8 +117,8 @@ const getQuestionsForExam = (manifest: ExamManifestEntry): NormalizedQuestion[] 
   } else if (manifest.chapter_ids && manifest.chapter_ids.length) {
     manifest.chapter_ids.forEach(cid => {
       const key = `chapter${cid}`;
-      if (chaptersData[key]) {
-        pool.push(...chaptersData[key].questions);
+      if (chaptersDataAny[key]) {
+        pool.push(...chaptersDataAny[key].questions);
       }
     });
   } else {
@@ -92,17 +133,56 @@ const pickQuestions = (all: NormalizedQuestion[], count: number) => {
   return shuffled.slice(0, Math.min(count, shuffled.length));
 };
 
+const persistCurrentIfNeeded = (state: ExamState) => {
+  const examId = state.currentExam.examId;
+  if (examId && state.currentExam.examStarted && !state.currentExam.examCompleted) {
+    state.inProgress[examId] = { ...state.currentExam, examId };
+  }
+};
+
 export const loadExams = createAsyncThunk('exam/loadExams', async () => {
   return examsManifestTyped;
 });
 
+// New thunk to switch language
+export const switchExamLanguage = createAsyncThunk(
+  'exam/switchLanguage',
+  async (langCode: string, { dispatch, rejectWithValue }) => {
+    try {
+      // 1. Check if downloaded
+      const isDownloaded = await languageManager.isLanguageDownloaded(langCode);
+      
+      if (!isDownloaded) {
+        // 2. Download if needed (reporting progress)
+        // Note: Dispatching progress actions here would require a separate action
+        // For simplicity, we assume the UI handles loading state via the thunk's pending/fulfilled
+        await languageManager.downloadLanguage(langCode, (progress) => {
+           // We could dispatch a progress action here if we added one
+           // dispatch(setDownloadProgress(progress.bytesTransferred / progress.totalBytes));
+        });
+      }
+
+      // 3. Load the data
+      const data = await languageManager.loadLanguageData(langCode);
+      return { langCode, data };
+    } catch (error) {
+      return rejectWithValue((error as Error).message);
+    }
+  }
+);
+
 export const loadExamQuestions = createAsyncThunk(
   'exam/loadExamQuestions',
-  async (examId: string, { rejectWithValue }) => {
+  async (examId: string, { getState, rejectWithValue }) => {
     try {
+      const state = getState() as { exam: ExamState };
       const manifest = (examsManifest as ExamManifestEntry[]).find(e => e.id === examId);
+      
       if (!manifest) throw new Error(`Exam not found: ${examId}`);
-      const pool = getQuestionsForExam(manifest);
+      
+      // Use the dynamic chapters data from state instead of static import
+      const pool = getQuestionsForExam(manifest, state.exam.chaptersData);
+      
       if (!pool.length) throw new Error(`No questions for exam ${examId}`);
       const questions = pickQuestions(pool, manifest.questions_per_exam || pool.length);
       return {
@@ -123,12 +203,17 @@ export const submitExam = createAsyncThunk(
     try {
       const state = getState() as { exam: ExamState };
       const { questions, answers, examId } = state.exam.currentExam;
+
+      if (!examId) throw new Error('Missing examId');
+      if (!questions || questions.length === 0) throw new Error('No questions to submit');
+
       const manifest = (examsManifest as ExamManifestEntry[]).find(e => e.id === examId);
       const passMark = manifest?.pass_mark ?? 0.75;
+      const timeLimit = (manifest?.time_limit_minutes || 45) * 60;
 
       let correctCount = 0;
       questions.forEach(q => {
-        const userAnswers = answers[q.id] || [];
+        const userAnswers = (answers && answers[q.id]) || [];
         const correct = q.correct_option_indexes.map(idx => idx.toString());
         const allCorrectSelected = correct.every(id => userAnswers.includes(id));
         const noIncorrectSelected = userAnswers.every(id => correct.includes(id));
@@ -137,7 +222,24 @@ export const submitExam = createAsyncThunk(
 
       const score = Math.round((correctCount / questions.length) * 100);
       const status: ExamStatus = score >= passMark * 100 ? 'passed' : 'failed';
-      return { score, correctAnswers: correctCount, totalQuestions: questions.length, status };
+      
+      // Use the actively tracked timeSpentInSeconds from the state
+      let timeSpentSeconds = state.exam.currentExam.timeSpentInSeconds;
+      
+      if (timeSpentSeconds === 0 && state.exam.currentExam.startTime) {
+         timeSpentSeconds = Math.max(
+          0,
+          Math.min(timeLimit, timeLimit - (state.exam.currentExam.timeRemaining ?? timeLimit))
+        );
+      }
+
+      return {
+        score,
+        correctAnswers: correctCount,
+        totalQuestions: questions.length,
+        status,
+        timeSpentSeconds,
+      };
     } catch (err) {
       return rejectWithValue((err as Error).message);
     }
@@ -148,16 +250,48 @@ const examSlice = createSlice({
   name: 'exam',
   initialState,
   reducers: {
-    startExam: (state, action: PayloadAction<{ examId: string }>) => {
+    startExam: (state, action: PayloadAction<{ examId: string; forceRestart?: boolean }>) => {
+      if (!state.inProgress) {
+        state.inProgress = {};
+      }
       const examId = action.payload.examId;
-      const attemptId = `attempt-${Date.now()}`;
-      state.currentExam = {
-        ...initialState.currentExam,
-        examId,
-        attemptId,
-        examStarted: true,
-        startTime: new Date().toISOString(),
-      };
+      const forceRestart = action.payload.forceRestart ?? false;
+
+      // Save current exam progress before switching to another exam
+      if (state.currentExam.examId && state.currentExam.examId !== examId) {
+        persistCurrentIfNeeded(state);
+      }
+
+      if (forceRestart) {
+        delete state.inProgress[examId];
+      }
+      const saved = !forceRestart ? state.inProgress[examId] : undefined;
+      const attemptId = saved?.attemptId || `attempt-${Date.now()}`;
+
+      if (saved) {
+        state.currentExam = {
+          ...saved,
+          examCompleted: false,
+          examStarted: true,
+          attemptId,
+          examId,
+        };
+      } else {
+        state.currentExam = {
+          examId,
+          attemptId,
+          questions: [],
+          currentQuestionIndex: 0,
+          answers: {},
+          flaggedQuestions: [],
+          startTime: new Date().toISOString(),
+          timeRemaining: 45 * 60,
+          timeSpentInSeconds: 0,
+          examCompleted: false,
+          examStarted: true,
+          lastSaved: new Date().toISOString(),
+        };
+      }
     },
     resetExamData: (state, action: PayloadAction<{ examId?: string }>) => {
       const examId = action.payload.examId;
@@ -166,12 +300,14 @@ const examSlice = createSlice({
         state.exams = state.exams.map(e =>
           e.id === examId ? { ...e, attempts: [], lastAttempt: undefined } : e
         );
+        delete state.inProgress[examId];
         if (state.currentExam.examId === examId) {
           state.currentExam = initialState.currentExam;
         }
       } else {
         state.examHistory = [];
         state.exams = state.exams.map(e => ({ ...e, attempts: [], lastAttempt: undefined }));
+        state.inProgress = {};
         state.currentExam = initialState.currentExam;
       }
     },
@@ -223,16 +359,33 @@ const examSlice = createSlice({
         : [...flagged, questionId];
       state.currentExam.lastSaved = new Date().toISOString();
     },
-    updateTimeRemaining: (state, action: PayloadAction<number>) => {
-      state.currentExam.timeRemaining = action.payload;
-      if (state.currentExam.timeRemaining <= 0) {
-        state.currentExam.examCompleted = true;
-      }
+    tickTime: (state) => {
+      if (!state.currentExam.examStarted || state.currentExam.examCompleted) return;
+      state.currentExam.timeRemaining = Math.max(0, state.currentExam.timeRemaining - 1);
+      state.currentExam.timeSpentInSeconds += 1;
+      state.currentExam.lastSaved = new Date().toISOString();
     },
     updateTimeSpent: (state, action: PayloadAction<number>) => {
       state.currentExam.timeSpentInSeconds = action.payload;
       state.currentExam.lastSaved = new Date().toISOString();
     },
+    updateTimeRemaining: (state, action: PayloadAction<number>) => {
+      state.currentExam.timeRemaining = Math.max(0, action.payload);
+      state.currentExam.lastSaved = new Date().toISOString();
+    },
+    saveCurrentExamProgress: (state) => {
+      persistCurrentIfNeeded(state);
+    },
+    toggleFavoriteQuestion: (state, action: PayloadAction<string>) => {
+      const id = action.payload;
+      const set = new Set(state.favoriteQuestions);
+      if (set.has(id)) set.delete(id);
+      else set.add(id);
+      state.favoriteQuestions = Array.from(set);
+    },
+    setDownloadProgress: (state, action: PayloadAction<number>) => {
+      state.downloadProgress = action.payload;
+    }
   },
   extraReducers: builder => {
     builder
@@ -248,14 +401,55 @@ const examSlice = createSlice({
         state.loading = false;
         state.error = action.error.message || 'Failed to load exams';
       })
+      .addCase(switchExamLanguage.pending, (state) => {
+        state.isDownloadingLanguage = true;
+        state.error = null;
+        state.downloadProgress = 0;
+      })
+      .addCase(switchExamLanguage.fulfilled, (state, action) => {
+        state.isDownloadingLanguage = false;
+        state.currentLanguage = action.payload.langCode;
+        state.chaptersData = action.payload.data;
+        state.downloadProgress = 100;
+
+        // Refresh the text of currently active questions to match the new language
+        // This preserves the shuffled order and user progress
+        if (state.currentExam.questions.length > 0) {
+          // 1. Create a lookup map for the new translated questions
+          const newQuestionsMap: Record<string, NormalizedQuestion> = {};
+          const chaptersDataAny = (action.payload.data as any).data;
+          if (chaptersDataAny) {
+            Object.values(chaptersDataAny).forEach((ch: any) => {
+              ch.questions.forEach((q: NormalizedQuestion) => {
+                newQuestionsMap[q.id] = q;
+              });
+            });
+          }
+
+          // 2. Update existing questions in place
+          state.currentExam.questions = state.currentExam.questions.map(oldQ => {
+            const newQ = newQuestionsMap[oldQ.id];
+            return newQ ? { ...oldQ, ...newQ } : oldQ; // Update text fields, keep other state if any
+          });
+        }
+      })
+      .addCase(switchExamLanguage.rejected, (state, action) => {
+        state.isDownloadingLanguage = false;
+        state.error = action.payload as string;
+      })
       .addCase(loadExamQuestions.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(loadExamQuestions.fulfilled, (state, action) => {
         state.loading = false;
-        state.currentExam.questions = action.payload.questions;
-        state.currentExam.timeRemaining = action.payload.timeLimit;
+        if (state.currentExam.examId === action.payload.examId) {
+          const hasExistingQuestions = state.currentExam.questions.length > 0;
+          if (!hasExistingQuestions || state.currentExam.examCompleted) {
+            state.currentExam.questions = action.payload.questions;
+            state.currentExam.timeRemaining = action.payload.timeLimit;
+          }
+        }
       })
       .addCase(loadExamQuestions.rejected, (state, action) => {
         state.loading = false;
@@ -267,14 +461,21 @@ const examSlice = createSlice({
       .addCase(submitExam.fulfilled, (state, action) => {
         state.loading = false;
         state.currentExam.examCompleted = true;
-        const { score, correctAnswers, totalQuestions, status } = action.payload;
+        const { score, correctAnswers, totalQuestions, status, timeSpentSeconds } = action.payload as {
+          score: number;
+          correctAnswers: number;
+          totalQuestions: number;
+          status: ExamStatus;
+          timeSpentSeconds: number;
+        };
+        const safeAnswers = state.currentExam.answers || {};
         const attempt: ExamAttempt = {
           id: state.currentExam.attemptId || `attempt-${Date.now()}`,
           examId: state.currentExam.examId || '',
           startTime: state.currentExam.startTime || new Date().toISOString(),
           endTime: new Date().toISOString(),
           status,
-          answers: Object.entries(state.currentExam.answers).map(([questionId, selectedAnswers]) => ({
+          answers: Object.entries(safeAnswers).map(([questionId, selectedAnswers]) => ({
             questionId,
             selectedAnswers,
           })),
@@ -282,9 +483,41 @@ const examSlice = createSlice({
           totalQuestions,
           correctAnswers,
           flaggedQuestions: state.currentExam.flaggedQuestions,
-          timeSpentInSeconds: state.currentExam.timeSpentInSeconds,
+          timeSpentInSeconds: timeSpentSeconds,
         };
         state.examHistory = [...state.examHistory, attempt];
+        if (state.currentExam.examId) {
+          delete state.inProgress[state.currentExam.examId];
+
+          // Attach attempt to exam manifest
+          state.exams = state.exams.map(exam =>
+            exam.id === state.currentExam.examId
+              ? {
+                  ...exam,
+                  attempts: [...(exam.attempts || []), attempt],
+                  lastAttempt: attempt,
+                }
+              : exam
+          );
+
+          // Update per-question stats
+          state.currentExam.questions.forEach(q => {
+            const ans = state.currentExam.answers[q.id] || [];
+            const correct = q.correct_option_indexes.map(idx => idx.toString());
+            const allCorrect = correct.every(id => ans.includes(id));
+            const noIncorrect = ans.every(id => correct.includes(id));
+            const isCorrect = allCorrect && noIncorrect;
+            if (!state.questionStats[q.id]) {
+              state.questionStats[q.id] = { attempts: 0, correct: 0, incorrect: 0 };
+            }
+            state.questionStats[q.id].attempts += 1;
+            if (isCorrect) {
+              state.questionStats[q.id].correct += 1;
+            } else {
+              state.questionStats[q.id].incorrect += 1;
+            }
+          });
+        }
       })
       .addCase(submitExam.rejected, (state, action) => {
         state.loading = false;
@@ -304,8 +537,10 @@ export const {
   toggleFlagQuestion,
   updateTimeRemaining,
   updateTimeSpent,
+  tickTime,
+  saveCurrentExamProgress,
+  toggleFavoriteQuestion,
+  setDownloadProgress,
 } = examSlice.actions;
 
 export default examSlice.reducer;
-
-export { loadExamQuestions, submitExam, loadExams, resetExamData };

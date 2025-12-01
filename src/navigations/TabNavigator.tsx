@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next';
 import HomeScreen from '../screens/home/HomeScreen/HomeScreen';
 import BookScreen from '../screens/book/BookScreen/BookScreen';
 import ExamListScreen from '../screens/exam/ExamList/ExamListScreen';
-import TestScreen from '../screens/test/TestScreen/TestScreen';
 import SettingsScreen from '../screens/settings/SettingsScreen/SettingsScreen';
 
 // No need for ROUTES import as we're using direct string names
@@ -27,10 +26,6 @@ const renderBookIcon = ({ color, size }: { color: string; size: number }) => (
 
 const renderExamIcon = ({ color, size }: { color: string; size: number }) => (
   <Icon name="book-open-variant-outline" color={color} size={size} />
-);
-
-const renderTestIcon = ({ color, size }: { color: string; size: number }) => (
-  <Icon name="check-decagram" color={color} size={size} />
 );
 
 const renderSettingsIcon = ({ color, size }: { color: string; size: number }) => (
@@ -99,14 +94,6 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: t('screens.exam'),
           tabBarIcon: renderExamIcon,
-        }}
-      />
-      <Tab.Screen
-        name="TestTab"
-        component={TestScreen}
-        options={{
-          tabBarLabel: t('screens.test'),
-          tabBarIcon: renderTestIcon,
         }}
       />
       <Tab.Screen
