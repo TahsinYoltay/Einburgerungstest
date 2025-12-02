@@ -37,6 +37,13 @@ export type ExamSummary = {
 // Status for questions during an exam
 export type QuestionStatus = 'unanswered' | 'answered' | 'flagged';
 
+export type LanguageOption = {
+  code: string;
+  name: string;
+  nativeName: string;
+  version?: number;
+};
+
 // Normalized schema for new exam/question model
 export type QuestionType = 'single_choice' | 'multiple_choice' | 'true_false' | 'statement_choice';
 

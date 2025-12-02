@@ -1,0 +1,17 @@
+[
+  { "code": "en", "name": "English", "nativeName": "English", "version": 1 },
+  { "code": "es", "name": "Spanish", "nativeName": "Español", "version": 1 },
+  { "code": "fr", "name": "French", "nativeName": "Français", "version": 1 },
+  { "code": "de", "name": "German", "nativeName": "Deutsch", "version": 1 },
+  { "code": "it", "name": "Italian", "nativeName": "Italiano", "version": 1 },
+  { "code": "pt", "name": "Portuguese", "nativeName": "Português", "version": 1 },
+  { "code": "ru", "name": "Russian", "nativeName": "Русский", "version": 1 },
+  { "code": "zh", "name": "Chinese (Simplified)", "nativeName": "简体中文", "version": 1 },
+  { "code": "ja", "name": "Japanese", "nativeName": "日本語", "version": 1 },
+  { "code": "ko", "name": "Korean", "nativeName": "한국어", "version": 1 },
+  { "code": "ar", "name": "Arabic", "nativeName": "العربية", "version": 1 },
+  { "code": "hi", "name": "Hindi", "nativeName": "हिन्दी", "version": 1 },
+  { "code": "tr", "name": "Turkish", "nativeName": "Türkçe", "version": 4 },
+  { "code": "pl", "name": "Polish", "nativeName": "Polski", "version": 1 },
+  { "code": "nl", "name": "Dutch", "nativeName": "Nederlands", "version": 1 }
+]

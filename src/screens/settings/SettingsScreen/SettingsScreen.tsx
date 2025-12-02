@@ -16,8 +16,9 @@ const SettingsScreen = () => {
   const styles = useMemo(() => createStyles(theme), [theme]);
   
   const { isDownloadingLanguage, downloadProgress, currentLanguage: examContentLang } = useAppSelector(state => state.exam);
+  const { languages: availableLanguages } = useAppSelector(state => state.content);
   
-  const [languages] = useState(languageManager.getAvailableLanguages());
+  const languages = availableLanguages;
   const [downloadedStatus, setDownloadedStatus] = useState<Record<string, boolean>>({});
   const [showAppLangDialog, setShowAppLangDialog] = useState(false);
   const [showContentLangDialog, setShowContentLangDialog] = useState(false);
@@ -125,7 +126,7 @@ const SettingsScreen = () => {
           <Dialog.Title>{t('settings.appLanguage')}</Dialog.Title>
           <Dialog.Content>
             <ScrollView style={{ maxHeight: 300 }} contentContainerStyle={{ paddingHorizontal: 8 }}>
-              {languages.filter(l => ['en', 'es', 'tr', 'fr'].includes(l.code)).map((lang, index, arr) => (
+              {languages.filter(l => ['en', 'es', 'tr', 'fr', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar', 'hi', 'pl', 'nl'].includes(l.code)).map((lang, index, arr) => (
                 <React.Fragment key={lang.code}>
                   <List.Item
                     title={lang.nativeName}

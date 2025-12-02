@@ -1,0 +1,19 @@
+{
+  "heroImage": "https://via.placeholder.com/600x300",
+  "welcomeMessage": {
+    "en": "Welcome to the Life in the UK Test Prep!",
+    "es": "¡Bienvenido a la prueba de Life in the UK!",
+    "tr": "Life in the UK Testine Hoşgeldiniz!",
+    "pl": "Witamy w teście Life in the UK!"
+  },
+  "promoBanner": {
+    "visible": true,
+    "text": {
+      "en": "New Practice Tests Available!",
+      "es": "¡Nuevas pruebas de práctica disponibles!",
+      "tr": "Yeni Deneme Sınavları Mevcut!",
+      "pl": "Dostępne nowe testy próbne!"
+    },
+    "link": "Practice"
+  }
+}

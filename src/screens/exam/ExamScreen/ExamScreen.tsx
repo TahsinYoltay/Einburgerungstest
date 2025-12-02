@@ -52,6 +52,8 @@ const ExamScreen = () => {
     currentLanguage,
     isDownloadingLanguage,
   } = useAppSelector(state => state.exam);
+  
+  const { languages: availableLanguages } = useAppSelector(state => state.content);
 
   const {
     questions,
@@ -75,7 +77,7 @@ const ExamScreen = () => {
   const [flaggedCursor, setFlaggedCursor] = useState(0);
   const [timeLeft, setTimeLeft] = useState(timeRemaining);
 
-  const languages = languageManager.getAvailableLanguages();
+  const languages = availableLanguages;
   const currentLangName = languages.find(l => l.code === currentLanguage)?.nativeName || 'English';
 
   // References

@@ -1,0 +1,52 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // --- Book Content ---
+    match /BookData/{fileName=**} {
+      allow read: if true;
+      allow write: if false; 
+    }
+    match /assets/bookImages/{imageName=**} {
+      allow read: if true;
+      allow write: if false; 
+    }
+    match /assets/BookData/{fileName=**} {
+      allow read: if true;
+      allow write: if false; 
+    }
+    
+    // --- Dynamic Exam Content ---
+    
+    // 0. Allow reading Global Config (manifest.json, etc.)
+    match /config/{fileName=**} {
+      allow read: if true;
+      allow write: if false; 
+    }
+
+    // 1. Allow reading the Manifests (languages.json, exams.json)
+    match /exam/config/{fileName=**} {
+      allow read: if true;
+      allow write: if false; 
+    }
+
+    // 2. Allow reading the Translations (allChaptersData.xx.json)
+    match /exam/translations/{fileName=**} {
+      allow read: if true;
+      allow write: if false; 
+    }
+
+    // 3. Allow reading dynamic UI content (e.g., home.json)
+    match /content/{fileName=**} {
+      allow read: if true;
+      allow write: if false; 
+    }
+
+    // --- Default Block ---
+    // Explicitly deny all other access to prevent unauthorized writes
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

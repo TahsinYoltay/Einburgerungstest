@@ -1,15 +1,16 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { ScrollView, View, Pressable } from 'react-native';
+import React, { useEffect, useMemo, useState, useCallback } from 'react';
+import { ScrollView, View, Pressable, RefreshControl } from 'react-native';
 import Icon from '@react-native-vector-icons/material-design-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { RootStackParamList } from '../../../navigations/StackNavigator';
 import { ROUTES } from '../../../constants/routes';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { loadExams } from '../../../store/slices/examSlice';
+import { loadExams, switchExamLanguage } from '../../../store/slices/examSlice';
+import { syncContent } from '../../../store/slices/contentSlice';
 import { ExamAttempt } from '../../../types/exam';
 import { createStyles } from './ExamListScreen.style';
 import { useAppTheme } from '../../../providers/ThemeProvider';
@@ -19,15 +20,68 @@ type Nav = NativeStackNavigationProp<RootStackParamList>;
 const ExamListScreen = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<Nav>();
-  const { exams, examHistory, currentExam, inProgress } = useAppSelector(state => state.exam);
+  const { exams: examStateExams, examHistory, currentExam, inProgress, loading, currentLanguage } = useAppSelector(state => state.exam);
+  const { exams: contentExams } = useAppSelector(state => state.content);
+  
+  // Use content exams if available (they are synced from Firebase), fallback to exam slice (legacy)
+  const exams = contentExams.length > 0 ? contentExams : examStateExams;
+
   const { t } = useTranslation();
   const { theme } = useAppTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
 
+  // Trigger update check every time the screen is focused
+  useFocusEffect(
+    useCallback(() => {
+      let isActive = true;
+
+      const checkUpdates = async () => {
+        try {
+          // 1. Reload Manifests via Content Engine
+          await dispatch(syncContent());
+          
+          // 2. If valid and active, check current language version
+          if (isActive && currentLanguage !== 'en') {
+             dispatch(switchExamLanguage(currentLanguage));
+          }
+        } catch (err) {
+          console.log('Auto-update check failed', err);
+        }
+      };
+
+      checkUpdates();
+
+      return () => {
+        isActive = false;
+      };
+    }, [dispatch, currentLanguage])
+  );
+
+  // Initial load
   useEffect(() => {
-    dispatch(loadExams());
+    dispatch(syncContent());
   }, [dispatch]);
+
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
+    try {
+      // 1. Sync Content
+      await dispatch(syncContent()).unwrap();
+      
+      // 2. Check current language
+      if (currentLanguage !== 'en') {
+        await dispatch(switchExamLanguage(currentLanguage)).unwrap();
+      }
+    } catch (e) {
+      console.log('Failed to refresh config', e);
+    } finally {
+      setRefreshing(false);
+    }
+  }, [dispatch, currentLanguage]);
+
+
 
   // Helper: latest attempt per exam (include in-progress current exam)
   const latestByExam = useMemo(() => {
@@ -109,7 +163,12 @@ const ExamListScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView 
+        contentContainerStyle={styles.scrollContent}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={theme.colors.primary} />
+        }
+      >
         {/* Hero card */}
         <View style={styles.heroCard}>
           <View style={styles.heroTitlePill}>

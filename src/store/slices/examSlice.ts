@@ -63,8 +63,27 @@ type ExamState = {
   error: string | null;
 };
 
+const defaultLanguages: LanguageOption[] = [
+  { code: 'en', name: 'English', nativeName: 'English' },
+  { code: 'es', name: 'Spanish', nativeName: 'Español' },
+  { code: 'fr', name: 'French', nativeName: 'Français' },
+  { code: 'de', name: 'German', nativeName: 'Deutsch' },
+  { code: 'it', name: 'Italian', nativeName: 'Italiano' },
+  { code: 'pt', name: 'Portuguese', nativeName: 'Português' },
+  { code: 'ru', name: 'Russian', nativeName: 'Русский' },
+  { code: 'zh', name: 'Chinese (Simplified)', nativeName: '简体中文' },
+  { code: 'ja', name: 'Japanese', nativeName: '日本語' },
+  { code: 'ko', name: 'Korean', nativeName: '한국어' },
+  { code: 'ar', name: 'Arabic', nativeName: 'العربية' },
+  { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी' },
+  { code: 'tr', name: 'Turkish', nativeName: 'Türkçe' },
+  { code: 'pl', name: 'Polish', nativeName: 'Polski' },
+  { code: 'nl', name: 'Dutch', nativeName: 'Nederlands' },
+];
+
 const initialState: ExamState = {
   exams: examsManifest as ExamManifestEntry[],
+  availableLanguages: defaultLanguages,
   chaptersData: defaultChaptersData as ChaptersData,
   currentLanguage: 'en',
   isDownloadingLanguage: false,
@@ -141,24 +160,33 @@ const persistCurrentIfNeeded = (state: ExamState) => {
 };
 
 export const loadExams = createAsyncThunk('exam/loadExams', async () => {
+  // Fallback or legacy load
   return examsManifestTyped;
 });
 
 // New thunk to switch language
 export const switchExamLanguage = createAsyncThunk(
   'exam/switchLanguage',
-  async (langCode: string, { dispatch, rejectWithValue }) => {
+  async (langCode: string, { dispatch, getState, rejectWithValue }) => {
     try {
-      // 1. Check if downloaded
+      const state = getState() as { exam: ExamState; content: any };
+      // Look up in content slice first
+      const targetLang = state.content?.languages?.find((l: any) => l.code === langCode);
+      const remoteVersion = targetLang?.version || 1;
+
+      // 1. Check if downloaded and version match
       const isDownloaded = await languageManager.isLanguageDownloaded(langCode);
+      const localVersion = await languageManager.getDownloadedVersion(langCode);
       
-      if (!isDownloaded) {
+      // Update if not downloaded OR if remote version is newer
+      const needsUpdate = !isDownloaded || (localVersion < remoteVersion);
+      
+      if (needsUpdate) {
         // 2. Download if needed (reporting progress)
         // Note: Dispatching progress actions here would require a separate action
         // For simplicity, we assume the UI handles loading state via the thunk's pending/fulfilled
-        await languageManager.downloadLanguage(langCode, (progress) => {
-           // We could dispatch a progress action here if we added one
-           // dispatch(setDownloadProgress(progress.bytesTransferred / progress.totalBytes));
+        await languageManager.downloadLanguage(langCode, remoteVersion, (progress) => {
+           dispatch(setDownloadProgress(progress.bytesTransferred / progress.totalBytes));
         });
       }
 

@@ -5,17 +5,20 @@
  * @format
  */
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { StatusBar } from 'react-native';
+import { StatusBar, AppState, AppStateStatus } from 'react-native';
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 // Store
 import { store, persistor } from './src/store';
+import { useAppDispatch, useAppSelector } from './src/store/hooks';
+import { switchExamLanguage } from './src/store/slices/examSlice';
+import { syncContent } from './src/store/slices/contentSlice';
 
 // Providers
 import { LocalizationProvider } from './src/providers/LocalizationProvider';
@@ -33,6 +36,39 @@ if (__DEV__) {
 // Main content component that uses the theme
 const AppContent = () => {
   const { theme, isDarkMode, navigationTheme } = useAppTheme();
+  const dispatch = useAppDispatch();
+  const { currentLanguage } = useAppSelector(state => state.exam);
+  const appState = useRef(AppState.currentState);
+
+  // Initial Load
+  useEffect(() => {
+    dispatch(syncContent());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', nextAppState => {
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === 'active'
+      ) {
+        console.log('App has come to the foreground! Checking for content updates...');
+        // 1. Reload Manifests
+        dispatch(syncContent()).then(() => {
+          // 2. Check current language
+          if (currentLanguage !== 'en') {
+             dispatch(switchExamLanguage(currentLanguage));
+          }
+        });
+      }
+
+      appState.current = nextAppState;
+    });
+
+    return () => {
+      subscription.remove();
+    };
+  }, [dispatch, currentLanguage]);
+
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer theme={navigationTheme}>

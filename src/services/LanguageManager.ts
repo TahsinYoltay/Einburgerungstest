@@ -8,6 +8,7 @@ export type ChaptersData = typeof defaultChaptersData;
 
 const TRANSLATIONS_DIR = `${RNFS.DocumentDirectoryPath}/translations`;
 const STORAGE_PATH_PREFIX = 'exam/translations'; // Path in Firebase Storage
+const VERSIONS_FILE = 'versions.json';
 
 class LanguageManager {
   /**
@@ -27,12 +28,66 @@ class LanguageManager {
     return `${TRANSLATIONS_DIR}/allChaptersData.${langCode}.json`;
   }
 
+  private getVersionsFilePath(): string {
+    return `${TRANSLATIONS_DIR}/${VERSIONS_FILE}`;
+  }
+
+  /**
+   * Reads the local versions map.
+   */
+  async getLocalVersions(): Promise<Record<string, number>> {
+    try {
+      const path = this.getVersionsFilePath();
+      if (await RNFS.exists(path)) {
+        const content = await RNFS.readFile(path, 'utf8');
+        return JSON.parse(content);
+      }
+    } catch (error) {
+      console.warn('LanguageManager: Failed to read versions file', error);
+    }
+    return {};
+  }
+
+  /**
+   * Saves a version for a language.
+   */
+  private async saveVersion(langCode: string, version: number) {
+    try {
+      const versions = await this.getLocalVersions();
+      versions[langCode] = version;
+      await RNFS.writeFile(this.getVersionsFilePath(), JSON.stringify(versions), 'utf8');
+    } catch (error) {
+      console.error('LanguageManager: Failed to save versions file', error);
+    }
+  }
+
   /**
    * Checks if the translation file for a language exists locally.
    */
   async isLanguageDownloaded(langCode: string): Promise<boolean> {
-    if (langCode === 'en') return true; // English is always available
+    // English is always "available" (bundled fallback), but we check if a dynamic update exists
+    if (langCode === 'en') {
+      return await RNFS.exists(this.getLocalFilePath(langCode));
+    }
     return await RNFS.exists(this.getLocalFilePath(langCode));
+  }
+
+  /**
+   * Gets the locally downloaded version of a language. Returns 0 if not found.
+   * For 'en', returns the downloaded version, or 1 (bundled version) if not downloaded.
+   */
+  async getDownloadedVersion(langCode: string): Promise<number> {
+    const versions = await this.getLocalVersions();
+    
+    if (langCode === 'en') {
+      // If we have a downloaded update, return its version.
+      // Otherwise, return 1 (bundled version).
+      // Note: This means remote 'en' version must be >= 2 to trigger an update.
+      return versions['en'] || 1;
+    }
+
+    if (!await this.isLanguageDownloaded(langCode)) return 0;
+    return versions[langCode] || 0;
   }
 
   /**
@@ -41,10 +96,11 @@ class LanguageManager {
    */
   async downloadLanguage(
     langCode: string, 
+    version: number,
     onProgress?: (snapshot: { bytesTransferred: number; totalBytes: number }) => void
   ): Promise<void> {
-    if (langCode === 'en') return;
-
+    // Allow downloading 'en' updates now.
+    
     try {
       await this.ensureDirExists();
       
@@ -70,6 +126,8 @@ class LanguageManager {
       }
 
       await task;
+      // Update version registry on success
+      await this.saveVersion(langCode, version);
       console.log(`LanguageManager: Download complete.`);
     } catch (error) {
       console.error('LanguageManager: Download failed', error);
@@ -79,13 +137,21 @@ class LanguageManager {
 
   /**
    * Loads the exam data for a specific language.
-   * If 'en', returns the bundled JSON.
+   * If 'en', tries downloaded file first, then bundled.
    * If other, reads from the local filesystem.
    */
   async loadLanguageData(langCode: string): Promise<ChaptersData> {
     console.log(`LanguageManager: Loading data for ${langCode}`);
     
+    // For English, check if we have a downloaded update first
     if (langCode === 'en') {
+      const localPath = this.getLocalFilePath('en');
+      if (await RNFS.exists(localPath)) {
+        console.log('LanguageManager: Using downloaded English update');
+        const fileContent = await RNFS.readFile(localPath, 'utf8');
+        return JSON.parse(fileContent) as ChaptersData;
+      }
+      console.log('LanguageManager: Using bundled English data');
       return defaultChaptersData as ChaptersData;
     }
 
@@ -109,30 +175,12 @@ class LanguageManager {
     if (await RNFS.exists(localPath)) {
       await RNFS.unlink(localPath);
     }
-  }
-  
-  /**
-   * Get available languages list (could be dynamic or static)
-   * For now, returning the list we defined in the script
-   */
-  getAvailableLanguages() {
-    return [
-      { code: 'en', name: 'English', nativeName: 'English' },
-      { code: 'es', name: 'Spanish', nativeName: 'Español' },
-      { code: 'fr', name: 'French', nativeName: 'Français' },
-      { code: 'de', name: 'German', nativeName: 'Deutsch' },
-      { code: 'it', name: 'Italian', nativeName: 'Italiano' },
-      { code: 'pt', name: 'Portuguese', nativeName: 'Português' },
-      { code: 'ru', name: 'Russian', nativeName: 'Русский' },
-      { code: 'zh', name: 'Chinese (Simplified)', nativeName: '简体中文' },
-      { code: 'ja', name: 'Japanese', nativeName: '日本語' },
-      { code: 'ko', name: 'Korean', nativeName: '한국어' },
-      { code: 'ar', name: 'Arabic', nativeName: 'العربية' },
-      { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी' },
-      { code: 'tr', name: 'Turkish', nativeName: 'Türkçe' },
-      { code: 'pl', name: 'Polish', nativeName: 'Polski' },
-      { code: 'nl', name: 'Dutch', nativeName: 'Nederlands' },
-    ];
+    // Also remove from versions
+    const versions = await this.getLocalVersions();
+    if (versions[langCode]) {
+      delete versions[langCode];
+      await RNFS.writeFile(this.getVersionsFilePath(), JSON.stringify(versions), 'utf8');
+    }
   }
 }
 
