@@ -5,7 +5,7 @@ import RegisterScreen from '../screens/auth/RegisterScreen/RegisterScreen';
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen/ForgotPasswordScreen';
 import ExamResults from '../screens/exam/ExamResults/ExamResults';
 import ExamScreen from '../screens/exam/ExamScreen/ExamScreen';
-import EpubReaderScreen from '../screens/book/EpubReaderScreen';
+import WebReaderScreen from '../screens/book/WebReaderScreen';
 import { ROUTES } from '../constants/routes';
 import TabNavigator from './TabNavigator';
 
@@ -23,7 +23,7 @@ export type RootStackParamList = {
   [ROUTES.EXAM_RESULTS]: { examId: string };
   [ROUTES.BOOK]: undefined;
   [ROUTES.CHAPTER]: { id: string };
-  [ROUTES.EPUB_READER]: { bookTitle?: string; chapterId?: string; targetSectionId?: string };
+  [ROUTES.READER]: { chapterId: string; subSectionId: string };
   [ROUTES.TEST]: undefined;
   [ROUTES.SETTINGS]: undefined;
   [ROUTES.PROFILE]: undefined;
@@ -59,8 +59,8 @@ function RootNavigator() {
           />
           <Stack.Screen name={ROUTES.EXAM_RESULTS} component={ExamResults} />
           <Stack.Screen
-            name={ROUTES.EPUB_READER}
-            component={EpubReaderScreen}
+            name={ROUTES.READER}
+            component={WebReaderScreen}
             options={{ headerShown: false }}
           />
         </>

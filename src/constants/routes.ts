@@ -8,7 +8,7 @@ export const ROUTES = {
   EXAM_RESULTS: 'ExamResults',
   BOOK: 'Book',
   CHAPTER: 'Chapter',
-  EPUB_READER: 'EpubReader',
+  READER: 'Reader',
   TEST: 'Test',
   SETTINGS: 'Settings',
   PROFILE: 'Profile',

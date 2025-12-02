@@ -24,7 +24,6 @@ import { syncContent } from './src/store/slices/contentSlice';
 import { LocalizationProvider } from './src/providers/LocalizationProvider';
 import { ThemeProvider, useAppTheme } from './src/providers/ThemeProvider';
 import { AuthProvider } from './src/providers/AuthProvider';
-import { EpubReaderProvider } from './src/contexts/EpubReaderContext';
 
 // Navigation
 import RootNavigator from './src/navigations/StackNavigator';
@@ -91,9 +90,7 @@ function App(): React.JSX.Element {
             <ThemeProvider>
               <AuthProvider>
                 <LocalizationProvider>
-                  <EpubReaderProvider>
-                    <AppContent />
-                  </EpubReaderProvider>
+                  <AppContent />
                 </LocalizationProvider>
               </AuthProvider>
             </ThemeProvider>
