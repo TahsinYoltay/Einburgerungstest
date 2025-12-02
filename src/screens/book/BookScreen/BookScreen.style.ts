@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
-import { AppTheme } from '../../../providers/ThemeProvider';
+import { MD3Theme } from 'react-native-paper';
 
-export const createStyles = (theme: AppTheme) => StyleSheet.create({
+export const createStyles = (theme: MD3Theme) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
@@ -14,9 +14,15 @@ export const createStyles = (theme: AppTheme) => StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 16,
     color: theme.colors.onBackground,
+    textAlign: 'center',
   },
   card: {
     marginBottom: 16,
+    backgroundColor: theme.colors.surface,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: theme.colors.outline || '#E5E7EB',
+    elevation: 0,
   },
   loadingContainer: {
     flex: 1,
@@ -38,7 +44,7 @@ export const createStyles = (theme: AppTheme) => StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 16,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: theme.colors.backdrop,
     zIndex: 1000,
   },
   controlButton: {
@@ -50,7 +56,7 @@ export const createStyles = (theme: AppTheme) => StyleSheet.create({
     color: theme.colors.onPrimary,
   },
   progressText: {
-    color: 'white',
+    color: theme.colors.onSurface,
   },
   loadingText: {
     marginTop: 10,
@@ -58,11 +64,10 @@ export const createStyles = (theme: AppTheme) => StyleSheet.create({
     color: theme.colors.onBackground,
   },
   errorText: {
-    color: 'red',
+    color: theme.colors.error,
     fontSize: 16,
     textAlign: 'center',
   },
-  // New styles for chapter cards
   header: {
     marginBottom: 20,
     alignItems: 'center',
@@ -77,34 +82,132 @@ export const createStyles = (theme: AppTheme) => StyleSheet.create({
   },
   chapterCard: {
     marginBottom: 16,
-    elevation: 4,
+    backgroundColor: theme.colors.surface,
+    borderRadius: 12,
+    borderWidth: theme.dark ? 1 : 0,
+    borderColor: theme.colors.outline,
+    elevation: theme.dark ? 0 : 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: theme.dark ? 0 : 0.1,
+    shadowRadius: 4,
   },
   chapterImage: {
-    height: 150,
+    width: 80,
+    height: 80,
+    margin: 16,
+    borderRadius: 8,
   },
-  chapterHeader: {
+  chapterHeaderRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+  },
+  chapterContent: {
+    flex: 1,
+    paddingRight: 16,
+  },
+  chapterTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
   },
   chapterTitle: {
     flex: 1,
-    marginRight: 8,
+    fontWeight: '600',
     color: theme.colors.onSurface,
-  },
-  chapterChip: {
-    backgroundColor: theme.colors.primaryContainer,
-  },
-  chapterChipText: {
-    color: theme.colors.onPrimaryContainer,
-    fontSize: 12,
   },
   chapterDescription: {
     color: theme.colors.onSurfaceVariant,
-    lineHeight: 20,
+    opacity: 0.8,
+    marginBottom: 8,
+  },
+  progressBarContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  progressBar: {
+    height: 6,
+    borderRadius: 3,
+  },
+  progressTextSmall: {
+    color: theme.colors.primary,
+    fontWeight: '600',
+    minWidth: 45,
+  },
+  expandedContent: {
+    paddingBottom: 16,
+    paddingHorizontal: 16,
+  },
+  expandedHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+  },
+  sectionsTitle: {
+    flex: 1,
+    fontWeight: '600',
+    color: theme.colors.onSurface,
   },
   readButton: {
-    marginTop: 8,
+    backgroundColor: theme.colors.primary,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+  },
+  readButtonText: {
+    color: theme.colors.onPrimary,
+    fontWeight: '600',
+  },
+  sectionSurface: {
+    marginVertical: 4,
+    borderRadius: 12,
+    borderWidth: theme.dark ? 1 : 0,
+    borderColor: theme.colors.outline,
+    elevation: theme.dark ? 0 : 1,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: theme.dark ? 0 : 0.1,
+    shadowRadius: 2,
+    // Background color will be handled dynamically in component for read/unread state
+  },
+  sectionTouchable: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+  },
+  sectionIconContainer: {
+    marginRight: 12,
+  },
+  sectionTextContainer: {
+    flex: 1,
+  },
+  sectionTitle: {
+    fontWeight: '500',
+    // Color handled dynamically
+  },
+  sectionSubtitle: {
+    color: theme.colors.onSurface,
+    opacity: 0.7,
+    marginTop: 2,
+  },
+  progressSurface: {
+    marginBottom: 20,
+    padding: 16,
+    borderRadius: 12,
+    backgroundColor: theme.colors.surface,
+    borderWidth: theme.dark ? 1 : 0,
+    borderColor: theme.colors.outline,
+    width: '100%',
+    elevation: theme.dark ? 0 : 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: theme.dark ? 0 : 0.1,
+    shadowRadius: 4,
+  },
+  progressTitle: {
+    fontWeight: '600',
+    marginBottom: 8,
+    color: theme.colors.onSurface,
   },
 });

@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // Import reducers
 import userReducer from './slices/userSlice';
 import examReducer from './slices/examSlice';
+import contentReducer from './slices/contentSlice';
 import reactotron from '../../ReactotronConfig';
 
 // Configure Redux Persist
@@ -12,13 +13,14 @@ const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
   // Whitelist defines which reducers will be persisted
-  whitelist: ['user', 'exam'], // Now we persist both user and exam data to save progress
+  whitelist: ['user', 'exam', 'content'], // Now we persist both user and exam data to save progress
 };
 
 // Combine reducers
 const rootReducer = combineReducers({
   user: userReducer,
   exam: examReducer,
+  content: contentReducer,
 });
 
 // Create persisted reducer

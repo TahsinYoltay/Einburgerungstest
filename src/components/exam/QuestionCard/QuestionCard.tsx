@@ -1,32 +1,19 @@
-import React, { useState } from 'react';
-import { View, Image } from 'react-native';
-import { Card, Text, RadioButton, IconButton, Checkbox, Divider } from 'react-native-paper';
+import React, { useState, useMemo } from 'react';
+import { View, Image, Pressable } from 'react-native';
+import { Card, Text, IconButton, Divider } from 'react-native-paper';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 import { useTranslation } from 'react-i18next';
-import { styles } from './QuestionCard.style';
-
-type Option = {
-  id: string;
-  text: string;
-  image?: string;
-};
-
-type Question = {
-  id: string;
-  text: string;
-  options: Option[];
-  type: 'single' | 'multiple';
-  correctAnswers: string[];
-  images?: string[];
-  video?: string;
-  explanation?: string;
-};
+import { createStyles } from './QuestionCard.style';
+import { NormalizedQuestion } from '../../../types/exam';
+import Icon from '@react-native-vector-icons/material-design-icons';
 
 type QuestionCardProps = {
-  question: Question;
+  question: NormalizedQuestion;
   selectedAnswers?: string[];
   onSelectAnswer: (answerId: string) => void;
   isFlagged: boolean;
+  isFavorite?: boolean;
+  onToggleFavorite?: () => void;
 };
 
 const QuestionCard = ({
@@ -34,138 +21,120 @@ const QuestionCard = ({
   selectedAnswers = [],
   onSelectAnswer,
   isFlagged,
+  isFavorite = false,
+  onToggleFavorite,
 }: QuestionCardProps) => {
   const { t } = useTranslation();
   const { theme } = useAppTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
   const [showExplanation, setShowExplanation] = useState(false);
-
-  // Function to handle option selection for multiple choice questions
-  const handleMultipleChoice = (answerId: string) => {
-    onSelectAnswer(answerId);
+  
+  const palette = {
+    primary: theme.colors.primary,
+    selectedBg: theme.colors.secondaryContainer, // Use container color for selected state
+    border: theme.colors.outline,
+    text: theme.colors.onSurface,
   };
 
-  // Function to check if an option is selected
-  const isOptionSelected = (optionId: string) => {
-    return selectedAnswers.includes(optionId);
-  };
+  // Reset explanation when question changes
+  React.useEffect(() => {
+    setShowExplanation(false);
+  }, [question.id]);
+
+  const isOptionSelected = (optionId: string) => selectedAnswers.includes(optionId);
 
   return (
     <Card style={styles.card}>
       <Card.Content>
         <View style={styles.questionHeader}>
           <Text variant="titleLarge" style={styles.questionText}>
-            {question.text}
+            {question.prompt}
           </Text>
-          {isFlagged && (
-            <IconButton
-              icon="flag"
-              size={20}
-              iconColor={theme.colors.error}
-            />
-          )}
         </View>
 
         {/* Display images if any */}
-        {question.images && question.images.length > 0 && (
+        {question.media?.image_url && (
           <View style={styles.imagesContainer}>
-            {question.images.map((imageUrl, index) => (
-              <Image
-                key={`img-${index}`}
-                source={{ uri: imageUrl }}
-                style={styles.questionImage}
-                resizeMode="contain"
-              />
-            ))}
-          </View>
-        )}
-
-        {/* Display video if any */}
-        {question.video && (
-          <View style={styles.videoContainer}>
-            <Text style={styles.videoText}>{t('exam.videoQuestion')}</Text>
-            {/* In a real implementation, you would use a video player component here */}
+            <Image
+              source={{ uri: question.media.image_url }}
+              style={styles.questionImage}
+              resizeMode="contain"
+            />
           </View>
         )}
 
         {/* Question options */}
-        {question.type === 'single' ? (
-          // Single choice question
-          <RadioButton.Group
-            onValueChange={onSelectAnswer}
-            value={selectedAnswers.length ? selectedAnswers[0] : ''}
-          >
-            {question.options.map((option) => (
-              <View key={option.id} style={styles.optionContainer}>
-                <RadioButton.Item
-                  label={option.text}
-                  value={option.id}
-                  labelStyle={styles.optionText}
-                  position="leading"
-                  style={styles.optionItem}
-                />
-                {option.image && (
-                  <Image
-                    source={{ uri: option.image }}
-                    style={styles.optionImage}
-                    resizeMode="contain"
-                  />
-                )}
-              </View>
-            ))}
-          </RadioButton.Group>
-        ) : (
-          // Multiple choice question
-          <View>
-            <Text style={styles.multipleChoiceHeader}>
-              {t('exam.selectMultiple')}
-            </Text>
-            {question.options.map((option) => (
-              <View key={option.id} style={styles.optionContainer}>
-                <Checkbox.Item
-                  label={option.text}
-                  status={isOptionSelected(option.id) ? 'checked' : 'unchecked'}
-                  onPress={() => handleMultipleChoice(option.id)}
-                  position="leading"
-                  style={styles.optionItem}
-                />
-                {option.image && (
-                  <Image
-                    source={{ uri: option.image }}
-                    style={styles.optionImage}
-                    resizeMode="contain"
-                  />
-                )}
-              </View>
-            ))}
-          </View>
-        )}
-
-        {/* Explanation button only shown if explanation exists */}
-        {question.explanation && (
-          <View style={styles.explainButtonContainer}>
-            <IconButton
-              icon="lightbulb-outline"
-              size={20}
-              iconColor={theme.colors.primary}
-              onPress={() => setShowExplanation(!showExplanation)}
-              style={styles.hintButton}
-            />
-            <Text
-              style={styles.hintText}
-              onPress={() => setShowExplanation(!showExplanation)}
+        {question.options.map((option, idx) => {
+          const optionId = idx.toString();
+          const selected = isOptionSelected(optionId);
+          return (
+            <Pressable
+              key={optionId}
+              onPress={() => onSelectAnswer(optionId)}
+              style={[
+                styles.tileContainer,
+                { borderColor: selected ? palette.primary : palette.border },
+                selected && { borderWidth: 2, backgroundColor: palette.selectedBg },
+              ]}
+              android_ripple={{ color: palette.selectedBg }}
             >
-              {showExplanation ? t('exam.hideHint') : t('exam.showHint')}
-            </Text>
+              <View style={{ flex: 1 }}>
+                <Text
+                  style={[
+                    styles.optionText,
+                    { color: selected ? theme.colors.onSecondaryContainer : palette.text },
+                    selected && { fontWeight: '600' },
+                  ]}
+                  numberOfLines={0}
+                >
+                  {option}
+                </Text>
+              </View>
+              {selected && <Icon name="check-circle" size={24} color={palette.primary} />}
+            </Pressable>
+          );
+        })}
+
+        {/* Hint/Explanation + Favorite aligned on bottom row */}
+        {(question.hint || question.explanation) && (
+          <View style={styles.explainButtonContainer}>
+            <Pressable 
+              onPress={() => setShowExplanation(!showExplanation)}
+              style={{ flexDirection: 'row', alignItems: 'center' }}
+            >
+              <Icon
+                name="lightbulb-outline"
+                size={22} // Matched size with favorite icon
+                color={theme.colors.primary}
+              />
+              <Text style={styles.hintText}>
+                {showExplanation ? t('exam.hideHint') : t('exam.showHint')}
+              </Text>
+            </Pressable>
+            {onToggleFavorite && (
+              <IconButton
+                icon={isFavorite ? 'thumb-up' : 'thumb-up-outline'}
+                size={22}
+                iconColor={isFavorite ? theme.colors.primary : theme.colors.onSurfaceVariant}
+                onPress={() => {
+                  onToggleFavorite();
+                }}
+                style={{ margin: 0 }}
+              />
+            )}
           </View>
         )}
 
         {/* Explanation content only shown when expanded */}
-        {question.explanation && showExplanation && (
-          <View style={styles.explanationContainer}>
+        {(question.hint || question.explanation) && showExplanation && (
+          <>
             <Divider style={styles.divider} />
-            <Text style={styles.explanationTitle}>{t('exam.explanation')}</Text>
-            <Text style={styles.explanationText}>{question.explanation}</Text>
-          </View>
+            <View style={styles.explanationContainer}>
+              <Text style={styles.explanationTitle}>{t('exam.explanation')}</Text>
+              {question.hint && <Text style={styles.explanationText}>{question.hint}</Text>}
+              {question.explanation && <Text style={styles.explanationText}>{question.explanation}</Text>}
+            </View>
+          </>
         )}
       </Card.Content>
     </Card>

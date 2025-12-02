@@ -4,6 +4,7 @@ import LoginScreen from '../screens/auth/LoginScreen/LoginScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen/RegisterScreen';
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen/ForgotPasswordScreen';
 import ExamResults from '../screens/exam/ExamResults/ExamResults';
+import ExamScreen from '../screens/exam/ExamScreen/ExamScreen';
 import EpubReaderScreen from '../screens/book/EpubReaderScreen';
 import { ROUTES } from '../constants/routes';
 import TabNavigator from './TabNavigator';
@@ -17,9 +18,8 @@ export type RootStackParamList = {
   HomeTab: undefined;
   BookTab: undefined;
   ExamTab: { id?: string };
-  TestTab: undefined;
   SettingsTab: undefined;
-  [ROUTES.EXAM]: { id: string };
+  [ROUTES.EXAM]: { id: string; restart?: boolean };
   [ROUTES.EXAM_RESULTS]: { examId: string };
   [ROUTES.BOOK]: undefined;
   [ROUTES.CHAPTER]: { id: string };
@@ -52,6 +52,11 @@ function RootNavigator() {
           {/* TabNavigator contains HomeTab, BookTab, ExamTab, TestTab, and SettingsTab screens */}
           <Stack.Screen name={ROUTES.HOME} component={TabNavigator} />
           {/* Screens that should open as standalone pages with back navigation */}
+          <Stack.Screen
+            name={ROUTES.EXAM}
+            component={ExamScreen}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name={ROUTES.EXAM_RESULTS} component={ExamResults} />
           <Stack.Screen
             name={ROUTES.EPUB_READER}

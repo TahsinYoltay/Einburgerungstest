@@ -19,22 +19,23 @@ const lightColors = {
   notification: '#FF5722',
   card: '#FFFFFF',
   border: '#E0E0E0',
+  outline: '#E0E0E0', // Lighter outline for separators in Light Mode
 };
 
 const darkColors = {
-  primary: '#90CAF9',
-  secondary: '#42A5F5',
-  error: '#EF5350',
-  background: '#121212',
-  surface: '#1E1E1E',
-  accent: '#29B6F6',
-  text: '#FFFFFF',
-  disabled: '#757575',
-  placeholder: '#616161',
-  backdrop: 'rgba(0, 0, 0, 0.8)',
-  notification: '#FF8A65',
-  card: '#1E1E1E',
-  border: '#424242',
+  primary: '#1D9BF0', // Vibrant Twitter Blue
+  secondary: '#8B98A5',
+  error: '#F4212E',
+  background: '#15202B', // Deep Blue-Gray Base
+  surface: '#273340', // Lighter Blue-Gray for Cards (Contrast boost)
+  accent: '#1D9BF0',
+  text: '#F7F9F9',
+  disabled: '#536471',
+  placeholder: '#536471',
+  backdrop: 'rgba(21, 32, 43, 0.8)',
+  notification: '#F4212E',
+  card: '#273340', // Matches surface for cards
+  border: '#5F6C7B', // Lighter border for better visibility
 };
 
 // Define MD3 font configuration
