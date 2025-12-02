@@ -3,10 +3,11 @@ import * as RNFS from '@dr.pogodin/react-native-fs';
 import storage from '@react-native-firebase/storage';
 import defaultChaptersData from '../data/exam/normalized/allChaptersData.normalized.json';
 import defaultBookData from '../assets/content/bookContent.en.json';
+import { BookContent } from '../types/book';
 
 // Define the type for the chapters data structure
 export type ChaptersData = typeof defaultChaptersData;
-export type BookData = typeof defaultBookData;
+export type BookData = BookContent;
 
 const TRANSLATIONS_DIR = `${RNFS.DocumentDirectoryPath}/translations`;
 const STORAGE_PATH_PREFIX = 'exam/translations'; // Path in Firebase Storage
@@ -217,7 +218,7 @@ class LanguageManager {
          const fileContent = await RNFS.readFile(localPath, 'utf8');
          return JSON.parse(fileContent) as BookData;
       }
-      return defaultBookData as BookData;
+      return defaultBookData as unknown as BookData;
     }
     
     const localPath = this.getLocalBookFilePath(langCode);

@@ -9,6 +9,7 @@ export const ROUTES = {
   BOOK: 'Book',
   CHAPTER: 'Chapter',
   READER: 'Reader',
+  READER_STACK: 'ReaderStack',
   TEST: 'Test',
   SETTINGS: 'Settings',
   PROFILE: 'Profile',

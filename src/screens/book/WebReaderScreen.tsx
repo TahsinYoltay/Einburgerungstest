@@ -1,22 +1,36 @@
-import React, { useMemo } from 'react';
-import { StyleSheet, View, ActivityIndicator, useColorScheme } from 'react-native';
+import { RouteProp, useRoute, useNavigation } from '@react-navigation/native';
+import React, { useMemo, useRef, useState, useEffect } from 'react';
+import { View } from 'react-native';
 import { WebView } from 'react-native-webview';
-import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
+import { Appbar, IconButton, Divider, Surface, Button, Text, ActivityIndicator } from 'react-native-paper';
+import { ReaderSearchBar } from '../../components/book/ReaderSearchBar';
+import { ROUTES } from '../../constants/routes';
 import { RootStackParamList } from '../../navigations/StackNavigator';
 import { useAppTheme } from '../../providers/ThemeProvider';
-import { Appbar, Text } from 'react-native-paper';
-import { ROUTES } from '../../constants/routes';
-
 import { useAppSelector } from '../../store/hooks';
+import { isSectionRead, markSectionAsUnread, markSectionAsRead } from '../../utils/readingProgress';
+import { createStyles } from './WebReaderScreen.style';
 
 type ReaderRouteProp = RouteProp<RootStackParamList, typeof ROUTES.READER>;
 
 const WebReaderScreen = () => {
-  const { theme, isDarkMode } = useAppTheme();
+  const { theme, isDarkMode, toggleTheme } = useAppTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
   const route = useRoute<ReaderRouteProp>();
   const navigation = useNavigation();
   const { chapterId, subSectionId } = route.params;
   const { data: bookData } = useAppSelector(state => state.book);
+  const userId = useAppSelector(state => state.user.user?.id);
+  
+  const webViewRef = useRef<WebView>(null);
+  const [fontSize, setFontSize] = useState(100);
+  const [showFontControl, setShowFontControl] = useState(false);
+  const [isRead, setIsRead] = useState(false);
+  
+  // Search State
+  const [searchVisible, setSearchVisible] = useState(false);
+  const [matchCount, setMatchCount] = useState(0);
+  const [currentMatch, setCurrentMatch] = useState(0);
 
   const targetSection = useMemo(() => {
     if (!bookData) return null;
@@ -25,53 +39,265 @@ const WebReaderScreen = () => {
     return chapter.subSections.find(s => s.id === subSectionId);
   }, [bookData, chapterId, subSectionId]);
 
-  const content = targetSection?.content || '<p>Content not found</p>';
-  const title = targetSection?.title || 'Reader';
+  // Check read status on mount
+  useEffect(() => {
+    let isActive = true;
+    const checkReadStatus = async () => {
+      if (subSectionId) {
+        const status = await isSectionRead(subSectionId, userId);
+        if (isActive) setIsRead(status);
+      }
+    };
+    checkReadStatus();
+    return () => { isActive = false; };
+  }, [subSectionId, userId]);
 
-  // Inject theme CSS to handle dark mode dynamically
-  const css = `
-    body {
+  const content = targetSection?.content || '<p>Content not found</p>';
+
+  // Generate CSS dynamically based on theme
+  const css = useMemo(() => `
+    html, body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      font-size: 1.1rem;
-      padding: 1.5rem;
-      line-height: 1.8;
-      background-color: ${theme.colors.background};
-      color: ${theme.colors.onBackground};
+      font-size: 100%;
+      padding: 16px 12px;
+      line-height: 1.6;
+      background-color: ${theme.colors.background} !important;
+      color: ${theme.colors.onBackground} !important;
     }
     h1, h2, h3, h4, h5, h6 {
-      color: ${theme.colors.primary};
+      color: ${theme.colors.primary} !important;
       margin-top: 1.5em;
     }
     a {
-      color: ${theme.colors.secondary};
+      color: ${theme.colors.secondary} !important;
     }
     img {
         border-radius: 8px;
         margin: 1rem 0;
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-  `;
+    .search-highlight { background-color: ${theme.dark ? '#f1c40f' : '#ffff00'}; color: black !important; }
+    .search-highlight-active { background-color: ${theme.dark ? '#e67e22' : '#ff9900'}; }
+  `, [theme]);
 
+  // Inject styles directly into HTML to ensure they load immediately with the page
+  const finalHtml = useMemo(() => {
+    return content.replace('</head>', `<style>${css}</style></head>`);
+  }, [content, css]);
+
+  const source = useMemo(() => ({ html: finalHtml, baseUrl: '' }), [finalHtml]);
+
+  // Initial injection script - ensures font size is applied on load/reload
   const injectedJS = useMemo(() => `
     (function() {
-      var style = document.createElement('style');
-      style.textContent = ${JSON.stringify(css)};
-      document.head.appendChild(style);
+      // Init font size
+      document.documentElement.style.fontSize = '${fontSize}%';
+      
+      // Search Logic
+      window.highlightText = function(term) {
+        // Clear prev
+        var marks = document.querySelectorAll('.search-highlight');
+        marks.forEach(function(m) {
+            var p = m.parentNode;
+            p.replaceChild(document.createTextNode(m.textContent), m);
+            p.normalize();
+        });
+        if (!term) {
+            window.ReactNativeWebView.postMessage(JSON.stringify({type: 'SEARCH_RESULT', count: 0}));
+            return;
+        }
+        
+        var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+        var nodes = [];
+        while(walker.nextNode()) nodes.push(walker.currentNode);
+        
+        var regex = new RegExp('(' + term.replace(/[-/\\\\^$*+?.()|[\\]{}]/g, '\\\\$&') + ')', 'gi');
+        
+        nodes.forEach(function(node) {
+            if (node.parentNode.nodeName === 'SCRIPT' || node.parentNode.nodeName === 'STYLE') return;
+            if (regex.test(node.nodeValue)) {
+                var span = document.createElement('span');
+                span.innerHTML = node.nodeValue.replace(regex, '<span class="search-highlight">$1</span>');
+                node.parentNode.replaceChild(span, node);
+            }
+        });
+        window.ReactNativeWebView.postMessage(JSON.stringify({type: 'SEARCH_RESULT', count: document.querySelectorAll('.search-highlight').length}));
+      };
+      
+      window.scrollToMatch = function(idx) {
+        var matches = document.querySelectorAll('.search-highlight');
+        if (matches.length === 0) return;
+        matches.forEach(function(m) { m.classList.remove('search-highlight-active'); });
+        
+        if (idx >= matches.length) idx = 0;
+        if (idx < 0) idx = matches.length - 1;
+        
+        var current = matches[idx];
+        current.classList.add('search-highlight-active');
+        current.scrollIntoView({behavior: 'smooth', block: 'center'});
+        window.ReactNativeWebView.postMessage(JSON.stringify({type: 'MATCH_INDEX', index: idx}));
+      };
     })();
     true;
-  `, [theme, css]);
+  `, [fontSize]);
+
+  // Update font size dynamically without reload
+  useEffect(() => {
+    if (webViewRef.current) {
+      webViewRef.current.injectJavaScript(`
+        document.documentElement.style.fontSize = '${fontSize}%';
+        true;
+      `);
+    }
+  }, [fontSize]);
+
+  const handleIncreaseFont = () => {
+    setFontSize(prev => Math.min(prev + 10, 200));
+  };
+
+  const handleDecreaseFont = () => {
+    setFontSize(prev => Math.max(prev - 10, 50));
+  };
+
+  const handleMarkRead = async () => {
+    if (subSectionId) {
+      if (isRead) {
+        await markSectionAsUnread(subSectionId, userId);
+        setIsRead(false);
+      } else {
+        await markSectionAsRead(subSectionId, 0, userId);
+        setIsRead(true);
+      }
+    }
+  };
+
+  const handleNext = () => {
+    if (!bookData) return;
+    
+    const cIndex = bookData.chapters.findIndex(c => c.id === chapterId);
+    if (cIndex === -1) return;
+    
+    const chapter = bookData.chapters[cIndex];
+    const sIndex = chapter.subSections.findIndex(s => s.id === subSectionId);
+    
+    let nextParams = null;
+
+    if (sIndex !== -1 && sIndex < chapter.subSections.length - 1) {
+      const nextSub = chapter.subSections[sIndex + 1];
+      nextParams = { chapterId: chapter.id, subSectionId: nextSub.id };
+    } else if (cIndex < bookData.chapters.length - 1) {
+      const nextChapter = bookData.chapters[cIndex + 1];
+      if (nextChapter.subSections.length > 0) {
+        nextParams = { chapterId: nextChapter.id, subSectionId: nextChapter.subSections[0].id };
+      }
+    }
+
+    if (nextParams) {
+      navigation.dispatch({
+        type: 'PUSH',
+        payload: {
+          name: ROUTES.READER,
+          params: nextParams,
+        },
+      });
+    } else {
+      // End of book - go back to list
+      navigation.navigate(ROUTES.HOME, { screen: 'BookTab' } as any);
+    }
+  };
+
+  const toggleSearch = () => {
+    if (!searchVisible) {
+        setShowFontControl(false);
+        setSearchVisible(true);
+    } else {
+        setSearchVisible(false);
+        // Clear highlights
+        webViewRef.current?.injectJavaScript(`window.highlightText(''); true;`);
+    }
+  };
+
+  const toggleFontControl = () => {
+    if (!showFontControl) {
+        setSearchVisible(false);
+        // Clear highlights
+        webViewRef.current?.injectJavaScript(`window.highlightText(''); true;`);
+        setShowFontControl(true);
+    } else {
+        setShowFontControl(false);
+    }
+  };
+
+  const handleSearch = (text: string) => {
+    webViewRef.current?.injectJavaScript(`window.highlightText('${text}'); true;`);
+  };
+
+  const handleNextMatch = () => {
+    webViewRef.current?.injectJavaScript(`window.scrollToMatch(${currentMatch + 1}); true;`);
+  };
+
+  const handlePrevMatch = () => {
+    webViewRef.current?.injectJavaScript(`window.scrollToMatch(${currentMatch - 1}); true;`);
+  };
+
+  const handleWebViewMessage = (event: any) => {
+    try {
+        const data = JSON.parse(event.nativeEvent.data);
+        if (data.type === 'SEARCH_RESULT') {
+            setMatchCount(data.count);
+            setCurrentMatch(0);
+            if (data.count > 0) {
+                // Auto scroll to first
+                webViewRef.current?.injectJavaScript(`window.scrollToMatch(0); true;`);
+            }
+        } else if (data.type === 'MATCH_INDEX') {
+            setCurrentMatch(data.index);
+        }
+    } catch (e) {
+        // ignore
+    }
+  };
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+    <View style={styles.container}>
       <Appbar.Header style={{ backgroundColor: theme.colors.surface, elevation: 0 }}>
-        <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title={title} titleStyle={{ fontSize: 18, fontWeight: 'bold' }} />
+        <Appbar.Action icon="close" onPress={() => navigation.navigate(ROUTES.HOME, { screen: 'BookTab' } as any)} />
+        <View style={{ flex: 1 }} />
+        <Appbar.Action icon="format-size" onPress={toggleFontControl} iconColor={showFontControl ? theme.colors.primary : undefined} />
+        <Appbar.Action icon="magnify" onPress={toggleSearch} iconColor={searchVisible ? theme.colors.primary : undefined} />
+        <Appbar.Action icon="bookmark-outline" onPress={() => {}} />
+        <Appbar.Action icon={isDarkMode ? "brightness-7" : "brightness-3"} onPress={toggleTheme} />
+        <Appbar.Action icon="dots-vertical" onPress={() => {}} />
       </Appbar.Header>
+      
+      {showFontControl && (
+        <View style={styles.fontControlBar}>
+          <View style={styles.fontControlRow}>
+            <IconButton icon="minus" size={20} onPress={handleDecreaseFont} disabled={fontSize <= 50} />
+            <Text style={styles.fontText}>{fontSize}%</Text>
+            <IconButton icon="plus" size={20} onPress={handleIncreaseFont} disabled={fontSize >= 200} />
+          </View>
+          <Divider />
+        </View>
+      )}
+
+      <ReaderSearchBar 
+        visible={searchVisible}
+        onClose={toggleSearch}
+        onSearch={handleSearch}
+        onNext={handleNextMatch}
+        onPrev={handlePrevMatch}
+        matchCount={matchCount}
+        currentMatch={currentMatch}
+      />
+
       <WebView
+        ref={webViewRef}
         originWhitelist={['*']}
-        source={{ html: content, baseUrl: '' }}
+        source={source}
         style={{ backgroundColor: theme.colors.background, flex: 1 }}
         injectedJavaScript={injectedJS}
+        onMessage={handleWebViewMessage}
         showsVerticalScrollIndicator={true}
         startInLoadingState={true}
         renderLoading={() => (
@@ -80,21 +306,29 @@ const WebReaderScreen = () => {
             </View>
         )}
       />
+      
+      <Surface style={[styles.bottomBar, { backgroundColor: theme.colors.surface, borderTopColor: theme.colors.outline }]}>
+        <Button 
+          mode={isRead ? "contained" : "outlined"} 
+          onPress={handleMarkRead}
+          icon={isRead ? "check-circle" : "check-circle-outline"}
+          style={[styles.bottomButton, isRead && { borderWidth: 1, borderColor: 'transparent' }]}
+          textColor={isRead ? theme.colors.onPrimary : theme.colors.primary}
+        >
+          Mark Read
+        </Button>
+        <Button 
+          mode="contained" 
+          onPress={handleNext}
+          icon="arrow-right"
+          contentStyle={{ flexDirection: 'row-reverse' }}
+          style={[styles.bottomButton, { borderWidth: 1, borderColor: 'transparent' }]}
+        >
+          Next
+        </Button>
+      </Surface>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  loading: {
-    position: 'absolute',
-    top: 0, left: 0, right: 0, bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 100,
-  },
-});
 
 export default WebReaderScreen;

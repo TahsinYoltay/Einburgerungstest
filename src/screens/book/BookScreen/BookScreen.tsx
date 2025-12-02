@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { View, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { View, ScrollView, TouchableOpacity, ActivityIndicator, RefreshControl } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
@@ -39,6 +39,7 @@ const BookScreen = () => {
   const [readingProgress, setReadingProgress] = useState<ReadingProgress>({});
   const [chapterProgresses, setChapterProgresses] = useState<{ [chapterId: string]: { completed: number; total: number; percentage: number } }>({});
   const [expandedChapters, setExpandedChapters] = useState<{ [chapterId: string]: boolean }>({});
+  const [refreshing, setRefreshing] = useState(false);
   
   // Load book content on mount
   useEffect(() => {
@@ -70,25 +71,30 @@ const BookScreen = () => {
     });
   }, [bookData]);
 
-  // Refresh progress every time screen gains focus
-  useFocusEffect(
-    React.useCallback(() => {
-      loadReadingProgress();
-    }, [userId, chapters]) // Re-run if chapters change (language switch)
-  );
-
   const loadReadingProgress = async () => {
-    // console.log('📊 BookScreen - Loading reading progress...');
     const progress = await getReadingProgress(userId || undefined);
     setReadingProgress(progress);
     
-    // Calculate progress for each chapter
     const progresses: { [chapterId: string]: { completed: number; total: number; percentage: number } } = {};
     for (const chapter of chapters) {
       const sectionIds = chapter.subSections.map(section => section.id);
       progresses[chapter.id] = await getChapterProgress(sectionIds, userId || undefined);
     }
     setChapterProgresses(progresses);
+  };
+
+  // Refresh progress every time screen gains focus
+  useFocusEffect(
+    useCallback(() => {
+      loadReadingProgress();
+    }, [userId, chapters])
+  );
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await dispatch(loadBookContent()); // Reload content
+    await loadReadingProgress(); // Reload progress
+    setRefreshing(false);
   };
 
   const openChapter = (chapter: EnhancedChapter, targetSectionId?: string) => {
@@ -290,6 +296,9 @@ const BookScreen = () => {
       <ScrollView 
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={theme.colors.primary} />
+        }
       >
         <View style={styles.header}>
           <Text variant="headlineMedium" style={styles.title}>

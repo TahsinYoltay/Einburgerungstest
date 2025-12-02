@@ -141,7 +141,7 @@ export async function updateSectionProgress(options: {
     sectionId,
     timeSpentSec = 0,
     scrollProgress = 0,
-    markDone = false,
+    markDone,
     totalSections,
   } = options;
   const userId = options.userId || DEFAULT_USER;
@@ -150,7 +150,11 @@ export async function updateSectionProgress(options: {
   const current = await loadProgress({ bookId, userId, totalSections, syncMode });
   const existing = current.sections[sectionId];
   const now = Date.now();
-  const nextStatus: SectionStatus = markDone ? 'done' : existing?.status || 'in_progress';
+  
+  let nextStatus: SectionStatus = existing?.status || 'in_progress';
+  if (markDone === true) nextStatus = 'done';
+  if (markDone === false) nextStatus = 'in_progress';
+
   const nextScroll = markDone ? 1 : Math.max(existing?.scrollProgress || 0, scrollProgress);
   const nextTime = (existing?.timeSpentSec || 0) + Math.max(0, timeSpentSec);
 
