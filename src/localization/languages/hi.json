@@ -106,8 +106,10 @@
     "previous": "पिछला",
     "next": "अगला",
     "markAsRead": "पढ़ा हुआ चिह्नित करें",
+    "read": "पढ़ा हुआ",
     "progressSaved": "प्रगति सहेजी गई",
     "sectionMarkedAsRead": "अनुभाग को पढ़ा हुआ चिह्नित किया गया!",
+    "searchPlaceholder": "सामग्री में खोजें...",
     "chapter1": {
       "title": "यूके के मूल्य और सिद्धांत",
       "description": "ब्रिटिश जीवन के मौलिक सिद्धांत",
@@ -201,7 +203,9 @@
     "ok": "ठीक है",
     "minutes_short": "मि",
     "seconds_short": "से",
-    "download": "डाउनलोड"
+    "download": "डाउनलोड",
+    "close": "बंद करें",
+    "downloading": "सामग्री डाउनलोड हो रही है..."
   },
   "firebase": {
     "imageLoading": "चित्र लोड हो रहा है...",
@@ -234,9 +238,14 @@
     "appearance": "दिखावट",
     "language": "भाषा",
     "appLanguage": "भाषा",
+    "selectLanguage": "भाषा चुनें",
     "examContent": "परीक्षा सामग्री पैकेज",
+    "bookContent": "पुस्तक सामग्री पैकेज",
     "dataManagement": "डेटा प्रबंधन",
-    "downloadingLanguage": "भाषा पैक डाउनलोड हो रहा है..."
+    "downloadingLanguage": "भाषा पैक डाउनलोड हो रहा है...",
+    "deleteConfirm": "क्या आप इस सामग्री को हटाना चाहते हैं?",
+    "deleteBookConfirm": "क्या आप इस पुस्तक की सामग्री हटाना चाहते हैं?",
+    "downloadError": "सामग्री डाउनलोड करने में विफल: {{msg}}"
   },
   "drawer": {
     "subtitle": "परीक्षा तैयारी ऐप"

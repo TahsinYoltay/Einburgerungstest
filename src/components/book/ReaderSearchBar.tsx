@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
 import { IconButton, useTheme, Text } from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
 
 interface ReaderSearchBarProps {
   visible: boolean;
@@ -22,6 +23,7 @@ export const ReaderSearchBar = ({
   currentMatch,
 }: ReaderSearchBarProps) => {
   const theme = useTheme();
+  const { t } = useTranslation();
   const [query, setQuery] = useState('');
 
   useEffect(() => {
@@ -47,7 +49,7 @@ export const ReaderSearchBar = ({
         />
         <TextInput
           style={[styles.input, { color: theme.colors.onSurfaceVariant }]}
-          placeholder="Search in content..."
+          placeholder={t('book.searchPlaceholder')}
           placeholderTextColor={theme.colors.onSurfaceDisabled}
           value={query}
           onChangeText={setQuery}

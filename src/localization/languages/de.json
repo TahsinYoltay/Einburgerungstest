@@ -106,8 +106,10 @@
     "previous": "Zurück",
     "next": "Weiter",
     "markAsRead": "Als gelesen markieren",
+    "read": "Gelesen",
     "progressSaved": "Fortschritt gespeichert",
     "sectionMarkedAsRead": "Abschnitt als gelesen markiert!",
+    "searchPlaceholder": "Inhalt durchsuchen...",
     "chapter1": {
       "title": "Die Werte und Prinzipien des Vereinigten Königreichs",
       "description": "Grundlegende Prinzipien des britischen Lebens",
@@ -201,7 +203,9 @@
     "ok": "OK",
     "minutes_short": "m",
     "seconds_short": "s",
-    "download": "Herunterladen"
+    "download": "Herunterladen",
+    "close": "Schließen",
+    "downloading": "Inhalt wird heruntergeladen..."
   },
   "firebase": {
     "imageLoading": "Bild wird geladen...",
@@ -234,9 +238,14 @@
     "appearance": "Darstellung",
     "language": "Sprache",
     "appLanguage": "Sprache",
+    "selectLanguage": "Sprache auswählen",
     "examContent": "Prüfungsinhalte",
+    "bookContent": "Buchinhalte",
     "dataManagement": "Datenverwaltung",
-    "downloadingLanguage": "Sprachpaket wird heruntergeladen..."
+    "downloadingLanguage": "Sprachpaket wird heruntergeladen...",
+    "deleteConfirm": "Diesen Inhalt löschen?",
+    "deleteBookConfirm": "Diesen Buchinhalt löschen?",
+    "downloadError": "Herunterladen des Inhalts fehlgeschlagen: {{msg}}"
   },
   "drawer": {
     "subtitle": "Vorbereitungs-App"

@@ -1,31 +1,40 @@
 import { RouteProp, useRoute, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useMemo, useRef, useState, useEffect } from 'react';
 import { View } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { Appbar, IconButton, Divider, Surface, Button, Text, ActivityIndicator } from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
 import { ReaderSearchBar } from '../../components/book/ReaderSearchBar';
 import { ROUTES } from '../../constants/routes';
 import { RootStackParamList } from '../../navigations/StackNavigator';
 import { useAppTheme } from '../../providers/ThemeProvider';
-import { useAppSelector } from '../../store/hooks';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { isSectionRead, markSectionAsUnread, markSectionAsRead } from '../../utils/readingProgress';
 import { createStyles } from './WebReaderScreen.style';
+
+import { LanguageSelector } from '../../components/common/LanguageSelector';
+import { switchBookLanguage } from '../../store/slices/bookSlice';
 
 type ReaderRouteProp = RouteProp<RootStackParamList, typeof ROUTES.READER>;
 
 const WebReaderScreen = () => {
   const { theme, isDarkMode, toggleTheme } = useAppTheme();
+  const { t } = useTranslation();
   const styles = useMemo(() => createStyles(theme), [theme]);
   const route = useRoute<ReaderRouteProp>();
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { chapterId, subSectionId } = route.params;
-  const { data: bookData } = useAppSelector(state => state.book);
+  const { data: bookData, currentLanguage, loading: bookLoading, downloadProgress } = useAppSelector(state => state.book);
   const userId = useAppSelector(state => state.user.user?.id);
+  const dispatch = useAppDispatch();
   
   const webViewRef = useRef<WebView>(null);
   const [fontSize, setFontSize] = useState(100);
   const [showFontControl, setShowFontControl] = useState(false);
+  const [showLanguageSelector, setShowLanguageSelector] = useState(false);
   const [isRead, setIsRead] = useState(false);
+  const [isWaitingForLang, setIsWaitingForLang] = useState(false);
   
   // Search State
   const [searchVisible, setSearchVisible] = useState(false);
@@ -151,6 +160,14 @@ const WebReaderScreen = () => {
     }
   }, [fontSize]);
 
+  // Auto-close language selector when download finishes
+  useEffect(() => {
+    if (isWaitingForLang && !bookLoading) {
+      setShowLanguageSelector(false);
+      setIsWaitingForLang(false);
+    }
+  }, [bookLoading, isWaitingForLang]);
+
   const handleIncreaseFont = () => {
     setFontSize(prev => Math.min(prev + 10, 200));
   };
@@ -169,6 +186,11 @@ const WebReaderScreen = () => {
         setIsRead(true);
       }
     }
+  };
+
+  const handleLanguageSwitch = (langCode: string) => {
+    dispatch(switchBookLanguage(langCode));
+    setIsWaitingForLang(true);
   };
 
   const handleNext = () => {
@@ -201,8 +223,8 @@ const WebReaderScreen = () => {
         },
       });
     } else {
-      // End of book - go back to list
-      navigation.navigate(ROUTES.HOME, { screen: 'BookTab' } as any);
+      // End of book - dismiss reader
+      navigation.popToTop();
     }
   };
 
@@ -261,11 +283,11 @@ const WebReaderScreen = () => {
   return (
     <View style={styles.container}>
       <Appbar.Header style={{ backgroundColor: theme.colors.surface, elevation: 0 }}>
-        <Appbar.Action icon="close" onPress={() => navigation.navigate(ROUTES.HOME, { screen: 'BookTab' } as any)} />
+        <Appbar.Action icon="close" onPress={() => navigation.popToTop()} />
         <View style={{ flex: 1 }} />
         <Appbar.Action icon="format-size" onPress={toggleFontControl} iconColor={showFontControl ? theme.colors.primary : undefined} />
         <Appbar.Action icon="magnify" onPress={toggleSearch} iconColor={searchVisible ? theme.colors.primary : undefined} />
-        <Appbar.Action icon="bookmark-outline" onPress={() => {}} />
+        <Appbar.Action icon="translate" onPress={() => setShowLanguageSelector(true)} />
         <Appbar.Action icon={isDarkMode ? "brightness-7" : "brightness-3"} onPress={toggleTheme} />
         <Appbar.Action icon="dots-vertical" onPress={() => {}} />
       </Appbar.Header>
@@ -280,6 +302,15 @@ const WebReaderScreen = () => {
           <Divider />
         </View>
       )}
+
+      <LanguageSelector
+        visible={showLanguageSelector}
+        onDismiss={() => setShowLanguageSelector(false)}
+        currentLanguage={currentLanguage}
+        onSelectLanguage={handleLanguageSwitch}
+        loading={bookLoading}
+        downloadProgress={downloadProgress}
+      />
 
       <ReaderSearchBar 
         visible={searchVisible}
@@ -315,7 +346,7 @@ const WebReaderScreen = () => {
           style={[styles.bottomButton, isRead && { borderWidth: 1, borderColor: 'transparent' }]}
           textColor={isRead ? theme.colors.onPrimary : theme.colors.primary}
         >
-          Mark Read
+          {isRead ? t('book.read') : t('book.markAsRead')}
         </Button>
         <Button 
           mode="contained" 
@@ -324,7 +355,7 @@ const WebReaderScreen = () => {
           contentStyle={{ flexDirection: 'row-reverse' }}
           style={[styles.bottomButton, { borderWidth: 1, borderColor: 'transparent' }]}
         >
-          Next
+          {t('book.next')}
         </Button>
       </Surface>
     </View>

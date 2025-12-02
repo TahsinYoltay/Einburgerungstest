@@ -106,8 +106,10 @@
     "previous": "Назад",
     "next": "Далее",
     "markAsRead": "Отметить как прочитанное",
+    "read": "Прочитано",
     "progressSaved": "Прогресс сохранен",
     "sectionMarkedAsRead": "Раздел отмечен как прочитанный!",
+    "searchPlaceholder": "Поиск по содержимому...",
     "chapter1": {
       "title": "Ценности и принципы Великобритании",
       "description": "Основные принципы британской жизни",
@@ -201,7 +203,9 @@
     "ok": "OK",
     "minutes_short": "м",
     "seconds_short": "с",
-    "download": "Скачать"
+    "download": "Скачать",
+    "close": "Закрыть",
+    "downloading": "Загрузка контента..."
   },
   "firebase": {
     "imageLoading": "Загрузка изображения...",
@@ -234,9 +238,14 @@
     "appearance": "Оформление",
     "language": "Язык",
     "appLanguage": "Язык",
+    "selectLanguage": "Выбрать язык",
     "examContent": "Пакеты экзаменационных материалов",
+    "bookContent": "Пакеты книжного контента",
     "dataManagement": "Управление данными",
-    "downloadingLanguage": "Загрузка языкового пакета..."
+    "downloadingLanguage": "Загрузка языкового пакета...",
+    "deleteConfirm": "Удалить этот контент?",
+    "deleteBookConfirm": "Удалить содержимое этой книги?",
+    "downloadError": "Не удалось скачать контент: {{msg}}"
   },
   "drawer": {
     "subtitle": "Приложение для подготовки"

@@ -43,6 +43,12 @@ service firebase.storage {
       allow write: if false; 
     }
 
+    // 4. Allow reading Book Content (bookContent.xx.json)
+    match /book/content/{fileName=**} {
+      allow read: if true;
+      allow write: if false; 
+    }
+
     // --- Default Block ---
     // Explicitly deny all other access to prevent unauthorized writes
     match /{allPaths=**} {

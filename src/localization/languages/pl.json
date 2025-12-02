@@ -106,8 +106,10 @@
     "previous": "Wstecz",
     "next": "Dalej",
     "markAsRead": "Oznacz jako przeczytane",
+    "read": "Przeczytane",
     "progressSaved": "Postęp zapisany",
     "sectionMarkedAsRead": "Sekcja oznaczona jako przeczytana!",
+    "searchPlaceholder": "Szukaj w treści...",
     "chapter1": {
       "title": "Wartości i zasady Zjednoczonego Królestwa",
       "description": "Podstawowe zasady brytyjskiego życia",
@@ -201,7 +203,9 @@
     "ok": "OK",
     "minutes_short": "min",
     "seconds_short": "s",
-    "download": "Pobierz"
+    "download": "Pobierz",
+    "close": "Zamknij",
+    "downloading": "Pobieranie treści..."
   },
   "firebase": {
     "imageLoading": "Ładowanie obrazu...",
@@ -234,9 +238,14 @@
     "appearance": "Wygląd",
     "language": "Język",
     "appLanguage": "Język",
+    "selectLanguage": "Wybierz język",
     "examContent": "Pakiety treści egzaminu",
+    "bookContent": "Pakiety treści książki",
     "dataManagement": "Zarządzanie danymi",
-    "downloadingLanguage": "Pobieranie pakietu językowego..."
+    "downloadingLanguage": "Pobieranie pakietu językowego...",
+    "deleteConfirm": "Usunąć tę zawartość?",
+    "deleteBookConfirm": "Usunąć zawartość tej książki?",
+    "downloadError": "Nie udało się pobrać zawartości: {{msg}}"
   },
   "drawer": {
     "subtitle": "Aplikacja do przygotowania"

@@ -229,21 +229,29 @@ class LanguageManager {
     throw new Error(`Book content for ${langCode} not found locally.`);
   }
 
-  /**
-   * Deletes a downloaded language file to free up space.
-   */
-  async deleteLanguage(langCode: string): Promise<void> {
+  async deleteBookContent(langCode: string): Promise<void> {
     if (langCode === 'en') return;
-    
-    const localPath = this.getLocalFilePath(langCode);
-    if (await RNFS.exists(localPath)) {
-      await RNFS.unlink(localPath);
-    }
-
     const bookPath = this.getLocalBookFilePath(langCode);
     if (await RNFS.exists(bookPath)) {
       await RNFS.unlink(bookPath);
     }
+  }
+
+  async deleteExamContent(langCode: string): Promise<void> {
+    if (langCode === 'en') return;
+    const localPath = this.getLocalFilePath(langCode);
+    if (await RNFS.exists(localPath)) {
+      await RNFS.unlink(localPath);
+    }
+  }
+
+  /**
+   * Deletes a downloaded language file to free up space.
+   * Deletes BOTH exam and book content.
+   */
+  async deleteLanguage(langCode: string): Promise<void> {
+    await this.deleteBookContent(langCode);
+    await this.deleteExamContent(langCode);
 
     // Also remove from versions
     const versions = await this.getLocalVersions();

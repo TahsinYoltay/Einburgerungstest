@@ -106,8 +106,10 @@
     "previous": "前へ",
     "next": "次へ",
     "markAsRead": "既読にする",
+    "read": "既読",
     "progressSaved": "進捗を保存しました",
     "sectionMarkedAsRead": "セクションを既読にしました！",
+    "searchPlaceholder": "コンテンツ内を検索...",
     "chapter1": {
       "title": "英国の価値観と原則",
       "description": "英国生活の基本原則",
@@ -201,7 +203,9 @@
     "ok": "OK",
     "minutes_short": "分",
     "seconds_short": "秒",
-    "download": "ダウンロード"
+    "download": "ダウンロード",
+    "close": "閉じる",
+    "downloading": "コンテンツをダウンロードしています..."
   },
   "firebase": {
     "imageLoading": "画像を読み込み中...",
@@ -234,9 +238,14 @@
     "appearance": "外観",
     "language": "言語",
     "appLanguage": "言語",
+    "selectLanguage": "言語を選択",
     "examContent": "試験コンテンツパッケージ",
+    "bookContent": "書籍コンテンツパッケージ",
     "dataManagement": "データ管理",
-    "downloadingLanguage": "言語パックをダウンロード中..."
+    "downloadingLanguage": "言語パックをダウンロード中...",
+    "deleteConfirm": "このコンテンツを削除しますか？",
+    "deleteBookConfirm": "この本のコンテンツを削除しますか？",
+    "downloadError": "コンテンツのダウンロードに失敗しました: {{msg}}"
   },
   "drawer": {
     "subtitle": "試験対策アプリ"

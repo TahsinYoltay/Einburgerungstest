@@ -106,8 +106,10 @@
     "previous": "Anterior",
     "next": "Próximo",
     "markAsRead": "Marcar como lido",
+    "read": "Lido",
     "progressSaved": "Progresso salvo",
     "sectionMarkedAsRead": "Seção marcada como lida!",
+    "searchPlaceholder": "Pesquisar no conteúdo...",
     "chapter1": {
       "title": "Os valores e princípios do Reino Unido",
       "description": "Princípios fundamentais da vida britânica",
@@ -201,7 +203,9 @@
     "ok": "OK",
     "minutes_short": "m",
     "seconds_short": "s",
-    "download": "Baixar"
+    "download": "Baixar",
+    "close": "Fechar",
+    "downloading": "Baixando conteúdo..."
   },
   "firebase": {
     "imageLoading": "Carregando imagem...",
@@ -234,9 +238,14 @@
     "appearance": "Aparência",
     "language": "Idioma",
     "appLanguage": "Idioma",
+    "selectLanguage": "Selecionar idioma",
     "examContent": "Pacotes de conteúdo dos exames",
+    "bookContent": "Pacotes de conteúdo dos livros",
     "dataManagement": "Gerenciamento de dados",
-    "downloadingLanguage": "Baixando pacote de idioma..."
+    "downloadingLanguage": "Baixando pacote de idioma...",
+    "deleteConfirm": "Excluir este conteúdo?",
+    "deleteBookConfirm": "Excluir o conteúdo deste livro?",
+    "downloadError": "Falha ao baixar o conteúdo: {{msg}}"
   },
   "drawer": {
     "subtitle": "Aplicativo de preparação"

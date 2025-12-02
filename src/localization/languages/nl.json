@@ -106,8 +106,10 @@
     "previous": "Vorige",
     "next": "Volgende",
     "markAsRead": "Markeer als gelezen",
+    "read": "Gelezen",
     "progressSaved": "Voortgang opgeslagen",
     "sectionMarkedAsRead": "Sectie gemarkeerd als gelezen!",
+    "searchPlaceholder": "Zoek in de inhoud...",
     "chapter1": {
       "title": "Waarden en principes van het Verenigd Koninkrijk",
       "description": "Fundamentele principes van het Britse leven",
@@ -201,7 +203,9 @@
     "ok": "OK",
     "minutes_short": "m",
     "seconds_short": "s",
-    "download": "Downloaden"
+    "download": "Downloaden",
+    "close": "Sluiten",
+    "downloading": "Inhoud wordt gedownload..."
   },
   "firebase": {
     "imageLoading": "Afbeelding wordt geladen...",
@@ -234,9 +238,14 @@
     "appearance": "Weergave",
     "language": "Taal",
     "appLanguage": "Taal",
+    "selectLanguage": "Taal selecteren",
     "examContent": "Examencursus-pakketten",
+    "bookContent": "Boekinhoudspakketten",
     "dataManagement": "Gegevensbeheer",
-    "downloadingLanguage": "Taalpakket downloaden..."
+    "downloadingLanguage": "Taalpakket downloaden...",
+    "deleteConfirm": "Deze inhoud verwijderen?",
+    "deleteBookConfirm": "Deze boekinhoud verwijderen?",
+    "downloadError": "Downloaden van inhoud mislukt: {{msg}}"
   },
   "drawer": {
     "subtitle": "Voorbereidingsapp"
