@@ -106,8 +106,10 @@
     "previous": "Précédent",
     "next": "Suivant",
     "markAsRead": "Marquer comme lu",
+    "read": "Lu",
     "progressSaved": "Progrès enregistré",
     "sectionMarkedAsRead": "Section marquée comme lue !",
+    "searchPlaceholder": "Rechercher dans le contenu...",
     "chapter1": {
       "title": "Les valeurs et principes du Royaume-Uni",
       "description": "Principes fondamentaux",
@@ -201,7 +203,9 @@
     "ok": "OK",
     "minutes_short": "m",
     "seconds_short": "s",
-    "download": "Télécharger"
+    "download": "Télécharger",
+    "close": "Fermer",
+    "downloading": "Téléchargement du contenu..."
   },
   "firebase": {
     "imageLoading": "Chargement image...",
@@ -234,9 +238,14 @@
     "appearance": "Apparence",
     "language": "Langue",
     "appLanguage": "Langue",
+    "selectLanguage": "Sélectionner la langue",
     "examContent": "Contenu de l'examen",
+    "bookContent": "Contenu du livre",
     "dataManagement": "Gestion des données",
-    "downloadingLanguage": "Téléchargement langue..."
+    "downloadingLanguage": "Téléchargement langue...",
+    "deleteConfirm": "Supprimer ce contenu ?",
+    "deleteBookConfirm": "Supprimer le contenu de ce livre ?",
+    "downloadError": "Échec du téléchargement du contenu : {{msg}}"
   },
   "drawer": {
     "subtitle": "App de préparation"

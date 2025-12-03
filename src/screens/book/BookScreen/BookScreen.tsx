@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { View, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { View, ScrollView, TouchableOpacity, ActivityIndicator, RefreshControl } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
@@ -13,9 +13,18 @@ import { getAvailableChapters } from '../../../data/book/chapters';
 import type { Chapter, SubSection } from '../../../data/book/chapters';
 import { getReadingProgress, getChapterProgress } from '../../../utils/readingProgress';
 import type { ReadingProgress } from '../../../utils/readingProgress';
-import { useAppSelector } from '../../../store/hooks';
+import { useAppSelector, useAppDispatch } from '../../../store/hooks';
+import { loadBookContent } from '../../../store/slices/bookSlice';
 
 type BookScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
+// Extended type to include content
+interface EnhancedSubSection extends SubSection {
+  content?: string;
+}
+interface EnhancedChapter extends Omit<Chapter, 'subSections'> {
+  subSections: EnhancedSubSection[];
+}
 
 const BookScreen = () => {
   const { t } = useTranslation();
@@ -23,26 +32,49 @@ const BookScreen = () => {
   const { theme } = useAppTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
   const userId = useAppSelector(state => state.user.user?.id);
+  const dispatch = useAppDispatch();
+  
+  const { data: bookData, loading } = useAppSelector(state => state.book);
 
   const [readingProgress, setReadingProgress] = useState<ReadingProgress>({});
   const [chapterProgresses, setChapterProgresses] = useState<{ [chapterId: string]: { completed: number; total: number; percentage: number } }>({});
   const [expandedChapters, setExpandedChapters] = useState<{ [chapterId: string]: boolean }>({});
+  const [refreshing, setRefreshing] = useState(false);
   
-  const chapters = getAvailableChapters();
+  // Load book content on mount
+  useEffect(() => {
+    dispatch(loadBookContent());
+  }, [dispatch]);
 
-  // Refresh progress every time screen gains focus
-  useFocusEffect(
-    React.useCallback(() => {
-      loadReadingProgress();
-    }, [userId])
-  );
+  // Merge static assets (images) with dynamic content (translations/html)
+  const chapters: EnhancedChapter[] = useMemo(() => {
+    const staticChapters = getAvailableChapters();
+    if (!bookData) return staticChapters;
+
+    return staticChapters.map(staticChap => {
+      const dynamicChap = bookData.chapters.find(d => d.id === staticChap.id);
+      if (!dynamicChap) return staticChap;
+
+      return {
+        ...staticChap,
+        title: dynamicChap.title || staticChap.title,
+        description: dynamicChap.description || staticChap.description,
+        subSections: staticChap.subSections.map(sub => {
+          const dynSub = dynamicChap.subSections.find(ds => ds.id === sub.id);
+          return {
+            ...sub,
+            title: dynSub?.title || sub.title,
+            content: dynSub?.content
+          };
+        })
+      };
+    });
+  }, [bookData]);
 
   const loadReadingProgress = async () => {
-    console.log('📊 BookScreen - Loading reading progress...');
     const progress = await getReadingProgress(userId || undefined);
     setReadingProgress(progress);
     
-    // Calculate progress for each chapter
     const progresses: { [chapterId: string]: { completed: number; total: number; percentage: number } } = {};
     for (const chapter of chapters) {
       const sectionIds = chapter.subSections.map(section => section.id);
@@ -51,23 +83,40 @@ const BookScreen = () => {
     setChapterProgresses(progresses);
   };
 
-  const openChapter = (chapter: Chapter, targetSectionId?: string) => {
-    // Default to first subsection if no specific section is provided
-    const sectionId = targetSectionId || `${chapter.id}-1`;
-    
-    navigation.navigate(ROUTES.EPUB_READER, {
-      bookTitle: chapter.title,
-      chapterId: chapter.id,
-      targetSectionId: sectionId,
-    });
+  // Refresh progress every time screen gains focus
+  useFocusEffect(
+    useCallback(() => {
+      loadReadingProgress();
+    }, [userId, chapters])
+  );
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await dispatch(loadBookContent()); // Reload content
+    await loadReadingProgress(); // Reload progress
+    setRefreshing(false);
   };
 
-  const openSubSection = (chapter: Chapter, subSection: SubSection) => {
-    navigation.navigate(ROUTES.EPUB_READER, {
-      bookTitle: chapter.title,
-      chapterId: chapter.id,
-      targetSectionId: subSection.id,
-    });
+  const openChapter = (chapter: EnhancedChapter, targetSectionId?: string) => {
+    // Default to first subsection if no specific section is provided
+    const subSection = chapter.subSections[0];
+    if (subSection) {
+       navigation.navigate(ROUTES.READER, {
+        chapterId: chapter.id,
+        subSectionId: subSection.id,
+      });
+    }
+  };
+
+  const openSubSection = (chapter: EnhancedChapter, subSection: EnhancedSubSection) => {
+    if (subSection) {
+      navigation.navigate(ROUTES.READER, {
+        chapterId: chapter.id,
+        subSectionId: subSection.id,
+      });
+    } else {
+      console.warn('No subsection found');
+    }
   };
 
   const toggleChapterExpansion = (chapterId: string) => {
@@ -87,7 +136,7 @@ const BookScreen = () => {
     return isRead ? theme.colors.primary : theme.colors.outline; // Use outline instead of hardcoded gray
   };
 
-  const renderSubSection = (chapter: Chapter, subSection: SubSection) => {
+  const renderSubSection = (chapter: EnhancedChapter, subSection: EnhancedSubSection) => {
     const isRead = readingProgress[subSection.id]?.isRead;
     const timeSpent = readingProgress[subSection.id]?.timeSpent;
     
@@ -152,7 +201,7 @@ const BookScreen = () => {
     );
   };
 
-  const renderChapter = (chapter: Chapter) => {
+  const renderChapter = (chapter: EnhancedChapter) => {
     const isExpanded = expandedChapters[chapter.id];
     const progress = chapterProgresses[chapter.id];
     const progressPercentage = progress ? progress.percentage / 100 : 0;
@@ -233,11 +282,23 @@ const BookScreen = () => {
     );
   };
 
+  if (loading && !bookData) {
+     return (
+         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: theme.colors.background}}>
+             <ActivityIndicator size="large" color={theme.colors.primary} />
+             <Text style={{marginTop: 10, color: theme.colors.onSurface}}>Loading Content...</Text>
+         </View>
+     );
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView 
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={theme.colors.primary} />
+        }
       >
         <View style={styles.header}>
           <Text variant="headlineMedium" style={styles.title}>

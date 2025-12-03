@@ -2,12 +2,16 @@ import { Platform } from 'react-native';
 import * as RNFS from '@dr.pogodin/react-native-fs';
 import storage from '@react-native-firebase/storage';
 import defaultChaptersData from '../data/exam/normalized/allChaptersData.normalized.json';
+import defaultBookData from '../assets/content/bookContent.en.json';
+import { BookContent } from '../types/book';
 
 // Define the type for the chapters data structure
 export type ChaptersData = typeof defaultChaptersData;
+export type BookData = BookContent;
 
 const TRANSLATIONS_DIR = `${RNFS.DocumentDirectoryPath}/translations`;
 const STORAGE_PATH_PREFIX = 'exam/translations'; // Path in Firebase Storage
+const BOOK_STORAGE_PATH_PREFIX = 'book/content'; // Path in Firebase Storage for Book
 const VERSIONS_FILE = 'versions.json';
 
 class LanguageManager {
@@ -26,6 +30,10 @@ class LanguageManager {
    */
   private getLocalFilePath(langCode: string): string {
     return `${TRANSLATIONS_DIR}/allChaptersData.${langCode}.json`;
+  }
+
+  private getLocalBookFilePath(langCode: string): string {
+    return `${TRANSLATIONS_DIR}/bookContent.${langCode}.json`;
   }
 
   private getVersionsFilePath(): string {
@@ -70,6 +78,13 @@ class LanguageManager {
       return await RNFS.exists(this.getLocalFilePath(langCode));
     }
     return await RNFS.exists(this.getLocalFilePath(langCode));
+  }
+
+  async isBookDownloaded(langCode: string): Promise<boolean> {
+    if (langCode === 'en') {
+      return await RNFS.exists(this.getLocalBookFilePath(langCode));
+    }
+    return await RNFS.exists(this.getLocalBookFilePath(langCode));
   }
 
   /**
@@ -135,6 +150,35 @@ class LanguageManager {
     }
   }
 
+  async downloadBook(
+    langCode: string,
+    onProgress?: (snapshot: { bytesTransferred: number; totalBytes: number }) => void
+  ): Promise<void> {
+    try {
+      await this.ensureDirExists();
+      const localPath = this.getLocalBookFilePath(langCode);
+      const remotePath = `${BOOK_STORAGE_PATH_PREFIX}/bookContent.${langCode}.json`;
+      
+      console.log(`LanguageManager: Starting book download...`);
+      const reference = storage().ref(remotePath);
+      const task = reference.writeToFile(localPath);
+
+      if (onProgress) {
+        task.on('state_changed', (snapshot) => {
+          onProgress({
+            bytesTransferred: snapshot.bytesTransferred,
+            totalBytes: snapshot.totalBytes,
+          });
+        });
+      }
+      await task;
+      console.log(`LanguageManager: Book download complete.`);
+    } catch (error) {
+      console.error('LanguageManager: Book download failed', error);
+      throw error;
+    }
+  }
+
   /**
    * Loads the exam data for a specific language.
    * If 'en', tries downloaded file first, then bundled.
@@ -166,15 +210,49 @@ class LanguageManager {
     return JSON.parse(fileContent) as ChaptersData;
   }
 
-  /**
-   * Deletes a downloaded language file to free up space.
-   */
-  async deleteLanguage(langCode: string): Promise<void> {
+  async loadBookData(langCode: string): Promise<BookData> {
+    console.log(`LanguageManager: Loading book data for ${langCode}`);
+    if (langCode === 'en') {
+      const localPath = this.getLocalBookFilePath('en');
+      if (await RNFS.exists(localPath)) {
+         const fileContent = await RNFS.readFile(localPath, 'utf8');
+         return JSON.parse(fileContent) as BookData;
+      }
+      return defaultBookData as unknown as BookData;
+    }
+    
+    const localPath = this.getLocalBookFilePath(langCode);
+    if (await RNFS.exists(localPath)) {
+       const fileContent = await RNFS.readFile(localPath, 'utf8');
+       return JSON.parse(fileContent) as BookData;
+    }
+    throw new Error(`Book content for ${langCode} not found locally.`);
+  }
+
+  async deleteBookContent(langCode: string): Promise<void> {
+    if (langCode === 'en') return;
+    const bookPath = this.getLocalBookFilePath(langCode);
+    if (await RNFS.exists(bookPath)) {
+      await RNFS.unlink(bookPath);
+    }
+  }
+
+  async deleteExamContent(langCode: string): Promise<void> {
     if (langCode === 'en') return;
     const localPath = this.getLocalFilePath(langCode);
     if (await RNFS.exists(localPath)) {
       await RNFS.unlink(localPath);
     }
+  }
+
+  /**
+   * Deletes a downloaded language file to free up space.
+   * Deletes BOTH exam and book content.
+   */
+  async deleteLanguage(langCode: string): Promise<void> {
+    await this.deleteBookContent(langCode);
+    await this.deleteExamContent(langCode);
+
     // Also remove from versions
     const versions = await this.getLocalVersions();
     if (versions[langCode]) {

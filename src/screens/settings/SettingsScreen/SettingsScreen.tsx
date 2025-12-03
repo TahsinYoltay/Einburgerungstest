@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { createStyles } from './SettingsScreen.style';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { resetExamData, switchExamLanguage } from '../../../store/slices/examSlice';
+import { switchBookLanguage } from '../../../store/slices/bookSlice';
 import { languageManager } from '../../../services/LanguageManager';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 
@@ -16,30 +17,36 @@ const SettingsScreen = () => {
   const styles = useMemo(() => createStyles(theme), [theme]);
   
   const { isDownloadingLanguage, downloadProgress, currentLanguage: examContentLang } = useAppSelector(state => state.exam);
+  const { loading: isBookDownloading, currentLanguage: bookContentLang } = useAppSelector(state => state.book);
   const { languages: availableLanguages } = useAppSelector(state => state.content);
   
   const languages = availableLanguages;
-  const [downloadedStatus, setDownloadedStatus] = useState<Record<string, boolean>>({});
+  const [examDownloadedStatus, setExamDownloadedStatus] = useState<Record<string, boolean>>({});
+  const [bookDownloadedStatus, setBookDownloadedStatus] = useState<Record<string, boolean>>({});
   const [showAppLangDialog, setShowAppLangDialog] = useState(false);
-  const [showContentLangDialog, setShowContentLangDialog] = useState(false);
+  const [showExamLangDialog, setShowExamLangDialog] = useState(false);
+  const [showBookLangDialog, setShowBookLangDialog] = useState(false);
 
   // Check which languages are downloaded on mount
   useEffect(() => {
     const checkDownloads = async () => {
-      const status: Record<string, boolean> = {};
+      const eStatus: Record<string, boolean> = {};
+      const bStatus: Record<string, boolean> = {};
       for (const lang of languages) {
-        status[lang.code] = await languageManager.isLanguageDownloaded(lang.code);
+        eStatus[lang.code] = await languageManager.isLanguageDownloaded(lang.code);
+        bStatus[lang.code] = await languageManager.isBookDownloaded(lang.code);
       }
-      setDownloadedStatus(status);
+      setExamDownloadedStatus(eStatus);
+      setBookDownloadedStatus(bStatus);
     };
     checkDownloads();
-  }, [languages, isDownloadingLanguage]); 
+  }, [languages, isDownloadingLanguage, isBookDownloading]); 
 
   const handleResetExam = () => {
     dispatch(resetExamData({}));
   };
 
-  const handleContentLanguageChange = async (langCode: string) => {
+  const handleExamLanguageChange = async (langCode: string) => {
     if (isDownloadingLanguage) return;
     try {
       await dispatch(switchExamLanguage(langCode)).unwrap();
@@ -48,8 +55,18 @@ const SettingsScreen = () => {
     }
   };
 
+  const handleBookLanguageChange = async (langCode: string) => {
+    if (isBookDownloading) return;
+    try {
+      await dispatch(switchBookLanguage(langCode)).unwrap();
+    } catch (error) {
+      Alert.alert(t('common.error'), t('settings.downloadError', { msg: String(error) }));
+    }
+  };
+
   const currentAppLangName = languages.find(l => l.code === i18n.language)?.nativeName || 'English';
-  const currentContentLangName = languages.find(l => l.code === examContentLang)?.nativeName || 'English';
+  const currentExamLangName = languages.find(l => l.code === examContentLang)?.nativeName || 'English';
+  const currentBookLangName = languages.find(l => l.code === bookContentLang)?.nativeName || 'English';
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -89,10 +106,24 @@ const SettingsScreen = () => {
 
             <List.Item
               title={t('settings.examContent')}
-              description={isDownloadingLanguage ? t('settings.downloadingLanguage') : currentContentLangName}
-              onPress={() => setShowContentLangDialog(true)}
+              description={isDownloadingLanguage ? t('settings.downloadingLanguage') : currentExamLangName}
+              onPress={() => setShowExamLangDialog(true)}
               right={props => 
                 isDownloadingLanguage 
+                  ? <ActivityIndicator size="small" /> 
+                  : <List.Icon {...props} icon="chevron-right" />
+              }
+              style={styles.settingItem}
+            />
+
+            <Divider style={styles.divider} />
+
+            <List.Item
+              title="Book Content"
+              description={isBookDownloading ? t('settings.downloadingLanguage') : currentBookLangName}
+              onPress={() => setShowBookLangDialog(true)}
+              right={props => 
+                isBookDownloading 
                   ? <ActivityIndicator size="small" /> 
                   : <List.Icon {...props} icon="chevron-right" />
               }
@@ -141,21 +172,21 @@ const SettingsScreen = () => {
               ))}
             </ScrollView>
           </Dialog.Content>
-          <Dialog.Actions>
-            <Button onPress={() => setShowAppLangDialog(false)}>{t('common.cancel')}</Button>
+          <Dialog.Actions style={{ justifyContent: 'center', paddingBottom: 16 }}>
+            <Button mode="contained" onPress={() => setShowAppLangDialog(false)} style={{ width: '80%' }}>{t('common.close')}</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>
 
       {/* Exam Content Dialog */}
       <Portal>
-        <Dialog visible={showContentLangDialog} onDismiss={() => setShowContentLangDialog(false)}>
+        <Dialog visible={showExamLangDialog} onDismiss={() => setShowExamLangDialog(false)}>
           <Dialog.Title>{t('settings.examContent')}</Dialog.Title>
           <Dialog.Content>
             <ScrollView style={{ maxHeight: 400 }} contentContainerStyle={{ paddingHorizontal: 8 }}>
               {languages.map((lang, index, arr) => {
                 const isSelected = examContentLang === lang.code;
-                const isDownloaded = downloadedStatus[lang.code];
+                const isDownloaded = examDownloadedStatus[lang.code];
                 const isDefault = lang.code === 'en';
 
                 return (
@@ -164,8 +195,8 @@ const SettingsScreen = () => {
                       title={lang.nativeName}
                       description={lang.name}
                       onPress={() => {
-                        handleContentLanguageChange(lang.code);
-                        setShowContentLangDialog(false);
+                        handleExamLanguageChange(lang.code);
+                        setShowExamLangDialog(false);
                       }}
                       right={props => (
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -187,17 +218,17 @@ const SettingsScreen = () => {
                                         text: t('common.delete'), 
                                         style: 'destructive',
                                         onPress: async () => {
-                                          await languageManager.deleteLanguage(lang.code);
-                                          const status = { ...downloadedStatus };
+                                          await languageManager.deleteExamContent(lang.code);
+                                          const status = { ...examDownloadedStatus };
                                           status[lang.code] = false;
-                                          setDownloadedStatus(status);
+                                          setExamDownloadedStatus(status);
                                         }
                                       }
                                     ]
                                   );
                                 } else {
-                                  handleContentLanguageChange(lang.code);
-                                  setShowContentLangDialog(false);
+                                  handleExamLanguageChange(lang.code);
+                                  setShowExamLangDialog(false);
                                 }
                               }}
                             />
@@ -211,8 +242,75 @@ const SettingsScreen = () => {
               })}
             </ScrollView>
           </Dialog.Content>
-          <Dialog.Actions>
-            <Button onPress={() => setShowContentLangDialog(false)}>{t('common.cancel')}</Button>
+          <Dialog.Actions style={{ justifyContent: 'center', paddingBottom: 16 }}>
+            <Button mode="contained" onPress={() => setShowExamLangDialog(false)} style={{ width: '80%' }}>{t('common.close')}</Button>
+          </Dialog.Actions>
+        </Dialog>
+
+        <Dialog visible={showBookLangDialog} onDismiss={() => setShowBookLangDialog(false)}>
+          <Dialog.Title>Book Content</Dialog.Title>
+          <Dialog.Content>
+            <ScrollView style={{ maxHeight: 400 }} contentContainerStyle={{ paddingHorizontal: 8 }}>
+              {languages.map((lang, index, arr) => {
+                const isSelected = bookContentLang === lang.code;
+                const isDownloaded = bookDownloadedStatus[lang.code];
+                const isDefault = lang.code === 'en';
+
+                return (
+                  <React.Fragment key={lang.code}>
+                    <List.Item
+                      title={lang.nativeName}
+                      description={lang.name}
+                      onPress={() => {
+                        handleBookLanguageChange(lang.code);
+                        setShowBookLangDialog(false);
+                      }}
+                      right={props => (
+                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                          {isSelected && <List.Icon {...props} icon="check" color="green" />}
+                          {!isDefault && (
+                            <IconButton
+                              icon={isDownloaded ? "delete" : "cloud-download-outline"}
+                              size={20}
+                              iconColor={isDownloaded ? "red" : "blue"}
+                              onPress={(e) => {
+                                e.stopPropagation();
+                                if (isDownloaded) {
+                                  Alert.alert(
+                                    t('common.delete'),
+                                    t('settings.deleteConfirm', { defaultValue: 'Delete this book content?' }),
+                                    [
+                                      { text: t('common.cancel'), style: 'cancel' },
+                                      { 
+                                        text: t('common.delete'), 
+                                        style: 'destructive',
+                                        onPress: async () => {
+                                          await languageManager.deleteBookContent(lang.code);
+                                          const status = { ...bookDownloadedStatus };
+                                          status[lang.code] = false;
+                                          setBookDownloadedStatus(status);
+                                        }
+                                      }
+                                    ]
+                                  );
+                                } else {
+                                  handleBookLanguageChange(lang.code);
+                                  setShowBookLangDialog(false);
+                                }
+                              }}
+                            />
+                          )}
+                        </View>
+                      )}
+                    />
+                    {index < arr.length - 1 && <Divider style={{ backgroundColor: theme.colors.outline, height: 1 }} />}
+                  </React.Fragment>
+                );
+              })}
+            </ScrollView>
+          </Dialog.Content>
+          <Dialog.Actions style={{ justifyContent: 'center', paddingBottom: 16 }}>
+            <Button mode="contained" onPress={() => setShowBookLangDialog(false)} style={{ width: '80%' }}>{t('common.close')}</Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>

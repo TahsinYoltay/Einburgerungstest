@@ -106,8 +106,10 @@
     "previous": "السابق",
     "next": "التالي",
     "markAsRead": "وضع علامة كمقروء",
+    "read": "مقروء",
     "progressSaved": "تم حفظ التقدم",
     "sectionMarkedAsRead": "تم وضع علامة على القسم كمقروء!",
+    "searchPlaceholder": "ابحث في المحتوى...",
     "chapter1": {
       "title": "قيم ومبادئ المملكة المتحدة",
       "description": "المبادئ الأساسية للحياة البريطانية",
@@ -201,7 +203,9 @@
     "ok": "موافق",
     "minutes_short": "د",
     "seconds_short": "ث",
-    "download": "تنزيل"
+    "download": "تنزيل",
+    "close": "إغلاق",
+    "downloading": "جارٍ تنزيل المحتوى..."
   },
   "firebase": {
     "imageLoading": "جارٍ تحميل الصورة...",
@@ -234,9 +238,14 @@
     "appearance": "المظهر",
     "language": "اللغة",
     "appLanguage": "اللغة",
+    "selectLanguage": "اختر اللغة",
     "examContent": "حزم محتوى الامتحان",
+    "bookContent": "حزم محتوى الكتاب",
     "dataManagement": "إدارة البيانات",
-    "downloadingLanguage": "جارٍ تنزيل حزمة اللغة..."
+    "downloadingLanguage": "جارٍ تنزيل حزمة اللغة...",
+    "deleteConfirm": "هل تريد حذف هذا المحتوى؟",
+    "deleteBookConfirm": "هل تريد حذف محتوى هذا الكتاب؟",
+    "downloadError": "فشل تنزيل المحتوى: {{msg}}"
   },
   "drawer": {
     "subtitle": "تطبيق للتحضير للامتحان"

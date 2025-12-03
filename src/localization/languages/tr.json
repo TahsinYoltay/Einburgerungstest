@@ -106,8 +106,10 @@
     "previous": "Önceki",
     "next": "Sonraki",
     "markAsRead": "Okundu Olarak İşaretle",
+    "read": "Okundu",
     "progressSaved": "İlerleme Kaydedildi",
     "sectionMarkedAsRead": "Bölüm okundu işaretlendi!",
+    "searchPlaceholder": "İçerikte ara...",
     "chapter1": {
       "title": "Birleşik Krallık Değerleri ve İlkeleri",
       "description": "Temel ilkeler",
@@ -201,7 +203,9 @@
     "ok": "Tamam",
     "minutes_short": "dk",
     "seconds_short": "sn",
-    "download": "İndir"
+    "download": "İndir",
+    "close": "Kapat",
+    "downloading": "İçerik indiriliyor..."
   },
   "firebase": {
     "imageLoading": "Resim yükleniyor...",
@@ -234,9 +238,14 @@
     "appearance": "Görünüm",
     "language": "Dil",
     "appLanguage": "Dil",
+    "selectLanguage": "Dil Seç",
     "examContent": "Sınav İçerik Paketleri",
+    "bookContent": "Kitap İçerik Paketleri",
     "dataManagement": "Veri Yönetimi",
-    "downloadingLanguage": "Dil paketi indiriliyor..."
+    "downloadingLanguage": "Dil paketi indiriliyor...",
+    "deleteConfirm": "Bu içeriği silmek istiyor musunuz?",
+    "deleteBookConfirm": "Bu kitap içeriğini silmek istiyor musunuz?",
+    "downloadError": "İçerik indirilemedi: {{msg}}"
   },
   "drawer": {
     "subtitle": "Sınav Hazırlık Uygulaması"

@@ -105,9 +105,11 @@
     "sectionContentError": "Unable to load section content. Please try again.",
     "previous": "Previous",
     "next": "Next",
-    "markAsRead": "Mark as Read",
+    "markAsRead": "Mark Read",
+    "read": "Read",
     "progressSaved": "Progress Saved",
     "sectionMarkedAsRead": "Section marked as read!",
+    "searchPlaceholder": "Search in content...",
     "chapter1": {
       "title": "The Values and Principles of the UK",
       "description": "Fundamental principles of British life",
@@ -201,7 +203,9 @@
     "ok": "OK",
     "minutes_short": "m",
     "seconds_short": "s",
-    "download": "Download"
+    "download": "Download",
+    "close": "Close",
+    "downloading": "Downloading content..."
   },
   "firebase": {
     "imageLoading": "Loading image...",
@@ -234,9 +238,14 @@
     "appearance": "Appearance",
     "language": "Language",
     "appLanguage": "Language",
+    "selectLanguage": "Select Language",
     "examContent": "Exam Content Packages",
+    "bookContent": "Book Content Packages",
     "dataManagement": "Data Management",
-    "downloadingLanguage": "Downloading language pack..."
+    "downloadingLanguage": "Downloading language pack...",
+    "deleteConfirm": "Delete this content?",
+    "deleteBookConfirm": "Delete this book content?",
+    "downloadError": "Failed to download content: {{msg}}"
   },
   "drawer": {
     "subtitle": "Test Preparation App"
