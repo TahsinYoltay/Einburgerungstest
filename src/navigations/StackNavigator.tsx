@@ -8,6 +8,11 @@ import ExamScreen from '../screens/exam/ExamScreen/ExamScreen';
 import WebReaderScreen from '../screens/book/WebReaderScreen';
 import { ROUTES } from '../constants/routes';
 import TabNavigator from './TabNavigator';
+import SettingsScreen from '../screens/settings/SettingsScreen/SettingsScreen';
+import AccountScreen from '../screens/account/AccountScreen/AccountScreen';
+import ProfileInfoScreen from '../screens/account/ProfileInfoScreen/ProfileInfoScreen';
+import HelpSupportScreen from '../screens/account/HelpSupportScreen/HelpSupportScreen';
+import PrivacyPolicyScreen from '../screens/account/PrivacyPolicyScreen/PrivacyPolicyScreen';
 
 export type RootStackParamList = {
   [ROUTES.AUTH]: undefined;
@@ -15,10 +20,14 @@ export type RootStackParamList = {
   [ROUTES.REGISTER]: undefined;
   [ROUTES.FORGOT_PASSWORD]: undefined;
   [ROUTES.HOME]: undefined;
+  [ROUTES.ACCOUNT]: undefined;
+  [ROUTES.PROFILE_INFO]: undefined;
+  [ROUTES.HELP]: undefined;
+  [ROUTES.PRIVACY]: undefined;
   HomeTab: undefined;
   BookTab: undefined;
   ExamTab: { id?: string };
-  SettingsTab: undefined;
+  ProgressTab: undefined;
   [ROUTES.EXAM]: { id: string; restart?: boolean };
   [ROUTES.EXAM_RESULTS]: { examId: string };
   [ROUTES.BOOK]: undefined;
@@ -26,7 +35,6 @@ export type RootStackParamList = {
   [ROUTES.READER]: { chapterId: string; subSectionId: string };
   [ROUTES.TEST]: undefined;
   [ROUTES.SETTINGS]: undefined;
-  [ROUTES.PROFILE]: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -41,30 +49,48 @@ function RootNavigator() {
       }}
       initialRouteName={isAuthenticated ? ROUTES.HOME : ROUTES.LOGIN}
     >
-      {!isAuthenticated ? (
-        <>
-          <Stack.Screen name={ROUTES.LOGIN} component={LoginScreen} />
-          <Stack.Screen name={ROUTES.REGISTER} component={RegisterScreen} />
-          <Stack.Screen name={ROUTES.FORGOT_PASSWORD} component={ForgotPasswordScreen} />
-        </>
-      ) : (
-        <>
-          {/* TabNavigator contains HomeTab, BookTab, ExamTab, TestTab, and SettingsTab screens */}
-          <Stack.Screen name={ROUTES.HOME} component={TabNavigator} />
-          {/* Screens that should open as standalone pages with back navigation */}
-          <Stack.Screen
-            name={ROUTES.EXAM}
-            component={ExamScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen name={ROUTES.EXAM_RESULTS} component={ExamResults} />
-          <Stack.Screen
-            name={ROUTES.READER}
-            component={WebReaderScreen}
-            options={{ headerShown: false }}
-          />
-        </>
-      )}
+      <Stack.Screen name={ROUTES.LOGIN} component={LoginScreen} />
+      <Stack.Screen name={ROUTES.REGISTER} component={RegisterScreen} />
+      <Stack.Screen name={ROUTES.FORGOT_PASSWORD} component={ForgotPasswordScreen} />
+      <Stack.Screen
+        name={ROUTES.ACCOUNT}
+        component={AccountScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={ROUTES.PROFILE_INFO}
+        component={ProfileInfoScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={ROUTES.HELP}
+        component={HelpSupportScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={ROUTES.PRIVACY}
+        component={PrivacyPolicyScreen}
+        options={{ headerShown: false }}
+      />
+      {/* TabNavigator contains HomeTab, BookTab, ExamTab, TestTab, and ProgressTab screens */}
+      <Stack.Screen name={ROUTES.HOME} component={TabNavigator} />
+      {/* Screens that should open as standalone pages with back navigation */}
+      <Stack.Screen
+        name={ROUTES.EXAM}
+        component={ExamScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name={ROUTES.EXAM_RESULTS} component={ExamResults} />
+      <Stack.Screen
+        name={ROUTES.READER}
+        component={WebReaderScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={ROUTES.SETTINGS}
+        component={SettingsScreen}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }

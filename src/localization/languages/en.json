@@ -1,19 +1,79 @@
 {
   "screens": {
     "home": "Home",
-    "book": "Study Guide",
+    "book": "Study",
     "exam": "Exam",
     "test": "Practice",
+    "progress": "Progress",
     "settings": "Settings"
   },
   "home": {
     "welcome": "Welcome to Life in the UK Test",
+    "greeting": "Good Morning, {{name}}",
+    "defaultName": "Explorer",
+    "subtitle": "Track your learning and pick up where you left off.",
+    "account": "Account",
+    "login": "Log in",
+    "accountSheet": {
+      "welcome": "Welcome, {{name}}",
+      "guestTitle": "Welcome",
+      "subtitleAuthed": "Manage your account and progress.",
+      "subtitleGuest": "Log in to sync progress across devices.",
+      "menuTitle": "Navigation",
+      "loginCta": "Log in",
+      "logoutCta": "Log out"
+    },
+    "progressTitle": "Your Progress",
+    "modulesDone": "{{completed}}/{{total}} modules done",
+    "completed": "Completed",
+    "completedModules": "{{completed}} of {{total}} done",
+    "resumeTitle": "Pick Up Where You Left Off",
+    "viewAll": "View all",
+    "chapterProgress": "Progress: {{percent}}%",
+    "practiceTitle": "Choose Your Practice",
+    "practice": {
+      "fullMock": "Full Mock Exam",
+      "fullMockDescription": "Simulate the full 24-question test.",
+      "quickQuiz": "Quick Practice",
+      "quickQuizDescription": "Jump into a short practice session.",
+      "chapterTest": "Chapter-Specific Test",
+      "chapterTestDescription": "Focus on a single chapter from the guide."
+    },
     "examTitle": "Practice Exam",
     "examDescription": "Test your knowledge with practice questions",
     "startExam": "Start Exam",
     "bookTitle": "Study Guide",
     "bookDescription": "Learn everything you need to know for the test",
     "openBook": "Open Study Guide"
+  },
+  "account": {
+    "title": "My Account",
+    "guestName": "Guest user",
+    "notSignedIn": "Not signed in",
+    "login": "Log in",
+    "logout": "Logout",
+    "menu": {
+      "profile": "Profile Information",
+      "settings": "Settings",
+      "help": "Help & Support",
+      "privacy": "Privacy Policy"
+    },
+    "placeholders": {
+      "profile": "Profile details will live here.",
+      "help": "Help & support content will go here.",
+      "privacy": "Privacy policy details will be added here."
+    },
+    "subtitleSignedIn": "Signed in as {{email}}",
+    "subtitleGuest": "Tap to log in or manage your account"
+  },
+  "progress": {
+    "title": "Progress",
+    "examPerformance": "Exam performance",
+    "completedExams": "Completed exams",
+    "readingProgress": "Reading progress",
+    "keepGoing": "Keep it up!",
+    "lastAttempt": "Last attempt: {{date}}",
+    "noAttempts": "No attempts yet"
   },
   "exam": {
     "question": "Question",
@@ -73,6 +133,10 @@
     "timeWarningTitle": "Time Running Out",
     "timeWarningMessage": "You have 5 minutes remaining!",
     "viewAllAttempts": "View All Attempts",
+    "incorrect": "Incorrect",
+    "favorites": "Favorites",
+    "practiceTitle": "Practice Exams",
+    "practiceSubtitle": "42 exams to prepare you for test day.",
     "videoQuestion": "This question includes a video",
     "explanation": "Explanation",
     "finishReview": "Finish Review",
@@ -206,6 +270,17 @@
     "download": "Download",
     "close": "Close",
     "downloading": "Downloading content..."
+  },
+  "settings": {
+    "appearance": "Appearance",
+    "language": "Language",
+    "darkMode": "Dark Mode",
+    "appLanguage": "App Language",
+    "examContent": "Exam Content",
+    "bookContent": "Book Content",
+    "dataManagement": "Data Management",
+    "downloadingLanguage": "Downloading...",
+    "resetAction": "Delete"
   },
   "firebase": {
     "imageLoading": "Loading image...",

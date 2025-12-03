@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import HomeScreen from '../screens/home/HomeScreen/HomeScreen';
 import BookScreen from '../screens/book/BookScreen/BookScreen';
 import ExamListScreen from '../screens/exam/ExamList/ExamListScreen';
-import SettingsScreen from '../screens/settings/SettingsScreen/SettingsScreen';
+import ProgressScreen from '../screens/progress/ProgressScreen/ProgressScreen';
 
 // No need for ROUTES import as we're using direct string names
 
@@ -28,8 +28,8 @@ const renderExamIcon = ({ color, size }: { color: string; size: number }) => (
   <Icon name="book-open-variant-outline" color={color} size={size} />
 );
 
-const renderSettingsIcon = ({ color, size }: { color: string; size: number }) => (
-  <Icon name="cog" color={color} size={size} />
+const renderProgressIcon = ({ color, size }: { color: string; size: number }) => (
+  <Icon name="bar-chart" color={color} size={size} />
 );
 
 const TabNavigator = () => {
@@ -92,16 +92,16 @@ const TabNavigator = () => {
         name="ExamTab"
         component={ExamListScreen}
         options={{
-          tabBarLabel: t('screens.exam'),
+          tabBarLabel: t('screens.test'),
           tabBarIcon: renderExamIcon,
         }}
       />
       <Tab.Screen
-        name="SettingsTab"
-        component={SettingsScreen}
+        name="ProgressTab"
+        component={ProgressScreen}
         options={{
-          tabBarLabel: t('screens.settings'),
-          tabBarIcon: renderSettingsIcon,
+          tabBarLabel: t('screens.progress'),
+          tabBarIcon: renderProgressIcon,
         }}
       />
     </Tab.Navigator>

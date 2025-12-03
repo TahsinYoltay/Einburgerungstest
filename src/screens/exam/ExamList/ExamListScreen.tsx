@@ -14,6 +14,7 @@ import { syncContent } from '../../../store/slices/contentSlice';
 import { ExamAttempt } from '../../../types/exam';
 import { createStyles } from './ExamListScreen.style';
 import { useAppTheme } from '../../../providers/ThemeProvider';
+import AccountHeader from '../../../components/account/AccountHeader/AccountHeader';
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
 
@@ -161,6 +162,36 @@ const ExamListScreen = () => {
     navigation.navigate(ROUTES.EXAM_RESULTS, { examId });
   };
 
+  const renderCircle = (percent: number, label: string) => {
+    const clamped = Math.max(0, Math.min(percent, 100));
+    const rightRotation = clamped > 50 ? 180 : (clamped / 50) * 180;
+    const leftRotation = clamped <= 50 ? 0 : ((clamped - 50) / 50) * 180;
+
+    return (
+      <View style={styles.circleWrap}>
+        <View style={styles.circleContainer}>
+          <View style={styles.circleBg} />
+          <View
+            style={[
+              styles.circleHalf,
+              { transform: [{ rotateZ: `${rightRotation}deg` }] },
+            ]}
+          />
+          <View
+            style={[
+              styles.circleLeft,
+              { transform: [{ rotateZ: `${leftRotation}deg` }] },
+            ]}
+          />
+          <View style={styles.circleInner}>
+            <Text style={styles.circleValue}>{`${clamped}%`}</Text>
+          </View>
+        </View>
+        <Text style={styles.circleLabel}>{label}</Text>
+      </View>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView 
@@ -169,44 +200,43 @@ const ExamListScreen = () => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={theme.colors.primary} />
         }
       >
-        {/* Hero card */}
+        <AccountHeader showText={false} showChevron={false} />
+        <Text style={styles.screenTitle}>{t('exam.practiceTitle', 'Practice Exams')}</Text>
+        {/* <Text style={styles.screenSubtitle}>{t('exam.practiceSubtitle', '42 exams to prepare you for test day.')}</Text> */}
         <View style={styles.heroCard}>
-          <View style={styles.heroTitlePill}>
-            <Text style={styles.heroTitleText}>{t('exam.overallProgress', 'Your overall progress')}</Text>
-          </View>
-          <View style={styles.heroRow}>
-            <View>
-              <Text style={styles.heroLabel}>{t('exam.averageScore', 'Average score')}</Text>
-              <Text style={styles.heroValue}>{avgScore}%</Text>
-            </View>
-            <View style={{ alignItems: 'flex-end' }}>
-              <Text style={styles.heroLabel}>{t('exam.totalProgress', 'Total progress')}</Text>
-              <Text style={styles.heroValue}>{t('exam.completedPct', { pct: completedPct, defaultValue: `Completed ${completedPct}%` })}</Text>
-            </View>
-          </View>
-          <View style={styles.progressBarBg}>
-            <View style={[styles.progressFill, { width: `${completedPct}%` }]} />
+          <Text style={styles.heroTitle}>{t('exam.overallProgress', 'Overall Progress')}</Text>
+          <View style={styles.heroGrid}>
+            {renderCircle(avgScore, t('exam.averageScore', 'Average Score'))}
+            {renderCircle(completedPct, t('exam.completedPct', { pct: '', defaultValue: 'Completed Tests' }) || 'Completed Tests')}
           </View>
         </View>
 
-        {/* Quick actions */}
-        <View style={styles.quickActions}>
-          <Pressable style={styles.quickActionCard}>
-            <Icon name="star" size={24} color={theme.colors.primary} />
-            <Text style={styles.quickActionTitle}>{t('exam.starredQuestions', 'Starred questions')}</Text>
-            <Text style={styles.quickActionSubtitle}>{flaggedTotal} {t('exam.items', 'items')}</Text>
-          </Pressable>
-          <Pressable style={styles.quickActionCard}>
-            <Icon name="close-circle-outline" size={24} color={theme.colors.primary} />
-            <Text style={styles.quickActionTitle}>{t('exam.wrongAnswers', 'Wrong answers')}</Text>
-            <Text style={styles.quickActionSubtitle}>{wrongTotal} {t('exam.items', 'items')}</Text>
-          </Pressable>
+        <View style={styles.statsRow}>
+          <View style={styles.statCard}>
+            <View style={[styles.statIconWrap, { backgroundColor: '#FEECEC' }]}>
+              <Icon name="close-circle-outline" size={22} color="#D32F2F" />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.statTitle}>{t('exam.incorrect', 'Incorrect')}</Text>
+              <Text style={styles.statSubtitle}>{wrongTotal} {t('exam.items', 'questions')}</Text>
+            </View>
+          </View>
+          <View style={styles.statCard}>
+            <View style={[styles.statIconWrap, { backgroundColor: '#E8F1FF' }]}>
+              <Icon name="star" size={22} color={theme.colors.primary} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.statTitle}>{t('exam.starredQuestions', 'Favorites')}</Text>
+              <Text style={styles.statSubtitle}>{flaggedTotal} {t('exam.items', 'items')}</Text>
+            </View>
+          </View>
         </View>
 
         {/* Practice list */}
-        <Text style={styles.sectionTitle}>{t('exam.practiceTests', 'Practice Tests')}</Text>
+        <Text style={styles.sectionTitle}>{t('exam.practiceTests', 'All Practice Tests')}</Text>
         {exams.map(exam => {
           const latest = latestByExam[exam.id];
+          const lastAttempt = latest;
           const expanded = expandedId === exam.id;
           const status = latest?.status ?? 'not-started';
           const isCompleted = status === 'passed' || status === 'failed';
@@ -216,21 +246,28 @@ const ExamListScreen = () => {
               ? currentExam.timeRemaining
               : inProgress[exam.id]?.timeRemaining ?? null
             : null;
-                  const scoreText = isCompleted
-                    ? `${latest?.score ?? 0}%`
-                    : t('exam.notAttempted', 'Not attempted');
+          const scoreText = isCompleted
+            ? `${latest?.score ?? 0}%`
+            : t('exam.notAttempted', 'Not attempted');
+
+          const totalQuestions =
+            lastAttempt?.totalQuestions ??
+            (Array.isArray((exam as any).questions) ? (exam as any).questions.length : undefined) ??
+            exam.questions_per_exam ??
+            (Array.isArray((exam as any).question_ids) ? (exam as any).question_ids.length : undefined) ??
+            0;
+
+          const metaLabel = isInProgress
+            ? t('exam.continue', 'Continue')
+            : isCompleted
+              ? `${lastAttempt?.correctAnswers ?? 0}/${totalQuestions}`
+              : t('exam.status.not-started');
 
           return (
             <View key={exam.id} style={styles.accordionCard}>
               <Pressable style={styles.accordionHeader} onPress={() => setExpandedId(expanded ? null : exam.id)}>
-                <View style={styles.accordionLeft}>
-                  <Icon
-                    name={status === 'passed' ? 'check-circle' : status === 'failed' ? 'close-circle' : 'checkbox-blank-circle-outline'}
-                    size={22}
-                    color={status === 'passed' ? theme.colors.primary : theme.colors.onSurfaceVariant}
-                  />
-                  <Text style={styles.accordionTitle}>{exam.title || exam.id}</Text>
-                </View>
+                <Text style={styles.accordionTitle}>{exam.title || exam.id}</Text>
+                <Text style={styles.accordionMeta}>{metaLabel}</Text>
                 <Icon name={expanded ? 'chevron-up' : 'chevron-down'} size={22} color={theme.colors.onSurface} />
               </Pressable>
 
@@ -275,13 +312,13 @@ const ExamListScreen = () => {
                         </Text>
                       </View>
                       
-                      <Pressable
-                        style={styles.viewResultsButton}
-                        onPress={() => handleViewResults(exam.id)}
-                      >
-                        <Text style={styles.viewResultsText}>{t('exam.viewResults', 'View Results')}</Text>
-                        <Icon name="chevron-right" size={18} color={theme.colors.primary} />
-                      </Pressable>
+                    <Pressable
+                      style={styles.viewResultsButton}
+                      onPress={() => handleViewResults(exam.id)}
+                    >
+                      <Text style={styles.viewResultsText}>{t('exam.viewResults', 'View Results')}</Text>
+                      <Icon name="chevron-right" size={18} color={theme.colors.primary} />
+                    </Pressable>
                     </>
                   )}
 

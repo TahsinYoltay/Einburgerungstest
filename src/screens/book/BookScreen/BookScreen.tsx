@@ -15,6 +15,7 @@ import { getReadingProgress, getChapterProgress } from '../../../utils/readingPr
 import type { ReadingProgress } from '../../../utils/readingProgress';
 import { useAppSelector, useAppDispatch } from '../../../store/hooks';
 import { loadBookContent } from '../../../store/slices/bookSlice';
+import AccountHeader from '../../../components/account/AccountHeader/AccountHeader';
 
 type BookScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -29,7 +30,7 @@ interface EnhancedChapter extends Omit<Chapter, 'subSections'> {
 const BookScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation<BookScreenNavigationProp>();
-  const { theme } = useAppTheme();
+    const { theme } = useAppTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
   const userId = useAppSelector(state => state.user.user?.id);
   const dispatch = useAppDispatch();
@@ -40,7 +41,7 @@ const BookScreen = () => {
   const [chapterProgresses, setChapterProgresses] = useState<{ [chapterId: string]: { completed: number; total: number; percentage: number } }>({});
   const [expandedChapters, setExpandedChapters] = useState<{ [chapterId: string]: boolean }>({});
   const [refreshing, setRefreshing] = useState(false);
-  
+      
   // Load book content on mount
   useEffect(() => {
     dispatch(loadBookContent());
@@ -300,6 +301,7 @@ const BookScreen = () => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={theme.colors.primary} />
         }
       >
+        <AccountHeader showText={false} showChevron={false} />
         <View style={styles.header}>
           <Text variant="headlineMedium" style={styles.title}>
             {t('book.lifeInTheUk')}
