@@ -4,6 +4,10 @@ export const ROUTES = {
   REGISTER: 'Register',
   FORGOT_PASSWORD: 'ForgotPassword',
   HOME: 'Home',
+  ACCOUNT: 'Account',
+  PROFILE_INFO: 'ProfileInfo',
+  HELP: 'Help',
+  PRIVACY: 'Privacy',
   EXAM: 'Exam',
   EXAM_RESULTS: 'ExamResults',
   BOOK: 'Book',
@@ -12,6 +16,4 @@ export const ROUTES = {
   READER_STACK: 'ReaderStack',
   TEST: 'Test',
   SETTINGS: 'Settings',
-  PROFILE: 'Profile',
 } as const;
-

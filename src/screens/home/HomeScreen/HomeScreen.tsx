@@ -1,86 +1,298 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
-import { ScrollView, RefreshControl } from 'react-native';
-import { Button, Text, Card } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
+import { ScrollView, RefreshControl, View, Image, TouchableOpacity } from 'react-native';
+import { useNavigation, useFocusEffect, CompositeNavigationProp } from '@react-navigation/native';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Icon from '@react-native-vector-icons/material-design-icons';
+import { Avatar, Surface, Text, Button } from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
+
 import { RootStackParamList } from '../../../navigations/StackNavigator';
 import { createStyles } from './HomeScreen.style';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { loadExams } from '../../../store/slices/examSlice';
 import { syncContent } from '../../../store/slices/contentSlice';
-import ExamHistorySummary from '../../../components/exam/ExamHistorySummary/ExamHistorySummary';
-import { FirebaseTest } from '../../../components/common/FirebaseTest/FirebaseTest';
 import { useAppTheme } from '../../../providers/ThemeProvider';
-import { LocalizedText } from '../../../types/content';
 import { useLocalizedContent } from '../../../hooks/useLocalizedContent';
+import { getAvailableChapters } from '../../../data/book/chapters';
+import { getReadingProgress, getChapterProgress, ReadingProgress } from '../../../utils/readingProgress';
+import { ROUTES } from '../../../constants/routes';
+import AccountHeader from '../../../components/account/AccountHeader/AccountHeader';
 
+type TabParamList = {
+  HomeTab: undefined;
+  BookTab: undefined;
+  ExamTab: { id?: string } | undefined;
+  ProgressTab: undefined;
+};
 
-type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+type HomeScreenNavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<TabParamList, 'HomeTab'>,
+  NativeStackNavigationProp<RootStackParamList>
+>;
+
+type ChapterCard = {
+  id: string;
+  title: string;
+  description: string;
+  image: any;
+  progress: { completed: number; total: number; percentage: number };
+  lastReadAt?: number;
+  firstSectionId?: string;
+  subSections: { id: string }[];
+};
 
 const HomeScreen = () => {
   const { t } = useTranslation();
-  const { theme } = useAppTheme();
-  const styles = useMemo(() => createStyles(theme), [theme]);
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const dispatch = useAppDispatch();
-  const homeContent = useAppSelector(state => state.content.home);
+  const { theme } = useAppTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
   const { getLocalized } = useLocalizedContent();
-  const [refreshing, setRefreshing] = useState(false);
 
-  // Load exam data when the component mounts
+  const user = useAppSelector(state => state.user.user);
+  const homeContent = useAppSelector(state => state.content.home);
+  const exams = useAppSelector(state => state.exam.exams);
+
+  const [refreshing, setRefreshing] = useState(false);
+  const [readingProgress, setReadingProgress] = useState<ReadingProgress>({});
+  const [chapterProgresses, setChapterProgresses] = useState<Record<string, { completed: number; total: number; percentage: number }>>({});
+
+  const chapters = useMemo(() => getAvailableChapters(), []);
+  const totalSections = useMemo(
+    () => chapters.reduce((acc, chapter) => acc + chapter.subSections.length, 0),
+    [chapters]
+  );
+  const completedSections = useMemo(
+    () =>
+      Object.values(readingProgress).filter(section => section.isRead).length,
+    [readingProgress]
+  );
+  const overallPercent = useMemo(() => {
+    if (!totalSections) return 0;
+    return Math.min(100, Math.round((completedSections / totalSections) * 100));
+  }, [completedSections, totalSections]);
+
+  const loadReadingState = useCallback(async () => {
+    const userId = user?.id || 'local';
+    const progress = await getReadingProgress(userId);
+    setReadingProgress(progress);
+
+    const perChapter: Record<string, { completed: number; total: number; percentage: number }> = {};
+    for (const chapter of chapters) {
+      const sectionIds = chapter.subSections.map(section => section.id);
+      perChapter[chapter.id] = await getChapterProgress(sectionIds, userId);
+    }
+    setChapterProgresses(perChapter);
+  }, [chapters, user?.id]);
+
   useEffect(() => {
     dispatch(loadExams());
-  }, [dispatch]);
+    loadReadingState();
+  }, [dispatch, loadReadingState]);
+
+  useFocusEffect(
+    useCallback(() => {
+      loadReadingState();
+    }, [loadReadingState])
+  );
 
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
     try {
       await dispatch(syncContent()).unwrap();
-      await dispatch(loadExams()); // Reload exams too just in case
+      await dispatch(loadExams()).unwrap();
+      await loadReadingState();
     } catch (error) {
       console.error('Failed to refresh content:', error);
     } finally {
       setRefreshing(false);
     }
-  }, [dispatch]);
+  }, [dispatch, loadReadingState]);
 
-  const navigateToBook = () => {
-    navigation.navigate('BookTab');
+  const recommendedChapters: ChapterCard[] = useMemo(() => {
+    return chapters
+      .map(chapter => {
+        const progress = chapterProgresses[chapter.id] || {
+          completed: 0,
+          total: chapter.subSections.length,
+          percentage: 0,
+        };
+        const lastReadAt = chapter.subSections.reduce((latest, section) => {
+          const stamp = readingProgress[section.id]?.lastReadAt
+            ? new Date(readingProgress[section.id].lastReadAt).getTime()
+            : 0;
+          return stamp > latest ? stamp : latest;
+        }, 0);
+
+        return {
+          id: chapter.id,
+          title: chapter.title,
+          description: chapter.description,
+          image: chapter.image,
+          progress,
+          lastReadAt,
+          firstSectionId: chapter.subSections[0]?.id,
+          subSections: chapter.subSections,
+        };
+      })
+      .sort((a, b) => {
+        if ((b.lastReadAt || 0) !== (a.lastReadAt || 0)) {
+          return (b.lastReadAt || 0) - (a.lastReadAt || 0);
+        }
+        return a.progress.percentage - b.progress.percentage;
+      });
+  }, [chapters, chapterProgresses, readingProgress]);
+
+  const firstExamId = exams[0]?.id;
+
+  const tabNavigate = (routeName: 'HomeTab' | 'BookTab' | 'ExamTab' | 'ProgressTab') => {
+    navigation.navigate(routeName as never);
   };
+
+  const handlePracticePress = (examId?: string) => {
+    if (examId) {
+      navigation.navigate(ROUTES.EXAM, { id: examId });
+      return;
+    }
+    tabNavigate('ExamTab');
+  };
+
+  const handleOpenChapter = (chapter: ChapterCard) => {
+    // pick first unread subsection; fallback to first
+    const targetSub =
+      chapter.subSections?.find(sub => !readingProgress[sub.id]?.isRead) ||
+      chapter.subSections?.[0];
+    if (!targetSub) return;
+
+    navigation.navigate(ROUTES.READER, {
+      chapterId: chapter.id,
+      subSectionId: targetSub.id,
+    });
+  };
+
+  const greetingName = user?.displayName || t('home.defaultName', 'Explorer');
+  const greeting = t('home.greeting', { name: greetingName });
+  const subGreeting = getLocalized(homeContent?.welcomeMessage) || t('home.subtitle', 'Track your learning and pick up where you left off.');
+  const goToAccount = () => navigation.navigate(ROUTES.ACCOUNT);
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView 
+      <ScrollView
         contentContainerStyle={styles.scrollContent}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={theme.colors.primary} />
         }
+        showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.title} variant="headlineMedium">
-          {getLocalized(homeContent?.welcomeMessage) || t('home.welcome')}
-        </Text>
-        {/* Exam History Summary */}
-        <ExamHistorySummary />
-        <Card style={styles.card}>
-          <Card.Cover source={require('../../../assets/images/book.png')} />
-          <Card.Title title={t('home.bookTitle')} />
-          <Card.Content>
-            <Text variant="bodyMedium">{t('home.bookDescription')}</Text>
-          </Card.Content>
-          <Card.Actions>
-            <Button mode="contained" onPress={navigateToBook}>
-              {t('home.openBook')}
-            </Button>
-          </Card.Actions>
-        </Card>
+        <AccountHeader showText={false} showChevron={false} />
 
-        {/* Firebase Test Component */}
-        <FirebaseTest />
-        
-        {/* Firebase Image Test Component */}
+        <Surface style={styles.progressCard} elevation={theme.dark ? 1 : 2}>
+          <View style={styles.progressHeader}>
+            <View>
+              <Text style={styles.progressTitle}>{t('home.progressTitle', 'Your Progress')}</Text>
+              <Text style={styles.progressMeta}>
+                {t('home.modulesDone', { completed: completedSections, total: totalSections })}
+              </Text>
+            </View>
+            <Text style={styles.progressValue}>{overallPercent}%</Text>
+          </View>
+          <View style={styles.progressBarTrack}>
+            <View style={[styles.progressBarFill, { width: `${overallPercent}%` }]} />
+          </View>
+          <View style={styles.progressFooter}>
+            <View style={styles.pill}>
+              <Icon name="check-circle-outline" size={18} color={theme.colors.primary} />
+              <Text style={styles.pillText}>{t('home.completed', 'Completed')}</Text>
+            </View>
+            <Text style={styles.progressFooterText}>
+              {t('home.completedModules', {
+                completed: completedSections,
+                total: totalSections,
+              })}
+            </Text>
+          </View>
+        </Surface>
 
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>{t('home.resumeTitle', 'Pick Up Where You Left Off')}</Text>
+          <Button
+            onPress={() => tabNavigate('BookTab')}
+            compact
+            textColor={theme.colors.primary}
+          >
+            {t('home.viewAll', 'View all')}
+          </Button>
+        </View>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.carousel}
+        >
+          {recommendedChapters.map(chapter => (
+            <TouchableOpacity
+              key={chapter.id}
+              style={styles.chapterCard}
+              activeOpacity={0.9}
+              onPress={() => handleOpenChapter(chapter)}
+            >
+              <Image source={chapter.image} style={styles.chapterImage} resizeMode="cover" />
+              <Text style={styles.chapterTitle} numberOfLines={2}>
+                {chapter.title}
+              </Text>
+              <Text style={styles.chapterSubtitle} numberOfLines={2}>
+                {t('home.chapterProgress', { percent: chapter.progress.percentage })}
+              </Text>
+              <View style={styles.smallProgressTrack}>
+                <View
+                  style={[
+                    styles.smallProgressFill,
+                    { width: `${Math.min(100, chapter.progress.percentage)}%` },
+                  ]}
+                />
+              </View>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+
+        <Text style={styles.sectionTitle}>{t('home.practiceTitle', 'Choose Your Practice')}</Text>
+        <View style={styles.practiceList}>
+          {[
+            {
+              key: 'full',
+              icon: 'clipboard-text' as const,
+              title: t('home.practice.fullMock', 'Full Mock Exam'),
+              description: t('home.practice.fullMockDescription', 'Simulate the full 24-question test.'),
+              onPress: () => handlePracticePress(firstExamId),
+            },
+            {
+              key: 'quick',
+              icon: 'timer-outline' as const,
+              title: t('home.practice.quickQuiz', 'Quick Practice'),
+              description: t('home.practice.quickQuizDescription', 'Jump into a short practice session.'),
+              onPress: () => tabNavigate('ExamTab'),
+            },
+            {
+              key: 'chapter',
+              icon: 'checkbox-multiple-marked-outline' as const,
+              title: t('home.practice.chapterTest', 'Chapter-Specific Test'),
+              description: t('home.practice.chapterTestDescription', 'Focus on a single chapter from the guide.'),
+              onPress: () => tabNavigate('BookTab'),
+            },
+          ].map(item => (
+            <TouchableOpacity key={item.key} style={styles.practiceCard} activeOpacity={0.9} onPress={item.onPress}>
+              <View style={styles.practiceIconWrapper}>
+                <Icon name={item.icon} size={22} color={theme.colors.primary} />
+              </View>
+              <View style={styles.practiceText}>
+                <Text style={styles.practiceTitle}>{item.title}</Text>
+                <Text style={styles.practiceDescription}>{item.description}</Text>
+              </View>
+              <Icon name="chevron-right" size={22} color={theme.colors.outline} />
+            </TouchableOpacity>
+          ))}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

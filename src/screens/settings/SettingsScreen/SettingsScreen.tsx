@@ -1,17 +1,23 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { View, ScrollView, Alert } from 'react-native';
-import { Card, List, Divider, Button, Switch, Text, ActivityIndicator, ProgressBar, IconButton, Portal, Dialog, RadioButton } from 'react-native-paper';
+import { View, ScrollView, Alert, TouchableOpacity } from 'react-native';
+import { Button, Switch, Text, ActivityIndicator, List, Divider, Portal, Dialog, IconButton } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Icon from '@react-native-vector-icons/material-design-icons';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
 import { createStyles } from './SettingsScreen.style';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { resetExamData, switchExamLanguage } from '../../../store/slices/examSlice';
 import { switchBookLanguage } from '../../../store/slices/bookSlice';
 import { languageManager } from '../../../services/LanguageManager';
 import { useAppTheme } from '../../../providers/ThemeProvider';
+import { RootStackParamList } from '../../../navigations/StackNavigator';
+import { ROUTES } from '../../../constants/routes';
 
 const SettingsScreen = () => {
   const { t, i18n } = useTranslation();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const dispatch = useAppDispatch();
   const { isDarkMode, toggleTheme, theme } = useAppTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
@@ -70,85 +76,73 @@ const SettingsScreen = () => {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.iconButton}>
+          <Icon name="arrow-left" size={22} color={theme.colors.onBackground} />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>{t('screens.settings')}</Text>
+        <TouchableOpacity onPress={() => navigation.popToTop()} style={styles.iconButton}>
+          <Icon name="close" size={22} color={theme.colors.onBackground} />
+        </TouchableOpacity>
+      </View>
+
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-        <Text style={styles.title} variant="headlineMedium">
-          {t('screens.settings')}
-        </Text>
-
-        <Card style={styles.card}>
-          <Card.Content>
-            <Text variant="titleMedium" style={{ marginBottom: 8 }}>
-              {t('settings.appearance')}
-            </Text>
-            <List.Item
-              title={t('settings.darkMode')}
-              right={() => <Switch value={isDarkMode} onValueChange={toggleTheme} />}
-              style={styles.settingItem}
-            />
-          </Card.Content>
-        </Card>
-
-        <Card style={styles.card}>
-          <Card.Content>
-            <Text variant="titleMedium" style={{ marginBottom: 8 }}>
-              {t('settings.language')}
-            </Text>
-            
-            <List.Item
-              title={t('settings.appLanguage')} // Now "Language"
-              description={currentAppLangName}
-              onPress={() => setShowAppLangDialog(true)}
-              right={props => <List.Icon {...props} icon="chevron-right" />}
-              style={styles.settingItem}
-            />
-            
-            <Divider style={styles.divider} />
-
-            <List.Item
-              title={t('settings.examContent')}
-              description={isDownloadingLanguage ? t('settings.downloadingLanguage') : currentExamLangName}
-              onPress={() => setShowExamLangDialog(true)}
-              right={props => 
-                isDownloadingLanguage 
-                  ? <ActivityIndicator size="small" /> 
-                  : <List.Icon {...props} icon="chevron-right" />
-              }
-              style={styles.settingItem}
-            />
-
-            <Divider style={styles.divider} />
-
-            <List.Item
-              title="Book Content"
-              description={isBookDownloading ? t('settings.downloadingLanguage') : currentBookLangName}
-              onPress={() => setShowBookLangDialog(true)}
-              right={props => 
-                isBookDownloading 
-                  ? <ActivityIndicator size="small" /> 
-                  : <List.Icon {...props} icon="chevron-right" />
-              }
-              style={styles.settingItem}
-            />
-          </Card.Content>
-        </Card>
-
-        <Card style={styles.card}>
-          <Card.Content>
-            <Text variant="titleMedium" style={{ marginBottom: 8 }}>
-              {t('settings.dataManagement')}
-            </Text>
-            <View style={{ marginVertical: 8 }}>
-              <Button
-                mode="outlined"
-                icon="delete"
-                onPress={handleResetExam}
-                textColor="red"
-              >
-                {t('exam.resetExams')}
-              </Button>
+        <View style={styles.sectionCard}>
+          <Text style={styles.sectionTitle}>{t('settings.appearance')}</Text>
+          <View style={styles.row}>
+            <View>
+              <Text style={styles.rowTitle}>{t('settings.darkMode')}</Text>
+              <Text style={styles.rowSubtitle}>{t('settings.darkMode')}</Text>
             </View>
-          </Card.Content>
-        </Card>
+            <Switch value={isDarkMode} onValueChange={toggleTheme} />
+          </View>
+        </View>
+
+        <View style={styles.sectionCard}>
+          <Text style={styles.sectionTitle}>{t('settings.language')}</Text>
+
+          <TouchableOpacity style={styles.row} onPress={() => setShowAppLangDialog(true)} activeOpacity={0.85}>
+            <View>
+              <Text style={styles.rowTitle}>{t('settings.appLanguage')}</Text>
+              <Text style={styles.rowSubtitle}>{currentAppLangName}</Text>
+            </View>
+            <Icon name="chevron-right" size={20} color={theme.colors.onSurface} />
+          </TouchableOpacity>
+
+          <Divider style={styles.divider} />
+
+          <TouchableOpacity style={styles.row} onPress={() => setShowExamLangDialog(true)} activeOpacity={0.85}>
+            <View>
+              <Text style={styles.rowTitle}>{t('settings.examContent')}</Text>
+              <Text style={styles.rowSubtitle}>
+                {isDownloadingLanguage ? t('settings.downloadingLanguage') : currentExamLangName}
+              </Text>
+            </View>
+            {isDownloadingLanguage ? <ActivityIndicator size="small" /> : <Icon name="chevron-right" size={20} color={theme.colors.onSurface} />}
+          </TouchableOpacity>
+
+          <Divider style={styles.divider} />
+
+          <TouchableOpacity style={styles.row} onPress={() => setShowBookLangDialog(true)} activeOpacity={0.85}>
+            <View>
+              <Text style={styles.rowTitle}>{t('settings.bookContent', 'Book Content')}</Text>
+              <Text style={styles.rowSubtitle}>
+                {isBookDownloading ? t('settings.downloadingLanguage') : currentBookLangName}
+              </Text>
+            </View>
+            {isBookDownloading ? <ActivityIndicator size="small" /> : <Icon name="chevron-right" size={20} color={theme.colors.onSurface} />}
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.sectionCard}>
+          <Text style={styles.sectionTitle}>{t('settings.dataManagement')}</Text>
+          <View style={styles.row}>
+            <Text style={styles.rowTitle}>{t('exam.resetExams')}</Text>
+            <Button mode="outlined" icon="delete" onPress={handleResetExam} textColor="red">
+              {t('settings.resetAction', 'Delete')}
+            </Button>
+          </View>
+        </View>
       </ScrollView>
 
       {/* App Language Dialog */}

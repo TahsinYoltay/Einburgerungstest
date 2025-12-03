@@ -7,7 +7,9 @@ export const createStyles = (theme: MD3Theme) => StyleSheet.create({
     backgroundColor: theme.colors.background,
   },
   scrollContent: {
-    padding: 16,
+         paddingHorizontal: 16,
+    //   paddingTop: 12,
+      paddingBottom: 24,
   },
   title: {
     fontSize: 24,

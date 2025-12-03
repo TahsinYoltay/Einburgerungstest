@@ -49,7 +49,6 @@ const BottomTab = () => {
     { route: 'BookTab', label: t('screens.book'), icon: 'book' },
     { route: 'ExamTab', label: t('screens.exam'), icon: 'clipboard-text' },
     { route: 'TestTab', label: t('screens.test'), icon: 'checklist' },
-    { route: 'SettingsTab', label: t('screens.settings'), icon: 'settings' },
   ];
 
   const handleTabPress = (index: number, route: string) => {
