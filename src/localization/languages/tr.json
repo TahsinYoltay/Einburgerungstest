@@ -4,7 +4,8 @@
     "book": "Çalışma Rehberi",
     "exam": "Sınav",
     "test": "Pratik",
-    "settings": "Ayarlar"
+    "settings": "Ayarlar",
+    "progress": "İlerleme"
   },
   "home": {
     "welcome": "Life in the UK Testine Hoş Geldiniz",
@@ -13,7 +14,37 @@
     "startExam": "Sınava Başla",
     "bookTitle": "Çalışma Rehberi",
     "bookDescription": "Sınav için gereken her şeyi öğrenin",
-    "openBook": "Rehberi Aç"
+    "openBook": "Rehberi Aç",
+    "account": "Hesap",
+    "greeting": "Günaydın, {{name}}",
+    "defaultName": "Kaşif",
+    "subtitle": "Öğrenmeni takip et ve kaldığın yerden devam et.",
+    "accountSheet": {
+      "welcome": "Hoş geldiniz, {{name}}",
+      "guestTitle": "Hoş geldiniz",
+      "subtitleAuthed": "Hesabınızı ve ilerlemenizi yönetin.",
+      "subtitleGuest": "İlerlemenizi cihazlar arasında senkronlamak için giriş yapın.",
+      "menuTitle": "Gezinti",
+      "loginCta": "Giriş yap",
+      "logoutCta": "Çıkış yap"
+    },
+    "progressTitle": "İlerlemen",
+    "modulesDone": "{{completed}}/{{total}} modül tamamlandı",
+    "completed": "Tamamlandı",
+    "completedModules": "{{total}} modülün {{completed}} tanesi tamamlandı",
+    "resumeTitle": "Kaldığın yerden devam et",
+    "viewAll": "Tümünü gör",
+    "chapterProgress": "İlerleme: {{percent}}%",
+    "login": "Giriş yap",
+    "practiceTitle": "Pratik türünü seç",
+    "practice": {
+      "fullMock": "Tam deneme sınavı",
+      "fullMockDescription": "24 soruluk tam sınavı simüle et.",
+      "quickQuiz": "Hızlı pratik",
+      "quickQuizDescription": "Kısa bir pratik seansına başla.",
+      "chapterTest": "Bölüme özel test",
+      "chapterTestDescription": "Rehberden tek bir bölüme odaklan."
+    }
   },
   "exam": {
     "question": "Soru",
@@ -35,7 +66,13 @@
     "failCount": "Başarısız",
     "attemptsHistory": "Geçmiş",
     "lastAttempt": "Son Deneme",
-    "status": "Durum",
+    "status": {
+      "not-started": "Başlanmadı",
+      "in-progress": "Devam Ediyor",
+      "completed": "Tamamlandı",
+      "passed": "Geçti",
+      "failed": "Kaldı"
+    },
     "score": "Puan",
     "viewResults": "Sonuçları Gör",
     "resetExams": "Tüm Sınavları Sıfırla",
@@ -76,13 +113,41 @@
     "videoQuestion": "Bu soru video içeriyor",
     "explanation": "Açıklama",
     "finishReview": "Gözden Geçirmeyi Bitir",
-    "status": {
-      "not-started": "Başlanmadı",
-      "in-progress": "Devam Ediyor",
-      "completed": "Tamamlandı",
-      "passed": "Geçti",
-      "failed": "Kaldı"
-    }
+    "favorites": "Favoriler",
+    "incorrect": "Yanlış",
+    "practiceTitle": "Pratik sınavlar",
+    "practiceSubtitle": "Sınav gününe hazırlanmanız için 42 sınav.",
+    "review": {
+      "favoritesTitle": "Favori sorular",
+      "incorrectTitle": "Yanıtı yanlış olanlar",
+      "emptyFavorites": "Henüz favori soru yok.",
+      "emptyIncorrect": "Gözden geçirilecek yanlış cevap yok.",
+      "revealAnswer": "Cevabı göster",
+      "yourAnswer": "Cevabınız",
+      "correctAnswer": "Doğru cevap",
+      "unfavorite": "Favorilerden çıkar"
+    },
+    "overallProgress": "Genel ilerleme",
+    "averageScore": "Ortalama skor",
+    "completedPct": "Tamamlanan testler",
+    "practiceTests": "Deneme testleri",
+    "items": "soru",
+    "starredQuestions": "Favoriler",
+    "notAttempted": "Henüz denenmedi",
+    "restart": "Yeniden başlat",
+    "retake": "Tekrar dene",
+    "lastScore": "Son skor",
+    "correct": "Doğru",
+    "date": "Tarih",
+    "exitConfirmTitle": "Sınavı duraklat?",
+    "exitConfirmMessage": "İlerlemeniz kaydedilecek. Bu sınava daha sonra devam edebilirsiniz.",
+    "submitError": "Sınav gönderilemedi",
+    "noQuestions": "Bu sınav için soru bulunmuyor.",
+    "loading": "Sınav yükleniyor...",
+    "none": "Yok",
+    "hideReview": "Gizle",
+    "reviewWrong": "Gözden geçir",
+    "practiceExam": "Pratik Sınav {{number}}"
   },
   "book": {
     "title": "Life in the UK: Yeni Sakinler İçin Rehber",
@@ -148,7 +213,11 @@
         "title": "Orta Çağ'dan Modern Döneme",
         "content": "İçerik..."
       }
-    }
+    },
+    "sections": "Bölümler",
+    "startReading": "Okumaya başla",
+    "yourProgress": "İlerlemen",
+    "loadingContent": "İçerik yükleniyor..."
   },
   "auth": {
     "welcomeBack": "Tekrar Hoş Geldiniz",
@@ -205,7 +274,10 @@
     "seconds_short": "sn",
     "download": "İndir",
     "close": "Kapat",
-    "downloading": "İçerik indiriliyor..."
+    "downloading": "İçerik indiriliyor...",
+    "goBack": "Geri dön",
+    "goToHome": "Ana sayfaya git",
+    "exit": "Çıkış"
   },
   "firebase": {
     "imageLoading": "Resim yükleniyor...",
@@ -245,9 +317,39 @@
     "downloadingLanguage": "Dil paketi indiriliyor...",
     "deleteConfirm": "Bu içeriği silmek istiyor musunuz?",
     "deleteBookConfirm": "Bu kitap içeriğini silmek istiyor musunuz?",
-    "downloadError": "İçerik indirilemedi: {{msg}}"
+    "downloadError": "İçerik indirilemedi: {{msg}}",
+    "resetAction": "Sil"
   },
   "drawer": {
     "subtitle": "Sınav Hazırlık Uygulaması"
+  },
+  "account": {
+    "title": "Hesabım",
+    "guestName": "Misafir kullanıcı",
+    "notSignedIn": "Giriş yapılmadı",
+    "login": "Giriş yap",
+    "logout": "Çıkış yap",
+    "menu": {
+      "profile": "Profil bilgileri",
+      "settings": "Ayarlar",
+      "help": "Yardım ve destek",
+      "privacy": "Gizlilik politikası"
+    },
+    "placeholders": {
+      "profile": "Profil detayları burada yer alacak.",
+      "help": "Yardım ve destek içeriği burada yer alacak.",
+      "privacy": "Gizlilik politikası detayları buraya eklenecek."
+    },
+    "subtitleSignedIn": "Giriş yaptınız: {{email}}",
+    "subtitleGuest": "Giriş yapmak veya hesabını yönetmek için dokun"
+  },
+  "progress": {
+    "title": "İlerleme",
+    "examPerformance": "Sınav performansı",
+    "completedExams": "Tamamlanan sınavlar",
+    "readingProgress": "Okuma ilerlemesi",
+    "keepGoing": "Aynen devam!",
+    "lastAttempt": "Son deneme: {{date}}",
+    "noAttempts": "Henüz deneme yok"
   }
 }

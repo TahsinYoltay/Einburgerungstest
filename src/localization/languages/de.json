@@ -4,7 +4,8 @@
     "book": "Lernleitfaden",
     "exam": "Prüfung",
     "test": "Übung",
-    "settings": "Einstellungen"
+    "settings": "Einstellungen",
+    "progress": "Fortschritt"
   },
   "home": {
     "welcome": "Willkommen beim Life in the UK Test",
@@ -13,7 +14,37 @@
     "startExam": "Prüfung starten",
     "bookTitle": "Lernleitfaden",
     "bookDescription": "Lerne alles, was du für den Test wissen musst",
-    "openBook": "Lernleitfaden öffnen"
+    "openBook": "Lernleitfaden öffnen",
+    "account": "Konto",
+    "greeting": "Guten Morgen, {{name}}",
+    "defaultName": "Entdecker",
+    "subtitle": "Verfolge dein Lernen und mache weiter, wo du aufgehört hast.",
+    "accountSheet": {
+      "welcome": "Willkommen, {{name}}",
+      "guestTitle": "Willkommen",
+      "subtitleAuthed": "Verwalte dein Konto und deinen Fortschritt.",
+      "subtitleGuest": "Melde dich an, um deinen Fortschritt geräteübergreifend zu synchronisieren.",
+      "menuTitle": "Navigation",
+      "loginCta": "Anmelden",
+      "logoutCta": "Abmelden"
+    },
+    "progressTitle": "Dein Fortschritt",
+    "modulesDone": "{{completed}}/{{total}} Module erledigt",
+    "completed": "Abgeschlossen",
+    "completedModules": "{{completed}} von {{total}} abgeschlossen",
+    "resumeTitle": "Da weitermachen, wo du aufgehört hast",
+    "viewAll": "Alle ansehen",
+    "chapterProgress": "Fortschritt: {{percent}}%",
+    "login": "Anmelden",
+    "practiceTitle": "Wähle deine Übung",
+    "practice": {
+      "fullMock": "Vollständige Probeprüfung",
+      "fullMockDescription": "Simuliere die komplette Prüfung mit 24 Fragen.",
+      "quickQuiz": "Schnellübung",
+      "quickQuizDescription": "Starte eine kurze Übungseinheit.",
+      "chapterTest": "Kapitel-spezifischer Test",
+      "chapterTestDescription": "Konzentriere dich auf ein einzelnes Kapitel des Leitfadens."
+    }
   },
   "exam": {
     "question": "Frage",
@@ -35,7 +66,13 @@
     "failCount": "Durchgefallen",
     "attemptsHistory": "Verlauf",
     "lastAttempt": "Letzter Versuch",
-    "status": "Status",
+    "status": {
+      "not-started": "Nicht begonnen",
+      "in-progress": "In Bearbeitung",
+      "completed": "Abgeschlossen",
+      "passed": "Bestanden",
+      "failed": "Nicht bestanden"
+    },
     "score": "Punktzahl",
     "viewResults": "Ergebnisse ansehen",
     "resetExams": "Alle Prüfungen zurücksetzen",
@@ -76,13 +113,41 @@
     "videoQuestion": "Diese Frage enthält ein Video",
     "explanation": "Erklärung",
     "finishReview": "Überprüfung beenden",
-    "status": {
-      "not-started": "Nicht begonnen",
-      "in-progress": "In Bearbeitung",
-      "completed": "Abgeschlossen",
-      "passed": "Bestanden",
-      "failed": "Nicht bestanden"
-    }
+    "favorites": "Favoriten",
+    "incorrect": "Falsch",
+    "practiceTitle": "Übungsprüfungen",
+    "practiceSubtitle": "42 Prüfungen zur Vorbereitung auf den Testtag.",
+    "review": {
+      "favoritesTitle": "Lieblingsfragen",
+      "incorrectTitle": "Falsche Antworten",
+      "emptyFavorites": "Noch keine Lieblingsfragen.",
+      "emptyIncorrect": "Noch keine falschen Antworten zum Üben.",
+      "revealAnswer": "Antwort anzeigen",
+      "yourAnswer": "Deine Antwort",
+      "correctAnswer": "Richtige Antwort",
+      "unfavorite": "Aus Favoriten entfernen"
+    },
+    "overallProgress": "Gesamtfortschritt",
+    "averageScore": "Durchschnittliche Punktzahl",
+    "completedPct": "Abgeschlossene Tests",
+    "practiceTests": "Alle Übungsprüfungen",
+    "items": "Fragen",
+    "starredQuestions": "Favoriten",
+    "notAttempted": "Nicht versucht",
+    "restart": "Neu starten",
+    "retake": "Erneut ablegen",
+    "lastScore": "Letzte Punktzahl",
+    "correct": "Richtig",
+    "date": "Datum",
+    "exitConfirmTitle": "Prüfung pausieren?",
+    "exitConfirmMessage": "Dein Fortschritt wird gespeichert. Du kannst die Prüfung später fortsetzen.",
+    "submitError": "Prüfung konnte nicht eingereicht werden",
+    "noQuestions": "Für diese Prüfung sind keine Fragen verfügbar.",
+    "loading": "Prüfung wird geladen...",
+    "none": "Keine",
+    "hideReview": "Ausblenden",
+    "reviewWrong": "Überprüfen",
+    "practiceExam": "Übungsprüfung {{number}}"
   },
   "book": {
     "title": "Life in the UK: Ein Leitfaden für neue Einwohner",
@@ -148,7 +213,11 @@
         "title": "Vom Mittelalter bis ins moderne Britannien",
         "content": "Das Mittelalter sah die Entwicklung des Parlaments und des Common Law. Die Tudor- und Stuart-Zeiten waren geprägt von Religionskonflikten und dem englischen Bürgerkrieg. Im 18. und 19. Jahrhundert wurde Britannien durch die Industrielle Revolution und den Ausbau des britischen Empire zu einer Weltmacht. Das 20. Jahrhundert war geprägt von zwei Weltkriegen, der Schaffung des Wohlfahrtsstaates und der sich wandelnden Rolle Britanniens in den internationalen Beziehungen."
       }
-    }
+    },
+    "sections": "Abschnitte",
+    "startReading": "Lesen starten",
+    "yourProgress": "Dein Fortschritt",
+    "loadingContent": "Inhalt wird geladen..."
   },
   "auth": {
     "welcomeBack": "Willkommen zurück",
@@ -205,7 +274,10 @@
     "seconds_short": "s",
     "download": "Herunterladen",
     "close": "Schließen",
-    "downloading": "Inhalt wird heruntergeladen..."
+    "downloading": "Inhalt wird heruntergeladen...",
+    "goBack": "Zurück",
+    "goToHome": "Zur Startseite",
+    "exit": "Beenden"
   },
   "firebase": {
     "imageLoading": "Bild wird geladen...",
@@ -245,9 +317,39 @@
     "downloadingLanguage": "Sprachpaket wird heruntergeladen...",
     "deleteConfirm": "Diesen Inhalt löschen?",
     "deleteBookConfirm": "Diesen Buchinhalt löschen?",
-    "downloadError": "Herunterladen des Inhalts fehlgeschlagen: {{msg}}"
+    "downloadError": "Herunterladen des Inhalts fehlgeschlagen: {{msg}}",
+    "resetAction": "Löschen"
   },
   "drawer": {
     "subtitle": "Vorbereitungs-App"
+  },
+  "account": {
+    "title": "Mein Konto",
+    "guestName": "Gastbenutzer",
+    "notSignedIn": "Nicht angemeldet",
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "menu": {
+      "profile": "Profilinformationen",
+      "settings": "Einstellungen",
+      "help": "Hilfe & Support",
+      "privacy": "Datenschutzrichtlinie"
+    },
+    "placeholders": {
+      "profile": "Profildetails werden hier angezeigt.",
+      "help": "Hilfe- und Supportinhalte werden hier stehen.",
+      "privacy": "Details zur Datenschutzerklärung werden hier ergänzt."
+    },
+    "subtitleSignedIn": "Angemeldet als {{email}}",
+    "subtitleGuest": "Tippe, um dich anzumelden oder dein Konto zu verwalten"
+  },
+  "progress": {
+    "title": "Fortschritt",
+    "examPerformance": "Prüfungsleistung",
+    "completedExams": "Abgeschlossene Prüfungen",
+    "readingProgress": "Lesefortschritt",
+    "keepGoing": "Weiter so!",
+    "lastAttempt": "Letzter Versuch: {{date}}",
+    "noAttempts": "Noch keine Versuche"
   }
 }

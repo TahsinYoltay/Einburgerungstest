@@ -56,6 +56,7 @@ type ExamState = {
       attempts: number;
       correct: number;
       incorrect: number;
+      hiddenFromIncorrectList?: boolean; // New field to support "Removing" from Review without deleting stats
     }
   >;
   favoriteQuestions: string[];
@@ -413,7 +414,15 @@ const examSlice = createSlice({
     },
     setDownloadProgress: (state, action: PayloadAction<number>) => {
       state.downloadProgress = action.payload;
-    }
+    },
+    hideQuestionFromReview: (state, action: PayloadAction<string>) => {
+      const questionId = action.payload;
+      if (!state.questionStats[questionId]) {
+        state.questionStats[questionId] = { attempts: 0, correct: 0, incorrect: 0, hiddenFromIncorrectList: true };
+      } else {
+        state.questionStats[questionId].hiddenFromIncorrectList = true;
+      }
+    },
   },
   extraReducers: builder => {
     builder
@@ -543,6 +552,8 @@ const examSlice = createSlice({
               state.questionStats[q.id].correct += 1;
             } else {
               state.questionStats[q.id].incorrect += 1;
+              // If user gets it wrong again, un-hide it if it was hidden
+              state.questionStats[q.id].hiddenFromIncorrectList = false;
             }
           });
         }
@@ -569,6 +580,7 @@ export const {
   saveCurrentExamProgress,
   toggleFavoriteQuestion,
   setDownloadProgress,
+  hideQuestionFromReview,
 } = examSlice.actions;
 
 export default examSlice.reducer;

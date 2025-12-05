@@ -4,7 +4,8 @@
     "book": "अध्ययन मार्गदर्शिका",
     "exam": "परीक्षा",
     "test": "अभ्यास",
-    "settings": "सेटिंग्स"
+    "settings": "सेटिंग्स",
+    "progress": "प्रगति"
   },
   "home": {
     "welcome": "Life in the UK Test में आपका स्वागत है",
@@ -13,7 +14,37 @@
     "startExam": "परीक्षा शुरू करें",
     "bookTitle": "अध्ययन मार्गदर्शिका",
     "bookDescription": "परीक्षा के लिए आवश्यक सब कुछ सीखें",
-    "openBook": "अध्ययन मार्गदर्शिका खोलें"
+    "openBook": "अध्ययन मार्गदर्शिका खोलें",
+    "account": "खाता",
+    "greeting": "सुप्रभात, {{name}}",
+    "defaultName": "अन्वेषक",
+    "subtitle": "अपने सीखने को ट्रैक करें और वहीं से जारी रखें।",
+    "accountSheet": {
+      "welcome": "स्वागत है, {{name}}",
+      "guestTitle": "स्वागत है",
+      "subtitleAuthed": "अपना खाता और प्रगति प्रबंधित करें।",
+      "subtitleGuest": "डिवाइसों में प्रगति सिंक करने के लिए साइन इन करें।",
+      "menuTitle": "नेविगेशन",
+      "loginCta": "लॉग इन करें",
+      "logoutCta": "लॉग आउट करें"
+    },
+    "progressTitle": "आपकी प्रगति",
+    "modulesDone": "{{completed}}/{{total}} मॉड्यूल पूरे",
+    "completed": "पूर्ण",
+    "completedModules": "{{total}} में से {{completed}} पूर्ण",
+    "resumeTitle": "जहाँ छोड़ा था वहीं से शुरू करें",
+    "viewAll": "सभी देखें",
+    "chapterProgress": "प्रगति: {{percent}}%",
+    "login": "लॉग इन करें",
+    "practiceTitle": "अपना अभ्यास चुनें",
+    "practice": {
+      "fullMock": "पूर्ण मॉक परीक्षा",
+      "fullMockDescription": "पूरे 24 प्रश्नों की परीक्षा का अभ्यास करें।",
+      "quickQuiz": "त्वरित अभ्यास",
+      "quickQuizDescription": "एक छोटी अभ्यास सत्र शुरू करें।",
+      "chapterTest": "अध्याय-विशिष्ट परीक्षण",
+      "chapterTestDescription": "मार्गदर्शिका के एक ही अध्याय पर ध्यान दें।"
+    }
   },
   "exam": {
     "question": "प्रश्न",
@@ -35,7 +66,13 @@
     "failCount": "अनुत्तीर्ण",
     "attemptsHistory": "इतिहास",
     "lastAttempt": "अंतिम प्रयास",
-    "status": "स्थिति",
+    "status": {
+      "not-started": "शुरू नहीं हुआ",
+      "in-progress": "चालू है",
+      "completed": "पूर्ण",
+      "passed": "उत्तीर्ण",
+      "failed": "अनुत्तीर्ण"
+    },
     "score": "स्कोर",
     "viewResults": "परिणाम देखें",
     "resetExams": "सभी परीक्षाएँ रीसेट करें",
@@ -76,13 +113,41 @@
     "videoQuestion": "इस प्रश्न में वीडियो शामिल है",
     "explanation": "व्याख्या",
     "finishReview": "समीक्षा समाप्त करें",
-    "status": {
-      "not-started": "शुरू नहीं हुआ",
-      "in-progress": "चालू है",
-      "completed": "पूर्ण",
-      "passed": "उत्तीर्ण",
-      "failed": "अनुत्तीर्ण"
-    }
+    "favorites": "पसंदीदा",
+    "incorrect": "गलत",
+    "practiceTitle": "अभ्यास परीक्षाएँ",
+    "practiceSubtitle": "टेस्ट दिवस की तैयारी के लिए 42 परीक्षाएँ।",
+    "review": {
+      "favoritesTitle": "पसंदीदा प्रश्न",
+      "incorrectTitle": "गलत उत्तर",
+      "emptyFavorites": "अभी तक कोई पसंदीदा प्रश्न नहीं।",
+      "emptyIncorrect": "अभी समीक्षा करने के लिए गलत उत्तर नहीं हैं।",
+      "revealAnswer": "उत्तर दिखाएँ",
+      "yourAnswer": "आपका उत्तर",
+      "correctAnswer": "सही उत्तर",
+      "unfavorite": "पसंदीदा से हटाएँ"
+    },
+    "overallProgress": "कुल प्रगति",
+    "averageScore": "औसत स्कोर",
+    "completedPct": "पूर्ण किए गए टेस्ट",
+    "practiceTests": "सभी अभ्यास परीक्षण",
+    "items": "प्रश्न",
+    "starredQuestions": "पसंदीदा",
+    "notAttempted": "प्रयास नहीं किया",
+    "restart": "पुनः प्रारंभ",
+    "retake": "दोबारा दें",
+    "lastScore": "आखिरी स्कोर",
+    "correct": "सही",
+    "date": "तारीख",
+    "exitConfirmTitle": "परीक्षा रोकें?",
+    "exitConfirmMessage": "आपकी प्रगति सहेज ली जाएगी। आप बाद में इस परीक्षा को फिर शुरू कर सकते हैं।",
+    "submitError": "परीक्षा सबमिट नहीं हो सकी",
+    "noQuestions": "इस परीक्षा के लिए कोई प्रश्न उपलब्ध नहीं हैं।",
+    "loading": "परीक्षा लोड हो रही है...",
+    "none": "कोई नहीं",
+    "hideReview": "छिपाएँ",
+    "reviewWrong": "समीक्षा करें",
+    "practiceExam": "अभ्यास परीक्षा {{number}}"
   },
   "book": {
     "title": "लाइफ इन द यूके: नए निवासियों के लिए मार्गदर्शिका",
@@ -148,7 +213,11 @@
         "title": "मध्यकाल से आधुनिक ब्रिटेन तक",
         "content": "मध्यकालीन काल में संसद और कॉमन लॉ का विकास हुआ। ट्यूडर और स्टुअर्ट काल धार्मिक संघर्षों और इंग्लिश सिविल वॉर से चिह्नित था। 18वीं और 19वीं शताब्दी में औद्योगिक क्रांति और ब्रिटिश साम्राज्य के विस्तार के माध्यम से ब्रिटेन एक वैश्विक शक्ति बन गया। 20वीं शताब्दी दो विश्व युद्धों, कल्याणकारी राज्य की स्थापना, और विश्व मामलों में ब्रिटेन की बदलती भूमिका द्वारा परिभाषित थी।"
       }
-    }
+    },
+    "sections": "खंड",
+    "startReading": "पढ़ना शुरू करें",
+    "yourProgress": "आपकी प्रगति",
+    "loadingContent": "सामग्री लोड हो रही है..."
   },
   "auth": {
     "welcomeBack": "वापसी पर स्वागत है",
@@ -205,7 +274,10 @@
     "seconds_short": "से",
     "download": "डाउनलोड",
     "close": "बंद करें",
-    "downloading": "सामग्री डाउनलोड हो रही है..."
+    "downloading": "सामग्री डाउनलोड हो रही है...",
+    "goBack": "वापस जाएँ",
+    "goToHome": "मुखपृष्ठ पर जाएँ",
+    "exit": "बाहर निकलें"
   },
   "firebase": {
     "imageLoading": "चित्र लोड हो रहा है...",
@@ -245,9 +317,39 @@
     "downloadingLanguage": "भाषा पैक डाउनलोड हो रहा है...",
     "deleteConfirm": "क्या आप इस सामग्री को हटाना चाहते हैं?",
     "deleteBookConfirm": "क्या आप इस पुस्तक की सामग्री हटाना चाहते हैं?",
-    "downloadError": "सामग्री डाउनलोड करने में विफल: {{msg}}"
+    "downloadError": "सामग्री डाउनलोड करने में विफल: {{msg}}",
+    "resetAction": "हटाएँ"
   },
   "drawer": {
     "subtitle": "परीक्षा तैयारी ऐप"
+  },
+  "account": {
+    "title": "मेरा खाता",
+    "guestName": "अतिथि उपयोगकर्ता",
+    "notSignedIn": "साइन इन नहीं किया गया",
+    "login": "लॉग इन करें",
+    "logout": "लॉग आउट करें",
+    "menu": {
+      "profile": "प्रोफ़ाइल जानकारी",
+      "settings": "सेटिंग्स",
+      "help": "सहायता व समर्थन",
+      "privacy": "गोपनीयता नीति"
+    },
+    "placeholders": {
+      "profile": "प्रोफ़ाइल विवरण यहाँ होंगे।",
+      "help": "सहायता और समर्थन सामग्री यहाँ होगी।",
+      "privacy": "गोपनीयता नीति का विवरण यहाँ जोड़ा जाएगा।"
+    },
+    "subtitleSignedIn": "{{email}} के रूप में साइन इन हैं",
+    "subtitleGuest": "साइन इन करने या अपना खाता प्रबंधित करने के लिए टैप करें"
+  },
+  "progress": {
+    "title": "प्रगति",
+    "examPerformance": "परीक्षा प्रदर्शन",
+    "completedExams": "पूर्ण की गई परीक्षाएँ",
+    "readingProgress": "पढ़ाई की प्रगति",
+    "keepGoing": "ऐसे ही करते रहें!",
+    "lastAttempt": "अंतिम प्रयास: {{date}}",
+    "noAttempts": "अभी तक कोई प्रयास नहीं"
   }
 }

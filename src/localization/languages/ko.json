@@ -4,7 +4,8 @@
     "book": "학습 가이드",
     "exam": "시험",
     "test": "연습",
-    "settings": "설정"
+    "settings": "설정",
+    "progress": "진행 상황"
   },
   "home": {
     "welcome": "Life in the UK Test에 오신 것을 환영합니다",
@@ -13,7 +14,37 @@
     "startExam": "시험 시작",
     "bookTitle": "학습 가이드",
     "bookDescription": "시험에 필요한 모든 내용을 학습하세요",
-    "openBook": "학습 가이드 열기"
+    "openBook": "학습 가이드 열기",
+    "account": "계정",
+    "greeting": "좋은 아침, {{name}}",
+    "defaultName": "탐험가",
+    "subtitle": "학습을 추적하고 멈춘 지점에서 이어가세요.",
+    "accountSheet": {
+      "welcome": "환영합니다, {{name}}",
+      "guestTitle": "환영합니다",
+      "subtitleAuthed": "계정과 진행 상황을 관리하세요.",
+      "subtitleGuest": "로그인하여 여러 기기에서 진행 상황을 동기화하세요.",
+      "menuTitle": "탐색",
+      "loginCta": "로그인",
+      "logoutCta": "로그아웃"
+    },
+    "progressTitle": "나의 진행 상황",
+    "modulesDone": "{{completed}}/{{total}} 모듈 완료",
+    "completed": "완료",
+    "completedModules": "{{total}}개 중 {{completed}}개 완료",
+    "resumeTitle": "마지막 위치에서 계속",
+    "viewAll": "모두 보기",
+    "chapterProgress": "진행 상황: {{percent}}%",
+    "login": "로그인",
+    "practiceTitle": "연습 방법 선택",
+    "practice": {
+      "fullMock": "전체 모의시험",
+      "fullMockDescription": "24문항의 실제 시험을 그대로 연습하세요.",
+      "quickQuiz": "빠른 연습",
+      "quickQuizDescription": "짧은 연습 세션을 시작하세요.",
+      "chapterTest": "챕터별 테스트",
+      "chapterTestDescription": "가이드의 한 챕터에 집중하세요."
+    }
   },
   "exam": {
     "question": "문제",
@@ -35,7 +66,13 @@
     "failCount": "불합격",
     "attemptsHistory": "기록",
     "lastAttempt": "마지막 시도",
-    "status": "상태",
+    "status": {
+      "not-started": "시작 안 함",
+      "in-progress": "진행 중",
+      "completed": "완료",
+      "passed": "합격",
+      "failed": "불합격"
+    },
     "score": "점수",
     "viewResults": "결과 보기",
     "resetExams": "모든 시험 초기화",
@@ -76,13 +113,41 @@
     "videoQuestion": "이 문제에는 동영상이 포함되어 있습니다",
     "explanation": "해설",
     "finishReview": "검토 완료",
-    "status": {
-      "not-started": "시작 안 함",
-      "in-progress": "진행 중",
-      "completed": "완료",
-      "passed": "합격",
-      "failed": "불합격"
-    }
+    "favorites": "즐겨찾기",
+    "incorrect": "오답",
+    "practiceTitle": "연습 시험",
+    "practiceSubtitle": "시험 당일을 준비할 수 있는 42개 시험.",
+    "review": {
+      "favoritesTitle": "즐겨찾는 문제",
+      "incorrectTitle": "오답 목록",
+      "emptyFavorites": "아직 즐겨찾는 문제가 없습니다.",
+      "emptyIncorrect": "복습할 오답이 아직 없습니다.",
+      "revealAnswer": "정답 보기",
+      "yourAnswer": "내 답변",
+      "correctAnswer": "정답",
+      "unfavorite": "즐겨찾기 해제"
+    },
+    "overallProgress": "전체 진행 상황",
+    "averageScore": "평균 점수",
+    "completedPct": "완료한 테스트",
+    "practiceTests": "모든 연습 시험",
+    "items": "문항",
+    "starredQuestions": "즐겨찾기",
+    "notAttempted": "미응시",
+    "restart": "다시 시작",
+    "retake": "재응시",
+    "lastScore": "마지막 점수",
+    "correct": "정답",
+    "date": "날짜",
+    "exitConfirmTitle": "시험을 일시중지할까요?",
+    "exitConfirmMessage": "진행 상황이 저장됩니다. 나중에 이 시험을 다시 진행할 수 있습니다.",
+    "submitError": "시험을 제출할 수 없습니다",
+    "noQuestions": "이 시험에는 사용할 수 있는 문제가 없습니다.",
+    "loading": "시험 불러오는 중...",
+    "none": "없음",
+    "hideReview": "숨기기",
+    "reviewWrong": "검토",
+    "practiceExam": "모의시험 {{number}}"
   },
   "book": {
     "title": "Life in the UK: 신규 거주자를 위한 안내서",
@@ -148,7 +213,11 @@
         "title": "중세에서 현대 영국으로",
         "content": "중세에는 의회와 관습법이 발전했습니다. 튜더와 스튜어트 시대는 종교 갈등과 잉글랜드 내전으로 특징지어졌습니다. 18세기와 19세기에 영국은 산업 혁명과 대영 제국 확장을 통해 세계 강국이 되었습니다. 20세기는 두 차례의 세계대전, 복지 국가의 창설, 그리고 국제 무대에서 변화하는 영국의 역할로 규정됩니다."
       }
-    }
+    },
+    "sections": "섹션",
+    "startReading": "읽기 시작",
+    "yourProgress": "내 진행 상황",
+    "loadingContent": "콘텐츠 불러오는 중..."
   },
   "auth": {
     "welcomeBack": "다시 오신 것을 환영합니다",
@@ -205,7 +274,10 @@
     "seconds_short": "초",
     "download": "다운로드",
     "close": "닫기",
-    "downloading": "콘텐츠를 다운로드하는 중..."
+    "downloading": "콘텐츠를 다운로드하는 중...",
+    "goBack": "뒤로 가기",
+    "goToHome": "홈으로 가기",
+    "exit": "종료"
   },
   "firebase": {
     "imageLoading": "이미지를 불러오는 중...",
@@ -245,9 +317,39 @@
     "downloadingLanguage": "언어 팩을 다운로드하는 중...",
     "deleteConfirm": "이 콘텐츠를 삭제하시겠습니까?",
     "deleteBookConfirm": "이 도서 콘텐츠를 삭제하시겠습니까?",
-    "downloadError": "콘텐츠 다운로드에 실패했습니다: {{msg}}"
+    "downloadError": "콘텐츠 다운로드에 실패했습니다: {{msg}}",
+    "resetAction": "삭제"
   },
   "drawer": {
     "subtitle": "시험 준비 앱"
+  },
+  "account": {
+    "title": "내 계정",
+    "guestName": "게스트 사용자",
+    "notSignedIn": "로그인되지 않음",
+    "login": "로그인",
+    "logout": "로그아웃",
+    "menu": {
+      "profile": "프로필 정보",
+      "settings": "설정",
+      "help": "도움말 및 지원",
+      "privacy": "개인정보처리방침"
+    },
+    "placeholders": {
+      "profile": "프로필 세부정보가 여기에 표시됩니다.",
+      "help": "도움말 및 지원 콘텐츠가 여기에 표시됩니다.",
+      "privacy": "개인정보 처리방침 내용이 여기에 추가됩니다."
+    },
+    "subtitleSignedIn": "{{email}}로 로그인됨",
+    "subtitleGuest": "계정에 로그인하거나 관리하려면 탭하세요"
+  },
+  "progress": {
+    "title": "진행 상황",
+    "examPerformance": "시험 성과",
+    "completedExams": "완료한 시험",
+    "readingProgress": "독서 진행 상황",
+    "keepGoing": "계속 잘하고 있어요!",
+    "lastAttempt": "마지막 시도: {{date}}",
+    "noAttempts": "아직 시도가 없습니다"
   }
 }

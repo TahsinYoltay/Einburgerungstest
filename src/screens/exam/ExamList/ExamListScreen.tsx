@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
-import { ScrollView, View, Pressable, RefreshControl } from 'react-native';
+import { ScrollView, View, Pressable, RefreshControl, TouchableOpacity } from 'react-native';
 import Icon from '@react-native-vector-icons/material-design-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text } from 'react-native-paper';
@@ -21,7 +21,7 @@ type Nav = NativeStackNavigationProp<RootStackParamList>;
 const ExamListScreen = () => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<Nav>();
-  const { exams: examStateExams, examHistory, currentExam, inProgress, loading, currentLanguage } = useAppSelector(state => state.exam);
+  const { exams: examStateExams, examHistory, currentExam, inProgress, loading, currentLanguage, favoriteQuestions, questionStats } = useAppSelector(state => state.exam);
   const { exams: contentExams } = useAppSelector(state => state.content);
   
   // Use content exams if available (they are synced from Firebase), fallback to exam slice (legacy)
@@ -32,6 +32,13 @@ const ExamListScreen = () => {
   const styles = useMemo(() => createStyles(theme), [theme]);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [refreshing, setRefreshing] = useState(false);
+
+  // Calculate stats for buttons
+  const incorrectCount = useMemo(() => {
+      return Object.values(questionStats).filter(s => s.incorrect > 0 && !s.hiddenFromIncorrectList).length;
+  }, [questionStats]);
+
+  const favoritesCount = favoriteQuestions.length;
 
   // Trigger update check every time the screen is focused
   useFocusEffect(
@@ -143,17 +150,6 @@ const ExamListScreen = () => {
   const totalExams = exams.length || 1;
   const completedPct = Math.round((completedCount / totalExams) * 100);
 
-  const flaggedTotal = useMemo(() => {
-    return examHistory.reduce((sum, a) => sum + (a.flaggedQuestions?.length || 0), 0);
-  }, [examHistory]);
-
-  const wrongTotal = useMemo(() => {
-    return examHistory.reduce(
-      (sum, a) => sum + Math.max(0, (a.totalQuestions || 0) - (a.correctAnswers || 0)),
-      0
-    );
-  }, [examHistory]);
-
   const handleStart = (examId: string, restart?: boolean) => {
     navigation.navigate(ROUTES.EXAM, { id: examId, restart });
   };
@@ -212,29 +208,45 @@ const ExamListScreen = () => {
         </View>
 
         <View style={styles.statsRow}>
-          <View style={styles.statCard}>
+          <TouchableOpacity 
+            style={styles.statCard} 
+            activeOpacity={0.8}
+            onPress={() => navigation.navigate(ROUTES.REVIEW_QUESTIONS, { mode: 'incorrect' })}
+          >
             <View style={[styles.statIconWrap, { backgroundColor: '#FEECEC' }]}>
               <Icon name="close-circle-outline" size={22} color="#D32F2F" />
             </View>
             <View style={{ flex: 1 }}>
               <Text style={styles.statTitle}>{t('exam.incorrect', 'Incorrect')}</Text>
-              <Text style={styles.statSubtitle}>{wrongTotal} {t('exam.items', 'questions')}</Text>
+              <Text style={styles.statSubtitle}>{incorrectCount} {t('exam.items', 'questions')}</Text>
             </View>
-          </View>
-          <View style={styles.statCard}>
+          </TouchableOpacity>
+          
+          <TouchableOpacity 
+            style={styles.statCard} 
+            activeOpacity={0.8}
+            onPress={() => navigation.navigate(ROUTES.REVIEW_QUESTIONS, { mode: 'favorites' })}
+          >
             <View style={[styles.statIconWrap, { backgroundColor: '#E8F1FF' }]}>
               <Icon name="star" size={22} color={theme.colors.primary} />
             </View>
             <View style={{ flex: 1 }}>
               <Text style={styles.statTitle}>{t('exam.starredQuestions', 'Favorites')}</Text>
-              <Text style={styles.statSubtitle}>{flaggedTotal} {t('exam.items', 'items')}</Text>
+              <Text style={styles.statSubtitle}>{favoritesCount} {t('exam.items', 'items')}</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
 
         {/* Practice list */}
         <Text style={styles.sectionTitle}>{t('exam.practiceTests', 'All Practice Tests')}</Text>
         {exams.map(exam => {
+          const titleText = exam.title || '';
+          const numberMatch = titleText.match(/(\\d+)/);
+          const isPracticeTitle = /practice\\s*exam/i.test(titleText);
+          const displayTitle =
+            isPracticeTitle && numberMatch
+              ? t('exam.practiceExam', { number: numberMatch[1] })
+              : titleText || exam.id;
           const latest = latestByExam[exam.id];
           const lastAttempt = latest;
           const expanded = expandedId === exam.id;
@@ -266,7 +278,7 @@ const ExamListScreen = () => {
           return (
             <View key={exam.id} style={styles.accordionCard}>
               <Pressable style={styles.accordionHeader} onPress={() => setExpandedId(expanded ? null : exam.id)}>
-                <Text style={styles.accordionTitle}>{exam.title || exam.id}</Text>
+                <Text style={styles.accordionTitle}>{displayTitle}</Text>
                 <Text style={styles.accordionMeta}>{metaLabel}</Text>
                 <Icon name={expanded ? 'chevron-up' : 'chevron-down'} size={22} color={theme.colors.onSurface} />
               </Pressable>

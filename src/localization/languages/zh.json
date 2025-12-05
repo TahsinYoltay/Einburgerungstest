@@ -4,7 +4,8 @@
     "book": "学习指南",
     "exam": "考试",
     "test": "练习",
-    "settings": "设置"
+    "settings": "设置",
+    "progress": "进度"
   },
   "home": {
     "welcome": "欢迎使用 Life in the UK Test",
@@ -13,7 +14,37 @@
     "startExam": "开始考试",
     "bookTitle": "学习指南",
     "bookDescription": "学习测试所需的一切",
-    "openBook": "打开学习指南"
+    "openBook": "打开学习指南",
+    "account": "账户",
+    "greeting": "早上好，{{name}}",
+    "defaultName": "探索者",
+    "subtitle": "跟踪你的学习并在中断处继续。",
+    "accountSheet": {
+      "welcome": "欢迎，{{name}}",
+      "guestTitle": "欢迎",
+      "subtitleAuthed": "管理你的账户和进度。",
+      "subtitleGuest": "登录以在多设备间同步进度。",
+      "menuTitle": "导航",
+      "loginCta": "登录",
+      "logoutCta": "退出登录"
+    },
+    "progressTitle": "你的进度",
+    "modulesDone": "{{completed}}/{{total}} 个模块完成",
+    "completed": "已完成",
+    "completedModules": "{{total}} 个中的 {{completed}} 个已完成",
+    "resumeTitle": "从上次中断处继续",
+    "viewAll": "查看全部",
+    "chapterProgress": "进度：{{percent}}%",
+    "login": "登录",
+    "practiceTitle": "选择你的练习",
+    "practice": {
+      "fullMock": "完整模拟考试",
+      "fullMockDescription": "模拟包含 24 道题的正式考试。",
+      "quickQuiz": "快速练习",
+      "quickQuizDescription": "开始一次短时练习。",
+      "chapterTest": "章节专项测试",
+      "chapterTestDescription": "专注于指南中的单个章节。"
+    }
   },
   "exam": {
     "question": "问题",
@@ -35,7 +66,13 @@
     "failCount": "未通过",
     "attemptsHistory": "历史记录",
     "lastAttempt": "上次尝试",
-    "status": "状态",
+    "status": {
+      "not-started": "未开始",
+      "in-progress": "进行中",
+      "completed": "已完成",
+      "passed": "通过",
+      "failed": "未通过"
+    },
     "score": "得分",
     "viewResults": "查看结果",
     "resetExams": "重置所有考试",
@@ -76,13 +113,41 @@
     "videoQuestion": "此问题包含视频",
     "explanation": "解释",
     "finishReview": "完成复查",
-    "status": {
-      "not-started": "未开始",
-      "in-progress": "进行中",
-      "completed": "已完成",
-      "passed": "通过",
-      "failed": "未通过"
-    }
+    "favorites": "收藏",
+    "incorrect": "错误",
+    "practiceTitle": "练习考试",
+    "practiceSubtitle": "42 套考试，助你备战考试日。",
+    "review": {
+      "favoritesTitle": "收藏的问题",
+      "incorrectTitle": "答错的问题",
+      "emptyFavorites": "还没有收藏的问题。",
+      "emptyIncorrect": "还没有需要复习的错题。",
+      "revealAnswer": "显示答案",
+      "yourAnswer": "你的答案",
+      "correctAnswer": "正确答案",
+      "unfavorite": "取消收藏"
+    },
+    "overallProgress": "总体进度",
+    "averageScore": "平均分",
+    "completedPct": "已完成的测试",
+    "practiceTests": "所有练习测试",
+    "items": "题目",
+    "starredQuestions": "收藏",
+    "notAttempted": "未尝试",
+    "restart": "重新开始",
+    "retake": "重新测试",
+    "lastScore": "上次得分",
+    "correct": "正确",
+    "date": "日期",
+    "exitConfirmTitle": "暂停考试？",
+    "exitConfirmMessage": "你的进度将被保存。稍后可以继续此考试。",
+    "submitError": "无法提交考试",
+    "noQuestions": "此考试暂无可用题目。",
+    "loading": "正在加载考试...",
+    "none": "无",
+    "hideReview": "隐藏",
+    "reviewWrong": "复习",
+    "practiceExam": "模拟考试 {{number}}"
   },
   "book": {
     "title": "Life in the UK: 新居民指南",
@@ -148,7 +213,11 @@
         "title": "从中世纪到现代英国",
         "content": "中世纪见证了议会和普通法的发展。都铎和斯图亚特时期经历了宗教冲突和英国内战。18 和 19 世纪，英国通过工业革命和大英帝国的扩张成为全球强国。20 世纪经历了两次世界大战、福利国家的建立以及英国在世界事务中角色的变化。"
       }
-    }
+    },
+    "sections": "章节",
+    "startReading": "开始阅读",
+    "yourProgress": "你的进度",
+    "loadingContent": "正在加载内容..."
   },
   "auth": {
     "welcomeBack": "欢迎回来",
@@ -205,7 +274,10 @@
     "seconds_short": "秒",
     "download": "下载",
     "close": "关闭",
-    "downloading": "正在下载内容..."
+    "downloading": "正在下载内容...",
+    "goBack": "返回",
+    "goToHome": "回到首页",
+    "exit": "退出"
   },
   "firebase": {
     "imageLoading": "正在加载图片...",
@@ -245,9 +317,39 @@
     "downloadingLanguage": "正在下载语言包...",
     "deleteConfirm": "删除此内容？",
     "deleteBookConfirm": "删除此书的内容？",
-    "downloadError": "下载内容失败：{{msg}}"
+    "downloadError": "下载内容失败：{{msg}}",
+    "resetAction": "删除"
   },
   "drawer": {
     "subtitle": "备考应用"
+  },
+  "account": {
+    "title": "我的账户",
+    "guestName": "访客用户",
+    "notSignedIn": "未登录",
+    "login": "登录",
+    "logout": "退出登录",
+    "menu": {
+      "profile": "个人资料",
+      "settings": "设置",
+      "help": "帮助与支持",
+      "privacy": "隐私政策"
+    },
+    "placeholders": {
+      "profile": "个人资料详情将显示在此。",
+      "help": "帮助与支持内容将显示在此。",
+      "privacy": "隐私政策详情将在此添加。"
+    },
+    "subtitleSignedIn": "登录账号：{{email}}",
+    "subtitleGuest": "点击登录或管理你的账户"
+  },
+  "progress": {
+    "title": "进度",
+    "examPerformance": "考试表现",
+    "completedExams": "完成的考试",
+    "readingProgress": "阅读进度",
+    "keepGoing": "继续保持！",
+    "lastAttempt": "上次尝试：{{date}}",
+    "noAttempts": "还没有尝试"
   }
 }

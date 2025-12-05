@@ -92,16 +92,14 @@ export const createStyles = (theme: MD3Theme) =>
       fontWeight: '700',
     },
     progressFooterText: {
-      color: theme.colors.onSurface,
-      opacity: 0.8,
-      fontWeight: '500',
+      fontSize: 12,
+      color: theme.colors.onSurfaceVariant,
     },
     sectionHeader: {
       flexDirection: 'row',
-      alignItems: 'center',
       justifyContent: 'space-between',
-      marginBottom: 12,
-      marginTop: 8,
+      alignItems: 'center',
+      marginBottom: 16,
     },
     sectionTitle: {
       fontSize: 20,

@@ -16,4 +16,5 @@ export const ROUTES = {
   READER_STACK: 'ReaderStack',
   TEST: 'Test',
   SETTINGS: 'Settings',
-} as const;
+  REVIEW_QUESTIONS: 'ReviewQuestions',
+};

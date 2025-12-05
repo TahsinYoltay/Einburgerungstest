@@ -414,9 +414,9 @@ const ExamScreen = () => {
           style={styles.languageButton}
           contentStyle={styles.languageButtonContent}
           labelStyle={styles.languageButtonLabel}
-          loading={isDownloadingLanguage}
+          icon={isDownloadingLanguage ? () => <View style={{ marginRight: 8 }}><ActivityIndicator size={12} color={theme.colors.onSurface} /></View> : undefined}
         >
-          {isDownloadingLanguage ? t('common.loading') : currentLangName}
+          {isDownloadingLanguage ? t('settings.downloadingLanguage') : currentLangName}
         </Button>
 
         <Button
@@ -556,13 +556,30 @@ const ExamScreen = () => {
       {/* Exit Confirmation Dialog */}
       <Portal>
         <Dialog visible={showExitConfirmDialog} onDismiss={() => setShowExitConfirmDialog(false)} style={{ backgroundColor: theme.colors.surface }}>
-          <Dialog.Title style={{ color: theme.colors.onSurface }}>{t('exam.exitConfirmTitle', 'Exit Exam')}</Dialog.Title>
+          <Dialog.Title style={{ color: theme.colors.onSurface, textAlign: 'center' }}>{t('exam.exitConfirmTitle', 'Pause Exam?')}</Dialog.Title>
           <Dialog.Content>
-            <Text style={{ color: theme.colors.onSurfaceVariant }}>{t('exam.exitConfirmMessage', 'Are you sure you want to exit the exam? Your progress will not be saved.')}</Text>
+            <Text style={{ color: theme.colors.onSurfaceVariant, textAlign: 'center' }}>
+              {t('exam.exitConfirmMessage', 'Your progress will be saved. You can resume this exam later.')}
+            </Text>
           </Dialog.Content>
-          <Dialog.Actions>
-            <Button onPress={() => setShowExitConfirmDialog(false)} textColor={theme.colors.primary}>{t('common.cancel', 'Cancel')}</Button>
-            <Button onPress={handleExitExam} textColor={theme.colors.error}>{t('common.exit', 'Exit')}</Button>
+          <Dialog.Actions style={{ justifyContent: 'space-between', paddingHorizontal: 16, paddingBottom: 16 }}>
+            <Button 
+              mode="outlined" 
+              onPress={() => setShowExitConfirmDialog(false)} 
+              textColor={theme.colors.primary}
+              style={{ flex: 1, marginRight: 8 }}
+            >
+              {t('common.cancel', 'Cancel')}
+            </Button>
+            <Button 
+              mode="contained" 
+              onPress={handleExitExam} 
+              buttonColor={theme.colors.error}
+              textColor={theme.colors.onError}
+              style={{ flex: 1, marginLeft: 8 }}
+            >
+              {t('common.exit', 'Exit')}
+            </Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>

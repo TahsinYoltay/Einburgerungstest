@@ -4,7 +4,8 @@
     "book": "Guía de Estudio",
     "exam": "Examen",
     "test": "Práctica",
-    "settings": "Configuración"
+    "settings": "Configuración",
+    "progress": "Progreso"
   },
   "home": {
     "welcome": "Bienvenido a Life in the UK Test",
@@ -13,7 +14,37 @@
     "startExam": "Comenzar Examen",
     "bookTitle": "Guía de Estudio",
     "bookDescription": "Aprende todo lo necesario",
-    "openBook": "Abrir Guía"
+    "openBook": "Abrir Guía",
+    "account": "Cuenta",
+    "greeting": "Buenos días, {{name}}",
+    "defaultName": "Explorador",
+    "subtitle": "Sigue tu aprendizaje y retoma donde lo dejaste.",
+    "accountSheet": {
+      "welcome": "Bienvenido, {{name}}",
+      "guestTitle": "Bienvenido",
+      "subtitleAuthed": "Gestiona tu cuenta y tu progreso.",
+      "subtitleGuest": "Inicia sesión para sincronizar tu progreso en todos tus dispositivos.",
+      "menuTitle": "Navegación",
+      "loginCta": "Iniciar sesión",
+      "logoutCta": "Cerrar sesión"
+    },
+    "progressTitle": "Tu progreso",
+    "modulesDone": "{{completed}}/{{total}} módulos completados",
+    "completed": "Completado",
+    "completedModules": "{{completed}} de {{total}} completados",
+    "resumeTitle": "Continúa donde lo dejaste",
+    "viewAll": "Ver todo",
+    "chapterProgress": "Progreso: {{percent}}%",
+    "login": "Iniciar sesión",
+    "practiceTitle": "Elige tu práctica",
+    "practice": {
+      "fullMock": "Examen simulado completo",
+      "fullMockDescription": "Simula el test completo de 24 preguntas.",
+      "quickQuiz": "Práctica rápida",
+      "quickQuizDescription": "Haz una sesión corta de práctica.",
+      "chapterTest": "Examen específico por capítulo",
+      "chapterTestDescription": "Concéntrate en un solo capítulo de la guía."
+    }
   },
   "exam": {
     "question": "Pregunta",
@@ -35,7 +66,13 @@
     "failCount": "Fallidos",
     "attemptsHistory": "Historial",
     "lastAttempt": "Último Intento",
-    "status": "Estado",
+    "status": {
+      "not-started": "No Iniciado",
+      "in-progress": "En Progreso",
+      "completed": "Completado",
+      "passed": "Aprobado",
+      "failed": "Fallido"
+    },
     "score": "Puntuación",
     "viewResults": "Ver Resultados",
     "resetExams": "Restablecer Todo",
@@ -76,13 +113,41 @@
     "videoQuestion": "Esta pregunta incluye video",
     "explanation": "Explicación",
     "finishReview": "Finalizar Revisión",
-    "status": {
-      "not-started": "No Iniciado",
-      "in-progress": "En Progreso",
-      "completed": "Completado",
-      "passed": "Aprobado",
-      "failed": "Fallido"
-    }
+    "favorites": "Favoritos",
+    "incorrect": "Incorrectas",
+    "practiceTitle": "Exámenes de práctica",
+    "practiceSubtitle": "42 exámenes para prepararte para el día del test.",
+    "review": {
+      "favoritesTitle": "Preguntas favoritas",
+      "incorrectTitle": "Respuestas incorrectas",
+      "emptyFavorites": "Aún no tienes preguntas favoritas.",
+      "emptyIncorrect": "Aún no hay respuestas incorrectas para repasar.",
+      "revealAnswer": "Mostrar respuesta",
+      "yourAnswer": "Tu respuesta",
+      "correctAnswer": "Respuesta correcta",
+      "unfavorite": "Quitar de favoritos"
+    },
+    "overallProgress": "Progreso general",
+    "averageScore": "Puntuación media",
+    "completedPct": "Pruebas completadas",
+    "practiceTests": "Todas las pruebas de práctica",
+    "items": "preguntas",
+    "starredQuestions": "Favoritos",
+    "notAttempted": "No intentado",
+    "restart": "Reiniciar",
+    "retake": "Repetir",
+    "lastScore": "Última puntuación",
+    "correct": "Correctas",
+    "date": "Fecha",
+    "exitConfirmTitle": "¿Pausar el examen?",
+    "exitConfirmMessage": "Se guardará tu progreso. Puedes reanudar este examen más tarde.",
+    "submitError": "No se pudo enviar el examen",
+    "noQuestions": "No hay preguntas disponibles para este examen.",
+    "loading": "Cargando examen...",
+    "none": "Ninguno",
+    "hideReview": "Ocultar",
+    "reviewWrong": "Revisar",
+    "practiceExam": "Examen de práctica {{number}}"
   },
   "book": {
     "title": "Life in the UK: Guía para Nuevos Residentes",
@@ -148,7 +213,11 @@
         "title": "De la Edad Media a la Gran Bretaña Moderna",
         "content": "Contenido..."
       }
-    }
+    },
+    "sections": "Secciones",
+    "startReading": "Empezar a leer",
+    "yourProgress": "Tu progreso",
+    "loadingContent": "Cargando contenido..."
   },
   "auth": {
     "welcomeBack": "Bienvenido de nuevo",
@@ -205,7 +274,10 @@
     "seconds_short": "s",
     "download": "Descargar",
     "close": "Cerrar",
-    "downloading": "Descargando contenido..."
+    "downloading": "Descargando contenido...",
+    "goBack": "Atrás",
+    "goToHome": "Ir a inicio",
+    "exit": "Salir"
   },
   "firebase": {
     "imageLoading": "Cargando imagen...",
@@ -245,9 +317,39 @@
     "downloadingLanguage": "Descargando paquete de idioma...",
     "deleteConfirm": "¿Eliminar este contenido?",
     "deleteBookConfirm": "¿Eliminar este contenido del libro?",
-    "downloadError": "Error al descargar el contenido: {{msg}}"
+    "downloadError": "Error al descargar el contenido: {{msg}}",
+    "resetAction": "Eliminar"
   },
   "drawer": {
     "subtitle": "App de Preparación"
+  },
+  "account": {
+    "title": "Mi Cuenta",
+    "guestName": "Usuario invitado",
+    "notSignedIn": "No has iniciado sesión",
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "menu": {
+      "profile": "Información del perfil",
+      "settings": "Configuración",
+      "help": "Ayuda y soporte",
+      "privacy": "Política de privacidad"
+    },
+    "placeholders": {
+      "profile": "Los detalles del perfil irán aquí.",
+      "help": "El contenido de ayuda y soporte irá aquí.",
+      "privacy": "La política de privacidad se agregará aquí."
+    },
+    "subtitleSignedIn": "Has iniciado sesión como {{email}}",
+    "subtitleGuest": "Toca para iniciar sesión o gestionar tu cuenta"
+  },
+  "progress": {
+    "title": "Progreso",
+    "examPerformance": "Rendimiento en exámenes",
+    "completedExams": "Exámenes completados",
+    "readingProgress": "Progreso de lectura",
+    "keepGoing": "¡Sigue así!",
+    "lastAttempt": "Último intento: {{date}}",
+    "noAttempts": "Aún no hay intentos"
   }
 }

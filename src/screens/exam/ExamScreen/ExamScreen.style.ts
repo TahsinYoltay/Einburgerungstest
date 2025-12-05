@@ -40,7 +40,7 @@ export const createStyles = (theme: MD3Theme) => StyleSheet.create({
   },
   languageButtonContent: {
     height: 36,
-    paddingHorizontal: 0,
+    paddingHorizontal: 12,
   },
   languageButtonLabel: {
     fontSize: 13,
