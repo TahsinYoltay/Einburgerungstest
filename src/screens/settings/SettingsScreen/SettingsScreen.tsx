@@ -242,7 +242,7 @@ const SettingsScreen = () => {
         </Dialog>
 
         <Dialog visible={showBookLangDialog} onDismiss={() => setShowBookLangDialog(false)}>
-          <Dialog.Title>Book Content</Dialog.Title>
+          <Dialog.Title>{t('settings.bookContent')}</Dialog.Title>
           <Dialog.Content>
             <ScrollView style={{ maxHeight: 400 }} contentContainerStyle={{ paddingHorizontal: 8 }}>
               {languages.map((lang, index, arr) => {
@@ -272,7 +272,7 @@ const SettingsScreen = () => {
                                 if (isDownloaded) {
                                   Alert.alert(
                                     t('common.delete'),
-                                    t('settings.deleteConfirm', { defaultValue: 'Delete this book content?' }),
+                                    t('settings.deleteBookConfirm'),
                                     [
                                       { text: t('common.cancel'), style: 'cancel' },
                                       { 

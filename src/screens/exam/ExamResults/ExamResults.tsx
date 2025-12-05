@@ -53,7 +53,7 @@ const ExamResults = () => {
   const formatTime = (seconds: number): string => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    return `${minutes}m ${remainingSeconds}s`;
+    return `${minutes}${t('common.minutes_short')} ${remainingSeconds}${t('common.seconds_short')}`;
   };
 
   const passMarkPct = Math.round((examDetails?.pass_mark ?? 0.75) * 100);

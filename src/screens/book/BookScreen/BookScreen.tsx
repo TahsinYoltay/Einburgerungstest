@@ -264,14 +264,14 @@ const BookScreen = () => {
           <View style={styles.expandedContent}>
             <View style={styles.expandedHeader}>
               <Text variant="titleSmall" style={styles.sectionsTitle}>
-                Sections
+                {t('book.sections')}
               </Text>
               <TouchableOpacity
                 onPress={() => openChapter(chapter)}
                 style={styles.readButton}
               >
                 <Text style={styles.readButtonText}>
-                  Start Reading
+                  {t('book.startReading')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -287,7 +287,7 @@ const BookScreen = () => {
      return (
          <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: theme.colors.background}}>
              <ActivityIndicator size="large" color={theme.colors.primary} />
-             <Text style={{marginTop: 10, color: theme.colors.onSurface}}>Loading Content...</Text>
+             <Text style={{marginTop: 10, color: theme.colors.onSurface}}>{t('book.loadingContent')}</Text>
          </View>
      );
   }
@@ -313,7 +313,7 @@ const BookScreen = () => {
           {/* Overall Progress Summary */}
           <Surface style={styles.progressSurface}>
             <Text variant="titleSmall" style={styles.progressTitle}>
-              Your Progress
+              {t('book.yourProgress')}
             </Text>
             <View style={styles.progressBarContainer}>
               <View style={{ flex: 1, marginRight: 12 }}>

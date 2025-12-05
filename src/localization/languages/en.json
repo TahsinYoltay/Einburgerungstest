@@ -95,7 +95,13 @@
     "failCount": "Failed",
     "attemptsHistory": "History",
     "lastAttempt": "Last Attempt",
-    "status": "Status",
+    "status": {
+      "not-started": "Not Started",
+      "in-progress": "In Progress",
+      "completed": "Completed",
+      "passed": "Passed",
+      "failed": "Failed"
+    },
     "score": "Score",
     "viewResults": "View Results",
     "resetExams": "Reset All Exams",
@@ -140,13 +146,37 @@
     "videoQuestion": "This question includes a video",
     "explanation": "Explanation",
     "finishReview": "Finish Review",
-    "status": {
-      "not-started": "Not Started",
-      "in-progress": "In Progress",
-      "completed": "Completed",
-      "passed": "Passed",
-      "failed": "Failed"
-    }
+    "review": {
+      "favoritesTitle": "Favorite Questions",
+      "incorrectTitle": "Incorrect Answers",
+      "emptyFavorites": "No favorite questions yet.",
+      "emptyIncorrect": "No incorrect answers to review yet.",
+      "revealAnswer": "Reveal Answer",
+      "yourAnswer": "Your Answer",
+      "correctAnswer": "Correct Answer",
+      "unfavorite": "Unfavorite"
+    },
+    "overallProgress": "Overall Progress",
+    "averageScore": "Average Score",
+    "completedPct": "Completed Tests",
+    "practiceTests": "All Practice Tests",
+    "items": "questions",
+    "starredQuestions": "Favorites",
+    "notAttempted": "Not attempted",
+    "restart": "Restart",
+    "retake": "Retake",
+    "lastScore": "Last score",
+    "correct": "Correct",
+    "date": "Date",
+    "exitConfirmTitle": "Pause Exam?",
+    "exitConfirmMessage": "Your progress will be saved. You can resume this exam later.",
+    "submitError": "Could not submit exam",
+    "noQuestions": "No questions available for this exam.",
+    "loading": "Loading exam...",
+    "none": "None",
+    "hideReview": "Hide",
+    "reviewWrong": "Review",
+    "practiceExam": "Practice Exam {{number}}"
   },
   "book": {
     "title": "Life in the UK: A Guide for New Residents",
@@ -212,7 +242,11 @@
         "title": "The Middle Ages to Modern Britain",
         "content": "The medieval period saw the development of Parliament and common law. The Tudor and Stuart periods were marked by religious conflicts and the English Civil War. The 18th and 19th centuries saw Britain become a global power through the Industrial Revolution and the expansion of the British Empire. The 20th century was defined by two World Wars, the creation of the welfare state, and Britain's changing role in world affairs."
       }
-    }
+    },
+    "sections": "Sections",
+    "startReading": "Start Reading",
+    "yourProgress": "Your Progress",
+    "loadingContent": "Loading Content..."
   },
   "auth": {
     "welcomeBack": "Welcome Back",
@@ -269,18 +303,26 @@
     "seconds_short": "s",
     "download": "Download",
     "close": "Close",
-    "downloading": "Downloading content..."
+    "downloading": "Downloading content...",
+    "goBack": "Go Back",
+    "goToHome": "Go to Home",
+    "exit": "Exit"
   },
   "settings": {
     "appearance": "Appearance",
     "language": "Language",
     "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
     "appLanguage": "App Language",
-    "examContent": "Exam Content",
-    "bookContent": "Book Content",
+    "selectLanguage": "Select Language",
+    "examContent": "Exam Content Packages",
+    "bookContent": "Book Content Packages",
     "dataManagement": "Data Management",
-    "downloadingLanguage": "Downloading...",
-    "resetAction": "Delete"
+    "downloadingLanguage": "Downloading language pack...",
+    "resetAction": "Delete",
+    "deleteConfirm": "Delete this content?",
+    "deleteBookConfirm": "Delete this book content?",
+    "downloadError": "Failed to download content: {{msg}}"
   },
   "firebase": {
     "imageLoading": "Loading image...",
@@ -306,21 +348,6 @@
     "sections_count": "{{count}} sections",
     "no_section_selected": "No section selected",
     "section_progress": "Section {{current}} of {{total}}"
-  },
-  "settings": {
-    "darkMode": "Dark Mode",
-    "lightMode": "Light Mode",
-    "appearance": "Appearance",
-    "language": "Language",
-    "appLanguage": "Language",
-    "selectLanguage": "Select Language",
-    "examContent": "Exam Content Packages",
-    "bookContent": "Book Content Packages",
-    "dataManagement": "Data Management",
-    "downloadingLanguage": "Downloading language pack...",
-    "deleteConfirm": "Delete this content?",
-    "deleteBookConfirm": "Delete this book content?",
-    "downloadError": "Failed to download content: {{msg}}"
   },
   "drawer": {
     "subtitle": "Test Preparation App"

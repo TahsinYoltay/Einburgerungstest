@@ -4,7 +4,8 @@
     "book": "دليل الدراسة",
     "exam": "الامتحان",
     "test": "التدريب",
-    "settings": "الإعدادات"
+    "settings": "الإعدادات",
+    "progress": "التقدم"
   },
   "home": {
     "welcome": "مرحبًا بك في اختبار Life in the UK",
@@ -13,7 +14,37 @@
     "startExam": "ابدأ الامتحان",
     "bookTitle": "دليل الدراسة",
     "bookDescription": "تعلّم كل ما تحتاج معرفته للاختبار",
-    "openBook": "افتح دليل الدراسة"
+    "openBook": "افتح دليل الدراسة",
+    "account": "الحساب",
+    "greeting": "صباح الخير، {{name}}",
+    "defaultName": "مستكشف",
+    "subtitle": "تابع تعلمك وواصل من حيث توقفت.",
+    "accountSheet": {
+      "welcome": "مرحبًا، {{name}}",
+      "guestTitle": "مرحبًا",
+      "subtitleAuthed": "أدِر حسابك وتقدمك.",
+      "subtitleGuest": "سجّل الدخول لمزامنة تقدمك عبر الأجهزة.",
+      "menuTitle": "التنقل",
+      "loginCta": "تسجيل الدخول",
+      "logoutCta": "تسجيل الخروج"
+    },
+    "progressTitle": "تقدمك",
+    "modulesDone": "{{completed}}/{{total}} من الوحدات مكتملة",
+    "completed": "مكتمل",
+    "completedModules": "{{completed}} من {{total}} مكتملة",
+    "resumeTitle": "واصل من حيث توقفت",
+    "viewAll": "عرض الكل",
+    "chapterProgress": "التقدم: {{percent}}%",
+    "login": "تسجيل الدخول",
+    "practiceTitle": "اختر طريقة الممارسة",
+    "practice": {
+      "fullMock": "امتحان تجريبي كامل",
+      "fullMockDescription": "حاكي الاختبار الكامل المكون من 24 سؤالًا.",
+      "quickQuiz": "ممارسة سريعة",
+      "quickQuizDescription": "ابدأ جلسة ممارسة قصيرة.",
+      "chapterTest": "اختبار خاص بالفصل",
+      "chapterTestDescription": "ركز على فصل واحد من الدليل."
+    }
   },
   "exam": {
     "question": "سؤال",
@@ -35,7 +66,13 @@
     "failCount": "فاشلة",
     "attemptsHistory": "السجل",
     "lastAttempt": "آخر محاولة",
-    "status": "الحالة",
+    "status": {
+      "not-started": "لم يبدأ",
+      "in-progress": "قيد التنفيذ",
+      "completed": "مكتمل",
+      "passed": "ناجح",
+      "failed": "راسب"
+    },
     "score": "النتيجة",
     "viewResults": "عرض النتائج",
     "resetExams": "إعادة تعيين كل الامتحانات",
@@ -76,13 +113,41 @@
     "videoQuestion": "يتضمن هذا السؤال فيديو",
     "explanation": "شرح",
     "finishReview": "إنهاء المراجعة",
-    "status": {
-      "not-started": "لم يبدأ",
-      "in-progress": "قيد التنفيذ",
-      "completed": "مكتمل",
-      "passed": "ناجح",
-      "failed": "راسب"
-    }
+    "favorites": "المفضلة",
+    "incorrect": "غير صحيح",
+    "practiceTitle": "امتحانات الممارسة",
+    "practiceSubtitle": "42 امتحانًا لتستعد ليوم الاختبار.",
+    "review": {
+      "favoritesTitle": "الأسئلة المفضلة",
+      "incorrectTitle": "الإجابات الخاطئة",
+      "emptyFavorites": "لا توجد أسئلة مفضلة بعد.",
+      "emptyIncorrect": "لا توجد إجابات خاطئة للمراجعة بعد.",
+      "revealAnswer": "إظهار الإجابة",
+      "yourAnswer": "إجابتك",
+      "correctAnswer": "الإجابة الصحيحة",
+      "unfavorite": "إزالة من المفضلة"
+    },
+    "overallProgress": "التقدم العام",
+    "averageScore": "متوسط الدرجة",
+    "completedPct": "الاختبارات المكتملة",
+    "practiceTests": "كل اختبارات الممارسة",
+    "items": "الأسئلة",
+    "starredQuestions": "المفضلة",
+    "notAttempted": "لم يتم المحاولة",
+    "restart": "إعادة البدء",
+    "retake": "إعادة الاختبار",
+    "lastScore": "آخر نتيجة",
+    "correct": "صحيح",
+    "date": "التاريخ",
+    "exitConfirmTitle": "إيقاف الامتحان؟",
+    "exitConfirmMessage": "سيتم حفظ تقدمك. يمكنك استئناف هذا الامتحان لاحقًا.",
+    "submitError": "تعذّر إرسال الامتحان",
+    "noQuestions": "لا توجد أسئلة متاحة لهذا الامتحان.",
+    "loading": "جارٍ تحميل الامتحان...",
+    "none": "لا يوجد",
+    "hideReview": "إخفاء",
+    "reviewWrong": "مراجعة",
+    "practiceExam": "امتحان تجريبي {{number}}"
   },
   "book": {
     "title": "الحياة في المملكة المتحدة: دليل للمقيمين الجدد",
@@ -148,7 +213,11 @@
         "title": "من العصور الوسطى إلى بريطانيا الحديثة",
         "content": "شهدت الفترة الوسطى تطور البرلمان والقانون العام. تميزت فترتا تيودور وستيوارت بصراعات دينية والحرب الأهلية الإنجليزية. في القرنين الثامن عشر والتاسع عشر أصبحت بريطانيا قوة عالمية من خلال الثورة الصناعية وتوسع الإمبراطورية البريطانية. وشهد القرن العشرون حربين عالميتين وإنشاء دولة الرفاه وتغير دور بريطانيا في الشؤون العالمية."
       }
-    }
+    },
+    "sections": "الأقسام",
+    "startReading": "ابدأ القراءة",
+    "yourProgress": "تقدمك",
+    "loadingContent": "جاري تحميل المحتوى..."
   },
   "auth": {
     "welcomeBack": "مرحبًا بعودتك",
@@ -205,7 +274,10 @@
     "seconds_short": "ث",
     "download": "تنزيل",
     "close": "إغلاق",
-    "downloading": "جارٍ تنزيل المحتوى..."
+    "downloading": "جارٍ تنزيل المحتوى...",
+    "goBack": "رجوع",
+    "goToHome": "الانتقال للرئيسية",
+    "exit": "خروج"
   },
   "firebase": {
     "imageLoading": "جارٍ تحميل الصورة...",
@@ -245,9 +317,39 @@
     "downloadingLanguage": "جارٍ تنزيل حزمة اللغة...",
     "deleteConfirm": "هل تريد حذف هذا المحتوى؟",
     "deleteBookConfirm": "هل تريد حذف محتوى هذا الكتاب؟",
-    "downloadError": "فشل تنزيل المحتوى: {{msg}}"
+    "downloadError": "فشل تنزيل المحتوى: {{msg}}",
+    "resetAction": "حذف"
   },
   "drawer": {
     "subtitle": "تطبيق للتحضير للامتحان"
+  },
+  "account": {
+    "title": "حسابي",
+    "guestName": "مستخدم زائر",
+    "notSignedIn": "غير مسجل الدخول",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "menu": {
+      "profile": "معلومات الملف الشخصي",
+      "settings": "الإعدادات",
+      "help": "المساعدة والدعم",
+      "privacy": "سياسة الخصوصية"
+    },
+    "placeholders": {
+      "profile": "ستظهر تفاصيل الملف الشخصي هنا.",
+      "help": "سيتم وضع محتوى المساعدة والدعم هنا.",
+      "privacy": "سيتم إضافة تفاصيل سياسة الخصوصية هنا."
+    },
+    "subtitleSignedIn": "مسجل الدخول باسم {{email}}",
+    "subtitleGuest": "اضغط لتسجيل الدخول أو إدارة حسابك"
+  },
+  "progress": {
+    "title": "التقدم",
+    "examPerformance": "أداء الامتحان",
+    "completedExams": "الامتحانات المكتملة",
+    "readingProgress": "تقدم القراءة",
+    "keepGoing": "استمر على هذا المنوال!",
+    "lastAttempt": "آخر محاولة: {{date}}",
+    "noAttempts": "لا توجد محاولات بعد"
   }
 }

@@ -4,7 +4,8 @@
     "book": "Podręcznik",
     "exam": "Egzamin",
     "test": "Praktyka",
-    "settings": "Ustawienia"
+    "settings": "Ustawienia",
+    "progress": "Postępy"
   },
   "home": {
     "welcome": "Witamy w Life in the UK Test",
@@ -13,7 +14,37 @@
     "startExam": "Rozpocznij egzamin",
     "bookTitle": "Podręcznik",
     "bookDescription": "Dowiedz się wszystkiego, co potrzebne do testu",
-    "openBook": "Otwórz podręcznik"
+    "openBook": "Otwórz podręcznik",
+    "account": "Konto",
+    "greeting": "Dzień dobry, {{name}}",
+    "defaultName": "Odkrywca",
+    "subtitle": "Śledź naukę i wracaj tam, gdzie przerwałeś.",
+    "accountSheet": {
+      "welcome": "Witamy, {{name}}",
+      "guestTitle": "Witamy",
+      "subtitleAuthed": "Zarządzaj swoim kontem i postępami.",
+      "subtitleGuest": "Zaloguj się, aby synchronizować postępy między urządzeniami.",
+      "menuTitle": "Nawigacja",
+      "loginCta": "Zaloguj się",
+      "logoutCta": "Wyloguj"
+    },
+    "progressTitle": "Twój postęp",
+    "modulesDone": "{{completed}}/{{total}} modułów ukończono",
+    "completed": "Ukończone",
+    "completedModules": "{{completed}} z {{total}} ukończono",
+    "resumeTitle": "Kontynuuj tam, gdzie skończyłeś",
+    "viewAll": "Zobacz wszystko",
+    "chapterProgress": "Postęp: {{percent}}%",
+    "login": "Zaloguj się",
+    "practiceTitle": "Wybierz swoją praktykę",
+    "practice": {
+      "fullMock": "Pełny egzamin próbny",
+      "fullMockDescription": "Zasymuluj pełny test z 24 pytaniami.",
+      "quickQuiz": "Szybka sesja",
+      "quickQuizDescription": "Rozpocznij krótką sesję ćwiczeń.",
+      "chapterTest": "Test dotyczący rozdziału",
+      "chapterTestDescription": "Skup się na jednym rozdziale przewodnika."
+    }
   },
   "exam": {
     "question": "Pytanie",
@@ -35,7 +66,13 @@
     "failCount": "Niezaliczone",
     "attemptsHistory": "Historia",
     "lastAttempt": "Ostatnia próba",
-    "status": "Status",
+    "status": {
+      "not-started": "Nierozpoczęte",
+      "in-progress": "W toku",
+      "completed": "Zakończone",
+      "passed": "Zaliczone",
+      "failed": "Niezaliczone"
+    },
     "score": "Wynik",
     "viewResults": "Zobacz wyniki",
     "resetExams": "Resetuj wszystkie egzaminy",
@@ -76,13 +113,41 @@
     "videoQuestion": "To pytanie zawiera wideo",
     "explanation": "Wyjaśnienie",
     "finishReview": "Zakończ przegląd",
-    "status": {
-      "not-started": "Nierozpoczęte",
-      "in-progress": "W toku",
-      "completed": "Zakończone",
-      "passed": "Zaliczone",
-      "failed": "Niezaliczone"
-    }
+    "favorites": "Ulubione",
+    "incorrect": "Błędne",
+    "practiceTitle": "Egzaminy ćwiczeniowe",
+    "practiceSubtitle": "42 egzaminy, aby przygotować się na dzień testu.",
+    "review": {
+      "favoritesTitle": "Ulubione pytania",
+      "incorrectTitle": "Błędne odpowiedzi",
+      "emptyFavorites": "Brak ulubionych pytań.",
+      "emptyIncorrect": "Brak błędnych odpowiedzi do przejrzenia.",
+      "revealAnswer": "Pokaż odpowiedź",
+      "yourAnswer": "Twoja odpowiedź",
+      "correctAnswer": "Poprawna odpowiedź",
+      "unfavorite": "Usuń z ulubionych"
+    },
+    "overallProgress": "Łączny postęp",
+    "averageScore": "Średni wynik",
+    "completedPct": "Ukończone testy",
+    "practiceTests": "Wszystkie testy ćwiczebne",
+    "items": "pytania",
+    "starredQuestions": "Ulubione",
+    "notAttempted": "Nie podjęto",
+    "restart": "Uruchom ponownie",
+    "retake": "Podejdź ponownie",
+    "lastScore": "Ostatni wynik",
+    "correct": "Poprawne",
+    "date": "Data",
+    "exitConfirmTitle": "Wstrzymać egzamin?",
+    "exitConfirmMessage": "Twój postęp zostanie zapisany. Możesz wznowić ten egzamin później.",
+    "submitError": "Nie udało się przesłać egzaminu",
+    "noQuestions": "Brak pytań dostępnych dla tego egzaminu.",
+    "loading": "Ładowanie egzaminu...",
+    "none": "Brak",
+    "hideReview": "Ukryj",
+    "reviewWrong": "Przejrzyj",
+    "practiceExam": "Egzamin próbny {{number}}"
   },
   "book": {
     "title": "Life in the UK: Przewodnik dla nowych mieszkańców",
@@ -148,7 +213,11 @@
         "title": "Od średniowiecza do nowożytnej Brytanii",
         "content": "W średniowieczu rozwinęły się parlament i common law. Okresy Tudorów i Stuartów charakteryzowały się konfliktami religijnymi i angielską wojną domową. W XVIII i XIX wieku Brytania stała się światową potęgą dzięki rewolucji przemysłowej i ekspansji imperium brytyjskiego. XX wiek naznaczony był dwiema wojnami światowymi, utworzeniem państwa dobrobytu oraz zmieniającą się rolą Brytanii w sprawach światowych."
       }
-    }
+    },
+    "sections": "Sekcje",
+    "startReading": "Rozpocznij czytanie",
+    "yourProgress": "Twój postęp",
+    "loadingContent": "Ładowanie treści..."
   },
   "auth": {
     "welcomeBack": "Witaj ponownie",
@@ -205,7 +274,10 @@
     "seconds_short": "s",
     "download": "Pobierz",
     "close": "Zamknij",
-    "downloading": "Pobieranie treści..."
+    "downloading": "Pobieranie treści...",
+    "goBack": "Wróć",
+    "goToHome": "Przejdź do strony głównej",
+    "exit": "Zakończ"
   },
   "firebase": {
     "imageLoading": "Ładowanie obrazu...",
@@ -245,9 +317,39 @@
     "downloadingLanguage": "Pobieranie pakietu językowego...",
     "deleteConfirm": "Usunąć tę zawartość?",
     "deleteBookConfirm": "Usunąć zawartość tej książki?",
-    "downloadError": "Nie udało się pobrać zawartości: {{msg}}"
+    "downloadError": "Nie udało się pobrać zawartości: {{msg}}",
+    "resetAction": "Usuń"
   },
   "drawer": {
     "subtitle": "Aplikacja do przygotowania"
+  },
+  "account": {
+    "title": "Moje konto",
+    "guestName": "Użytkownik gościnny",
+    "notSignedIn": "Niezalogowano",
+    "login": "Zaloguj się",
+    "logout": "Wyloguj",
+    "menu": {
+      "profile": "Informacje o profilu",
+      "settings": "Ustawienia",
+      "help": "Pomoc i wsparcie",
+      "privacy": "Polityka prywatności"
+    },
+    "placeholders": {
+      "profile": "Szczegóły profilu pojawią się tutaj.",
+      "help": "Treści pomocy i wsparcia pojawią się tutaj.",
+      "privacy": "Szczegóły polityki prywatności zostaną dodane tutaj."
+    },
+    "subtitleSignedIn": "Zalogowano jako {{email}}",
+    "subtitleGuest": "Stuknij, aby się zalogować lub zarządzać kontem"
+  },
+  "progress": {
+    "title": "Postępy",
+    "examPerformance": "Wyniki egzaminów",
+    "completedExams": "Ukończone egzaminy",
+    "readingProgress": "Postęp czytania",
+    "keepGoing": "Tak trzymaj!",
+    "lastAttempt": "Ostatnia próba: {{date}}",
+    "noAttempts": "Brak prób"
   }
 }

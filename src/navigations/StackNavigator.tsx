@@ -35,7 +35,10 @@ export type RootStackParamList = {
   [ROUTES.READER]: { chapterId: string; subSectionId: string };
   [ROUTES.TEST]: undefined;
   [ROUTES.SETTINGS]: undefined;
+  [ROUTES.REVIEW_QUESTIONS]: { mode: 'favorites' | 'incorrect' };
 };
+
+import ReviewQuestionsScreen from '../screens/review/ReviewQuestionsScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -89,6 +92,11 @@ function RootNavigator() {
       <Stack.Screen
         name={ROUTES.SETTINGS}
         component={SettingsScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={ROUTES.REVIEW_QUESTIONS}
+        component={ReviewQuestionsScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

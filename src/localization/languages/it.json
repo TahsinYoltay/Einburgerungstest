@@ -4,7 +4,8 @@
     "book": "Guida di studio",
     "exam": "Esame",
     "test": "Pratica",
-    "settings": "Impostazioni"
+    "settings": "Impostazioni",
+    "progress": "Progressi"
   },
   "home": {
     "welcome": "Benvenuto in Life in the UK Test",
@@ -13,7 +14,37 @@
     "startExam": "Inizia esame",
     "bookTitle": "Guida di studio",
     "bookDescription": "Impara tutto ciò che serve per il test",
-    "openBook": "Apri la guida di studio"
+    "openBook": "Apri la guida di studio",
+    "account": "Account",
+    "greeting": "Buongiorno, {{name}}",
+    "defaultName": "Esploratore",
+    "subtitle": "Tieni traccia del tuo apprendimento e riprendi da dove hai lasciato.",
+    "accountSheet": {
+      "welcome": "Benvenuto, {{name}}",
+      "guestTitle": "Benvenuto",
+      "subtitleAuthed": "Gestisci il tuo account e i tuoi progressi.",
+      "subtitleGuest": "Accedi per sincronizzare i progressi tra i dispositivi.",
+      "menuTitle": "Navigazione",
+      "loginCta": "Accedi",
+      "logoutCta": "Esci"
+    },
+    "progressTitle": "I tuoi progressi",
+    "modulesDone": "{{completed}}/{{total}} moduli completati",
+    "completed": "Completato",
+    "completedModules": "{{completed}} di {{total}} completati",
+    "resumeTitle": "Riprendi da dove hai interrotto",
+    "viewAll": "Vedi tutto",
+    "chapterProgress": "Progresso: {{percent}}%",
+    "login": "Accedi",
+    "practiceTitle": "Scegli il tuo allenamento",
+    "practice": {
+      "fullMock": "Simulazione completa",
+      "fullMockDescription": "Simula l’intero test da 24 domande.",
+      "quickQuiz": "Pratica veloce",
+      "quickQuizDescription": "Inizia una breve sessione di pratica.",
+      "chapterTest": "Test specifico per capitolo",
+      "chapterTestDescription": "Concentrati su un singolo capitolo della guida."
+    }
   },
   "exam": {
     "question": "Domanda",
@@ -35,7 +66,13 @@
     "failCount": "Non superati",
     "attemptsHistory": "Cronologia",
     "lastAttempt": "Ultimo tentativo",
-    "status": "Stato",
+    "status": {
+      "not-started": "Non iniziato",
+      "in-progress": "In corso",
+      "completed": "Completato",
+      "passed": "Superato",
+      "failed": "Non superato"
+    },
     "score": "Punteggio",
     "viewResults": "Vedi risultati",
     "resetExams": "Reimposta tutti gli esami",
@@ -76,13 +113,41 @@
     "videoQuestion": "Questa domanda include un video",
     "explanation": "Spiegazione",
     "finishReview": "Termina revisione",
-    "status": {
-      "not-started": "Non iniziato",
-      "in-progress": "In corso",
-      "completed": "Completato",
-      "passed": "Superato",
-      "failed": "Non superato"
-    }
+    "favorites": "Preferiti",
+    "incorrect": "Errate",
+    "practiceTitle": "Esami di pratica",
+    "practiceSubtitle": "42 esami per prepararti al giorno del test.",
+    "review": {
+      "favoritesTitle": "Domande preferite",
+      "incorrectTitle": "Risposte errate",
+      "emptyFavorites": "Nessuna domanda preferita ancora.",
+      "emptyIncorrect": "Nessuna risposta errata da rivedere.",
+      "revealAnswer": "Mostra risposta",
+      "yourAnswer": "La tua risposta",
+      "correctAnswer": "Risposta corretta",
+      "unfavorite": "Rimuovi dai preferiti"
+    },
+    "overallProgress": "Progresso complessivo",
+    "averageScore": "Punteggio medio",
+    "completedPct": "Test completati",
+    "practiceTests": "Tutti i test di pratica",
+    "items": "domande",
+    "starredQuestions": "Preferiti",
+    "notAttempted": "Non tentato",
+    "restart": "Riavvia",
+    "retake": "Rifai",
+    "lastScore": "Ultimo punteggio",
+    "correct": "Corrette",
+    "date": "Data",
+    "exitConfirmTitle": "Mettere in pausa l'esame?",
+    "exitConfirmMessage": "I tuoi progressi verranno salvati. Potrai riprendere questo esame più tardi.",
+    "submitError": "Impossibile inviare l'esame",
+    "noQuestions": "Nessuna domanda disponibile per questo esame.",
+    "loading": "Caricamento esame...",
+    "none": "Nessuno",
+    "hideReview": "Nascondi",
+    "reviewWrong": "Rivedi",
+    "practiceExam": "Esame di pratica {{number}}"
   },
   "book": {
     "title": "Life in the UK: Guida per i nuovi residenti",
@@ -148,7 +213,11 @@
         "title": "Dal Medioevo alla Gran Bretagna moderna",
         "content": "Il periodo medievale vide lo sviluppo del Parlamento e della common law. I periodi Tudor e Stuart furono segnati da conflitti religiosi e dalla guerra civile inglese. Il XVIII e il XIX secolo videro la Gran Bretagna diventare una potenza globale attraverso la Rivoluzione industriale e l'espansione dell'Impero britannico. Il XX secolo fu definito da due guerre mondiali, dalla creazione dello stato sociale e dal mutato ruolo della Gran Bretagna negli affari mondiali."
       }
-    }
+    },
+    "sections": "Sezioni",
+    "startReading": "Inizia a leggere",
+    "yourProgress": "I tuoi progressi",
+    "loadingContent": "Caricamento contenuto..."
   },
   "auth": {
     "welcomeBack": "Bentornato",
@@ -205,7 +274,10 @@
     "seconds_short": "s",
     "download": "Scarica",
     "close": "Chiudi",
-    "downloading": "Download del contenuto in corso..."
+    "downloading": "Download del contenuto in corso...",
+    "goBack": "Indietro",
+    "goToHome": "Vai alla home",
+    "exit": "Esci"
   },
   "firebase": {
     "imageLoading": "Caricamento immagine...",
@@ -245,9 +317,39 @@
     "downloadingLanguage": "Download del pacchetto lingua...",
     "deleteConfirm": "Eliminare questo contenuto?",
     "deleteBookConfirm": "Eliminare il contenuto di questo libro?",
-    "downloadError": "Impossibile scaricare il contenuto: {{msg}}"
+    "downloadError": "Impossibile scaricare il contenuto: {{msg}}",
+    "resetAction": "Elimina"
   },
   "drawer": {
     "subtitle": "App di preparazione"
+  },
+  "account": {
+    "title": "Il mio account",
+    "guestName": "Utente ospite",
+    "notSignedIn": "Non connesso",
+    "login": "Accedi",
+    "logout": "Esci",
+    "menu": {
+      "profile": "Informazioni profilo",
+      "settings": "Impostazioni",
+      "help": "Aiuto e supporto",
+      "privacy": "Informativa sulla privacy"
+    },
+    "placeholders": {
+      "profile": "I dettagli del profilo verranno mostrati qui.",
+      "help": "Il contenuto di aiuto e supporto verrà aggiunto qui.",
+      "privacy": "I dettagli sull’informativa sulla privacy verranno aggiunti qui."
+    },
+    "subtitleSignedIn": "Accesso effettuato come {{email}}",
+    "subtitleGuest": "Tocca per accedere o gestire il tuo account"
+  },
+  "progress": {
+    "title": "Progressi",
+    "examPerformance": "Rendimento negli esami",
+    "completedExams": "Esami completati",
+    "readingProgress": "Progresso di lettura",
+    "keepGoing": "Continua così!",
+    "lastAttempt": "Ultimo tentativo: {{date}}",
+    "noAttempts": "Nessun tentativo ancora"
   }
 }

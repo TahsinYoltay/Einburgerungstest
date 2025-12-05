@@ -4,7 +4,8 @@
     "book": "Studiegids",
     "exam": "Examen",
     "test": "Oefenen",
-    "settings": "Instellingen"
+    "settings": "Instellingen",
+    "progress": "Voortgang"
   },
   "home": {
     "welcome": "Welkom bij de Life in the UK Test",
@@ -13,7 +14,37 @@
     "startExam": "Start examen",
     "bookTitle": "Studiegids",
     "bookDescription": "Leer alles wat je voor de test moet weten",
-    "openBook": "Open studiegids"
+    "openBook": "Open studiegids",
+    "account": "Account",
+    "greeting": "Goedemorgen, {{name}}",
+    "defaultName": "Ontdekker",
+    "subtitle": "Volg je leerproces en ga verder waar je gebleven was.",
+    "accountSheet": {
+      "welcome": "Welkom, {{name}}",
+      "guestTitle": "Welkom",
+      "subtitleAuthed": "Beheer je account en je voortgang.",
+      "subtitleGuest": "Log in om je voortgang op al je apparaten te synchroniseren.",
+      "menuTitle": "Navigatie",
+      "loginCta": "Inloggen",
+      "logoutCta": "Uitloggen"
+    },
+    "progressTitle": "Je voortgang",
+    "modulesDone": "{{completed}}/{{total}} modules voltooid",
+    "completed": "Voltooid",
+    "completedModules": "{{completed}} van {{total}} voltooid",
+    "resumeTitle": "Ga verder waar je was gebleven",
+    "viewAll": "Alles bekijken",
+    "chapterProgress": "Voortgang: {{percent}}%",
+    "login": "Inloggen",
+    "practiceTitle": "Kies je oefening",
+    "practice": {
+      "fullMock": "Volledig proefexamen",
+      "fullMockDescription": "Simuleer het volledige examen van 24 vragen.",
+      "quickQuiz": "Snelle oefening",
+      "quickQuizDescription": "Start een korte oefensessie.",
+      "chapterTest": "Hoofdstukspecifieke test",
+      "chapterTestDescription": "Richt je op één hoofdstuk uit de gids."
+    }
   },
   "exam": {
     "question": "Vraag",
@@ -35,7 +66,13 @@
     "failCount": "Gezakt",
     "attemptsHistory": "Geschiedenis",
     "lastAttempt": "Laatste poging",
-    "status": "Status",
+    "status": {
+      "not-started": "Niet gestart",
+      "in-progress": "Bezig",
+      "completed": "Voltooid",
+      "passed": "Geslaagd",
+      "failed": "Gezakt"
+    },
     "score": "Score",
     "viewResults": "Resultaten bekijken",
     "resetExams": "Alle examens resetten",
@@ -76,13 +113,41 @@
     "videoQuestion": "Deze vraag bevat een video",
     "explanation": "Uitleg",
     "finishReview": "Controle afronden",
-    "status": {
-      "not-started": "Niet gestart",
-      "in-progress": "Bezig",
-      "completed": "Voltooid",
-      "passed": "Geslaagd",
-      "failed": "Gezakt"
-    }
+    "favorites": "Favorieten",
+    "incorrect": "Onjuist",
+    "practiceTitle": "Oefenexamens",
+    "practiceSubtitle": "42 examens om je voor te bereiden op de testdag.",
+    "review": {
+      "favoritesTitle": "Favoriete vragen",
+      "incorrectTitle": "Onjuiste antwoorden",
+      "emptyFavorites": "Nog geen favoriete vragen.",
+      "emptyIncorrect": "Nog geen onjuiste antwoorden om te bekijken.",
+      "revealAnswer": "Antwoord tonen",
+      "yourAnswer": "Jouw antwoord",
+      "correctAnswer": "Juist antwoord",
+      "unfavorite": "Uit favorieten verwijderen"
+    },
+    "overallProgress": "Algehele voortgang",
+    "averageScore": "Gemiddelde score",
+    "completedPct": "Voltooide tests",
+    "practiceTests": "Alle oefentesten",
+    "items": "vragen",
+    "starredQuestions": "Favorieten",
+    "notAttempted": "Niet geprobeerd",
+    "restart": "Opnieuw starten",
+    "retake": "Opnieuw doen",
+    "lastScore": "Laatste score",
+    "correct": "Correct",
+    "date": "Datum",
+    "exitConfirmTitle": "Examen pauzeren?",
+    "exitConfirmMessage": "Je voortgang wordt opgeslagen. Je kunt dit examen later hervatten.",
+    "submitError": "Examen kon niet worden ingediend",
+    "noQuestions": "Geen vragen beschikbaar voor dit examen.",
+    "loading": "Examen wordt geladen...",
+    "none": "Geen",
+    "hideReview": "Verbergen",
+    "reviewWrong": "Bekijken",
+    "practiceExam": "Oefenexamen {{number}}"
   },
   "book": {
     "title": "Life in the UK: Gids voor nieuwe bewoners",
@@ -148,7 +213,11 @@
         "title": "Van de middeleeuwen tot het moderne Groot-Brittannië",
         "content": "De middeleeuwen zagen de ontwikkeling van het parlement en het common law-systeem. De Tudor- en Stuartperioden werden gekenmerkt door religieuze conflicten en de Engelse Burgeroorlog. In de 18e en 19e eeuw werd Groot-Brittannië een wereldmacht via de industriële revolutie en de uitbreiding van het Britse rijk. De 20e eeuw werd gekenmerkt door twee wereldoorlogen, de creatie van de verzorgingsstaat en de veranderende rol van Groot-Brittannië in de wereld."
       }
-    }
+    },
+    "sections": "Secties",
+    "startReading": "Begin met lezen",
+    "yourProgress": "Je voortgang",
+    "loadingContent": "Inhoud wordt geladen..."
   },
   "auth": {
     "welcomeBack": "Welkom terug",
@@ -205,7 +274,10 @@
     "seconds_short": "s",
     "download": "Downloaden",
     "close": "Sluiten",
-    "downloading": "Inhoud wordt gedownload..."
+    "downloading": "Inhoud wordt gedownload...",
+    "goBack": "Terug",
+    "goToHome": "Naar startscherm",
+    "exit": "Afsluiten"
   },
   "firebase": {
     "imageLoading": "Afbeelding wordt geladen...",
@@ -245,9 +317,39 @@
     "downloadingLanguage": "Taalpakket downloaden...",
     "deleteConfirm": "Deze inhoud verwijderen?",
     "deleteBookConfirm": "Deze boekinhoud verwijderen?",
-    "downloadError": "Downloaden van inhoud mislukt: {{msg}}"
+    "downloadError": "Downloaden van inhoud mislukt: {{msg}}",
+    "resetAction": "Verwijderen"
   },
   "drawer": {
     "subtitle": "Voorbereidingsapp"
+  },
+  "account": {
+    "title": "Mijn account",
+    "guestName": "Gastgebruiker",
+    "notSignedIn": "Niet aangemeld",
+    "login": "Inloggen",
+    "logout": "Uitloggen",
+    "menu": {
+      "profile": "Profielinformatie",
+      "settings": "Instellingen",
+      "help": "Hulp & ondersteuning",
+      "privacy": "Privacybeleid"
+    },
+    "placeholders": {
+      "profile": "Profieldetails komen hier.",
+      "help": "Hulp- en ondersteuningsinhoud komt hier.",
+      "privacy": "Details van het privacybeleid worden hier toegevoegd."
+    },
+    "subtitleSignedIn": "Aangemeld als {{email}}",
+    "subtitleGuest": "Tik om in te loggen of je account te beheren"
+  },
+  "progress": {
+    "title": "Voortgang",
+    "examPerformance": "Examenscore",
+    "completedExams": "Voltooide examens",
+    "readingProgress": "Leesvoortgang",
+    "keepGoing": "Ga zo door!",
+    "lastAttempt": "Laatste poging: {{date}}",
+    "noAttempts": "Nog geen pogingen"
   }
 }

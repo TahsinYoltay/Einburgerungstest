@@ -4,7 +4,8 @@
     "book": "学習ガイド",
     "exam": "試験",
     "test": "練習",
-    "settings": "設定"
+    "settings": "設定",
+    "progress": "進捗"
   },
   "home": {
     "welcome": "Life in the UK Testへようこそ",
@@ -13,7 +14,37 @@
     "startExam": "試験を開始",
     "bookTitle": "学習ガイド",
     "bookDescription": "試験に必要なことをすべて学ぶ",
-    "openBook": "学習ガイドを開く"
+    "openBook": "学習ガイドを開く",
+    "account": "アカウント",
+    "greeting": "おはようございます、{{name}}",
+    "defaultName": "探検者",
+    "subtitle": "学習を追跡し、中断した場所から続けましょう。",
+    "accountSheet": {
+      "welcome": "ようこそ、{{name}}",
+      "guestTitle": "ようこそ",
+      "subtitleAuthed": "アカウントと進捗を管理します。",
+      "subtitleGuest": "ログインして複数デバイスで進捗を同期しましょう。",
+      "menuTitle": "ナビゲーション",
+      "loginCta": "ログイン",
+      "logoutCta": "ログアウト"
+    },
+    "progressTitle": "あなたの進捗",
+    "modulesDone": "{{completed}}/{{total}} モジュール完了",
+    "completed": "完了",
+    "completedModules": "{{total}} 中 {{completed}} 完了",
+    "resumeTitle": "中断したところから再開",
+    "viewAll": "すべて表示",
+    "chapterProgress": "進捗: {{percent}}%",
+    "login": "ログイン",
+    "practiceTitle": "練習方法を選択",
+    "practice": {
+      "fullMock": "フル模擬試験",
+      "fullMockDescription": "全24問の本番テストをシミュレートします。",
+      "quickQuiz": "クイック練習",
+      "quickQuizDescription": "短い練習セッションを始めましょう。",
+      "chapterTest": "章ごとのテスト",
+      "chapterTestDescription": "ガイドの1つの章に集中します。"
+    }
   },
   "exam": {
     "question": "質問",
@@ -35,7 +66,13 @@
     "failCount": "不合格",
     "attemptsHistory": "履歴",
     "lastAttempt": "前回の受験",
-    "status": "ステータス",
+    "status": {
+      "not-started": "未開始",
+      "in-progress": "進行中",
+      "completed": "完了",
+      "passed": "合格",
+      "failed": "不合格"
+    },
     "score": "得点",
     "viewResults": "結果を見る",
     "resetExams": "すべての試験をリセット",
@@ -76,13 +113,41 @@
     "videoQuestion": "この質問には動画が含まれます",
     "explanation": "解説",
     "finishReview": "見直しを完了",
-    "status": {
-      "not-started": "未開始",
-      "in-progress": "進行中",
-      "completed": "完了",
-      "passed": "合格",
-      "failed": "不合格"
-    }
+    "favorites": "お気に入り",
+    "incorrect": "不正解",
+    "practiceTitle": "練習試験",
+    "practiceSubtitle": "本番に備える42の模擬試験。",
+    "review": {
+      "favoritesTitle": "お気に入りの質問",
+      "incorrectTitle": "間違えた回答",
+      "emptyFavorites": "お気に入りの質問はまだありません。",
+      "emptyIncorrect": "復習する不正解はまだありません。",
+      "revealAnswer": "答えを表示",
+      "yourAnswer": "あなたの回答",
+      "correctAnswer": "正しい回答",
+      "unfavorite": "お気に入りから削除"
+    },
+    "overallProgress": "全体の進捗",
+    "averageScore": "平均スコア",
+    "completedPct": "完了したテスト",
+    "practiceTests": "すべての練習テスト",
+    "items": "問題",
+    "starredQuestions": "お気に入り",
+    "notAttempted": "未受験",
+    "restart": "リスタート",
+    "retake": "再受験",
+    "lastScore": "最後のスコア",
+    "correct": "正解",
+    "date": "日付",
+    "exitConfirmTitle": "試験を一時停止しますか？",
+    "exitConfirmMessage": "進捗が保存されます。あとでこの試験を再開できます。",
+    "submitError": "試験を送信できませんでした",
+    "noQuestions": "この試験には利用できる問題がありません。",
+    "loading": "試験を読み込み中...",
+    "none": "なし",
+    "hideReview": "非表示",
+    "reviewWrong": "見直す",
+    "practiceExam": "模擬試験 {{number}}"
   },
   "book": {
     "title": "Life in the UK: 新居住者のためのガイド",
@@ -148,7 +213,11 @@
         "title": "中世から近代の英国へ",
         "content": "中世には議会とコモンローが発展しました。テューダー朝とステュアート朝の時代は宗教紛争とイングランド内戦に彩られました。18・19世紀には産業革命と大英帝国の拡大により英国は世界的な強国となりました。20世紀は二度の世界大戦、福祉国家の創設、そして世界における英国の役割の変化によって特徴づけられます。"
       }
-    }
+    },
+    "sections": "セクション",
+    "startReading": "読み始める",
+    "yourProgress": "あなたの進捗",
+    "loadingContent": "コンテンツを読み込み中..."
   },
   "auth": {
     "welcomeBack": "おかえりなさい",
@@ -205,7 +274,10 @@
     "seconds_short": "秒",
     "download": "ダウンロード",
     "close": "閉じる",
-    "downloading": "コンテンツをダウンロードしています..."
+    "downloading": "コンテンツをダウンロードしています...",
+    "goBack": "戻る",
+    "goToHome": "ホームに戻る",
+    "exit": "終了"
   },
   "firebase": {
     "imageLoading": "画像を読み込み中...",
@@ -245,9 +317,39 @@
     "downloadingLanguage": "言語パックをダウンロード中...",
     "deleteConfirm": "このコンテンツを削除しますか？",
     "deleteBookConfirm": "この本のコンテンツを削除しますか？",
-    "downloadError": "コンテンツのダウンロードに失敗しました: {{msg}}"
+    "downloadError": "コンテンツのダウンロードに失敗しました: {{msg}}",
+    "resetAction": "削除"
   },
   "drawer": {
     "subtitle": "試験対策アプリ"
+  },
+  "account": {
+    "title": "マイアカウント",
+    "guestName": "ゲストユーザー",
+    "notSignedIn": "未サインイン",
+    "login": "ログイン",
+    "logout": "ログアウト",
+    "menu": {
+      "profile": "プロフィール情報",
+      "settings": "設定",
+      "help": "ヘルプとサポート",
+      "privacy": "プライバシーポリシー"
+    },
+    "placeholders": {
+      "profile": "プロフィールの詳細はここに表示されます。",
+      "help": "ヘルプとサポートの内容がここに入ります。",
+      "privacy": "プライバシーポリシーの詳細がここに追加されます。"
+    },
+    "subtitleSignedIn": "{{email}} でサインイン中",
+    "subtitleGuest": "タップしてログインするかアカウントを管理してください"
+  },
+  "progress": {
+    "title": "進捗",
+    "examPerformance": "試験のパフォーマンス",
+    "completedExams": "完了した試験",
+    "readingProgress": "読書の進捗",
+    "keepGoing": "その調子です！",
+    "lastAttempt": "前回の受験: {{date}}",
+    "noAttempts": "まだ受験がありません"
   }
 }

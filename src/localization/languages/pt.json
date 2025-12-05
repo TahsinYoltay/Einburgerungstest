@@ -4,7 +4,8 @@
     "book": "Guia de Estudo",
     "exam": "Exame",
     "test": "Prática",
-    "settings": "Configurações"
+    "settings": "Configurações",
+    "progress": "Progresso"
   },
   "home": {
     "welcome": "Bem-vindo ao Life in the UK Test",
@@ -13,7 +14,37 @@
     "startExam": "Iniciar exame",
     "bookTitle": "Guia de Estudo",
     "bookDescription": "Aprenda tudo o que precisa saber para o teste",
-    "openBook": "Abrir guia de estudo"
+    "openBook": "Abrir guia de estudo",
+    "account": "Conta",
+    "greeting": "Bom dia, {{name}}",
+    "defaultName": "Explorador",
+    "subtitle": "Acompanhe seu aprendizado e retome de onde parou.",
+    "accountSheet": {
+      "welcome": "Bem-vindo, {{name}}",
+      "guestTitle": "Bem-vindo",
+      "subtitleAuthed": "Gerencie sua conta e seu progresso.",
+      "subtitleGuest": "Faça login para sincronizar o progresso em todos os dispositivos.",
+      "menuTitle": "Navegação",
+      "loginCta": "Fazer login",
+      "logoutCta": "Sair"
+    },
+    "progressTitle": "Seu progresso",
+    "modulesDone": "{{completed}}/{{total}} módulos concluídos",
+    "completed": "Concluído",
+    "completedModules": "{{completed}} de {{total}} concluídos",
+    "resumeTitle": "Continue de onde parou",
+    "viewAll": "Ver tudo",
+    "chapterProgress": "Progresso: {{percent}}%",
+    "login": "Fazer login",
+    "practiceTitle": "Escolha sua prática",
+    "practice": {
+      "fullMock": "Simulado completo",
+      "fullMockDescription": "Simule o teste completo de 24 perguntas.",
+      "quickQuiz": "Prática rápida",
+      "quickQuizDescription": "Faça uma sessão curta de prática.",
+      "chapterTest": "Teste específico do capítulo",
+      "chapterTestDescription": "Concentre-se em um único capítulo do guia."
+    }
   },
   "exam": {
     "question": "Pergunta",
@@ -35,7 +66,13 @@
     "failCount": "Reprovados",
     "attemptsHistory": "Histórico",
     "lastAttempt": "Última tentativa",
-    "status": "Status",
+    "status": {
+      "not-started": "Não iniciado",
+      "in-progress": "Em andamento",
+      "completed": "Concluído",
+      "passed": "Aprovado",
+      "failed": "Reprovado"
+    },
     "score": "Pontuação",
     "viewResults": "Ver resultados",
     "resetExams": "Redefinir todos os exames",
@@ -76,13 +113,41 @@
     "videoQuestion": "Esta pergunta inclui um vídeo",
     "explanation": "Explicação",
     "finishReview": "Concluir revisão",
-    "status": {
-      "not-started": "Não iniciado",
-      "in-progress": "Em andamento",
-      "completed": "Concluído",
-      "passed": "Aprovado",
-      "failed": "Reprovado"
-    }
+    "favorites": "Favoritos",
+    "incorrect": "Incorretas",
+    "practiceTitle": "Exames de prática",
+    "practiceSubtitle": "42 exames para preparar você para o dia do teste.",
+    "review": {
+      "favoritesTitle": "Perguntas favoritas",
+      "incorrectTitle": "Respostas incorretas",
+      "emptyFavorites": "Nenhuma pergunta favorita ainda.",
+      "emptyIncorrect": "Nenhuma resposta incorreta para revisar.",
+      "revealAnswer": "Mostrar resposta",
+      "yourAnswer": "Sua resposta",
+      "correctAnswer": "Resposta correta",
+      "unfavorite": "Remover dos favoritos"
+    },
+    "overallProgress": "Progresso geral",
+    "averageScore": "Pontuação média",
+    "completedPct": "Testes concluídos",
+    "practiceTests": "Todos os testes de prática",
+    "items": "perguntas",
+    "starredQuestions": "Favoritos",
+    "notAttempted": "Não tentado",
+    "restart": "Reiniciar",
+    "retake": "Refazer",
+    "lastScore": "Última pontuação",
+    "correct": "Corretas",
+    "date": "Data",
+    "exitConfirmTitle": "Pausar exame?",
+    "exitConfirmMessage": "Seu progresso será salvo. Você pode retomar este exame mais tarde.",
+    "submitError": "Não foi possível enviar o exame",
+    "noQuestions": "Nenhuma pergunta disponível para este exame.",
+    "loading": "Carregando exame...",
+    "none": "Nenhum",
+    "hideReview": "Ocultar",
+    "reviewWrong": "Revisar",
+    "practiceExam": "Exame de prática {{number}}"
   },
   "book": {
     "title": "Life in the UK: Guia para Novos Residentes",
@@ -148,7 +213,11 @@
         "title": "Da Idade Média à Grã-Bretanha moderna",
         "content": "O período medieval viu o desenvolvimento do Parlamento e da common law. Os períodos Tudor e Stuart foram marcados por conflitos religiosos e pela Guerra Civil Inglesa. Os séculos XVIII e XIX viram a Grã-Bretanha tornar-se uma potência global através da Revolução Industrial e da expansão do Império Britânico. O século XX foi marcado por duas guerras mundiais, pela criação do estado de bem-estar social e pela mudança do papel da Grã-Bretanha nos assuntos mundiais."
       }
-    }
+    },
+    "sections": "Seções",
+    "startReading": "Começar a ler",
+    "yourProgress": "Seu progresso",
+    "loadingContent": "Carregando conteúdo..."
   },
   "auth": {
     "welcomeBack": "Bem-vindo de volta",
@@ -205,7 +274,10 @@
     "seconds_short": "s",
     "download": "Baixar",
     "close": "Fechar",
-    "downloading": "Baixando conteúdo..."
+    "downloading": "Baixando conteúdo...",
+    "goBack": "Voltar",
+    "goToHome": "Ir para o início",
+    "exit": "Sair"
   },
   "firebase": {
     "imageLoading": "Carregando imagem...",
@@ -245,9 +317,39 @@
     "downloadingLanguage": "Baixando pacote de idioma...",
     "deleteConfirm": "Excluir este conteúdo?",
     "deleteBookConfirm": "Excluir o conteúdo deste livro?",
-    "downloadError": "Falha ao baixar o conteúdo: {{msg}}"
+    "downloadError": "Falha ao baixar o conteúdo: {{msg}}",
+    "resetAction": "Excluir"
   },
   "drawer": {
     "subtitle": "Aplicativo de preparação"
+  },
+  "account": {
+    "title": "Minha conta",
+    "guestName": "Usuário convidado",
+    "notSignedIn": "Não conectado",
+    "login": "Fazer login",
+    "logout": "Sair",
+    "menu": {
+      "profile": "Informações do perfil",
+      "settings": "Configurações",
+      "help": "Ajuda e suporte",
+      "privacy": "Política de privacidade"
+    },
+    "placeholders": {
+      "profile": "Os detalhes do perfil ficarão aqui.",
+      "help": "O conteúdo de ajuda e suporte aparecerá aqui.",
+      "privacy": "Os detalhes da política de privacidade serão adicionados aqui."
+    },
+    "subtitleSignedIn": "Conectado como {{email}}",
+    "subtitleGuest": "Toque para fazer login ou gerenciar sua conta"
+  },
+  "progress": {
+    "title": "Progresso",
+    "examPerformance": "Desempenho nas provas",
+    "completedExams": "Exames concluídos",
+    "readingProgress": "Progresso de leitura",
+    "keepGoing": "Continue assim!",
+    "lastAttempt": "Última tentativa: {{date}}",
+    "noAttempts": "Nenhuma tentativa ainda"
   }
 }
