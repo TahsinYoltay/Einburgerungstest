@@ -341,7 +341,62 @@
       "privacy": "プライバシーポリシーの詳細がここに追加されます。"
     },
     "subtitleSignedIn": "{{email}} でサインイン中",
-    "subtitleGuest": "タップしてログインするかアカウントを管理してください"
+    "subtitleGuest": "タップしてログインするかアカウントを管理してください",
+    "privacy": {
+      "title": "プライバシーポリシー",
+      "lastUpdated": "最終更新日: {{date}}"
+    },
+    "help": {
+      "title": "ヘルプとサポート",
+      "heroTitle": "お手伝いできますか？",
+      "heroSubtitle": "質問への答えを見つけましょう",
+      "searchPlaceholder": "質問を検索...",
+      "faqTopics": "FAQ トピック",
+      "contact": "お問い合わせ",
+      "emailSupport": "メールサポート",
+      "otherResources": "その他のリソース",
+      "noResults": "検索に一致するトピックがありません。",
+      "topicIntro": "素早い案内のためにタップしてください。さらに助けが必要な場合はご連絡ください。",
+      "contactSupportCta": "サポートに連絡",
+      "contentLoadError": "コンテンツを読み込めませんでした。",
+      "gettingStarted": "はじめに",
+      "gettingStartedDescription": "アカウントを設定し、学習設定を調整し、アプリの使い方を学びましょう。",
+      "exams": "試験",
+      "examsDescription": "模擬試験の仕組み、スコア計算、再開方法を確認しましょう。",
+      "accountIssues": "アカウントの問題",
+      "accountIssuesDescription": "パスワードをリセットし、メールを更新し、サインインの問題を解決します。",
+      "billingPayments": "請求と支払い",
+      "billingPaymentsDescription": "サブスクリプション、領収書、アプリ内購入を管理します。",
+      "giveFeedback": "フィードバックを送る",
+      "giveFeedbackDescription": "機能リクエストや改善アイデアを共有してください。",
+      "reportBug": "不具合を報告",
+      "reportBugDescription": "問題やクラッシュを知らせてください。迅速に修正します。",
+      "topicFallbackTitle": "サポート",
+      "topicFallbackDescription": "私たちはお手伝いします。何かおかしい場合はご連絡ください。対応します。"
+    },
+    "examFaq": {
+      "title": "試験に関するFAQ",
+      "heroTitle": "Life in the UK 試験",
+      "heroSubtitle": "予約から結果取得まで、試験に関するすべての情報。",
+      "coreFacts": "試験の基本情報",
+      "scoring": "採点と合格基準",
+      "eligibility": "試験を受ける必要がある人",
+      "booking": "予約ルールと受験料",
+      "bookingExtras": "任意の追加サービス（合格には不要）",
+      "requirements": "予約に必要なもの",
+      "idRules": "身分証・登録ルール",
+      "location": "試験会場",
+      "examDay": "試験当日の流れとルール",
+      "results": "採点・結果・有効性",
+      "retakes": "再受験と回数",
+      "cancellations": "キャンセル、返金、苦情",
+      "special": "特別配慮とセンシティブケース",
+      "misconduct": "不正行為・不正受験とその結果",
+      "privacy": "データとプライバシー（試験関連）",
+      "helpful": "役に立ちましたか？",
+      "yes": "はい",
+      "no": "いいえ"
+    }
   },
   "progress": {
     "title": "進捗",
@@ -351,5 +406,14 @@
     "keepGoing": "その調子です！",
     "lastAttempt": "前回の受験: {{date}}",
     "noAttempts": "まだ受験がありません"
+  },
+  "rating": {
+    "enjoy_title": "Life in the UK は気に入っていますか？",
+    "enjoy_message": "App Storeで評価するには星をタップしてください。",
+    "feedback_title": "どのように改善できますか？",
+    "feedback_subtitle": "ご不満をおかけして申し訳ありません。改善点をお知らせください。",
+    "feedback_placeholder": "ご意見...",
+    "submit_feedback": "フィードバックを送信",
+    "not_now": "後で"
   }
 }

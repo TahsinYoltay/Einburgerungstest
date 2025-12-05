@@ -13,6 +13,8 @@ import ReviewQuestionCard from '../../components/exam/ReviewQuestionCard/ReviewQ
 import SwipeDeck from '../../components/exam/SwipeDeck/SwipeDeck';
 import { NormalizedQuestion } from '../../types/exam';
 import { createStyles } from './ReviewQuestionsScreen.style';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../navigations/StackNavigator';
 
 type RouteParams = {
   mode: 'favorites' | 'incorrect';
@@ -22,7 +24,8 @@ const ReviewQuestionsScreen = () => {
   const { t, i18n } = useTranslation();
   const { theme } = useAppTheme();
   const route = useRoute();
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+//   const navigation = useNavigation();
   const dispatch = useAppDispatch();
   
   const params = route.params as RouteParams;

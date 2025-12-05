@@ -12,7 +12,9 @@ import SettingsScreen from '../screens/settings/SettingsScreen/SettingsScreen';
 import AccountScreen from '../screens/account/AccountScreen/AccountScreen';
 import ProfileInfoScreen from '../screens/account/ProfileInfoScreen/ProfileInfoScreen';
 import HelpSupportScreen from '../screens/account/HelpSupportScreen/HelpSupportScreen';
+import SupportTopicScreen from '../screens/account/SupportTopicScreen/SupportTopicScreen';
 import PrivacyPolicyScreen from '../screens/account/PrivacyPolicyScreen/PrivacyPolicyScreen';
+import { SupportTopicKey } from '../constants/supportTopics';
 
 export type RootStackParamList = {
   [ROUTES.AUTH]: undefined;
@@ -24,6 +26,7 @@ export type RootStackParamList = {
   [ROUTES.PROFILE_INFO]: undefined;
   [ROUTES.HELP]: undefined;
   [ROUTES.PRIVACY]: undefined;
+  [ROUTES.HELP_TOPIC]: { topicKey: SupportTopicKey };
   HomeTab: undefined;
   BookTab: undefined;
   ExamTab: { id?: string };
@@ -68,6 +71,11 @@ function RootNavigator() {
       <Stack.Screen
         name={ROUTES.HELP}
         component={HelpSupportScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={ROUTES.HELP_TOPIC}
+        component={SupportTopicScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen

@@ -6689,6 +6689,11 @@ react-native-paper@^5.14.5:
     color "^3.1.2"
     use-latest-callback "^0.2.3"
 
+react-native-rate-app@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/react-native-rate-app/-/react-native-rate-app-1.4.5.tgz#d77ad7d45367435c0895d23e344a124abe2c0c07"
+  integrity sha512-kaZWRb0SiewariylWM1sXljn9txL0XYoGxLJNAybcDY01Te2zSSo8enOhWZznlXH9SHE0lz+olczy0eKmbpWQQ==
+
 react-native-reanimated@3.17.5:
   version "3.17.5"
   resolved "https://registry.npmjs.org/react-native-reanimated/-/react-native-reanimated-3.17.5.tgz"

@@ -341,7 +341,62 @@
       "privacy": "I dettagli sull’informativa sulla privacy verranno aggiunti qui."
     },
     "subtitleSignedIn": "Accesso effettuato come {{email}}",
-    "subtitleGuest": "Tocca per accedere o gestire il tuo account"
+    "subtitleGuest": "Tocca per accedere o gestire il tuo account",
+    "privacy": {
+      "title": "Informativa sulla privacy",
+      "lastUpdated": "Ultimo aggiornamento: {{date}}"
+    },
+    "help": {
+      "title": "Assistenza",
+      "heroTitle": "Come possiamo aiutarti?",
+      "heroSubtitle": "Trova risposte alle tue domande",
+      "searchPlaceholder": "Cerca domande...",
+      "faqTopics": "Argomenti FAQ",
+      "contact": "Contattaci",
+      "emailSupport": "Supporto email",
+      "otherResources": "Altre risorse",
+      "noResults": "Nessun argomento corrisponde alla tua ricerca.",
+      "topicIntro": "Sfoglia per una guida rapida. Contattaci se ti serve altro aiuto.",
+      "contactSupportCta": "Contatta il supporto",
+      "contentLoadError": "Impossibile caricare il contenuto.",
+      "gettingStarted": "Per iniziare",
+      "gettingStartedDescription": "Configura il tuo account, regola le impostazioni di studio e impara a navigare nell'app.",
+      "exams": "Esami",
+      "examsDescription": "Scopri come funzionano gli esami di pratica, come si calcola il punteggio e come riavviare i tentativi.",
+      "accountIssues": "Problemi con l'account",
+      "accountIssuesDescription": "Reimposta la password, aggiorna l'email e risolvi i problemi di accesso.",
+      "billingPayments": "Fatturazione e pagamenti",
+      "billingPaymentsDescription": "Gestisci abbonamenti, ricevute e acquisti in-app.",
+      "giveFeedback": "Invia feedback",
+      "giveFeedbackDescription": "Condividi richieste di funzionalità o idee per migliorare l'app.",
+      "reportBug": "Segnala un bug",
+      "reportBugDescription": "Segnala problemi o arresti anomali per risolverli rapidamente.",
+      "topicFallbackTitle": "Supporto",
+      "topicFallbackDescription": "Siamo qui per aiutarti. Se qualcosa non va, contattaci e faremo un follow-up."
+    },
+    "examFaq": {
+      "title": "FAQ sugli esami",
+      "heroTitle": "Esame Life in the UK",
+      "heroSubtitle": "Tutto ciò che devi sapere sull'esame, dalla prenotazione ai risultati.",
+      "coreFacts": "Fatti essenziali sull'esame",
+      "scoring": "Valutazione e soglia di superamento",
+      "eligibility": "Chi deve sostenere l'esame",
+      "booking": "Regole di prenotazione e quota d'esame",
+      "bookingExtras": "Servizi opzionali (non necessari per superare)",
+      "requirements": "Cosa serve per prenotare",
+      "idRules": "Regole di identificazione e registrazione",
+      "location": "Luogo dell'esame",
+      "examDay": "Procedura e regole il giorno dell'esame",
+      "results": "Punteggio, risultati e validità",
+      "retakes": "Ripetizioni e numero di tentativi",
+      "cancellations": "Cancellazioni, rimborsi e reclami",
+      "special": "Disposizioni speciali e casi sensibili",
+      "misconduct": "Illeciti, frodi e conseguenze",
+      "privacy": "Dati e privacy (esame)",
+      "helpful": "È stato utile?",
+      "yes": "Sì",
+      "no": "No"
+    }
   },
   "progress": {
     "title": "Progressi",
@@ -351,5 +406,14 @@
     "keepGoing": "Continua così!",
     "lastAttempt": "Ultimo tentativo: {{date}}",
     "noAttempts": "Nessun tentativo ancora"
+  },
+  "rating": {
+    "enjoy_title": "Ti piace Life in the UK?",
+    "enjoy_message": "Tocca una stella per valutare su App Store.",
+    "feedback_title": "Come possiamo migliorare?",
+    "feedback_subtitle": "Ci dispiace. Facci sapere cosa possiamo fare meglio.",
+    "feedback_placeholder": "Il tuo feedback...",
+    "submit_feedback": "Invia feedback",
+    "not_now": "Non ora"
   }
 }

@@ -1,0 +1,152 @@
+import { StyleSheet } from 'react-native';
+import { MD3Theme } from 'react-native-paper';
+
+export const createStyles = (theme: MD3Theme) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.colors.background,
+    },
+    header: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingHorizontal: 16,
+      paddingVertical: 12,
+    },
+    iconButton: {
+      padding: 8,
+      borderRadius: 12,
+      backgroundColor: theme.dark ? theme.colors.surfaceVariant : '#E8EAED',
+    },
+    headerTitle: {
+      fontSize: 18,
+      fontWeight: '800',
+      color: theme.colors.onBackground,
+    },
+    scrollContent: {
+      paddingHorizontal: 16,
+      paddingBottom: 32,
+      gap: 16,
+    },
+    heroCard: {
+      backgroundColor: theme.colors.primary,
+      borderRadius: 20,
+      padding: 18,
+      alignItems: 'center',
+      justifyContent: 'center',
+      shadowColor: '#000',
+      shadowOpacity: theme.dark ? 0.35 : 0.1,
+      shadowOffset: { width: 0, height: 8 },
+      shadowRadius: 20,
+      elevation: 6,
+    },
+    heroIcon: {
+      width: 52,
+      height: 52,
+      borderRadius: 14,
+      backgroundColor: 'rgba(255,255,255,0.16)',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: 12,
+    },
+    heroTitle: {
+      fontSize: 22,
+      fontWeight: '800',
+      color: '#FFFFFF',
+      textAlign: 'center',
+    },
+    heroSubtitle: {
+      marginTop: 4,
+      fontSize: 14,
+      color: 'rgba(255,255,255,0.86)',
+      textAlign: 'center',
+    },
+    searchWrapper: {
+      marginTop: -4,
+    },
+    section: {
+      gap: 10,
+    },
+    sectionTitle: {
+      fontSize: 16,
+      fontWeight: '700',
+      color: theme.colors.onBackground,
+    },
+    cardList: {
+      backgroundColor: theme.colors.surface,
+      borderRadius: 16,
+      borderWidth: theme.dark ? 1 : 0,
+      borderColor: theme.colors.outline,
+      shadowColor: '#000',
+      shadowOpacity: theme.dark ? 0.2 : 0.05,
+      shadowOffset: { width: 0, height: 4 },
+      shadowRadius: 10,
+      elevation: 4,
+      overflow: 'hidden',
+    },
+    listItem: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingHorizontal: 14,
+      paddingVertical: 14,
+    },
+    listDivider: {
+      height: 1,
+      backgroundColor: theme.colors.outline,
+      opacity: theme.dark ? 0.6 : 0.4,
+      marginHorizontal: 12,
+    },
+    itemLeft: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      flex: 1,
+    },
+    itemIcon: {
+      width: 40,
+      height: 40,
+      borderRadius: 12,
+      backgroundColor: theme.dark ? 'rgba(29,155,240,0.16)' : '#E8F1FF',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginRight: 12,
+    },
+    itemLabel: {
+      fontSize: 16,
+      fontWeight: '600',
+      color: theme.colors.onSurface,
+    },
+    contactCard: {
+      backgroundColor: theme.colors.surface,
+      borderRadius: 16,
+      borderWidth: theme.dark ? 1 : 0,
+      borderColor: theme.colors.outline,
+      paddingVertical: 18,
+      alignItems: 'center',
+      gap: 8,
+      shadowColor: '#000',
+      shadowOpacity: theme.dark ? 0.2 : 0.05,
+      shadowOffset: { width: 0, height: 4 },
+      shadowRadius: 10,
+      elevation: 4,
+    },
+    contactLabel: {
+      fontSize: 15,
+      fontWeight: '600',
+      color: theme.colors.onSurface,
+    },
+    contactEmail: {
+      fontSize: 14,
+      color: theme.colors.primary,
+      fontWeight: '600',
+    },
+    emptyState: {
+      paddingVertical: 16,
+      alignItems: 'center',
+    },
+    emptyStateText: {
+      color: theme.colors.onSurface,
+      opacity: 0.7,
+    },
+  });

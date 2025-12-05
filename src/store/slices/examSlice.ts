@@ -4,6 +4,7 @@ import {
   ExamManifestEntry,
   ExamStatus,
   NormalizedQuestion,
+  LanguageOption,
 } from '../../types/exam';
 import examsManifest from '../../data/exam/normalized/exams.json';
 import defaultChaptersData from '../../data/exam/normalized/allChaptersData.normalized.json';
@@ -13,6 +14,7 @@ type AnswerMap = Record<string, string[]>; // questionId -> array of option inde
 
 type ExamState = {
   exams: ExamManifestEntry[];
+  availableLanguages: LanguageOption[];
   // Store the chapters data in Redux to allow dynamic switching
   chaptersData: ChaptersData;
   currentLanguage: string;

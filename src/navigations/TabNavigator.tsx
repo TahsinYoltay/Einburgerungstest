@@ -25,11 +25,11 @@ const renderBookIcon = ({ color, size }: { color: string; size: number }) => (
 );
 
 const renderExamIcon = ({ color, size }: { color: string; size: number }) => (
-  <Icon name="book-open-variant-outline" color={color} size={size} />
+  <Icon name="book-open-variant" color={color} size={size} />
 );
 
 const renderProgressIcon = ({ color, size }: { color: string; size: number }) => (
-  <Icon name="bar-chart" color={color} size={size} />
+  <Icon name="chart-bar" color={color} size={size} />
 );
 
 const TabNavigator = () => {

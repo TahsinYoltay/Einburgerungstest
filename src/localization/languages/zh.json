@@ -341,7 +341,62 @@
       "privacy": "隐私政策详情将在此添加。"
     },
     "subtitleSignedIn": "登录账号：{{email}}",
-    "subtitleGuest": "点击登录或管理你的账户"
+    "subtitleGuest": "点击登录或管理你的账户",
+    "privacy": {
+      "title": "隐私政策",
+      "lastUpdated": "最后更新：{{date}}"
+    },
+    "help": {
+      "title": "帮助与支持",
+      "heroTitle": "我们能如何帮助？",
+      "heroSubtitle": "找到你问题的答案",
+      "searchPlaceholder": "搜索问题...",
+      "faqTopics": "常见问题主题",
+      "contact": "联系我们",
+      "emailSupport": "邮箱支持",
+      "otherResources": "其他资源",
+      "noResults": "暂无与搜索匹配的主题。",
+      "topicIntro": "点击查看快速指南。如需更多帮助，请与我们联系。",
+      "contactSupportCta": "联系支持",
+      "contentLoadError": "无法加载内容。",
+      "gettingStarted": "快速开始",
+      "gettingStartedDescription": "设置你的账户，调整学习设置，并了解如何使用应用。",
+      "exams": "考试",
+      "examsDescription": "了解模拟考试如何运作、分数如何计算，以及如何重新开始尝试。",
+      "accountIssues": "账户问题",
+      "accountIssuesDescription": "重置密码、更新邮箱并解决登录问题。",
+      "billingPayments": "账单与支付",
+      "billingPaymentsDescription": "管理订阅、收据和应用内购买。",
+      "giveFeedback": "提交反馈",
+      "giveFeedbackDescription": "分享功能需求或改进想法。",
+      "reportBug": "报告问题",
+      "reportBugDescription": "告诉我们问题或崩溃情况，我们会尽快修复。",
+      "topicFallbackTitle": "支持",
+      "topicFallbackDescription": "我们随时为你提供帮助。如有问题，请联系我们，我们会跟进。"
+    },
+    "examFaq": {
+      "title": "考试常见问题",
+      "heroTitle": "Life in the UK 考试",
+      "heroSubtitle": "关于考试的一切信息，从预约到获取结果。",
+      "coreFacts": "考试核心信息",
+      "scoring": "评分与及格线",
+      "eligibility": "谁需要参加考试",
+      "booking": "预约规则与考试费用",
+      "bookingExtras": "可选附加服务（非通过所必需）",
+      "requirements": "预约需要什么",
+      "idRules": "身份与注册规则",
+      "location": "考试地点",
+      "examDay": "考试日流程与规则",
+      "results": "评分、结果与有效期",
+      "retakes": "重考与次数",
+      "cancellations": "取消、退款与投诉",
+      "special": "特殊安排与敏感情况",
+      "misconduct": "违规、作弊及后果",
+      "privacy": "数据与隐私（考试相关）",
+      "helpful": "这条信息有用吗？",
+      "yes": "是",
+      "no": "否"
+    }
   },
   "progress": {
     "title": "进度",
@@ -351,5 +406,14 @@
     "keepGoing": "继续保持！",
     "lastAttempt": "上次尝试：{{date}}",
     "noAttempts": "还没有尝试"
+  },
+  "rating": {
+    "enjoy_title": "Life in the UK 用得满意吗？",
+    "enjoy_message": "点亮星星在 App Store 上评分。",
+    "feedback_title": "我们如何改进？",
+    "feedback_subtitle": "很抱歉听到您的反馈。请告诉我们如何做得更好。",
+    "feedback_placeholder": "您的反馈…",
+    "submit_feedback": "发送反馈",
+    "not_now": "暂不"
   }
 }

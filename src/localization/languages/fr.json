@@ -341,7 +341,62 @@
       "privacy": "Les détails de la politique de confidentialité seront ajoutés ici."
     },
     "subtitleSignedIn": "Connecté en tant que {{email}}",
-    "subtitleGuest": "Touchez pour vous connecter ou gérer votre compte"
+    "subtitleGuest": "Touchez pour vous connecter ou gérer votre compte",
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "lastUpdated": "Dernière mise à jour : {{date}}"
+    },
+    "help": {
+      "title": "Aide et support",
+      "heroTitle": "Comment pouvons-nous aider ?",
+      "heroSubtitle": "Trouvez des réponses à vos questions",
+      "searchPlaceholder": "Rechercher des questions...",
+      "faqTopics": "Sujets FAQ",
+      "contact": "Nous contacter",
+      "emailSupport": "Support e-mail",
+      "otherResources": "Autres ressources",
+      "noResults": "Aucun sujet ne correspond à votre recherche pour l'instant.",
+      "topicIntro": "Parcourez pour obtenir des conseils rapides. Contactez-nous si vous avez besoin d'aide supplémentaire.",
+      "contactSupportCta": "Contacter le support",
+      "contentLoadError": "Impossible de charger le contenu.",
+      "gettingStarted": "Commencer",
+      "gettingStartedDescription": "Configurez votre compte, ajustez les paramètres d'étude et apprenez à naviguer dans l'app.",
+      "exams": "Examens",
+      "examsDescription": "Découvrez le fonctionnement des examens pratiques, le calcul des scores et la relance des tentatives.",
+      "accountIssues": "Problèmes de compte",
+      "accountIssuesDescription": "Réinitialisez votre mot de passe, mettez à jour votre e-mail et résolvez les problèmes de connexion.",
+      "billingPayments": "Facturation et paiements",
+      "billingPaymentsDescription": "Gérez les abonnements, les reçus et les achats intégrés.",
+      "giveFeedback": "Donner votre avis",
+      "giveFeedbackDescription": "Partagez des demandes de fonctionnalités ou des idées d'amélioration.",
+      "reportBug": "Signaler un bug",
+      "reportBugDescription": "Signalez-nous les problèmes ou plantages pour que nous les corrigions rapidement.",
+      "topicFallbackTitle": "Support",
+      "topicFallbackDescription": "Nous sommes là pour aider. Si quelque chose semble incorrect, contactez-nous et nous ferons le suivi."
+    },
+    "examFaq": {
+      "title": "FAQ sur les examens",
+      "heroTitle": "Examen Life in the UK",
+      "heroSubtitle": "Tout ce que vous devez savoir sur l'examen, de la réservation à l'obtention des résultats.",
+      "coreFacts": "Faits essentiels sur l'examen",
+      "scoring": "Notation et seuil de réussite",
+      "eligibility": "Qui doit passer l'examen",
+      "booking": "Règles de réservation et frais d'examen",
+      "bookingExtras": "Services optionnels (non requis pour réussir)",
+      "requirements": "Ce dont vous avez besoin pour réserver",
+      "idRules": "Règles d'identification et d'inscription",
+      "location": "Lieu de l'examen",
+      "examDay": "Déroulement et règles le jour de l'examen",
+      "results": "Notation, résultats et validité",
+      "retakes": "Reprises et nombre de tentatives",
+      "cancellations": "Annulations, remboursements et réclamations",
+      "special": "Aménagements particuliers et cas sensibles",
+      "misconduct": "Manquements, triche et conséquences",
+      "privacy": "Données et confidentialité (examen)",
+      "helpful": "Cela a-t-il été utile ?",
+      "yes": "Oui",
+      "no": "Non"
+    }
   },
   "progress": {
     "title": "Progression",
@@ -351,5 +406,14 @@
     "keepGoing": "Continuez ainsi !",
     "lastAttempt": "Dernière tentative : {{date}}",
     "noAttempts": "Aucune tentative pour le moment"
+  },
+  "rating": {
+    "enjoy_title": "Vous appréciez Life in the UK ?",
+    "enjoy_message": "Touchez une étoile pour noter sur l'App Store.",
+    "feedback_title": "Comment pouvons-nous nous améliorer ?",
+    "feedback_subtitle": "Nous sommes désolés de l'apprendre. Dites-nous ce que nous pouvons faire de mieux.",
+    "feedback_placeholder": "Votre avis...",
+    "submit_feedback": "Envoyer un avis",
+    "not_now": "Pas maintenant"
   }
 }

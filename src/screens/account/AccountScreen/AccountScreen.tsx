@@ -89,7 +89,7 @@ const AccountScreen = () => {
           {menuItems.map(item => (
             <TouchableOpacity key={item.key} style={styles.menuItem} activeOpacity={0.9} onPress={item.onPress}>
               <View style={styles.menuIcon}>
-                <Icon name={item.icon} size={22} color={theme.colors.onBackground} />
+                <Icon name={item.icon as any} size={22} color={theme.colors.onBackground} />
               </View>
               <Text style={styles.menuLabel}>{item.label}</Text>
               <Icon name="chevron-right" size={20} color={theme.colors.onSurface} />
