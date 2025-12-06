@@ -1,0 +1,94 @@
+{
+  "lastUpdated": "05 December 2025",
+  "intro": "This Privacy Policy explains how Eywasoft UK Limited (London, UK) handles personal data in the Life in the UK Exam mobile application. By using the App, you agree to the practices described below. If you do not agree, please do not use the App.",
+  "sections": [
+    {
+      "id": "collect",
+      "title": "Information We Collect",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "We only collect the personal data needed to operate the App:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Account credentials you provide to register and sign in (username, email address, password).",
+            "Exam activity data such as answers submitted, correct/incorrect responses, scores, and related progress."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "We do not collect other personal data categories (such as location, contacts, or payment details). All data is stored in our Firebase project and used with Firebase Authentication for sign-in."
+        }
+      ]
+    },
+    {
+      "id": "use",
+      "title": "How We Use Your Information",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "We use your data to:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Create, secure, and manage your account.",
+            "Deliver core features, including saving exam answers, scores, and progress.",
+            "Provide user support and respond to requests.",
+            "Maintain the security of the App, including fraud prevention and troubleshooting.",
+            "Comply with legal obligations."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "We keep data only as long as needed for these purposes or to meet legal requirements."
+        }
+      ]
+    },
+    {
+      "id": "share",
+      "title": "Data Sharing and Disclosure",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "We do not sell or share your personal data for marketing. Your data is stored in Firebase services provided by Google acting as our processor. Access is limited to Eywasoft UK Limited personnel who need it to operate the App. We may disclose information if required to comply with law, protect our rights, or respond to lawful requests from authorities. We do not otherwise transfer personal data to third parties."
+        }
+      ]
+    },
+    {
+      "id": "rights",
+      "title": "Your Rights (GDPR)",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "If you are in the UK or EU, you have the right to:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Request access to, correction of, or deletion of your personal data.",
+            "Restrict or object to our processing.",
+            "Obtain a copy of your data in a portable format.",
+            "Withdraw consent where applicable."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "You may also lodge a complaint with your local data protection authority (for the UK, the ICO). To exercise these rights, contact us using the details below."
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "title": "Contact Us",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "If you have questions or wish to exercise your rights, please contact Eywasoft UK Limited at support@eywasoft.uk."
+        }
+      ]
+    }
+  ]
+}

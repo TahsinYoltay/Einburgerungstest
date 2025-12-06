@@ -10,11 +10,14 @@ import { ROUTES } from '../../constants/routes';
 import { RootStackParamList } from '../../navigations/StackNavigator';
 import { useAppTheme } from '../../providers/ThemeProvider';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
-import { isSectionRead, markSectionAsUnread, markSectionAsRead } from '../../utils/readingProgress';
+import { isSectionRead, markSectionAsUnread, markSectionAsRead, getChapterProgress } from '../../utils/readingProgress';
 import { createStyles } from './WebReaderScreen.style';
 
 import { LanguageSelector } from '../../components/common/LanguageSelector';
 import { switchBookLanguage } from '../../store/slices/bookSlice';
+import { RatingPrompt } from '../../components/common/RatingPrompt';
+import { RatingService } from '../../services/RatingService';
+import { recordChapterCompleted, recordPromptShown } from '../../store/slices/ratingSlice';
 
 type ReaderRouteProp = RouteProp<RootStackParamList, typeof ROUTES.READER>;
 
@@ -27,6 +30,7 @@ const WebReaderScreen = () => {
   const { chapterId, subSectionId } = route.params;
   const { data: bookData, currentLanguage, loading: bookLoading, downloadProgress } = useAppSelector(state => state.book);
   const userId = useAppSelector(state => state.user.user?.id);
+  const rating = useAppSelector(state => state.rating);
   const dispatch = useAppDispatch();
   
   const webViewRef = useRef<WebView>(null);
@@ -40,6 +44,7 @@ const WebReaderScreen = () => {
   const [searchVisible, setSearchVisible] = useState(false);
   const [matchCount, setMatchCount] = useState(0);
   const [currentMatch, setCurrentMatch] = useState(0);
+  const [showRatingPrompt, setShowRatingPrompt] = useState(false);
 
   const targetSection = useMemo(() => {
     if (!bookData) return null;
@@ -184,6 +189,36 @@ const WebReaderScreen = () => {
       } else {
         await markSectionAsRead(subSectionId, 0, userId);
         setIsRead(true);
+        
+        // Check for chapter completion
+        if (bookData && chapterId) {
+           const chapter = bookData.chapters.find(c => c.id === chapterId);
+           if (chapter) {
+              const sectionIds = chapter.subSections.map(s => s.id);
+              // We just marked one as read, so we can assume it's read in the check
+              // BUT getChapterProgress is async and reads from storage.
+              // markSectionAsRead writes to storage. It should be consistent.
+              const progress = await getChapterProgress(sectionIds, userId);
+              
+              // If all sections are read (100% complete)
+              if (progress.percentage === 100) {
+                 dispatch(recordChapterCompleted());
+                 
+                 // Simulate logic for prompt
+                 const simulatedState = {
+                     ...rating,
+                     totalChaptersCompleted: rating.totalChaptersCompleted + 1,
+                     chaptersCompletedSinceLastPrompt: rating.chaptersCompletedSinceLastPrompt + 1,
+                     installDate: rating.installDate || Date.now()
+                 };
+                 
+                 if (RatingService.shouldShowPrompt(simulatedState)) {
+                     setShowRatingPrompt(true);
+                     dispatch(recordPromptShown());
+                 }
+              }
+           }
+        }
       }
     }
   };
@@ -358,6 +393,11 @@ const WebReaderScreen = () => {
           {t('book.next')}
         </Button>
       </Surface>
+
+      <RatingPrompt 
+        visible={showRatingPrompt} 
+        onDismiss={() => setShowRatingPrompt(false)} 
+      />
     </View>
   );
 };

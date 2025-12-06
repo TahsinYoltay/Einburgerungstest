@@ -341,7 +341,62 @@
       "privacy": "Details van het privacybeleid worden hier toegevoegd."
     },
     "subtitleSignedIn": "Aangemeld als {{email}}",
-    "subtitleGuest": "Tik om in te loggen of je account te beheren"
+    "subtitleGuest": "Tik om in te loggen of je account te beheren",
+    "privacy": {
+      "title": "Privacybeleid",
+      "lastUpdated": "Laatst bijgewerkt: {{date}}"
+    },
+    "help": {
+      "title": "Hulp & Support",
+      "heroTitle": "Hoe kunnen we helpen?",
+      "heroSubtitle": "Vind antwoorden op je vragen",
+      "searchPlaceholder": "Zoek naar vragen...",
+      "faqTopics": "FAQ-onderwerpen",
+      "contact": "Neem contact op",
+      "emailSupport": "E-mailondersteuning",
+      "otherResources": "Overige bronnen",
+      "noResults": "Er zijn nog geen onderwerpen die bij je zoekopdracht passen.",
+      "topicIntro": "Klik door voor snelle hulp. Neem contact op als je meer ondersteuning nodig hebt.",
+      "contactSupportCta": "Contact met support",
+      "contentLoadError": "Kan inhoud niet laden.",
+      "gettingStarted": "Aan de slag",
+      "gettingStartedDescription": "Stel je account in, pas je studie-instellingen aan en leer de app te gebruiken.",
+      "exams": "Examens",
+      "examsDescription": "Zie hoe oefenexamens werken, hoe scores worden berekend en hoe je pogingen herstart.",
+      "accountIssues": "Accountproblemen",
+      "accountIssuesDescription": "Reset je wachtwoord, werk je e-mail bij en los aanmeldproblemen op.",
+      "billingPayments": "Facturering & betalingen",
+      "billingPaymentsDescription": "Beheer abonnementen, bonnetjes en in-app aankopen.",
+      "giveFeedback": "Feedback geven",
+      "giveFeedbackDescription": "Deel functieverzoeken of ideeën om de app te verbeteren.",
+      "reportBug": "Bug melden",
+      "reportBugDescription": "Meld problemen of crashes zodat we ze snel kunnen oplossen.",
+      "topicFallbackTitle": "Support",
+      "topicFallbackDescription": "We helpen je graag. Als iets niet klopt, neem contact op en we volgen het op."
+    },
+    "examFaq": {
+      "title": "Examen-FAQ",
+      "heroTitle": "Life in the UK-examen",
+      "heroSubtitle": "Alles wat je moet weten over het examen, van boeken tot je resultaten.",
+      "coreFacts": "Belangrijke examengegevens",
+      "scoring": "Beoordeling & cesuur",
+      "eligibility": "Wie het examen moet doen",
+      "booking": "Boekingsregels & examenkosten",
+      "bookingExtras": "Optionele extra services (niet nodig om te slagen)",
+      "requirements": "Wat je nodig hebt om te boeken",
+      "idRules": "Identiteits- en registratieregels",
+      "location": "Locatie van het examen",
+      "examDay": "Proces & regels op examendag",
+      "results": "Beoordeling, resultaten & geldigheid",
+      "retakes": "Herexamens & aantal pogingen",
+      "cancellations": "Annuleringen, terugbetalingen & klachten",
+      "special": "Speciale regelingen & gevoelige gevallen",
+      "misconduct": "Wangedrag, fraude & gevolgen",
+      "privacy": "Gegevens & privacy (examen)",
+      "helpful": "Was dit nuttig?",
+      "yes": "Ja",
+      "no": "Nee"
+    }
   },
   "progress": {
     "title": "Voortgang",
@@ -351,5 +406,14 @@
     "keepGoing": "Ga zo door!",
     "lastAttempt": "Laatste poging: {{date}}",
     "noAttempts": "Nog geen pogingen"
+  },
+  "rating": {
+    "enjoy_title": "Geniet je van Life in the UK?",
+    "enjoy_message": "Tik op een ster om in de App Store te beoordelen.",
+    "feedback_title": "Hoe kunnen we verbeteren?",
+    "feedback_subtitle": "Jammer om te horen. Laat ons weten wat beter kan.",
+    "feedback_placeholder": "Je feedback...",
+    "submit_feedback": "Feedback verzenden",
+    "not_now": "Niet nu"
   }
 }

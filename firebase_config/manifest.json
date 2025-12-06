@@ -14,6 +14,21 @@
       "version": 4,
       "path": "content/home.json",
       "required": false
+    },
+    "privacy": {
+      "version": 1,
+      "path": "/content/privacy_policy/privacy_policy_{lang}.json",
+      "required": false
+    },
+    "help": {
+      "version": 2,
+      "path": "/content/help/exam_help.{lang}.json",
+      "required": false
+    },
+    "getting_started": {
+      "version": 2,
+      "path": "/content/help/getting_started_help.{lang}.json",
+      "required": false
     }
   }
 }

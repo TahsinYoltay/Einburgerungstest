@@ -19,11 +19,13 @@ import { store, persistor } from './src/store';
 import { useAppDispatch, useAppSelector } from './src/store/hooks';
 import { switchExamLanguage } from './src/store/slices/examSlice';
 import { syncContent } from './src/store/slices/contentSlice';
+import { switchBookLanguage } from './src/store/slices/bookSlice';
 
 // Providers
 import { LocalizationProvider } from './src/providers/LocalizationProvider';
 import { ThemeProvider, useAppTheme } from './src/providers/ThemeProvider';
 import { AuthProvider } from './src/providers/AuthProvider';
+import { BottomTabProvider } from './src/providers/BottomTabProvider';
 
 // Navigation
 import RootNavigator from './src/navigations/StackNavigator';
@@ -41,8 +43,12 @@ const AppContent = () => {
 
   // Initial Load
   useEffect(() => {
-    dispatch(syncContent());
-  }, [dispatch]);
+    dispatch(syncContent()).then(() => {
+      // Ensure content is loaded on startup for the current language
+      dispatch(switchExamLanguage(currentLanguage));
+      dispatch(switchBookLanguage(currentLanguage));
+    });
+  }, [dispatch]); // Run once on mount (using initial currentLanguage)
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
@@ -53,10 +59,9 @@ const AppContent = () => {
         console.log('App has come to the foreground! Checking for content updates...');
         // 1. Reload Manifests
         dispatch(syncContent()).then(() => {
-          // 2. Check current language
-          if (currentLanguage !== 'en') {
-             dispatch(switchExamLanguage(currentLanguage));
-          }
+          // 2. Refresh content if needed (e.g. remote version changed)
+          dispatch(switchExamLanguage(currentLanguage));
+          dispatch(switchBookLanguage(currentLanguage));
         });
       }
 
@@ -90,7 +95,9 @@ function App(): React.JSX.Element {
             <ThemeProvider>
               <AuthProvider>
                 <LocalizationProvider>
-                  <AppContent />
+                  <BottomTabProvider>
+                    <AppContent />
+                  </BottomTabProvider>
                 </LocalizationProvider>
               </AuthProvider>
             </ThemeProvider>

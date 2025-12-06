@@ -8,6 +8,7 @@ export const ROUTES = {
   PROFILE_INFO: 'ProfileInfo',
   HELP: 'Help',
   PRIVACY: 'Privacy',
+  HELP_TOPIC: 'HelpTopic',
   EXAM: 'Exam',
   EXAM_RESULTS: 'ExamResults',
   BOOK: 'Book',
@@ -17,4 +18,4 @@ export const ROUTES = {
   TEST: 'Test',
   SETTINGS: 'Settings',
   REVIEW_QUESTIONS: 'ReviewQuestions',
-};
+} as const;

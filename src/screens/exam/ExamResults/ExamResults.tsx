@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { View, ScrollView, Platform } from 'react-native';
 import { Text, Button, Card, Divider, List, IconButton } from 'react-native-paper';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
@@ -12,6 +12,9 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { resetExam, toggleFavoriteQuestion } from '../../../store/slices/examSlice';
 import { createStyles } from './ExamResults.style';
 import { NormalizedQuestion } from '../../../types/exam';
+import { RatingPrompt } from '../../../components/common/RatingPrompt';
+import { RatingService } from '../../../services/RatingService';
+import { recordExamCompleted, recordPromptShown } from '../../../store/slices/ratingSlice';
 
 type ExamResultsRouteProp = RouteProp<RootStackParamList, typeof ROUTES.EXAM_RESULTS>;
 type ExamResultsNavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -27,6 +30,7 @@ const ExamResults = () => {
 
   // Get results from the store, including dynamic chapters data
   const { examHistory, exams, currentExam, favoriteQuestions, chaptersData } = useAppSelector(state => state.exam);
+  const rating = useAppSelector(state => state.rating);
 
   // Find this exam's latest attempt (search backwards for the most recent)
   const lastAttempt =
@@ -63,6 +67,30 @@ const ExamResults = () => {
   const timeSpent = lastAttempt?.timeSpentInSeconds || 0;
   const flaggedCount = lastAttempt?.flaggedQuestions?.length || 0;
 
+  const [showRatingPrompt, setShowRatingPrompt] = useState(false);
+  const hasRecordedRef = useRef(false);
+
+  useEffect(() => {
+    if (isPassing && !hasRecordedRef.current) {
+      hasRecordedRef.current = true;
+      dispatch(recordExamCompleted());
+
+      // Simulate the state after update to check eligibility immediately
+      const simulatedState = {
+        ...rating,
+        totalExamsCompleted: rating.totalExamsCompleted + 1,
+        examsCompletedSinceLastPrompt: rating.examsCompletedSinceLastPrompt + 1,
+        // Ensure we have a valid install date if it was missing (handled by reducer usually but good for safety)
+        installDate: rating.installDate || Date.now() 
+      };
+
+      if (RatingService.shouldShowPrompt(simulatedState)) {
+        setShowRatingPrompt(true);
+        dispatch(recordPromptShown());
+      }
+    }
+  }, [isPassing, dispatch, rating]); // Depend on 'rating' so we get fresh state, but use ref to prevent loops
+
   // If no attempt found
   if (!lastAttempt || !examDetails) {
     return (
@@ -85,6 +113,7 @@ const ExamResults = () => {
       </SafeAreaView>
     );
   }
+
 
   // Build a question index for review using dynamic chapters data
   const questionIndex = useMemo(() => {
@@ -292,6 +321,10 @@ const ExamResults = () => {
           </Button>
         </View>
       </ScrollView>
+      <RatingPrompt 
+        visible={showRatingPrompt} 
+        onDismiss={() => setShowRatingPrompt(false)} 
+      />
     </SafeAreaView>
   );
 };

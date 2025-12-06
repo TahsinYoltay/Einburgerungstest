@@ -341,7 +341,62 @@
       "privacy": "Details zur Datenschutzerklärung werden hier ergänzt."
     },
     "subtitleSignedIn": "Angemeldet als {{email}}",
-    "subtitleGuest": "Tippe, um dich anzumelden oder dein Konto zu verwalten"
+    "subtitleGuest": "Tippe, um dich anzumelden oder dein Konto zu verwalten",
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "lastUpdated": "Zuletzt aktualisiert: {{date}}"
+    },
+    "help": {
+      "title": "Hilfe & Support",
+      "heroTitle": "Wie können wir helfen?",
+      "heroSubtitle": "Finde Antworten auf deine Fragen",
+      "searchPlaceholder": "Nach Fragen suchen...",
+      "faqTopics": "FAQ-Themen",
+      "contact": "Kontaktiere uns",
+      "emailSupport": "E-Mail-Support",
+      "otherResources": "Weitere Ressourcen",
+      "noResults": "Keine Themen entsprechen deiner Suche.",
+      "topicIntro": "Tippe dich durch für kurze Hinweise. Melde dich, wenn du mehr Hilfe brauchst.",
+      "contactSupportCta": "Support kontaktieren",
+      "contentLoadError": "Inhalt konnte nicht geladen werden.",
+      "gettingStarted": "Erste Schritte",
+      "gettingStartedDescription": "Richte dein Konto ein, passe Lerneinstellungen an und erfahre, wie du dich in der App bewegst.",
+      "exams": "Prüfungen",
+      "examsDescription": "Erfahre, wie Übungsprüfungen funktionieren, wie die Bewertung erfolgt und wie du Versuche neu startest.",
+      "accountIssues": "Kontoprobleme",
+      "accountIssuesDescription": "Setze dein Passwort zurück, aktualisiere deine E-Mail und löse Anmeldeprobleme.",
+      "billingPayments": "Abrechnung & Zahlungen",
+      "billingPaymentsDescription": "Verwalte Abos, Belege und In-App-Käufe.",
+      "giveFeedback": "Feedback geben",
+      "giveFeedbackDescription": "Teile Funktionswünsche oder Ideen zur Verbesserung der App.",
+      "reportBug": "Fehler melden",
+      "reportBugDescription": "Melde Probleme oder Abstürze, damit wir sie schnell beheben.",
+      "topicFallbackTitle": "Support",
+      "topicFallbackDescription": "Wir sind für dich da. Wenn etwas nicht stimmt, melde dich und wir kümmern uns."
+    },
+    "examFaq": {
+      "title": "Prüfungs-FAQ",
+      "heroTitle": "Life in the UK Exam",
+      "heroSubtitle": "Alles, was du über den Prüfungsprozess wissen musst – von der Buchung bis zum Ergebnis.",
+      "coreFacts": "Wesentliche Prüfungsfakten",
+      "scoring": "Bewertung & Bestehensgrenze",
+      "eligibility": "Wer die Prüfung ablegen muss",
+      "booking": "Buchungsregeln & Prüfungsgebühr",
+      "bookingExtras": "Optionale Zusatzservices (nicht zum Bestehen erforderlich)",
+      "requirements": "Was du für die Buchung brauchst",
+      "idRules": "Ausweis- & Registrierungsregeln",
+      "location": "Prüfungsort",
+      "examDay": "Ablauf & Regeln am Prüfungstag",
+      "results": "Bewertung, Ergebnisse & Gültigkeit",
+      "retakes": "Wiederholungen & Anzahl der Versuche",
+      "cancellations": "Stornierungen, Rückerstattungen & Beschwerden",
+      "special": "Besondere Regelungen & sensible Fälle",
+      "misconduct": "Fehlverhalten, Betrug & Konsequenzen",
+      "privacy": "Daten & Datenschutz (prüfungsbezogen)",
+      "helpful": "War das hilfreich?",
+      "yes": "Ja",
+      "no": "Nein"
+    }
   },
   "progress": {
     "title": "Fortschritt",
@@ -351,5 +406,14 @@
     "keepGoing": "Weiter so!",
     "lastAttempt": "Letzter Versuch: {{date}}",
     "noAttempts": "Noch keine Versuche"
+  },
+  "rating": {
+    "enjoy_title": "Gefällt dir Life in the UK?",
+    "enjoy_message": "Tippe auf einen Stern, um im App Store zu bewerten.",
+    "feedback_title": "Wie können wir uns verbessern?",
+    "feedback_subtitle": "Das tut uns leid. Sag uns, was wir besser machen können.",
+    "feedback_placeholder": "Dein Feedback...",
+    "submit_feedback": "Feedback senden",
+    "not_now": "Nicht jetzt"
   }
 }

@@ -341,7 +341,62 @@
       "privacy": "개인정보 처리방침 내용이 여기에 추가됩니다."
     },
     "subtitleSignedIn": "{{email}}로 로그인됨",
-    "subtitleGuest": "계정에 로그인하거나 관리하려면 탭하세요"
+    "subtitleGuest": "계정에 로그인하거나 관리하려면 탭하세요",
+    "privacy": {
+      "title": "개인정보 보호정책",
+      "lastUpdated": "최종 업데이트: {{date}}"
+    },
+    "help": {
+      "title": "도움말 및 지원",
+      "heroTitle": "무엇을 도와드릴까요?",
+      "heroSubtitle": "질문에 대한 답을 찾아보세요",
+      "searchPlaceholder": "질문 검색...",
+      "faqTopics": "FAQ 주제",
+      "contact": "문의하기",
+      "emailSupport": "이메일 지원",
+      "otherResources": "기타 자료",
+      "noResults": "검색과 일치하는 주제가 없습니다.",
+      "topicIntro": "빠른 안내를 위해 살펴보세요. 추가 도움이 필요하면 연락하세요.",
+      "contactSupportCta": "지원팀에 문의",
+      "contentLoadError": "콘텐츠를 불러올 수 없습니다.",
+      "gettingStarted": "시작하기",
+      "gettingStartedDescription": "계정을 설정하고 학습 설정을 조정하며 앱 사용 방법을 익히세요.",
+      "exams": "시험",
+      "examsDescription": "연습 시험 방식, 점수 계산, 재시작 방법을 확인하세요.",
+      "accountIssues": "계정 문제",
+      "accountIssuesDescription": "비밀번호 재설정, 이메일 업데이트, 로그인 문제 해결.",
+      "billingPayments": "결제 및 청구",
+      "billingPaymentsDescription": "구독, 영수증, 인앱 결제를 관리하세요.",
+      "giveFeedback": "피드백 보내기",
+      "giveFeedbackDescription": "기능 요청이나 개선 아이디어를 공유하세요.",
+      "reportBug": "버그 신고",
+      "reportBugDescription": "문제나 크래시를 알려주시면 신속히 해결하겠습니다.",
+      "topicFallbackTitle": "지원",
+      "topicFallbackDescription": "저희가 도와드리겠습니다. 이상이 있으면 연락 주시면 후속 조치하겠습니다."
+    },
+    "examFaq": {
+      "title": "시험 FAQ",
+      "heroTitle": "Life in the UK 시험",
+      "heroSubtitle": "예약부터 결과 수령까지 시험에 관한 모든 것.",
+      "coreFacts": "시험 기본 정보",
+      "scoring": "채점 및 합격 기준",
+      "eligibility": "시험 대상",
+      "booking": "예약 규정 및 시험 수수료",
+      "bookingExtras": "선택적 추가 서비스(합격에 필수 아님)",
+      "requirements": "예약에 필요한 것",
+      "idRules": "신분증 및 등록 규정",
+      "location": "시험 장소",
+      "examDay": "시험 당일 절차 및 규칙",
+      "results": "채점, 결과 및 유효 기간",
+      "retakes": "재응시 및 횟수",
+      "cancellations": "취소, 환불 및 불만",
+      "special": "특별 조정 및 민감한 사례",
+      "misconduct": "부정행위 및 결과",
+      "privacy": "데이터 및 개인정보 보호(시험 관련)",
+      "helpful": "도움이 되었나요?",
+      "yes": "예",
+      "no": "아니요"
+    }
   },
   "progress": {
     "title": "진행 상황",
@@ -351,5 +406,14 @@
     "keepGoing": "계속 잘하고 있어요!",
     "lastAttempt": "마지막 시도: {{date}}",
     "noAttempts": "아직 시도가 없습니다"
+  },
+  "rating": {
+    "enjoy_title": "Life in the UK가 마음에 드시나요?",
+    "enjoy_message": "App Store에서 별을 눌러 평가해 주세요.",
+    "feedback_title": "어떻게 개선할 수 있을까요?",
+    "feedback_subtitle": "불편을 드려 죄송합니다. 더 나아질 점을 알려주세요.",
+    "feedback_placeholder": "의견을 작성해 주세요...",
+    "submit_feedback": "피드백 보내기",
+    "not_now": "나중에"
   }
 }

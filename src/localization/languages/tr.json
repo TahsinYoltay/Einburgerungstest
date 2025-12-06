@@ -341,7 +341,62 @@
       "privacy": "Gizlilik politikası detayları buraya eklenecek."
     },
     "subtitleSignedIn": "Giriş yaptınız: {{email}}",
-    "subtitleGuest": "Giriş yapmak veya hesabını yönetmek için dokun"
+    "subtitleGuest": "Giriş yapmak veya hesabını yönetmek için dokun",
+    "privacy": {
+      "title": "Gizlilik Politikası",
+      "lastUpdated": "Son güncelleme: {{date}}"
+    },
+    "help": {
+      "title": "Yardım ve Destek",
+      "heroTitle": "Nasıl yardımcı olabiliriz?",
+      "heroSubtitle": "Sorularınıza yanıt bulun",
+      "searchPlaceholder": "Soruları ara...",
+      "faqTopics": "SSS Konuları",
+      "contact": "Bize ulaşın",
+      "emailSupport": "E-posta desteği",
+      "otherResources": "Diğer kaynaklar",
+      "noResults": "Aramanızla eşleşen konu bulunamadı.",
+      "topicIntro": "Hızlı yönlendirme için dokunun. Daha fazla yardıma ihtiyacınız olursa bize ulaşın.",
+      "contactSupportCta": "Destek ile iletişime geç",
+      "contentLoadError": "İçerik yüklenemedi.",
+      "gettingStarted": "Başlarken",
+      "gettingStartedDescription": "Hesabınızı ayarlayın, çalışma ayarlarını düzenleyin ve uygulamada gezinin.",
+      "exams": "Sınavlar",
+      "examsDescription": "Deneme sınavlarının nasıl çalıştığını, puanlamanın nasıl yapıldığını ve denemeleri nasıl yeniden başlatacağınızı görün.",
+      "accountIssues": "Hesap sorunları",
+      "accountIssuesDescription": "Şifrenizi sıfırlayın, e-postanızı güncelleyin ve oturum açma sorunlarını çözün.",
+      "billingPayments": "Faturalandırma ve ödemeler",
+      "billingPaymentsDescription": "Abonelikleri, makbuzları ve uygulama içi satın alımları yönetin.",
+      "giveFeedback": "Geri bildirim gönder",
+      "giveFeedbackDescription": "Uygulamayı geliştirmek için özellik isteklerinizi veya fikirlerinizi paylaşın.",
+      "reportBug": "Hata bildir",
+      "reportBugDescription": "Sorunları veya çökmeleri bize bildirin, hızlıca düzeltelim.",
+      "topicFallbackTitle": "Destek",
+      "topicFallbackDescription": "Yardım için buradayız. Bir sorun görürseniz bize bildirin, takip ederiz."
+    },
+    "examFaq": {
+      "title": "Sınav SSS",
+      "heroTitle": "Life in the UK Sınavı",
+      "heroSubtitle": "Sınav süreci hakkında, rezervasyondan sonuç almaya kadar bilmeniz gereken her şey.",
+      "coreFacts": "Temel sınav bilgileri",
+      "scoring": "Puanlama ve geçme notu",
+      "eligibility": "Sınava girmesi gerekenler",
+      "booking": "Rezervasyon kuralları ve sınav ücreti",
+      "bookingExtras": "Opsiyonel ek hizmetler (geçmek için gerekli değildir)",
+      "requirements": "Rezervasyon için gerekenler",
+      "idRules": "Kimlik ve kayıt kuralları",
+      "location": "Sınav yeri",
+      "examDay": "Sınav günü süreci ve kurallar",
+      "results": "Puanlama, sonuçlar ve geçerlilik",
+      "retakes": "Tekrarlar ve deneme sayısı",
+      "cancellations": "İptaller, iadeler ve şikayetler",
+      "special": "Özel düzenlemeler ve hassas durumlar",
+      "misconduct": "Usulsüzlük, kopya ve sonuçları",
+      "privacy": "Veri ve gizlilik (sınava ilişkin)",
+      "helpful": "Bu faydalı oldu mu?",
+      "yes": "Evet",
+      "no": "Hayır"
+    }
   },
   "progress": {
     "title": "İlerleme",
@@ -351,5 +406,14 @@
     "keepGoing": "Aynen devam!",
     "lastAttempt": "Son deneme: {{date}}",
     "noAttempts": "Henüz deneme yok"
+  },
+  "rating": {
+    "enjoy_title": "Life in the UK uygulamasını beğendiniz mi?",
+    "enjoy_message": "App Store'da puanlamak için bir yıldıza dokunun.",
+    "feedback_title": "Nasıl geliştirebiliriz?",
+    "feedback_subtitle": "Bunu duyduğumuza üzüldük. Lütfen nasıl daha iyi yapabileceğimizi söyleyin.",
+    "feedback_placeholder": "Görüşleriniz...",
+    "submit_feedback": "Geri bildirim gönder",
+    "not_now": "Şimdi değil"
   }
 }

@@ -7,6 +7,7 @@ import userReducer from './slices/userSlice';
 import examReducer from './slices/examSlice';
 import contentReducer from './slices/contentSlice';
 import bookReducer from './slices/bookSlice';
+import ratingReducer from './slices/ratingSlice';
 import reactotron from '../../ReactotronConfig';
 
 // Configure Redux Persist
@@ -14,7 +15,7 @@ const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
   // Whitelist defines which reducers will be persisted
-  whitelist: ['user', 'exam', 'content', 'book'], // Now we persist both user and exam data to save progress
+  whitelist: ['user', 'exam', 'content', 'book', 'rating'], // Now we persist both user and exam data to save progress
 };
 
 // Combine reducers
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   exam: examReducer,
   content: contentReducer,
   book: bookReducer,
+  rating: ratingReducer,
 });
 
 // Create persisted reducer

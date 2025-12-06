@@ -9,6 +9,7 @@ export interface MasterManifest {
     exams: ContentModuleConfig;
     languages: ContentModuleConfig;
     home: ContentModuleConfig;
+    help: ContentModuleConfig;
     // Add more modules here as needed
     [key: string]: ContentModuleConfig;
   };
@@ -29,4 +30,28 @@ export interface HomeContent {
     text: LocalizedText;
     link?: string;
   };
+}
+
+export interface ContentBlock {
+  type: 'paragraph' | 'list';
+  text?: string;
+  items?: string[];
+}
+
+export interface SectionData {
+  id: string;
+  title: string;
+  content: ContentBlock[];
+}
+
+export interface PrivacyPolicyData {
+  lastUpdated: string;
+  intro: string;
+  sections: SectionData[];
+}
+
+export interface HelpContentData {
+  lastUpdated: string;
+  intro: string;
+  sections: SectionData[];
 }

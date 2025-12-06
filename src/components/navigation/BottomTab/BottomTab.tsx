@@ -24,7 +24,7 @@ const TabItem = ({ label, icon, isActive, onPress }: TabItemProps) => {
   return (
     <TouchableOpacity style={styles.tabItem} onPress={onPress} accessibilityRole="button" accessibilityLabel={label}>
       <Icon
-        name={icon}
+        name={icon as any}
         size={24}
         color={isActive ? activeColor : inactiveColor}
       />
@@ -47,8 +47,8 @@ const BottomTab = () => {
   const tabs = [
     { route: 'HomeTab', label: t('screens.home'), icon: 'home' },
     { route: 'BookTab', label: t('screens.book'), icon: 'book' },
-    { route: 'ExamTab', label: t('screens.exam'), icon: 'clipboard-text' },
-    { route: 'TestTab', label: t('screens.test'), icon: 'checklist' },
+    { route: 'ExamTab', label: t('screens.test'), icon: 'book-open-variant' },
+    { route: 'ProgressTab', label: t('screens.progress'), icon: 'chart-bar' },
   ];
 
   const handleTabPress = (index: number, route: string) => {
