@@ -49,6 +49,17 @@ service firebase.storage {
       allow write: if false; 
     }
 
+    // --- User Uploads (Avatars) ---
+    match /user_uploads/avatars/{uid}/{fileName=**} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow create, update: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource != null
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+      allow delete: if request.auth != null && request.auth.uid == uid;
+    }
+
     // --- Default Block ---
     // Explicitly deny all other access to prevent unauthorized writes
     match /{allPaths=**} {

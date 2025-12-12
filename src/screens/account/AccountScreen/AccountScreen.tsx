@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, ScrollView, Image, Alert } from 'react-native';
+import { View, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import Icon from '@react-native-vector-icons/material-design-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text } from 'react-native-paper';
@@ -12,9 +12,12 @@ import { useAppTheme } from '../../../providers/ThemeProvider';
 import { useAppSelector, useAppDispatch } from '../../../store/hooks';
 import { RootStackParamList } from '../../../navigations/StackNavigator';
 import { ROUTES } from '../../../constants/routes';
-import { selectIsAnonymous } from '../../../store/slices/authSlice';
+import { selectIsAnonymous, setUserPhotoURL } from '../../../store/slices/authSlice';
 import { useAuth } from '../../../providers/AuthProvider';
 import { selectHasActiveSubscription } from '../../../store/slices/subscriptionSlice';
+import ChangeAvatarDialog from '../../../components/account/ChangeAvatarDialog/ChangeAvatarDialog';
+import UserAvatar from '../../../components/account/UserAvatar/UserAvatar';
+import { avatarService, AvatarServiceError } from '../../../services/AvatarService';
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
 
@@ -28,6 +31,10 @@ const AccountScreen = () => {
   const { signOut } = useAuth();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+
+  const [avatarDialogVisible, setAvatarDialogVisible] = React.useState(false);
+  const [avatarUploading, setAvatarUploading] = React.useState(false);
+  const [avatarUploadProgress, setAvatarUploadProgress] = React.useState<number | undefined>(undefined);
 
   const menuItems = [
     {
@@ -85,6 +92,79 @@ const AccountScreen = () => {
     navigation.navigate(ROUTES.LOGIN);
   };
 
+  const handleAvatarPress = () => {
+    if (isAnonymous) {
+      Alert.alert(
+        t('account.avatar.signInRequiredTitle'),
+        t('account.avatar.signInRequiredMessage'),
+        [
+          { text: t('common.cancel'), style: 'cancel' },
+          {
+            text: t('account.signIn'),
+            onPress: () => navigation.navigate(ROUTES.LOGIN),
+          },
+        ]
+      );
+      return;
+    }
+    setAvatarDialogVisible(true);
+  };
+
+  const handleAvatarUpdate = async (source: 'library' | 'camera') => {
+    if (avatarUploading) return;
+
+    setAvatarUploading(true);
+    setAvatarUploadProgress(0);
+    try {
+      const result =
+        source === 'library'
+          ? await avatarService.updateAvatarFromLibrary({ onProgress: setAvatarUploadProgress })
+          : await avatarService.updateAvatarFromCamera({ onProgress: setAvatarUploadProgress });
+
+      if (result.status === 'success') {
+        dispatch(setUserPhotoURL(result.photoURL));
+        setAvatarDialogVisible(false);
+      }
+    } catch (error) {
+      const message =
+        error instanceof AvatarServiceError && error.code === 'not_authenticated'
+          ? t('account.avatar.signInRequiredMessage')
+          : t('account.avatar.uploadError');
+      Alert.alert(t('common.error'), message);
+    } finally {
+      setAvatarUploading(false);
+      setAvatarUploadProgress(undefined);
+    }
+  };
+
+  const handleAvatarRemove = () => {
+    Alert.alert(
+      t('account.avatar.removeConfirmTitle'),
+      t('account.avatar.removeConfirmMessage'),
+      [
+        { text: t('common.cancel'), style: 'cancel' },
+        {
+          text: t('common.delete'),
+          style: 'destructive',
+          onPress: async () => {
+            if (avatarUploading) return;
+            setAvatarUploading(true);
+            setAvatarUploadProgress(undefined);
+            try {
+              await avatarService.removeAvatar();
+              dispatch(setUserPhotoURL(null));
+              setAvatarDialogVisible(false);
+            } catch {
+              Alert.alert(t('common.error'), t('account.avatar.removeError'));
+            } finally {
+              setAvatarUploading(false);
+            }
+          },
+        },
+      ]
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -92,18 +172,21 @@ const AccountScreen = () => {
           <Icon name="arrow-left" size={24} color={theme.colors.onBackground} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>{t('account.title')}</Text>
-        <View style={{ width: 24 }} />
+        <View style={styles.headerSpacer} />
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.profileCard}>
-          <View style={styles.avatarWrapper}>
-            <Image
-              source={require('../../../assets/images/logo.png')}
-              style={styles.avatar}
-              resizeMode="cover"
-            />
-          </View>
+          <UserAvatar
+            uri={authState.photoURL}
+            size={64}
+            shape="rounded"
+            onPress={handleAvatarPress}
+            disabled={avatarUploading}
+            accessibilityLabel={t('account.avatar.changeTitle')}
+            showEditBadge={!isAnonymous}
+            containerStyle={styles.avatarWrapper}
+          />
           <View style={styles.profileText}>
             <Text style={styles.profileName}>{authState?.displayName || t('account.guestName')}</Text>
             <Text style={styles.profileEmail}>{authState?.email || t('account.notSignedIn')}</Text>
@@ -127,6 +210,17 @@ const AccountScreen = () => {
           <Text style={styles.logoutText}>{!isAnonymous ? t('account.logout') : t('account.signIn')}</Text>
         </TouchableOpacity>
       </ScrollView>
+
+      <ChangeAvatarDialog
+        visible={avatarDialogVisible}
+        uploading={avatarUploading}
+        uploadProgress={avatarUploadProgress}
+        canRemove={Boolean(authState.photoURL)}
+        onDismiss={() => setAvatarDialogVisible(false)}
+        onChooseFromLibrary={() => handleAvatarUpdate('library')}
+        onTakePhoto={() => handleAvatarUpdate('camera')}
+        onRemovePhoto={handleAvatarRemove}
+      />
     </SafeAreaView>
   );
 };

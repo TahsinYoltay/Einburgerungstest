@@ -1049,6 +1049,11 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.28.5"
 
+"@bam.tech/react-native-image-resizer@^3.0.11":
+  version "3.0.11"
+  resolved "https://registry.yarnpkg.com/@bam.tech/react-native-image-resizer/-/react-native-image-resizer-3.0.11.tgz#b9dc0f155b1293fe6d04944e45b6e3252ca2dea3"
+  integrity sha512-J/vAe51uPhJafT0uAIQI3gziqVs4Tnw32bHau/+I7AukSs4YxLXIaOVF6EChZ9ZFu+fLxvVrRTbHKDf+1YoXag==
+
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
   resolved "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz"
@@ -6701,6 +6706,11 @@ react-native-gesture-handler@^2.25.0:
     "@egjs/hammerjs" "^2.0.17"
     hoist-non-react-statics "^3.3.0"
     invariant "^2.2.4"
+
+react-native-image-picker@^8.2.1:
+  version "8.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-8.2.1.tgz#1ac7826563cbaa5d5298d9f2acc53c69805e5393"
+  integrity sha512-FBeGYJGFDjMdGCcyubDJgBAPCQ4L1D3hwLXyUU91jY9ahOZMTbluceVvRmrEKqnDPFJ0gF1NVhJ0nr1nROFLdg==
 
 react-native-is-edge-to-edge@1.1.7:
   version "1.1.7"

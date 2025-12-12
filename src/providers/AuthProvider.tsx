@@ -1,7 +1,6 @@
 import React, { createContext, useState, useContext, useEffect, useRef } from 'react';
 import { AppState, AppStateStatus } from 'react-native';
-import auth, { FirebaseAuthTypes, getAuth, onAuthStateChanged, signOut, signInAnonymously } from '@react-native-firebase/auth';
-import Purchases from 'react-native-purchases';
+import { FirebaseAuthTypes, getAuth, signOut, signInAnonymously } from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { useAppDispatch } from '../store/hooks';
 import { 
@@ -17,7 +16,6 @@ import {
   setSubscriptionLoading,
   setSubscriptionError 
 } from '../store/slices/subscriptionSlice';
-import { authService } from '../services/AuthService';
 import { purchaseService } from '../services/PurchaseService';
 
 interface AuthContextType {
@@ -39,6 +37,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
   const [revenueCatConfigured, setRevenueCatConfigured] = useState(false);
   const dispatch = useAppDispatch();
+  const lastRevenueCatSyncIdentity = useRef<{ uid: string; isAnonymous: boolean } | null>(null);
   
   // Initialize RevenueCat on mount (BEFORE auth listener)
   // RevenueCat Best Practice: Configure once at app startup, let it create anonymous ID
@@ -64,7 +63,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
     
     const authInstance = getAuth();
-    const subscriber = onAuthStateChanged(authInstance, async (currentUser) => {
+    const subscriber = authInstance.onUserChanged(async (currentUser: FirebaseAuthTypes.User | null) => {
       
       // Fix: If user has providers but isAnonymous is true (stale state after linking), force reload
       if (currentUser && currentUser.isAnonymous && currentUser.providerData.length > 0) {
@@ -105,7 +104,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           }));
         }
 
-        // 2. BACKGROUND REVENUECAT SYNC
+        const identity = { uid: currentUser.uid, isAnonymous: currentUser.isAnonymous };
+        const shouldSyncRevenueCat =
+          !lastRevenueCatSyncIdentity.current ||
+          lastRevenueCatSyncIdentity.current.uid !== identity.uid ||
+          lastRevenueCatSyncIdentity.current.isAnonymous !== identity.isAnonymous;
+
+        // 2. BACKGROUND REVENUECAT SYNC (only when auth identity changes)
+        if (!shouldSyncRevenueCat) {
+          setLoading(false);
+          return;
+        }
+
         try {
           dispatch(setSubscriptionLoading(true));
           
@@ -171,9 +181,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           console.error('[AuthProvider] ❌ RevenueCat Error:', error);
           dispatch(setSubscriptionError(error?.message || 'Failed to sync subscription'));
         }
+
+        lastRevenueCatSyncIdentity.current = identity;
       } else {
         dispatch(clearAuth());
         dispatch(setSubscriptionNone());
+        lastRevenueCatSyncIdentity.current = null;
       }
       
       setLoading(false);
