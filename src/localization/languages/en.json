@@ -52,6 +52,19 @@
     "notSignedIn": "Not signed in",
     "signIn": "Sign in",
     "logout": "Logout",
+    "avatar": {
+      "changeTitle": "Change photo",
+      "chooseFromLibrary": "Choose from library",
+      "takePhoto": "Take photo",
+      "removePhoto": "Remove photo",
+      "uploading": "Uploading… {{percent}}%",
+      "uploadError": "Unable to update your photo. Please try again.",
+      "removeError": "Unable to remove your photo. Please try again.",
+      "signInRequiredTitle": "Sign in required",
+      "signInRequiredMessage": "Sign in to change your profile photo.",
+      "removeConfirmTitle": "Remove photo?",
+      "removeConfirmMessage": "This will remove your profile photo from this account."
+    },
     "menu": {
       "profile": "Profile Information",
       "settings": "Settings",

@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import Icon from '@react-native-vector-icons/material-design-icons';
-import { Avatar, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
@@ -11,6 +11,7 @@ import { useAppTheme } from '../../../providers/ThemeProvider';
 import { useAppSelector } from '../../../store/hooks';
 import { RootStackParamList } from '../../../navigations/StackNavigator';
 import { ROUTES } from '../../../constants/routes';
+import UserAvatar from '../UserAvatar/UserAvatar';
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
 
@@ -38,19 +39,14 @@ const AccountHeader: React.FC<Props> = ({ titleOverride, subtitleOverride, conta
 
   return (
     <View style={[styles.container, containerStyle]} pointerEvents="box-none">
-      <TouchableOpacity
+      <UserAvatar
+        uri={authState.photoURL}
+        size={48}
+        shape="circle"
         onPress={handlePress}
-        activeOpacity={0.8}
-        accessibilityRole="button"
         accessibilityLabel={t('account.title')}
-      >
-        <Avatar.Icon
-          size={48}
-          icon="account-circle"
-          style={styles.avatar}
-          color={theme.colors.primary}
-        />
-      </TouchableOpacity>
+        containerStyle={styles.avatar}
+      />
       {showText && (
         <View style={styles.textContainer} pointerEvents="none">
           <Text style={styles.title}>{title}</Text>

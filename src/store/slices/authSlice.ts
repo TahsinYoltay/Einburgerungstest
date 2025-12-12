@@ -82,6 +82,10 @@ export const authSlice = createSlice({
     setAuthError: (state, action: PayloadAction<string | null>) => {
       state.error = action.payload;
     },
+
+    setUserPhotoURL: (state, action: PayloadAction<string | null>) => {
+      state.photoURL = action.payload;
+    },
   },
 });
 
@@ -92,6 +96,7 @@ export const {
   setAnonymousUser,
   clearAuth,
   setAuthError,
+  setUserPhotoURL,
 } = authSlice.actions;
 
 // Selectors

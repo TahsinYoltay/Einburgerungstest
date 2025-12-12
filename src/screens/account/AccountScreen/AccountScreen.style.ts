@@ -25,6 +25,9 @@ export const createStyles = (theme: MD3Theme) =>
       fontSize: 18,
       color: theme.colors.onBackground,
     },
+    headerSpacer: {
+      width: 24,
+    },
     scrollContent: {
       paddingHorizontal: 16,
       paddingBottom: 32,
