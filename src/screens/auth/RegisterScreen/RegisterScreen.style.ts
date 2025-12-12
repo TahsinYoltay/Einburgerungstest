@@ -1,63 +1,100 @@
 import { StyleSheet } from 'react-native';
-import { AppTheme } from '../../../providers/ThemeProvider';
+import { MD3Theme } from 'react-native-paper';
 
-export const createStyles = (theme: AppTheme) => StyleSheet.create({
+export const createStyles = (theme: MD3Theme) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colors.background,
   },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    backgroundColor: theme.colors.background,
+  },
+  headerTitle: {
+    flex: 1,
+    textAlign: 'center',
+    fontWeight: '800',
+    fontSize: 18,
+    color: theme.colors.onBackground,
+  },
   scrollContent: {
     flexGrow: 1,
-    padding: 24,
-    justifyContent: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 8,
+    paddingBottom: 40,
   },
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 32,
+    marginBottom: 16,
+    marginTop: 8,
   },
   logo: {
-    width: 120,
-    height: 120,
-    marginBottom: 16,
+    width: 80,
+    height: 80,
+    marginBottom: 12,
   },
   title: {
-    color: theme.colors.primary,
-    textAlign: 'center',
-    marginBottom: 8,
     fontWeight: 'bold',
+    color: theme.colors.primary,
+    marginBottom: 10,
+    textAlign: 'center',
   },
   subtitle: {
-    color: theme.colors.text,
+    color: theme.colors.secondary,
     textAlign: 'center',
-    marginBottom: 24,
+    paddingHorizontal: 20,
   },
   formContainer: {
     width: '100%',
   },
+  socialContainer: {
+    gap: 12,
+    marginBottom: 24,
+  },
+  socialButton: {
+    borderRadius: 8,
+  },
+  dividerContainer: {
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    marginBottom: 24,
+  },
+  divider: {
+    flex: 1,
+    height: 1,
+  },
+  dividerText: {
+    marginHorizontal: 16,
+    color: theme.colors.onSurfaceVariant,
+    fontWeight: '600',
+  },
   input: {
-    marginBottom: 16,
+    marginBottom: 4,
     backgroundColor: theme.colors.surface,
   },
   errorText: {
     color: theme.colors.error,
-    marginBottom: 16,
+    marginBottom: 10,
     textAlign: 'center',
   },
   registerButton: {
-    marginBottom: 16,
+    marginTop: 24,
+    marginBottom: 24,
     paddingVertical: 6,
+    borderRadius: 8,
   },
   loginContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 16,
+    justifyContent: 'center',
   },
   loginText: {
-    color: theme.colors.text,
+    color: theme.colors.onSurfaceVariant,
   },
   loginButtonText: {
-    color: theme.colors.primary,
     fontWeight: 'bold',
   },
 });

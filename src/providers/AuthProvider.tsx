@@ -1,149 +1,252 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { createContext, useState, useContext, useEffect, useRef } from 'react';
+import { AppState, AppStateStatus } from 'react-native';
+import auth, { FirebaseAuthTypes, getAuth, onAuthStateChanged, signOut, signInAnonymously } from '@react-native-firebase/auth';
+import Purchases from 'react-native-purchases';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { useAppDispatch } from '../store/hooks';
+import { 
+  setAuthLoading,
+  setAuthenticatedUser, 
+  setAnonymousUser,
+  clearAuth,
+  AuthProvider as AuthProviderType
+} from '../store/slices/authSlice';
+import { 
+  setSubscriptionActive,
+  setSubscriptionNone,
+  setSubscriptionLoading,
+  setSubscriptionError 
+} from '../store/slices/subscriptionSlice';
+import { authService } from '../services/AuthService';
+import { purchaseService } from '../services/PurchaseService';
 
-// Define user type
-interface User {
-  id: string;
-  email: string;
-  displayName?: string;
-}
-
-// Define auth context type
 interface AuthContextType {
-  user: User | null;
-  isLoading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  register: (email: string, password: string) => Promise<void>;
-  logout: () => Promise<void>;
-  resetPassword: (email: string) => Promise<void>;
+  user: FirebaseAuthTypes.User | null;
+  loading: boolean;
+  signOut: () => Promise<void>;
 }
 
-// Create auth context with default values
 const AuthContext = createContext<AuthContextType>({
   user: null,
-  isLoading: false,
-  login: async () => {},
-  register: async () => {},
-  logout: async () => {},
-  resetPassword: async () => {},
+  loading: true,
+  signOut: async () => {},
 });
 
-// Export hook to use auth context
 export const useAuth = () => useContext(AuthContext);
 
-// Auth provider component
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [revenueCatConfigured, setRevenueCatConfigured] = useState(false);
+  const dispatch = useAppDispatch();
   
-  // Check for stored user on mount
+  // Initialize RevenueCat on mount (BEFORE auth listener)
+  // RevenueCat Best Practice: Configure once at app startup, let it create anonymous ID
+  // Then use logIn() when Firebase user is detected
   useEffect(() => {
-    const checkUser = async () => {
+    const initRevenueCat = async () => {
       try {
-        const storedUser = await AsyncStorage.getItem('user');
-        if (storedUser) {
-          setUser(JSON.parse(storedUser));
-        }
+        await purchaseService.configureWithUser();
+        setRevenueCatConfigured(true);
       } catch (error) {
-        console.error('Error retrieving user from storage:', error);
-      } finally {
-        setIsLoading(false);
+        console.error('[AuthProvider] ❌ RevenueCat configuration error:', error);
+        setRevenueCatConfigured(true);
       }
     };
     
-    checkUser();
+    initRevenueCat();
   }, []);
-
-  // Login function
-  const login = async (email: string, password: string) => {
-    setIsLoading(true);
-    try {
-      // This is where you would implement Firebase authentication
-      // For now, we'll just simulate a login
+  
+  // Auth state listener (runs AFTER RevenueCat is configured)
+  useEffect(() => {
+    if (!revenueCatConfigured) {
+      return;
+    }
+    
+    const authInstance = getAuth();
+    const subscriber = onAuthStateChanged(authInstance, async (currentUser) => {
       
-      // Example of how Firebase auth would be implemented:
-      // const userCredential = await firebaseAuth.signInWithEmailAndPassword(email, password);
-      // const firebaseUser = userCredential.user;
+      // Fix: If user has providers but isAnonymous is true (stale state after linking), force reload
+      if (currentUser && currentUser.isAnonymous && currentUser.providerData.length > 0) {
+        console.log('[AuthProvider] ⚠️ Detected providers on anonymous user, reloading profile...');
+        try {
+          await currentUser.reload();
+          // Get the fresh user instance after reload
+          currentUser = authInstance.currentUser; 
+        } catch (e) {
+          console.error('[AuthProvider] User reload failed:', e);
+        }
+      }
 
-      // Simulate a user object
-      const mockUser: User = {
-        id: '123456',
-        email: email,
-        displayName: email.split('@')[0],
-      };
-
-      // Store user in state and AsyncStorage
-      setUser(mockUser);
-      await AsyncStorage.setItem('user', JSON.stringify(mockUser));
-    } catch (error) {
-      console.error('Login error:', error);
-      throw error;
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Register function
-  const register = async (email: string, password: string) => {
-    setIsLoading(true);
-    try {
-      // This is where you would implement Firebase authentication
-      // For now, we'll just simulate a registration
+      setUser(currentUser);
       
-      // Example of how Firebase auth would be implemented:
-      // const userCredential = await firebaseAuth.createUserWithEmailAndPassword(email, password);
-      // const firebaseUser = userCredential.user;
+      if (currentUser) {
+        // Determine auth provider
+        let authProvider: AuthProviderType = 'none';
+        if (!currentUser.isAnonymous && currentUser.providerData.length > 0) {
+          const providerId = currentUser.providerData[0]?.providerId;
+          if (providerId === 'google.com') {
+            authProvider = 'google';
+          } else if (providerId === 'password') {
+            authProvider = 'email';
+          }
+        }
 
-      // For now, we don't automatically log in after registration
-    } catch (error) {
-      console.error('Registration error:', error);
-      throw error;
-    } finally {
-      setIsLoading(false);
-    }
-  };
+        // 1. IMMEDIATE REDUX UPDATE: Update auth state
+        if (currentUser.isAnonymous) {
+          dispatch(setAnonymousUser({ firebaseUid: currentUser.uid }));
+        } else {
+          dispatch(setAuthenticatedUser({
+            firebaseUid: currentUser.uid,
+            email: currentUser.email,
+            displayName: currentUser.displayName,
+            photoURL: currentUser.photoURL,
+            authProvider,
+          }));
+        }
 
-  // Logout function
-  const logout = async () => {
-    setIsLoading(true);
-    try {
-      // This is where you would implement Firebase logout
-      // await firebaseAuth.signOut();
+        // 2. BACKGROUND REVENUECAT SYNC
+        try {
+          dispatch(setSubscriptionLoading(true));
+          
+          // Login to RevenueCat with Firebase UID (handles cache invalidation internally)
+          await purchaseService.loginUser(currentUser.uid);
+          
+          // Sync user attributes
+          await purchaseService.syncUserAttributes(
+            currentUser.email || undefined,
+            currentUser.displayName || undefined
+          );
+          
+          // Sync device info (platform, OS version)
+          await purchaseService.syncDeviceInfo();
+          
+          // Sync user behavior data (auth provider, last active)
+          await purchaseService.syncUserBehaviorData({
+            authProvider: currentUser.isAnonymous ? 'none' : authProvider,
+            lastActiveDate: new Date().toISOString(),
+          });
+          
+          // 3. Fetch and update subscription state
+          const subscriptionState = await purchaseService.fetchAndUpdateEntitlements();
+          
+          if (subscriptionState.status === 'active') {
+            dispatch(setSubscriptionActive({
+              productId: subscriptionState.productId!,
+              renewalType: subscriptionState.renewalType!,
+              expiresAt: subscriptionState.expiresAt,
+            }));
+          } else if (subscriptionState.status === 'none' && !currentUser.isAnonymous) {
+            // If authenticated user has no subscription, try restoring purchases
+            // This handles cases where subscription is tied to a different App User ID
+            
+            try {
+              const restored = await purchaseService.restorePurchases();
+              if (restored) {
+                const updatedState = await purchaseService.fetchAndUpdateEntitlements();
+                
+                if (updatedState.status === 'active') {
+                  dispatch(setSubscriptionActive({
+                    productId: updatedState.productId!,
+                    renewalType: updatedState.renewalType!,
+                    expiresAt: updatedState.expiresAt,
+                  }));
+                } else {
+                  dispatch(setSubscriptionNone());
+                }
+              } else {
+                dispatch(setSubscriptionNone());
+              }
+            } catch (restoreError) {
+              console.error('[AuthProvider] ⚠️ Auto-restore failed:', restoreError);
+              dispatch(setSubscriptionNone());
+            }
+          } else if (subscriptionState.status === 'none') {
+            dispatch(setSubscriptionNone());
+          } else {
+            dispatch(setSubscriptionError(subscriptionState.error));
+          }
+          
+        } catch (error: any) {
+          console.error('[AuthProvider] ❌ RevenueCat Error:', error);
+          dispatch(setSubscriptionError(error?.message || 'Failed to sync subscription'));
+        }
+      } else {
+        dispatch(clearAuth());
+        dispatch(setSubscriptionNone());
+      }
       
-      // Clear user from state and AsyncStorage
-      setUser(null);
-      await AsyncStorage.removeItem('user');
-    } catch (error) {
-      console.error('Logout error:', error);
-      throw error;
-    } finally {
-      setIsLoading(false);
-    }
-  };
+      setLoading(false);
+    });
 
-  // Reset password function
-  const resetPassword = async (email: string) => {
+    return subscriber;
+  }, [dispatch, revenueCatConfigured]);
+
+  // Entitlement refresh on app foreground
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', async (nextAppState: AppStateStatus) => {
+      if (nextAppState === 'active' && user && !user.isAnonymous) {
+        try {
+          const subscriptionState = await purchaseService.fetchAndUpdateEntitlements();
+          
+          if (subscriptionState.status === 'active') {
+            dispatch(setSubscriptionActive({
+              productId: subscriptionState.productId!,
+              renewalType: subscriptionState.renewalType!,
+              expiresAt: subscriptionState.expiresAt,
+            }));
+          } else if (subscriptionState.status === 'none') {
+            dispatch(setSubscriptionNone());
+          } else if (subscriptionState.error) {
+            dispatch(setSubscriptionError(subscriptionState.error));
+          }
+        } catch (error: any) {
+          console.error('[AuthProvider] ❌ Entitlement refresh error:', error);
+        }
+      }
+    });
+    
+    return () => subscription.remove();
+  }, [user, dispatch]);
+
+  /**
+   * Sign out method (Design Spec Section 4.6)
+   * Proper sequence: RevenueCat → Google → Firebase → Anonymous
+   */
+  const signOutUser = async () => {
+    setLoading(true);
+    
     try {
-      // This is where you would implement Firebase password reset
-      // await firebaseAuth.sendPasswordResetEmail(email);
+      const authInstance = getAuth();
+      
+      // 1. Logout from RevenueCat first
+      try {
+        await purchaseService.logoutUser();
+      } catch (e) {
+        console.error('[AuthProvider] RevenueCat logout error:', e);
+      }
+      
+      // 2. Logout from Google if applicable
+      try {
+        await GoogleSignin.signOut();
+      } catch (e) {
+        // Ignorable
+      }
+      
+      // 3. Logout from Firebase
+      await signOut(authInstance);
+      
+      // 4. Sign in anonymously
+      await signInAnonymously(authInstance);
     } catch (error) {
-      console.error('Password reset error:', error);
-      throw error;
+      console.error('[AuthProvider] ❌ Sign out error:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  // Provide auth context to children
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        isLoading,
-        login,
-        register,
-        logout,
-        resetPassword
-      }}
-    >
+    <AuthContext.Provider value={{ user, loading, signOut: signOutUser }}>
       {children}
     </AuthContext.Provider>
   );

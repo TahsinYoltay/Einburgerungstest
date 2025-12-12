@@ -15,6 +15,7 @@ import HelpSupportScreen from '../screens/account/HelpSupportScreen/HelpSupportS
 import SupportTopicScreen from '../screens/account/SupportTopicScreen/SupportTopicScreen';
 import PrivacyPolicyScreen from '../screens/account/PrivacyPolicyScreen/PrivacyPolicyScreen';
 import { SupportTopicKey } from '../constants/supportTopics';
+import ReviewQuestionsScreen from '../screens/review/ReviewQuestionsScreen';
 
 export type RootStackParamList = {
   [ROUTES.AUTH]: undefined;
@@ -41,19 +42,15 @@ export type RootStackParamList = {
   [ROUTES.REVIEW_QUESTIONS]: { mode: 'favorites' | 'incorrect' };
 };
 
-import ReviewQuestionsScreen from '../screens/review/ReviewQuestionsScreen';
-
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
-  const isAuthenticated = true; // Replace with actual auth state
-
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName={isAuthenticated ? ROUTES.HOME : ROUTES.LOGIN}
+      initialRouteName={ROUTES.HOME}
     >
       <Stack.Screen name={ROUTES.LOGIN} component={LoginScreen} />
       <Stack.Screen name={ROUTES.REGISTER} component={RegisterScreen} />

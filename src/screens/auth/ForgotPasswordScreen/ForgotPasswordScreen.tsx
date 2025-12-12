@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Image } from 'react-native';
-import { TextInput, Button, Text, HelperText, Snackbar } from 'react-native-paper';
+import { View, ScrollView, Image, KeyboardAvoidingView, Platform } from 'react-native';
+import { TextInput, Button, Text, HelperText, Snackbar, IconButton } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
@@ -9,6 +9,8 @@ import { RootStackParamList } from '../../../navigations/StackNavigator';
 import { ROUTES } from '../../../constants/routes';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 import { createStyles } from './ForgotPasswordScreen.style';
+import { authService } from '../../../services/AuthService';
+import { isEmailValid } from '../../../utils/validators';
  
 type ForgotPasswordScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -23,11 +25,6 @@ const ForgotPasswordScreen = () => {
   const [error, setError] = useState<string | null>(null);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const isEmailValid = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
   const hasEmailError = email.length > 0 && !isEmailValid(email);
 
   const handleResetPassword = async () => {
@@ -39,42 +36,52 @@ const ForgotPasswordScreen = () => {
     setError(null);
     setIsLoading(true);
 
-    try {
-      // Here we would use Firebase authentication to send password reset email
-      // For now, just simulate sending email
-      setTimeout(() => {
-        setIsLoading(false);
-        setShowSuccess(true);
-      }, 1500);
-    } catch (error) {
-      setIsLoading(false);
-      setError(t('auth.errors.resetFailed'));
-      console.error('Password reset error:', error);
+    const result = await authService.sendPasswordResetEmail(email);
+    setIsLoading(false);
+
+    if (result.success) {
+      setShowSuccess(true);
+    } else {
+      setError(result.error || t('auth.errors.resetFailed'));
     }
   };
 
-  const navigateToLogin = () => {
-    navigation.navigate(ROUTES.LOGIN);
+  const goBackToLogin = () => {
+    navigation.goBack(); // Go back instead of stacking new route
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView
-        contentContainerStyle={styles.scrollContent}
-        keyboardShouldPersistTaps="handled"
+      {/* Sticky Header */}
+      <View style={styles.header}>
+        <IconButton 
+          icon="arrow-left" 
+          onPress={goBackToLogin} 
+          size={24}
+          iconColor={theme.colors.onBackground}
+        />
+        <Text style={styles.headerTitle}>
+          {t('auth.forgotPasswordTitle')}
+        </Text>
+        <View style={{ width: 48 }} />
+      </View>
+      
+      <KeyboardAvoidingView 
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
       >
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
         <View style={styles.logoContainer}>
           <Image
             source={require('../../../assets/images/logo.png')}
             style={styles.logo}
             resizeMode="contain"
           />
-          <Text variant="headlineLarge" style={styles.title}>
-            {t('auth.forgotPasswordTitle')}
-          </Text>
-          <Text variant="bodyMedium" style={styles.subtitle}>
-            {t('auth.forgotPasswordPrompt')}
-          </Text>
         </View>
 
         <View style={styles.formContainer}>
@@ -111,14 +118,15 @@ const ForgotPasswordScreen = () => {
 
           <Button
             mode="text"
-            onPress={navigateToLogin}
+            onPress={goBackToLogin}
             style={styles.backButton}
             labelStyle={styles.backButtonText}
           >
-            {t('auth.backToLogin')}
+            {t('auth.backToSignIn')}
           </Button>
         </View>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
 
       <Snackbar
         visible={showSuccess}

@@ -20,4 +20,8 @@ export const APP_CONFIG = {
   PRIVACY_POLICY_URL: 'https://eywasoft.co.uk/mobile/privacy/', 
   TERMS_URL: 'https://eywasoft.co.uk/mobile/rumi/end-user-license-agreement/', 
   SUPPORT_EMAIL: 'support@eywasoft.co.uk', 
+
+  // Firebase / Google Sign-In
+  // TODO: Verify this matches Firebase Console -> Authentication -> Sign-in method -> Google -> Web SDK configuration
+  WEB_CLIENT_ID: '482157943468-uq0vuabptkv6mdsk2nssp6ct1d2dlb0v.apps.googleusercontent.com',
 };

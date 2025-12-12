@@ -1,4 +1,4 @@
-import storage from '@react-native-firebase/storage';
+import storage, { getStorage, ref } from '@react-native-firebase/storage';
 import * as RNFS from '@dr.pogodin/react-native-fs';
 import { ExamManifestEntry, LanguageOption } from '../types/exam';
 import { PrivacyPolicyData, HelpContentData, MasterManifest, LocalVersionMap, ContentModuleConfig } from '../types/content';
@@ -64,7 +64,8 @@ class ContentManager {
     try {
       await this.ensureDirExists();
       // Always try to fetch fresh manifest
-      const reference = storage().ref(remotePath);
+      const storageInstance = getStorage();
+      const reference = ref(storageInstance, remotePath);
       await reference.writeToFile(localPath);
       
       const content = await RNFS.readFile(localPath, 'utf8');
@@ -95,7 +96,8 @@ class ContentManager {
 
     try {
       await this.ensureDirExists();
-      const reference = storage().ref(remotePath);
+      const storageInstance = getStorage();
+      const reference = ref(storageInstance, remotePath);
       await reference.writeToFile(localPath);
       const content = await RNFS.readFile(localPath, 'utf8');
       return JSON.parse(content);
@@ -117,7 +119,8 @@ class ContentManager {
 
     try {
       await this.ensureDirExists();
-      const reference = storage().ref(remotePath);
+      const storageInstance = getStorage();
+      const reference = ref(storageInstance, remotePath);
       await reference.writeToFile(localPath);
       const content = await RNFS.readFile(localPath, 'utf8');
       return JSON.parse(content);
@@ -177,7 +180,8 @@ class ContentManager {
     if (shouldUpdate) {
       console.log(`ContentManager: Updating Privacy Policy (${languageCode}) from v${currentVersion} to v${targetVersion}`);
       try {
-        const reference = storage().ref(remotePath);
+        const storageInstance = getStorage();
+        const reference = ref(storageInstance, remotePath);
         await reference.writeToFile(localPath);
         
         // Update local version registry
@@ -266,7 +270,8 @@ class ContentManager {
     if (shouldUpdate) {
       console.log(`ContentManager: Updating ${topic} (${languageCode}) from v${currentVersion} to v${targetVersion}`);
       try {
-        const reference = storage().ref(remotePath);
+        const storageInstance = getStorage();
+        const reference = ref(storageInstance, remotePath);
         await reference.writeToFile(localPath);
         
         // Update local version registry

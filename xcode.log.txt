@@ -1,0 +1,90 @@
+Setting emulator - host (null) port 0
+[RevenueCat] ℹ️ CustomerInfo cache is stale, updating from network in foreground.
+'ContentEngine: Failed to fetch master manifest', [TypeError: The first argument must be one of type string, Buffer, ArrayBuffer, Array, or Array-like Object. Received type undefined]
+nw_socket_handle_socket_event [C44.1.1:1] Socket SO_ERROR [61: Connection refused]
+nw_protocol_socket_set_no_wake_from_sleep [C44.1.1:1] setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_protocol_socket_set_no_wake_from_sleep setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_endpoint_flow_failed_with_error [C44.1.1 ::1.8081 in_progress socket-flow (satisfied (Path is satisfied), viable, interface: lo0)] already failing, returning
+nw_socket_handle_socket_event [C44.1.2:1] Socket SO_ERROR [61: Connection refused]
+nw_protocol_socket_set_no_wake_from_sleep [C44.1.2:1] setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_protocol_socket_set_no_wake_from_sleep setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_endpoint_flow_failed_with_error [C44.1.2 127.0.0.1:8081 in_progress socket-flow (satisfied (Path is satisfied), viable, interface: lo0)] already failing, returning
+nw_endpoint_flow_failed_with_error [C44.1.2 127.0.0.1:8081 cancelled socket-flow ((null))] already failing, returning
+nw_connection_get_connected_socket_block_invoke [C44] Client called nw_connection_get_connected_socket on unconnected nw_connection
+TCP Conn 0x1053e2c60 Failed : error 0:61 [61]
+[RevenueCat] ℹ️ No cached Offerings, fetching from network
+[RevenueCat] ℹ️ Offerings cache is stale, updating from network in foreground
+[RevenueCat] ℹ️ GetOfferingsOperation: Started
+[RevenueCat] ℹ️ There are no requests currently running, starting request GET /v1/subscribers/$RCAnonymousID%3Ad692d67802b645c9b6d4739d8d182f70/offerings
+[RevenueCat] ℹ️ API request started: GET '/v1/subscribers/$RCAnonymousID%3Ad692d67802b645c9b6d4739d8d182f70/offerings'
+nw_socket_handle_socket_event [C45.1.1:1] Socket SO_ERROR [61: Connection refused]
+nw_protocol_socket_set_no_wake_from_sleep [C45.1.1:1] setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_protocol_socket_set_no_wake_from_sleep setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_endpoint_flow_failed_with_error [C45.1.1 ::1.8081 in_progress socket-flow (satisfied (Path is satisfied), viable, interface: lo0)] already failing, returning
+nw_socket_handle_socket_event [C45.1.2:1] Socket SO_ERROR [61: Connection refused]
+nw_protocol_socket_set_no_wake_from_sleep [C45.1.2:1] setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_protocol_socket_set_no_wake_from_sleep setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_endpoint_flow_failed_with_error [C45.1.2 127.0.0.1:8081 in_progress socket-flow (satisfied (Path is satisfied), viable, interface: lo0)] already failing, returning
+nw_endpoint_flow_failed_with_error [C45.1.2 127.0.0.1:8081 cancelled socket-flow ((null))] already failing, returning
+nw_connection_get_connected_socket_block_invoke [C45] Client called nw_connection_get_connected_socket on unconnected nw_connection
+TCP Conn 0x1053e2080 Failed : error 0:61 [61]
+[RevenueCat] ℹ️ API request completed: GET '/v1/subscribers/$RCAnonymousID%3Ad692d67802b645c9b6d4739d8d182f70/offerings' (304)
+[RevenueCat] ℹ️ Found an existing request for products: ["uk_life_monthly_v2", "uk_life_lifetime_v2", "lif_499_all", "lifeInUK_249_1m"], appending to completion
+[RevenueCat] ℹ️ GetOfferingsOperation: Finished
+[RevenueCat] ℹ️ Serial request done: GET /v1/subscribers/$RCAnonymousID%3Ad692d67802b645c9b6d4739d8d182f70/offerings, 0 requests left in the queue
+nw_socket_handle_socket_event [C46.1.1:1] Socket SO_ERROR [61: Connection refused]
+nw_protocol_socket_set_no_wake_from_sleep [C46.1.1:1] setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_protocol_socket_set_no_wake_from_sleep setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_endpoint_flow_failed_with_error [C46.1.1 ::1.8081 in_progress socket-flow (satisfied (Path is satisfied), viable, interface: lo0)] already failing, returning
+nw_socket_handle_socket_event [C46.1.2:1] Socket SO_ERROR [61: Connection refused]
+nw_protocol_socket_set_no_wake_from_sleep [C46.1.2:1] setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_protocol_socket_set_no_wake_from_sleep setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_endpoint_flow_failed_with_error [C46.1.2 127.0.0.1:8081 in_progress socket-flow (satisfied (Path is satisfied), viable, interface: lo0)] already failing, returning
+nw_endpoint_flow_failed_with_error [C46.1.2 127.0.0.1:8081 cancelled socket-flow ((null))] already failing, returning
+nw_connection_get_connected_socket_block_invoke [C46] Client called nw_connection_get_connected_socket on unconnected nw_connection
+TCP Conn 0x1053e0000 Failed : error 0:61 [61]
+nw_socket_handle_socket_event [C47.1.1:1] Socket SO_ERROR [61: Connection refused]
+nw_protocol_socket_set_no_wake_from_sleep [C47.1.1:1] setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_protocol_socket_set_no_wake_from_sleep setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_endpoint_flow_failed_with_error [C47.1.1 ::1.8081 in_progress socket-flow (satisfied (Path is satisfied), viable, interface: lo0)] already failing, returning
+nw_socket_handle_socket_event [C47.1.2:1] Socket SO_ERROR [61: Connection refused]
+nw_protocol_socket_set_no_wake_from_sleep [C47.1.2:1] setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_protocol_socket_set_no_wake_from_sleep setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_endpoint_flow_failed_with_error [C47.1.2 127.0.0.1:8081 in_progress socket-flow (satisfied (Path is satisfied), viable, interface: lo0)] already failing, returning
+nw_endpoint_flow_failed_with_error [C47.1.2 127.0.0.1:8081 cancelled socket-flow ((null))] already failing, returning
+nw_connection_get_connected_socket_block_invoke [C47] Client called nw_connection_get_connected_socket on unconnected nw_connection
+TCP Conn 0x1053e0000 Failed : error 0:61 [61]
+nw_socket_handle_socket_event [C48.1.1:1] Socket SO_ERROR [61: Connection refused]
+nw_protocol_socket_set_no_wake_from_sleep [C48.1.1:1] setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_protocol_socket_set_no_wake_from_sleep setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_endpoint_flow_failed_with_error [C48.1.1 ::1.8081 in_progress socket-flow (satisfied (Path is satisfied), viable, interface: lo0)] already failing, returning
+nw_socket_handle_socket_event [C48.1.2:1] Socket SO_ERROR [61: Connection refused]
+nw_protocol_socket_set_no_wake_from_sleep [C48.1.2:1] setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_protocol_socket_set_no_wake_from_sleep setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_endpoint_flow_failed_with_error [C48.1.2 127.0.0.1:8081 in_progress socket-flow (satisfied (Path is satisfied), viable, interface: lo0)] already failing, returning
+nw_endpoint_flow_failed_with_error [C48.1.2 127.0.0.1:8081 cancelled socket-flow ((null))] already failing, returning
+nw_connection_get_connected_socket_block_invoke [C48] Client called nw_connection_get_connected_socket on unconnected nw_connection
+TCP Conn 0x1053e0000 Failed : error 0:61 [61]
+nw_socket_handle_socket_event [C49.1.1:1] Socket SO_ERROR [61: Connection refused]
+nw_protocol_socket_set_no_wake_from_sleep [C49.1.1:1] setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_protocol_socket_set_no_wake_from_sleep setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_endpoint_flow_failed_with_error [C49.1.1 ::1.8081 in_progress socket-flow (satisfied (Path is satisfied), viable, interface: lo0)] already failing, returning
+nw_socket_handle_socket_event [C49.1.2:1] Socket SO_ERROR [61: Connection refused]
+nw_protocol_socket_set_no_wake_from_sleep [C49.1.2:1] setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_protocol_socket_set_no_wake_from_sleep setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_endpoint_flow_failed_with_error [C49.1.2 127.0.0.1:8081 in_progress socket-flow (satisfied (Path is satisfied), viable, interface: lo0)] already failing, returning
+nw_endpoint_flow_failed_with_error [C49.1.2 127.0.0.1:8081 cancelled socket-flow ((null))] already failing, returning
+nw_connection_get_connected_socket_block_invoke [C49] Client called nw_connection_get_connected_socket on unconnected nw_connection
+TCP Conn 0x1053e0000 Failed : error 0:61 [61]
+nw_socket_handle_socket_event [C50.1.1:1] Socket SO_ERROR [61: Connection refused]
+nw_protocol_socket_set_no_wake_from_sleep [C50.1.1:1] setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_protocol_socket_set_no_wake_from_sleep setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_endpoint_flow_failed_with_error [C50.1.1 ::1.8081 in_progress socket-flow (satisfied (Path is satisfied), viable, interface: lo0)] already failing, returning
+nw_socket_handle_socket_event [C50.1.2:1] Socket SO_ERROR [61: Connection refused]
+nw_protocol_socket_set_no_wake_from_sleep [C50.1.2:1] setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_protocol_socket_set_no_wake_from_sleep setsockopt SO_NOWAKEFROMSLEEP failed [22: Invalid argument]
+nw_endpoint_flow_failed_with_error [C50.1.2 127.0.0.1:8081 in_progress socket-flow (satisfied (Path is satisfied), viable, interface: lo0)] already failing, returning
+nw_endpoint_flow_failed_with_error [C50.1.2 127.0.0.1:8081 cancelled socket-flow ((null))] already failing, returning
+nw_connection_get_connected_socket_block_invoke [C50] Client called nw_connection_get_connected_socket on unconnected nw_connection
+TCP Conn 0x1053e0000 Failed : error 0:61 [61]
+Message from debugger: killed

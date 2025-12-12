@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { View, ScrollView, Image } from 'react-native';
-import { TextInput, Button, Text, HelperText } from 'react-native-paper';
+import React, { useState, useMemo } from 'react';
+import { View, ScrollView, Image, Alert, KeyboardAvoidingView, Platform } from 'react-native';
+import { TextInput, Button, Text, HelperText, IconButton, Divider } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
@@ -9,34 +9,44 @@ import { RootStackParamList } from '../../../navigations/StackNavigator';
 import { ROUTES } from '../../../constants/routes';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 import { createStyles } from './LoginScreen.style';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { loginUser, clearError } from '../../../store/slices/userSlice';
+import { authService } from '../../../services/AuthService';
+import { isEmailValid, isPasswordValid } from '../../../utils/validators';
  
 type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const LoginScreen = () => {
   const { t } = useTranslation();
   const { theme } = useAppTheme();
-  const styles = createStyles(theme);
+  const styles = useMemo(() => createStyles(theme), [theme]);
   const navigation = useNavigation<LoginScreenNavigationProp>();
-  const dispatch = useAppDispatch();
-  
-  // Get user state from Redux
-  const { loading, error: reduxError, user } = useAppSelector((state) => state.user);
 
+  // Local state
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const isEmailValid = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
   const hasEmailError = email.length > 0 && !isEmailValid(email);
-  const hasPasswordError = password.length > 0 && password.length < 6;
+  const hasPasswordError = password.length > 0 && !isPasswordValid(password);
+
+  // No longer needed - we handle navigation directly after login success
+
+  const handleGoogleLogin = async () => {
+    setIsLoading(true);
+
+    const result = await authService.signInWithGoogle();
+    
+    if (!result.success) {
+      setIsLoading(false);
+      Alert.alert(t('common.error'), result.error || 'Google Sign-In failed');
+    } else {
+      // Success! Firebase auto-signs in, AuthProvider will handle RevenueCat sync
+      console.log('[LoginScreen] ✅ Google login successful, AuthProvider will sync...');
+      setIsLoading(false);
+      navigation.goBack();
+    }
+  };
 
   const handleLogin = async () => {
     if (!isEmailValid(email)) {
@@ -52,19 +62,27 @@ const LoginScreen = () => {
     setError(null);
     setIsLoading(true);
 
-    try {
-      // Here we would use Firebase authentication
-      // For now, just simulate login
-      setTimeout(() => {
-        setIsLoading(false);
-        // Navigate to the main app
-        // In a real app, this would be handled by an auth context
-        // that would trigger a re-render of the navigator
-      }, 1500);
-    } catch (error) {
+    const result = await authService.signInWithEmailAndPassword(email, password);
+    
+    if (!result.success) {
       setIsLoading(false);
-      setError(t('auth.errors.loginFailed'));
-      console.error('Login error:', error);
+      console.error('[LoginScreen] Login error:', result.error);
+      
+      // Check if we have a provider conflict suggestion
+      if (result.suggestionKey) {
+        setError(t(result.suggestionKey));
+      } else if (result.error?.includes('user-not-found') || result.error?.includes('wrong-password') || result.error?.includes('invalid-credential')) {
+        setError(t('auth.errors.invalidCredentials', { defaultValue: 'Invalid email or password' }));
+      } else if (result.error?.includes('invalid-email')) {
+        setError(t('auth.errors.invalidEmail'));
+      } else {
+        setError(t('auth.errors.signInFailed'));
+      }
+    } else {
+      // Success! Firebase signs in the user, AuthProvider will handle state and RevenueCat sync
+      console.log('[LoginScreen] ✅ Email login successful, AuthProvider will sync...');
+      setIsLoading(false);
+      navigation.goBack();
     }
   };
 
@@ -78,25 +96,70 @@ const LoginScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView
-        contentContainerStyle={styles.scrollContent}
-        keyboardShouldPersistTaps="handled"
+      {/* Sticky Header */}
+      <View style={styles.header}>
+        <IconButton 
+          icon="arrow-left" 
+          onPress={() => navigation.goBack()} 
+          size={24}
+          iconColor={theme.colors.onBackground}
+        />
+        <Text style={styles.headerTitle}>
+          {t('auth.signIn')}
+        </Text>
+        <View style={{ width: 48 }} />
+      </View>
+      
+      <KeyboardAvoidingView 
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
       >
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
         <View style={styles.logoContainer}>
           <Image
             source={require('../../../assets/images/logo.png')}
             style={styles.logo}
             resizeMode="contain"
           />
-          <Text variant="headlineLarge" style={styles.title}>
-            {t('auth.welcomeBack')}
-          </Text>
-          <Text variant="bodyMedium" style={styles.subtitle}>
-            {t('auth.loginPrompt')}
-          </Text>
         </View>
 
         <View style={styles.formContainer}>
+          {/* Social Login Section */}
+          <View style={styles.socialContainer}>
+            <Button 
+                mode="outlined" 
+                icon="google" 
+                onPress={handleGoogleLogin} 
+                style={[styles.socialButton, { borderColor: theme.colors.outline }]}
+                disabled={isLoading}
+                loading={isLoading} 
+            >
+                Continue with Google
+            </Button>
+            <Button 
+                mode="outlined" 
+                icon="apple" 
+                onPress={() => Alert.alert('Coming Soon', 'Apple Sign-In integration pending.')} 
+                style={[styles.socialButton, { borderColor: theme.colors.outline }]}
+                disabled={isLoading}
+            >
+                Continue with Apple
+            </Button>
+          </View>
+
+          <View style={styles.dividerContainer}>
+            <Divider style={styles.divider} />
+            <Text variant="bodySmall" style={[styles.dividerText, { color: theme.colors.outline }]}>
+                OR SIGN IN WITH EMAIL
+            </Text>
+            <Divider style={styles.divider} />
+          </View>
+
           {error && (
             <Text style={styles.errorText}>{error}</Text>
           )}
@@ -157,7 +220,7 @@ const LoginScreen = () => {
             loading={isLoading}
             disabled={isLoading || !email || !password}
           >
-            {t('auth.login')}
+            {t('auth.signIn')}
           </Button>
 
           <View style={styles.registerContainer}>
@@ -173,7 +236,8 @@ const LoginScreen = () => {
             </Button>
           </View>
         </View>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

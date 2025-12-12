@@ -1,4 +1,4 @@
-import storage from '@react-native-firebase/storage';
+import storage, { FirebaseStorageTypes, getStorage, ref, writeToFile } from '@react-native-firebase/storage';
 import * as RNFS from '@dr.pogodin/react-native-fs';
 import { MasterManifest, LocalVersionMap } from '../types/content';
 
@@ -51,8 +51,9 @@ class ContentEngine {
   async fetchMasterManifest(): Promise<MasterManifest | null> {
     const localPath = this.getLocalPath(MANIFEST_FILE);
     try {
-      const reference = storage().ref(REMOTE_MANIFEST_PATH);
-      await reference.writeToFile(localPath);
+      const storageInstance = getStorage();
+      const reference = ref(storageInstance, REMOTE_MANIFEST_PATH);
+      await writeToFile(reference, localPath);
       const content = await RNFS.readFile(localPath, 'utf8');
       return JSON.parse(content);
     } catch (error) {
@@ -71,11 +72,12 @@ class ContentEngine {
 
       const filename = `${moduleId}.json`;
       const localPath = this.getLocalPath(filename);
-      const reference = storage().ref(remotePath);
+      const storageInstance = getStorage();
+      const reference = ref(storageInstance, remotePath);
 
       console.log(`ContentEngine: Downloading ${moduleId} v${version} from ${remotePath}`);
       
-      await reference.writeToFile(localPath);
+      await writeToFile(reference, localPath);
       
       // Update version tracking
       const versions = await this.getLocalVersions();

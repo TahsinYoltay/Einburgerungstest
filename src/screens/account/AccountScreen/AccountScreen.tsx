@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { View, TouchableOpacity, ScrollView, Image, Alert } from 'react-native';
 import Icon from '@react-native-vector-icons/material-design-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text } from 'react-native-paper';
@@ -12,7 +12,9 @@ import { useAppTheme } from '../../../providers/ThemeProvider';
 import { useAppSelector, useAppDispatch } from '../../../store/hooks';
 import { RootStackParamList } from '../../../navigations/StackNavigator';
 import { ROUTES } from '../../../constants/routes';
-import { logoutUser } from '../../../store/slices/userSlice';
+import { selectIsAnonymous } from '../../../store/slices/authSlice';
+import { useAuth } from '../../../providers/AuthProvider';
+import { selectHasActiveSubscription } from '../../../store/slices/subscriptionSlice';
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
 
@@ -20,7 +22,10 @@ const AccountScreen = () => {
   const navigation = useNavigation<Nav>();
   const { theme } = useAppTheme();
   const styles = React.useMemo(() => createStyles(theme), [theme]);
-  const user = useAppSelector(state => state.user.user);
+  const isAnonymous = useAppSelector(selectIsAnonymous);
+  const authState = useAppSelector(state => state.auth);
+  const hasSubscription = useAppSelector(selectHasActiveSubscription);
+  const { signOut } = useAuth();
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
@@ -51,10 +56,30 @@ const AccountScreen = () => {
     },
   ];
 
-  const handleAuthAction = () => {
-    if (user) {
-      dispatch(logoutUser());
-      navigation.goBack();
+  const handleAuthAction = async () => {
+    if (!isAnonymous) {
+      // Show logout warning before signing out
+      Alert.alert(
+        t('auth.logoutConfirmTitle', { defaultValue: 'Sign Out?' }),
+        hasSubscription 
+          ? t('auth.logoutWithSubscriptionWarning', { 
+              defaultValue: 'If you sign out, you will lose access to your subscription on this device until you sign in again or restore purchases.\n\nYour subscription will NOT be cancelled.' 
+            })
+          : t('auth.logoutWarning', { 
+              defaultValue: 'Are you sure you want to sign out?' 
+            }),
+        [
+          { text: t('common.cancel'), style: 'cancel' },
+          { 
+            text: t('common.signOut', { defaultValue: 'Sign Out' }), 
+            style: 'destructive',
+            onPress: async () => {
+              await signOut();
+              navigation.goBack();
+            }
+          }
+        ]
+      );
       return;
     }
     navigation.navigate(ROUTES.LOGIN);
@@ -80,8 +105,8 @@ const AccountScreen = () => {
             />
           </View>
           <View style={styles.profileText}>
-            <Text style={styles.profileName}>{user?.displayName || t('account.guestName')}</Text>
-            <Text style={styles.profileEmail}>{user?.email || t('account.notSignedIn')}</Text>
+            <Text style={styles.profileName}>{authState?.displayName || t('account.guestName')}</Text>
+            <Text style={styles.profileEmail}>{authState?.email || t('account.notSignedIn')}</Text>
           </View>
         </View>
 
@@ -98,8 +123,8 @@ const AccountScreen = () => {
         </View>
 
         <TouchableOpacity style={styles.logoutButton} activeOpacity={0.9} onPress={handleAuthAction}>
-          <Icon name={user ? 'logout' : 'login'} size={20} color="#D32F2F" />
-          <Text style={styles.logoutText}>{user ? t('account.logout') : t('account.login')}</Text>
+          <Icon name={!isAnonymous ? 'logout' : 'login'} size={20} color="#D32F2F" />
+          <Text style={styles.logoutText}>{!isAnonymous ? t('account.logout') : t('account.signIn')}</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>

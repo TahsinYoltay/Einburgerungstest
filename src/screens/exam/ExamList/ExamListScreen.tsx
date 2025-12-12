@@ -15,6 +15,7 @@ import { ExamAttempt } from '../../../types/exam';
 import { createStyles } from './ExamListScreen.style';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 import AccountHeader from '../../../components/account/AccountHeader/AccountHeader';
+import PaywallModal from '../../../components/common/PaywallModal';
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
 
@@ -30,8 +31,23 @@ const ExamListScreen = () => {
   const { t } = useTranslation();
   const { theme } = useAppTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
+  const isPro = useAppSelector(state => state.subscription.status === 'active');
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [refreshing, setRefreshing] = useState(false);
+  const [showPaywall, setShowPaywall] = useState(false);
+  const [forceUpdateKey, setForceUpdateKey] = useState(0);
+
+  const handleExamPress = (examId: string, index: number) => {
+    // Logic: First 5 exams (0-4) are free. Others need Pro.
+    const isLocked = index >= 5 && !isPro;
+
+    if (isLocked) {
+      setShowPaywall(true);
+      return;
+    }
+    
+    setExpandedId(expandedId === examId ? null : examId);
+  };
 
   // Calculate stats for buttons
   const incorrectCount = useMemo(() => {
@@ -43,6 +59,8 @@ const ExamListScreen = () => {
   // Trigger update check every time the screen is focused
   useFocusEffect(
     useCallback(() => {
+      setForceUpdateKey(prev => prev + 1);
+      
       let isActive = true;
 
       const checkUpdates = async () => {
@@ -239,7 +257,7 @@ const ExamListScreen = () => {
 
         {/* Practice list */}
         <Text style={styles.sectionTitle}>{t('exam.practiceTests', 'All Practice Tests')}</Text>
-        {exams.map(exam => {
+        {exams.map((exam, index) => {
           const titleText = exam.title || '';
           const numberMatch = titleText.match(/(\\d+)/);
           const isPracticeTitle = /practice\\s*exam/i.test(titleText);
@@ -275,11 +293,17 @@ const ExamListScreen = () => {
               ? `${lastAttempt?.correctAnswers ?? 0}/${totalQuestions}`
               : t('exam.status.not-started');
 
+          // Locking Logic
+          const isLocked = index >= 5 && !isPro;
+
           return (
-            <View key={exam.id} style={styles.accordionCard}>
-              <Pressable style={styles.accordionHeader} onPress={() => setExpandedId(expanded ? null : exam.id)}>
-                <Text style={styles.accordionTitle}>{displayTitle}</Text>
-                <Text style={styles.accordionMeta}>{metaLabel}</Text>
+            <View key={exam.id} style={[styles.accordionCard, isLocked && { opacity: 0.7 }]}>
+              <Pressable style={styles.accordionHeader} onPress={() => handleExamPress(exam.id, index)}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
+                  {isLocked && <Icon name="lock" size={20} color="gray" style={{ marginRight: 8 }} />}
+                  <Text style={styles.accordionTitle}>{displayTitle}</Text>
+                </View>
+                <Text style={styles.accordionMeta}>{isLocked ? t('common.locked', 'Locked') : metaLabel}</Text>
                 <Icon name={expanded ? 'chevron-up' : 'chevron-down'} size={22} color={theme.colors.onSurface} />
               </Pressable>
 
@@ -392,6 +416,10 @@ const ExamListScreen = () => {
           );
         })}
       </ScrollView>
+      <PaywallModal 
+        visible={showPaywall} 
+        onDismiss={() => setShowPaywall(false)}
+      />
     </SafeAreaView>
   );
 };

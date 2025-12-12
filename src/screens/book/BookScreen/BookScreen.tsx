@@ -16,6 +16,8 @@ import type { ReadingProgress } from '../../../utils/readingProgress';
 import { useAppSelector, useAppDispatch } from '../../../store/hooks';
 import { loadBookContent } from '../../../store/slices/bookSlice';
 import AccountHeader from '../../../components/account/AccountHeader/AccountHeader';
+import PaywallModal from '../../../components/common/PaywallModal';
+import Icon from '@react-native-vector-icons/material-design-icons';
 
 type BookScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
@@ -32,7 +34,8 @@ const BookScreen = () => {
   const navigation = useNavigation<BookScreenNavigationProp>();
     const { theme } = useAppTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
-  const userId = useAppSelector(state => state.user.user?.id);
+  const userId = useAppSelector(state => state.auth.firebaseUid);
+  const isPro = useAppSelector(state => state.subscription.status === 'active');
   const dispatch = useAppDispatch();
   
   const { data: bookData, loading } = useAppSelector(state => state.book);
@@ -41,11 +44,22 @@ const BookScreen = () => {
   const [chapterProgresses, setChapterProgresses] = useState<{ [chapterId: string]: { completed: number; total: number; percentage: number } }>({});
   const [expandedChapters, setExpandedChapters] = useState<{ [chapterId: string]: boolean }>({});
   const [refreshing, setRefreshing] = useState(false);
+  const [showPaywall, setShowPaywall] = useState(false);
+  const [forceUpdateKey, setForceUpdateKey] = useState(0);
+
+  // Load reading progress on focus
+  useFocusEffect(
+    useCallback(() => {
+      loadReadingProgress();
+      setForceUpdateKey(prev => prev + 1);
+    }, [userId])
+  );
       
   // Load book content on mount
   useEffect(() => {
     dispatch(loadBookContent());
   }, [dispatch]);
+
 
   // Merge static assets (images) with dynamic content (translations/html)
   const chapters: EnhancedChapter[] = useMemo(() => {
@@ -120,7 +134,15 @@ const BookScreen = () => {
     }
   };
 
-  const toggleChapterExpansion = (chapterId: string) => {
+  const toggleChapterExpansion = (chapterId: string, index: number) => {
+    // Lock Logic: Index 0 is Free. Others > 0 are Locked unless Pro.
+    const isLocked = index > 0 && !isPro;
+
+    if (isLocked) {
+      setShowPaywall(true);
+      return;
+    }
+
     setExpandedChapters(prev => ({
       ...prev,
       [chapterId]: !prev[chapterId]
@@ -202,15 +224,16 @@ const BookScreen = () => {
     );
   };
 
-  const renderChapter = (chapter: EnhancedChapter) => {
+  const renderChapter = (chapter: EnhancedChapter, index: number) => {
     const isExpanded = expandedChapters[chapter.id];
     const progress = chapterProgresses[chapter.id];
     const progressPercentage = progress ? progress.percentage / 100 : 0;
+    const isLocked = index > 0 && !isPro;
     
     return (
-      <Card key={chapter.id} style={styles.chapterCard}>
+      <Card key={chapter.id} style={[styles.chapterCard, isLocked && { opacity: 0.7 }]}>
         <TouchableOpacity
-          onPress={() => toggleChapterExpansion(chapter.id)}
+          onPress={() => toggleChapterExpansion(chapter.id, index)}
           style={{ padding: 0 }}
         >
           <View style={styles.chapterHeaderRow}>
@@ -220,9 +243,12 @@ const BookScreen = () => {
             />
             <View style={styles.chapterContent}>
               <View style={styles.chapterTitleRow}>
-                <Text variant="titleMedium" style={styles.chapterTitle}>
-                  {chapter.title}
-                </Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
+                   {isLocked && <Icon name="lock" size={20} color="gray" style={{ marginRight: 5 }} />}
+                   <Text variant="titleMedium" style={styles.chapterTitle}>
+                    {chapter.title}
+                   </Text>
+                </View>
                 <IconButton
                   icon={isExpanded ? 'chevron-up' : 'chevron-down'}
                   iconColor={theme.colors.primary}
@@ -339,8 +365,12 @@ const BookScreen = () => {
           </Surface>
         </View>
 
-        {chapters.map(chapter => renderChapter(chapter))}
+        {chapters.map((chapter, index) => renderChapter(chapter, index))}
       </ScrollView>
+      <PaywallModal 
+        visible={showPaywall} 
+        onDismiss={() => setShowPaywall(false)}
+      />
     </SafeAreaView>
   );
 };

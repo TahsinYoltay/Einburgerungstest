@@ -53,6 +53,16 @@ export const signInWithEmailAndPassword = async (email: string, password: string
   }
 };
 
+export const signInAnonymously = async () => {
+  try {
+    const userCredential = await firebaseAuth.signInAnonymously();
+    return { success: true, user: userCredential.user };
+  } catch (error) {
+    console.error('Anonymous sign in error:', error);
+    return { success: false, error };
+  }
+};
+
 export const sendPasswordResetEmail = async (email: string) => {
   try {
     await firebaseAuth.sendPasswordResetEmail(email);

@@ -1,6 +1,6 @@
 import { Platform } from 'react-native';
 import * as RNFS from '@dr.pogodin/react-native-fs';
-import storage from '@react-native-firebase/storage';
+import storage, { getStorage, ref } from '@react-native-firebase/storage';
 import defaultChaptersData from '../data/exam/normalized/allChaptersData.normalized.json';
 import defaultBookData from '../assets/content/bookContent.en.json';
 import { BookContent } from '../types/book';
@@ -126,7 +126,8 @@ class LanguageManager {
       console.log(`Remote: ${remotePath}`);
       console.log(`Local: ${localPath}`);
 
-      const reference = storage().ref(remotePath);
+      const storageInstance = getStorage();
+      const reference = ref(storageInstance, remotePath);
 
       // Create a download task
       const task = reference.writeToFile(localPath);
@@ -160,7 +161,8 @@ class LanguageManager {
       const remotePath = `${BOOK_STORAGE_PATH_PREFIX}/bookContent.${langCode}.json`;
       
       console.log(`LanguageManager: Starting book download...`);
-      const reference = storage().ref(remotePath);
+      const storageInstance = getStorage();
+      const reference = ref(storageInstance, remotePath);
       const task = reference.writeToFile(localPath);
 
       if (onProgress) {
