@@ -10,9 +10,18 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { StatusBar, AppState, AppStateStatus } from 'react-native';
+import { StatusBar, AppState, AppStateStatus, LogBox } from 'react-native';
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+
+// Suppress development-only warnings that don't affect production:
+// 1. Firebase writeToFile - hasn't been migrated to modular API yet (will be fixed in v22)
+// 2. Redux Toolkit middleware performance - dev-only, automatically disabled in production
+// LogBox.ignoreLogs([
+//   'writeToFile',
+//   'ImmutableStateInvariantMiddleware',
+//   'SerializableStateInvariantMiddleware',
+// ]);
 
 // Store
 import { store, persistor } from './src/store';
@@ -41,12 +50,19 @@ const AppContent = () => {
   const { currentLanguage } = useAppSelector(state => state.exam);
   const appState = useRef(AppState.currentState);
 
-  // Initial Load
+  /**
+   * Initial Load - Phase 6: App Initialization Fix
+   * RevenueCat and Auth initialization moved to AuthProvider
+   * App.tsx now only handles content sync
+   */
   useEffect(() => {
+    console.log('[App] 🚀 Syncing content on app launch...');
+    
     dispatch(syncContent()).then(() => {
       // Ensure content is loaded on startup for the current language
       dispatch(switchExamLanguage(currentLanguage));
       dispatch(switchBookLanguage(currentLanguage));
+      console.log('[App] ✅ Content sync complete');
     });
   }, [dispatch]); // Run once on mount (using initial currentLanguage)
 

@@ -18,6 +18,9 @@ import { switchBookLanguage } from '../../store/slices/bookSlice';
 import { RatingPrompt } from '../../components/common/RatingPrompt';
 import { RatingService } from '../../services/RatingService';
 import { recordChapterCompleted, recordPromptShown } from '../../store/slices/ratingSlice';
+import PaywallModal from '../../components/common/PaywallModal';
+import { useFocusEffect } from '@react-navigation/native';
+import { useCallback } from 'react';
 
 type ReaderRouteProp = RouteProp<RootStackParamList, typeof ROUTES.READER>;
 
@@ -29,9 +32,15 @@ const WebReaderScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { chapterId, subSectionId } = route.params;
   const { data: bookData, currentLanguage, loading: bookLoading, downloadProgress } = useAppSelector(state => state.book);
-  const userId = useAppSelector(state => state.user.user?.id);
+  const userId = useAppSelector(state => state.auth.firebaseUid) || undefined;
+  const isPro = useAppSelector(state => state.subscription.status === 'active');
   const rating = useAppSelector(state => state.rating);
   const dispatch = useAppDispatch();
+  
+  // Debug logging for isPro changes
+  useEffect(() => {
+    console.log('[WebReaderScreen] isPro status changed to:', isPro);
+  }, [isPro]);
   
   const webViewRef = useRef<WebView>(null);
   const [fontSize, setFontSize] = useState(100);
@@ -45,6 +54,7 @@ const WebReaderScreen = () => {
   const [matchCount, setMatchCount] = useState(0);
   const [currentMatch, setCurrentMatch] = useState(0);
   const [showRatingPrompt, setShowRatingPrompt] = useState(false);
+  const [showPaywall, setShowPaywall] = useState(false);
 
   const targetSection = useMemo(() => {
     if (!bookData) return null;
@@ -243,7 +253,16 @@ const WebReaderScreen = () => {
       const nextSub = chapter.subSections[sIndex + 1];
       nextParams = { chapterId: chapter.id, subSectionId: nextSub.id };
     } else if (cIndex < bookData.chapters.length - 1) {
-      const nextChapter = bookData.chapters[cIndex + 1];
+      // Moving to next chapter
+      const nextChapterIndex = cIndex + 1;
+      const nextChapter = bookData.chapters[nextChapterIndex];
+      
+      // Check Paywall: Chapter 1 (index 0) is free. Others locked.
+      if (nextChapterIndex > 0 && !isPro) {
+        setShowPaywall(true);
+        return;
+      }
+
       if (nextChapter.subSections.length > 0) {
         nextParams = { chapterId: nextChapter.id, subSectionId: nextChapter.subSections[0].id };
       }
@@ -397,6 +416,10 @@ const WebReaderScreen = () => {
       <RatingPrompt 
         visible={showRatingPrompt} 
         onDismiss={() => setShowRatingPrompt(false)} 
+      />
+      <PaywallModal 
+        visible={showPaywall} 
+        onDismiss={() => setShowPaywall(false)}
       />
     </View>
   );

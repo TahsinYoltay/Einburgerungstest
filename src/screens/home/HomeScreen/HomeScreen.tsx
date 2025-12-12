@@ -19,6 +19,7 @@ import { getAvailableChapters } from '../../../data/book/chapters';
 import { getReadingProgress, getChapterProgress, ReadingProgress } from '../../../utils/readingProgress';
 import { ROUTES } from '../../../constants/routes';
 import AccountHeader from '../../../components/account/AccountHeader/AccountHeader';
+import PaywallModal from '../../../components/common/PaywallModal';
 
 type TabParamList = {
   HomeTab: undefined;
@@ -41,6 +42,7 @@ type ChapterCard = {
   lastReadAt?: number;
   firstSectionId?: string;
   subSections: { id: string }[];
+  locked: boolean;
 };
 
 const HomeScreen = () => {
@@ -51,13 +53,17 @@ const HomeScreen = () => {
   const styles = useMemo(() => createStyles(theme), [theme]);
   const { getLocalized } = useLocalizedContent();
 
-  const user = useAppSelector(state => state.user.user);
+  const authState = useAppSelector(state => state.auth);
   const homeContent = useAppSelector(state => state.content.home);
   const exams = useAppSelector(state => state.exam.exams);
+  const subscriptionStatus = useAppSelector(state => state.subscription.status);
+  const isPro = subscriptionStatus === 'active';
 
   const [refreshing, setRefreshing] = useState(false);
   const [readingProgress, setReadingProgress] = useState<ReadingProgress>({});
   const [chapterProgresses, setChapterProgresses] = useState<Record<string, { completed: number; total: number; percentage: number }>>({});
+  const [showPaywall, setShowPaywall] = useState(false);
+  const [forceUpdateKey, setForceUpdateKey] = useState(0);
 
   const chapters = useMemo(() => getAvailableChapters(), []);
   const totalSections = useMemo(
@@ -75,7 +81,7 @@ const HomeScreen = () => {
   }, [completedSections, totalSections]);
 
   const loadReadingState = useCallback(async () => {
-    const userId = user?.id || 'local';
+    const userId = authState.firebaseUid || 'local';
     const progress = await getReadingProgress(userId);
     setReadingProgress(progress);
 
@@ -85,7 +91,7 @@ const HomeScreen = () => {
       perChapter[chapter.id] = await getChapterProgress(sectionIds, userId);
     }
     setChapterProgresses(perChapter);
-  }, [chapters, user?.id]);
+  }, [chapters, authState.firebaseUid]);
 
   useEffect(() => {
     dispatch(loadExams());
@@ -95,6 +101,7 @@ const HomeScreen = () => {
   useFocusEffect(
     useCallback(() => {
       loadReadingState();
+      setForceUpdateKey(prev => prev + 1);
     }, [loadReadingState])
   );
 
@@ -113,7 +120,7 @@ const HomeScreen = () => {
 
   const recommendedChapters: ChapterCard[] = useMemo(() => {
     return chapters
-      .map(chapter => {
+      .map((chapter, index) => {
         const progress = chapterProgresses[chapter.id] || {
           completed: 0,
           total: chapter.subSections.length,
@@ -126,6 +133,9 @@ const HomeScreen = () => {
           return stamp > latest ? stamp : latest;
         }, 0);
 
+        // Lock Logic: Chapter 1 (index 0) is free. Others locked.
+        const locked = index > 0 && !isPro;
+
         return {
           id: chapter.id,
           title: chapter.title,
@@ -135,6 +145,7 @@ const HomeScreen = () => {
           lastReadAt,
           firstSectionId: chapter.subSections[0]?.id,
           subSections: chapter.subSections,
+          locked,
         };
       })
       .sort((a, b) => {
@@ -143,7 +154,7 @@ const HomeScreen = () => {
         }
         return a.progress.percentage - b.progress.percentage;
       });
-  }, [chapters, chapterProgresses, readingProgress]);
+  }, [chapters, chapterProgresses, readingProgress, isPro, forceUpdateKey]);
 
   const firstExamId = exams[0]?.id;
 
@@ -153,6 +164,17 @@ const HomeScreen = () => {
 
   const handlePracticePress = (examId?: string) => {
     if (examId) {
+      // Safety check: If we ever link to a locked exam here, block it.
+      // Currently pointing to exams[0] (Exam 1) which is free.
+      // But if we change logic to random exam, we need this:
+      const examIndex = exams.findIndex(e => e.id === examId);
+      const isLocked = examIndex >= 5 && !isPro;
+      
+      if (isLocked) {
+        setShowPaywall(true);
+        return;
+      }
+
       navigation.navigate(ROUTES.EXAM, { id: examId });
       return;
     }
@@ -160,6 +182,11 @@ const HomeScreen = () => {
   };
 
   const handleOpenChapter = (chapter: ChapterCard) => {
+    if (chapter.locked) {
+      setShowPaywall(true);
+      return;
+    }
+
     // pick first unread subsection; fallback to first
     const targetSub =
       chapter.subSections?.find(sub => !readingProgress[sub.id]?.isRead) ||
@@ -172,7 +199,7 @@ const HomeScreen = () => {
     });
   };
 
-  const greetingName = user?.displayName || t('home.defaultName', 'Explorer');
+  const greetingName = authState.displayName || t('home.defaultName', 'Explorer');
   const greeting = t('home.greeting', { name: greetingName });
   const subGreeting = getLocalized(homeContent?.welcomeMessage) || t('home.subtitle', 'Track your learning and pick up where you left off.');
   const goToAccount = () => navigation.navigate(ROUTES.ACCOUNT);
@@ -233,11 +260,25 @@ const HomeScreen = () => {
           {recommendedChapters.map(chapter => (
             <TouchableOpacity
               key={chapter.id}
-              style={styles.chapterCard}
+              style={[styles.chapterCard, chapter.locked && { opacity: 0.7 }]}
               activeOpacity={0.9}
               onPress={() => handleOpenChapter(chapter)}
             >
               <Image source={chapter.image} style={styles.chapterImage} resizeMode="cover" />
+              
+              {chapter.locked && (
+                <View style={{ 
+                  position: 'absolute', 
+                  top: 8, 
+                  right: 8, 
+                  backgroundColor: 'rgba(0,0,0,0.6)', 
+                  borderRadius: 12, 
+                  padding: 4 
+                }}>
+                  <Icon name="lock" size={16} color="white" />
+                </View>
+              )}
+
               <Text style={styles.chapterTitle} numberOfLines={2}>
                 {chapter.title}
               </Text>
@@ -294,6 +335,10 @@ const HomeScreen = () => {
           ))}
         </View>
       </ScrollView>
+      <PaywallModal 
+        visible={showPaywall} 
+        onDismiss={() => setShowPaywall(false)}
+      />
     </SafeAreaView>
   );
 };

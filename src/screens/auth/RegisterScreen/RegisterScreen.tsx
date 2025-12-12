@@ -1,23 +1,29 @@
-import React, { useState } from 'react';
-import { View, ScrollView, Image } from 'react-native';
-import { TextInput, Button, Text, HelperText } from 'react-native-paper';
+import React, { useState, useMemo } from 'react';
+import { View, ScrollView, Image, KeyboardAvoidingView, Platform, SafeAreaView, Alert } from 'react-native';
+import { TextInput, Button, Text, HelperText, IconButton, Divider } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigations/StackNavigator';
+import auth from '@react-native-firebase/auth';
+import { purchaseService } from '../../../services/PurchaseService';
 import { ROUTES } from '../../../constants/routes';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 import { createStyles } from './RegisterScreen.style';
+import { authService } from '../../../services/AuthService';
+import { isEmailValid, isPasswordValid, doPasswordsMatch } from '../../../utils/validators';
+
  
 type RegisterScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const RegisterScreen = () => {
   const { t } = useTranslation();
   const { theme } = useAppTheme();
-  const styles = createStyles(theme);
+  const styles = useMemo(() => createStyles(theme), [theme]);
   const navigation = useNavigation<RegisterScreenNavigationProp>();
 
+  // Local state
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -26,14 +32,45 @@ const RegisterScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const isEmailValid = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+  const handleGoogleSignIn = async () => {
+    setIsLoading(true);
+
+    // Use linkGoogleAccount to preserve anonymous UID (and subscription!)
+    const result = await authService.linkGoogleAccount();
+    
+    if (!result.success) {
+      setIsLoading(false);
+      Alert.alert(t('common.error'), result.error || 'Google Sign-In failed');
+    } else {
+      // Check if UID changed (existing Google account scenario)
+      if (result.uidChanged && result.previousUid) {
+        console.log('[RegisterScreen] ⚠️ UID changed during Google linking! Auto-restoring purchases...');
+        console.log('[RegisterScreen] Previous UID:', result.previousUid);
+        console.log('[RegisterScreen] New UID:', auth().currentUser?.uid);
+        
+        try {
+          await purchaseService.restorePurchases();
+          console.log('[RegisterScreen] ✅ Purchases restored after UID change');
+        } catch (restoreError) {
+          console.error('[RegisterScreen] ⚠️ Restore failed:', restoreError);
+        }
+      }
+      
+      // Success! Firebase linked or signed in, AuthProvider will handle RevenueCat sync
+      console.log('[RegisterScreen] ✅ Google account linked/signed in, AuthProvider will sync...');
+      setIsLoading(false);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: ROUTES.HOME }],
+      });
+    }
   };
 
   const hasEmailError = email.length > 0 && !isEmailValid(email);
-  const hasPasswordError = password.length > 0 && password.length < 6;
-  const hasConfirmPasswordError = confirmPassword.length > 0 && password !== confirmPassword;
+  const hasPasswordError = password.length > 0 && !isPasswordValid(password);
+  const hasConfirmPasswordError = confirmPassword.length > 0 && !doPasswordsMatch(password, confirmPassword);
+
+  // No longer needed - we handle navigation directly after registration success
 
   const handleRegister = async () => {
     if (!isEmailValid(email)) {
@@ -54,46 +91,121 @@ const RegisterScreen = () => {
     setError(null);
     setIsLoading(true);
 
-    try {
-      // Here we would use Firebase authentication to register
-      // For now, just simulate registration
-      setTimeout(() => {
-        setIsLoading(false);
-        // Navigate to login after successful registration
-        navigation.navigate(ROUTES.LOGIN);
-      }, 1500);
-    } catch (error) {
+    const result = await authService.createUserWithEmailAndPassword(email, password);
+    
+    if (!result.success) {
       setIsLoading(false);
-      setError(t('auth.errors.registerFailed'));
-      console.error('Registration error:', error);
+      console.error('[RegisterScreen] Registration error:', result.error);
+      
+      // Check if we have a provider conflict suggestion
+      if (result.suggestionKey) {
+        setError(t(result.suggestionKey));
+      } else if (result.error?.includes('email-already-in-use')) {
+        setError(t('auth.errors.emailInUse', { defaultValue: 'Email already in use' }));
+      } else if (result.error?.includes('invalid-email')) {
+        setError(t('auth.errors.invalidEmail'));
+      } else {
+        setError(t('auth.errors.registerFailed'));
+      }
+    } else {
+      // Success! Check if UID changed (email already existed scenario)
+      if (result.uidChanged && result.previousUid) {
+        console.log('[RegisterScreen] ⚠️ UID changed during registration! Auto-restoring purchases...');
+        console.log('[RegisterScreen] Previous UID:', result.previousUid);
+        console.log('[RegisterScreen] New UID:', auth().currentUser?.uid);
+        
+        // Auto-restore purchases to transfer from old UID to new UID
+        try {
+          await purchaseService.restorePurchases();
+          console.log('[RegisterScreen] ✅ Purchases restored after UID change');
+        } catch (restoreError) {
+          console.error('[RegisterScreen] ⚠️ Restore failed:', restoreError);
+          // Don't block navigation, user can manually restore later
+        }
+      }
+      
+      // Success! Firebase auto-signs in the user, AuthProvider will handle state and RevenueCat sync
+      console.log('[RegisterScreen] ✅ Registration successful, AuthProvider will sync...');
+      setIsLoading(false);
+      
+      // Navigate to home - AuthProvider will update auth state and sync RevenueCat in background
+      navigation.reset({
+        index: 0,
+        routes: [{ name: ROUTES.HOME }],
+      });
     }
   };
 
-  const navigateToLogin = () => {
-    navigation.navigate(ROUTES.LOGIN);
+  const goBackToSignIn = () => {
+    navigation.goBack(); // Go back instead of stacking new route
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView
-        contentContainerStyle={styles.scrollContent}
-        keyboardShouldPersistTaps="handled"
+      {/* Sticky Header */}
+      <View style={styles.header}>
+        <IconButton 
+          icon="arrow-left" 
+          onPress={() => navigation.goBack()} 
+          size={24}
+          iconColor={theme.colors.onBackground}
+        />
+        <Text style={styles.headerTitle}>
+          {t('auth.register')}
+        </Text>
+        <View style={{ width: 48 }} />
+      </View>
+      
+      <KeyboardAvoidingView 
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
       >
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
         <View style={styles.logoContainer}>
           <Image
             source={require('../../../assets/images/logo.png')}
             style={styles.logo}
             resizeMode="contain"
           />
-          <Text variant="headlineLarge" style={styles.title}>
-            {t('auth.createAccount')}
-          </Text>
-          <Text variant="bodyMedium" style={styles.subtitle}>
-            {t('auth.registerPrompt')}
-          </Text>
         </View>
 
         <View style={styles.formContainer}>
+          {/* Social Sign-In Section */}
+          <View style={styles.socialContainer}>
+            <Button 
+              mode="outlined" 
+              icon="google" 
+              onPress={handleGoogleSignIn} 
+              style={[styles.socialButton, { borderColor: theme.colors.outline }]}
+              disabled={isLoading}
+              loading={isLoading}
+            >
+              Continue with Google
+            </Button>
+            <Button 
+              mode="outlined" 
+              icon="apple" 
+              onPress={() => Alert.alert('Coming Soon', 'Apple Sign-In integration pending.')} 
+              style={[styles.socialButton, { borderColor: theme.colors.outline }]}
+              disabled={isLoading}
+            >
+              Continue with Apple
+            </Button>
+          </View>
+
+          <View style={styles.dividerContainer}>
+            <Divider style={styles.divider} />
+            <Text variant="bodySmall" style={[styles.dividerText, { color: theme.colors.outline }]}>
+              OR SIGN UP WITH EMAIL
+            </Text>
+            <Divider style={styles.divider} />
+          </View>
+
           {error && (
             <Text style={styles.errorText}>{error}</Text>
           )}
@@ -177,14 +289,15 @@ const RegisterScreen = () => {
             </Text>
             <Button
               mode="text"
-              onPress={navigateToLogin}
+              onPress={goBackToSignIn}
               labelStyle={styles.loginButtonText}
             >
-              {t('auth.login')}
+              {t('auth.signIn')}
             </Button>
           </View>
         </View>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

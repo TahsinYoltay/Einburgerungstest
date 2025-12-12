@@ -15,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "482157943468-5f0bdbauff84rd9lhgf4krokkt87m2u8.apps.googleusercontent.com",
+          "client_id": "482157943468-jvsnib5h5234l94asmr0a9fvb5c2gqrr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lif",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "482157943468-uq0vuabptkv6mdsk2nssp6ct1d2dlb0v.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -28,15 +36,8 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "482157943468-5f0bdbauff84rd9lhgf4krokkt87m2u8.apps.googleusercontent.com",
+              "client_id": "482157943468-ijg129jkbs5erqa61jsluvdsl79o02ce.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "482157943468-emh57nr0e0iednag3k3cgolimakan5dn.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "org.eywasoft.LIF"
-              }
             }
           ]
         }

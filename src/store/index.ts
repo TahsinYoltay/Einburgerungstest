@@ -3,7 +3,8 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Import reducers
-import userReducer from './slices/userSlice';
+import authReducer from './slices/authSlice';
+import subscriptionReducer from './slices/subscriptionSlice';
 import examReducer from './slices/examSlice';
 import contentReducer from './slices/contentSlice';
 import bookReducer from './slices/bookSlice';
@@ -15,12 +16,14 @@ const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
   // Whitelist defines which reducers will be persisted
-  whitelist: ['user', 'exam', 'content', 'book', 'rating'], // Now we persist both user and exam data to save progress
+  // NOTE: subscription is NOT persisted - it must always come fresh from RevenueCat
+  whitelist: ['auth', 'exam', 'content', 'book', 'rating'],
 };
 
 // Combine reducers
 const rootReducer = combineReducers({
-  user: userReducer,
+  auth: authReducer,
+  subscription: subscriptionReducer,
   exam: examReducer,
   content: contentReducer,
   book: bookReducer,
@@ -38,7 +41,9 @@ export const store = configureStore({
       serializableCheck: {
         // Ignore these action types for serializableCheck as they are used by redux-persist
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        warnAfter: 128,
       },
+      immutableCheck: { warnAfter: 128 },
     }),
     enhancers: getDefaultEnhancers => getDefaultEnhancers().concat(reactotron.createEnhancer()),
 

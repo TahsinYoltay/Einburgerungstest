@@ -27,12 +27,12 @@ const AccountHeader: React.FC<Props> = ({ titleOverride, subtitleOverride, conta
   const styles = React.useMemo(() => createStyles(theme), [theme]);
   const navigation = useNavigation<Nav>();
   const { t } = useTranslation();
-  const user = useAppSelector(state => state.user.user);
+  const authState = useAppSelector(state => state.auth);
 
   const title = titleOverride || t('account.title');
   const subtitle =
     subtitleOverride ||
-    (user?.email ? t('account.subtitleSignedIn', { email: user.email }) : t('account.subtitleGuest'));
+    (authState?.email ? t('account.subtitleSignedIn', { email: authState.email }) : t('account.subtitleGuest'));
 
   const handlePress = () => navigation.navigate(ROUTES.ACCOUNT);
 

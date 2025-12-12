@@ -21,7 +21,7 @@ const ProgressScreen = () => {
   const styles = useMemo(() => createStyles(theme), [theme]);
   const dispatch = useAppDispatch();
 
-  const user = useAppSelector(state => state.user.user);
+  const firebaseUid = useAppSelector(state => state.auth.firebaseUid);
   const examHistory = useAppSelector(state => state.exam.examHistory);
   const chapters = useMemo(() => getAvailableChapters(), []);
 
@@ -43,7 +43,7 @@ const ProgressScreen = () => {
   }, [completedSections, totalSections]);
 
   const loadProgress = useCallback(async () => {
-    const userId = user?.id || 'local';
+    const userId = firebaseUid || 'local';
     const progress = await getReadingProgress(userId);
     setReadingProgress(progress);
 
@@ -53,7 +53,7 @@ const ProgressScreen = () => {
       perChapter[chapter.id] = await getChapterProgress(sectionIds, userId);
     }
     setChapterProgresses(perChapter);
-  }, [chapters, user?.id]);
+  }, [chapters, firebaseUid]);
 
   useEffect(() => {
     dispatch(loadExams());

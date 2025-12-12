@@ -20,6 +20,10 @@ end
 target 'LifeInTheUK' do
   config = use_native_modules!
 
+  # Fix conflict between Firebase and GoogleSignIn
+  # Firebase wants < 5.0, GoogleSignIn wants < 4.0. We force 3.x.
+  pod 'GTMSessionFetcher/Core', '~> 3.4'
+
   # Enable modular headers for Firebase
   use_modular_headers!
 

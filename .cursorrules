@@ -107,3 +107,4 @@ Key Conventions
 
 Do not use expo related libraries
 always use yarn
+DO NOT CREATE DOCUMENTATION UNLESS SPECIFICALLY REQUESTED
