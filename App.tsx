@@ -29,6 +29,8 @@ import { useAppDispatch, useAppSelector } from './src/store/hooks';
 import { switchExamLanguage } from './src/store/slices/examSlice';
 import { syncContent } from './src/store/slices/contentSlice';
 import { switchBookLanguage } from './src/store/slices/bookSlice';
+import { progressSyncService } from './src/services/ProgressSyncService';
+import { flushPendingRemotePushes } from './src/services/readingProgressService';
 
 // Providers
 import { LocalizationProvider } from './src/providers/LocalizationProvider';
@@ -68,6 +70,11 @@ const AppContent = () => {
 
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
+      if (appState.current === 'active' && nextAppState.match(/inactive|background/)) {
+        void progressSyncService.flushAll();
+        void flushPendingRemotePushes();
+      }
+
       if (
         appState.current.match(/inactive|background/) &&
         nextAppState === 'active'

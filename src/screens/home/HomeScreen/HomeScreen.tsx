@@ -82,16 +82,17 @@ const HomeScreen = () => {
 
   const loadReadingState = useCallback(async () => {
     const userId = authState.firebaseUid || 'local';
-    const progress = await getReadingProgress(userId);
+    const enableCloudSync = authState.status === 'authenticated';
+    const progress = await getReadingProgress(userId, enableCloudSync);
     setReadingProgress(progress);
 
     const perChapter: Record<string, { completed: number; total: number; percentage: number }> = {};
     for (const chapter of chapters) {
       const sectionIds = chapter.subSections.map(section => section.id);
-      perChapter[chapter.id] = await getChapterProgress(sectionIds, userId);
+      perChapter[chapter.id] = await getChapterProgress(sectionIds, userId, enableCloudSync);
     }
     setChapterProgresses(perChapter);
-  }, [chapters, authState.firebaseUid]);
+  }, [chapters, authState.firebaseUid, authState.status]);
 
   useEffect(() => {
     dispatch(loadExams());

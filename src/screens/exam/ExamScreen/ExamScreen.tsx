@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { View, ScrollView, Alert, ActivityIndicator, Platform } from 'react-native';
-import { Button, Text, ProgressBar, Dialog, Portal, IconButton, List, Divider, RadioButton } from 'react-native-paper';
+import { Button, Text, ProgressBar, Dialog, Portal, IconButton } from 'react-native-paper';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -27,7 +27,7 @@ import {
   toggleFavoriteQuestion,
   switchExamLanguage,
 } from '../../../store/slices/examSlice';
-import { languageManager } from '../../../services/LanguageManager';
+import { LanguageSelector } from '../../../components/common/LanguageSelector';
 
 type ExamScreenRouteProp = RouteProp<RootStackParamList, typeof ROUTES.EXAM>;
 type ExamScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -51,6 +51,7 @@ const ExamScreen = () => {
     favoriteQuestions,
     currentLanguage,
     isDownloadingLanguage,
+    downloadProgress,
   } = useAppSelector(state => state.exam);
   
   const { languages: availableLanguages } = useAppSelector(state => state.content);
@@ -485,44 +486,37 @@ const ExamScreen = () => {
       </View>
 
       {/* Language Selection Dialog */}
-      <Portal>
-        <Dialog visible={showLanguageDialog} onDismiss={() => setShowLanguageDialog(false)} style={{ backgroundColor: theme.colors.surface }}>
-          <Dialog.Title style={{ color: theme.colors.onSurface }}>{t('settings.language')}</Dialog.Title>
-          <Dialog.ScrollArea style={{ maxHeight: 400, paddingHorizontal: 0 }}>
-            <ScrollView>
-              {languages.map((lang, index) => (
-                <React.Fragment key={lang.code}>
-                  <List.Item
-                    title={lang.nativeName}
-                    description={lang.name}
-                    titleStyle={{ color: theme.colors.onSurface }}
-                    descriptionStyle={{ color: theme.colors.onSurfaceVariant }}
-                    onPress={() => handleLanguageSelect(lang.code)}
-                    right={props => lang.code === currentLanguage && <List.Icon {...props} icon="check" color={theme.colors.primary} />}
-                  />
-                  {index < languages.length - 1 && <Divider />}
-                </React.Fragment>
-              ))}
-            </ScrollView>
-          </Dialog.ScrollArea>
-          <Dialog.Actions>
-            <Button onPress={() => setShowLanguageDialog(false)} textColor={theme.colors.primary}>{t('common.cancel')}</Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
+      <LanguageSelector
+        visible={showLanguageDialog}
+        onDismiss={() => setShowLanguageDialog(false)}
+        currentLanguage={currentLanguage}
+        onSelectLanguage={handleLanguageSelect}
+        loading={isDownloadingLanguage}
+        downloadProgress={downloadProgress}
+      />
 
       {/* Flagged Questions Dialog */}
       <Portal>
-        <Dialog visible={showFlaggedDialog} onDismiss={() => setShowFlaggedDialog(false)} style={{ backgroundColor: theme.colors.surface }}>
-          <Dialog.Title style={{ color: theme.colors.onSurface }}>{t('exam.flaggedQuestionsTitle')}</Dialog.Title>
+        <Dialog visible={showFlaggedDialog} onDismiss={() => setShowFlaggedDialog(false)} style={styles.dialog}>
+          <Dialog.Title style={styles.dialogTitle}>{t('exam.flaggedQuestionsTitle')}</Dialog.Title>
+          <IconButton
+            icon="close"
+            size={18}
+            onPress={() => setShowFlaggedDialog(false)}
+            style={styles.dialogCloseIconButton}
+            iconColor={theme.colors.onSurface}
+          />
           <Dialog.Content>
-            <Text style={{ color: theme.colors.onSurfaceVariant }}>{t('exam.flaggedQuestionsMessage', { count: flaggedQuestions.length })}</Text>
+            <Text style={styles.dialogContentText}>
+              {t('exam.flaggedQuestionsMessage', { count: flaggedQuestions.length })}
+            </Text>
           </Dialog.Content>
-          <Dialog.Actions>
-            <Button onPress={handleGoToFlaggedQuestion} textColor={theme.colors.primary}>
+          <Dialog.Actions style={styles.dialogActions}>
+            <Button mode="contained" onPress={handleGoToFlaggedQuestion} style={styles.dialogActionButton}>
               {t('exam.reviewFlagged', { count: flaggedQuestions.length })}
             </Button>
             <Button
+              mode="outlined"
               onPress={async () => {
                 setShowFlaggedDialog(false);
                 try {
@@ -533,6 +527,7 @@ const ExamScreen = () => {
                 }
               }}
               textColor={theme.colors.primary}
+              style={styles.dialogActionButton}
             >
               {t('exam.submitAnyway')}
             </Button>
@@ -555,19 +550,26 @@ const ExamScreen = () => {
 
       {/* Exit Confirmation Dialog */}
       <Portal>
-        <Dialog visible={showExitConfirmDialog} onDismiss={() => setShowExitConfirmDialog(false)} style={{ backgroundColor: theme.colors.surface }}>
-          <Dialog.Title style={{ color: theme.colors.onSurface, textAlign: 'center' }}>{t('exam.exitConfirmTitle', 'Pause Exam?')}</Dialog.Title>
+        <Dialog visible={showExitConfirmDialog} onDismiss={() => setShowExitConfirmDialog(false)} style={styles.dialog}>
+          <Dialog.Title style={styles.dialogTitle}>{t('exam.exitConfirmTitle', 'Pause Exam?')}</Dialog.Title>
+          <IconButton
+            icon="close"
+            size={18}
+            onPress={() => setShowExitConfirmDialog(false)}
+            style={styles.dialogCloseIconButton}
+            iconColor={theme.colors.onSurface}
+          />
           <Dialog.Content>
-            <Text style={{ color: theme.colors.onSurfaceVariant, textAlign: 'center' }}>
+            <Text style={styles.dialogContentText}>
               {t('exam.exitConfirmMessage', 'Your progress will be saved. You can resume this exam later.')}
             </Text>
           </Dialog.Content>
-          <Dialog.Actions style={{ justifyContent: 'space-between', paddingHorizontal: 16, paddingBottom: 16 }}>
+          <Dialog.Actions style={styles.dialogActions}>
             <Button 
               mode="outlined" 
               onPress={() => setShowExitConfirmDialog(false)} 
               textColor={theme.colors.primary}
-              style={{ flex: 1, marginRight: 8 }}
+              style={styles.dialogActionButton}
             >
               {t('common.cancel', 'Cancel')}
             </Button>
@@ -576,7 +578,7 @@ const ExamScreen = () => {
               onPress={handleExitExam} 
               buttonColor={theme.colors.error}
               textColor={theme.colors.onError}
-              style={{ flex: 1, marginLeft: 8 }}
+              style={styles.dialogActionButton}
             >
               {t('common.exit', 'Exit')}
             </Button>

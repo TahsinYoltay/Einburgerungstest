@@ -32,7 +32,8 @@ const WebReaderScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const { chapterId, subSectionId } = route.params;
   const { data: bookData, currentLanguage, loading: bookLoading, downloadProgress } = useAppSelector(state => state.book);
-  const userId = useAppSelector(state => state.auth.firebaseUid) || undefined;
+  const userId = useAppSelector(state => state.auth.firebaseUid) || 'local';
+  const enableCloudSync = useAppSelector(state => state.auth.status === 'authenticated');
   const isPro = useAppSelector(state => state.subscription.status === 'active');
   const rating = useAppSelector(state => state.rating);
   const dispatch = useAppDispatch();
@@ -68,13 +69,13 @@ const WebReaderScreen = () => {
     let isActive = true;
     const checkReadStatus = async () => {
       if (subSectionId) {
-        const status = await isSectionRead(subSectionId, userId);
+        const status = await isSectionRead(subSectionId, userId, enableCloudSync);
         if (isActive) setIsRead(status);
       }
     };
     checkReadStatus();
     return () => { isActive = false; };
-  }, [subSectionId, userId]);
+  }, [subSectionId, userId, enableCloudSync]);
 
   const content = targetSection?.content || '<p>Content not found</p>';
 
@@ -194,10 +195,10 @@ const WebReaderScreen = () => {
   const handleMarkRead = async () => {
     if (subSectionId) {
       if (isRead) {
-        await markSectionAsUnread(subSectionId, userId);
+        await markSectionAsUnread(subSectionId, userId, enableCloudSync);
         setIsRead(false);
       } else {
-        await markSectionAsRead(subSectionId, 0, userId);
+        await markSectionAsRead(subSectionId, 0, userId, enableCloudSync);
         setIsRead(true);
         
         // Check for chapter completion
@@ -208,7 +209,7 @@ const WebReaderScreen = () => {
               // We just marked one as read, so we can assume it's read in the check
               // BUT getChapterProgress is async and reads from storage.
               // markSectionAsRead writes to storage. It should be consistent.
-              const progress = await getChapterProgress(sectionIds, userId);
+              const progress = await getChapterProgress(sectionIds, userId, enableCloudSync);
               
               // If all sections are read (100% complete)
               if (progress.percentage === 100) {
@@ -343,7 +344,6 @@ const WebReaderScreen = () => {
         <Appbar.Action icon="magnify" onPress={toggleSearch} iconColor={searchVisible ? theme.colors.primary : undefined} />
         <Appbar.Action icon="translate" onPress={() => setShowLanguageSelector(true)} />
         <Appbar.Action icon={isDarkMode ? "brightness-7" : "brightness-3"} onPress={toggleTheme} />
-        <Appbar.Action icon="dots-vertical" onPress={() => {}} />
       </Appbar.Header>
       
       {showFontControl && (

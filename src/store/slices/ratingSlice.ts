@@ -18,6 +18,7 @@ export type PromptOutcome =
   | null;
 
 export interface RatingState {
+  ownerUid: string | null;
   status: RatingStatus;
   installDate: number;
   firstEligibilityDate: number | null;
@@ -34,23 +35,40 @@ export interface RatingState {
   totalChaptersCompleted: number;
 }
 
-const initialState: RatingState = {
-  status: 'not_eligible',
-  installDate: Date.now(), // Will be set on first hydration if not present
-  firstEligibilityDate: null,
-  lastPromptDate: null,
-  totalPromptCount: 0,
-  lastOutcome: null,
-  examsCompletedSinceLastPrompt: 0,
-  chaptersCompletedSinceLastPrompt: 0,
-  totalExamsCompleted: 0,
-  totalChaptersCompleted: 0,
-};
+function createInitialRatingState(): RatingState {
+  return {
+    ownerUid: null,
+    status: 'not_eligible',
+    installDate: Date.now(),
+    firstEligibilityDate: null,
+    lastPromptDate: null,
+    totalPromptCount: 0,
+    lastOutcome: null,
+    examsCompletedSinceLastPrompt: 0,
+    chaptersCompletedSinceLastPrompt: 0,
+    totalExamsCompleted: 0,
+    totalChaptersCompleted: 0,
+  };
+}
+
+const initialState: RatingState = createInitialRatingState();
 
 const ratingSlice = createSlice({
   name: 'rating',
   initialState,
   reducers: {
+    hydrateRatingState: (_state, action: PayloadAction<RatingState>) => {
+      return action.payload;
+    },
+    resetRatingState: (_state, action: PayloadAction<{ ownerUid: string | null }>) => {
+      return {
+        ...createInitialRatingState(),
+        ownerUid: action.payload.ownerUid,
+      };
+    },
+    setRatingOwnerUid: (state, action: PayloadAction<string | null>) => {
+      state.ownerUid = action.payload;
+    },
     initializeRatingState: (state) => {
       if (!state.installDate) {
         state.installDate = Date.now();
@@ -91,6 +109,9 @@ const ratingSlice = createSlice({
 });
 
 export const { 
+    hydrateRatingState,
+    resetRatingState,
+    setRatingOwnerUid,
     initializeRatingState, 
     recordExamCompleted, 
     recordChapterCompleted, 

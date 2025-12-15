@@ -68,11 +68,13 @@ const HelpSupportScreen = () => {
     );
   };
 
-  const localizedTopics: LocalizedTopic[] = supportTopics.map(item => ({
-    ...item,
-    label: t(item.labelKey),
-    description: t(item.descriptionKey),
-  }));
+  const localizedTopics: LocalizedTopic[] = supportTopics
+    .filter(item => item.key !== 'feedback')
+    .map(item => ({
+      ...item,
+      label: t(item.labelKey),
+      description: t(item.descriptionKey),
+    }));
 
   const faqTopics = localizedTopics.filter(
     item => item.section === 'faq' && matchesQuery(item.label, item.description, item.keywords),

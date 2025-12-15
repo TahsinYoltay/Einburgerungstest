@@ -93,4 +93,42 @@ export const createStyles = (theme: MD3Theme) => StyleSheet.create({
     marginBottom: 16,
     textAlign: 'center',
   },
+  dialog: {
+    backgroundColor: theme.colors.surface,
+    borderRadius: 16,
+    borderWidth: theme.dark ? 1 : 0,
+    borderColor: theme.colors.outline,
+  },
+  dialogTitle: {
+    color: theme.colors.onSurface,
+    textAlign: 'center',
+    alignSelf: 'center',
+    width: '100%',
+    fontWeight: '800',
+  },
+  dialogCloseIconButton: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    margin: 0,
+    backgroundColor: theme.dark ? theme.colors.surfaceVariant : '#E8EAED',
+    borderRadius: 12,
+    zIndex: 2,
+  },
+  dialogContentText: {
+    color: theme.colors.onSurfaceVariant,
+    textAlign: 'center',
+    opacity: 0.9,
+    lineHeight: 20,
+  },
+  dialogActions: {
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingBottom: 16,
+    gap: 12,
+  },
+  dialogActionButton: {
+    flex: 1,
+    borderRadius: 14,
+  },
 });

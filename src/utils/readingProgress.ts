@@ -1,4 +1,10 @@
-import { clearProgress, loadProgress, updateSectionProgress } from '../services/readingProgressService';
+import {
+  clearLocalOnlyProgress,
+  clearProgress,
+  flushPendingRemotePushes,
+  loadProgress,
+  updateSectionProgress,
+} from '../services/readingProgressService';
 
 const BOOK_ID = 'life-in-the-uk';
 const DEFAULT_USER = 'local';
@@ -25,9 +31,16 @@ const toLegacyShape = (data: Awaited<ReturnType<typeof loadProgress>>): ReadingP
   return legacy;
 };
 
-export const getReadingProgress = async (userId: string = DEFAULT_USER): Promise<ReadingProgress> => {
+export const getReadingProgress = async (
+  userId: string = DEFAULT_USER,
+  enableCloudSync: boolean = false
+): Promise<ReadingProgress> => {
   try {
-    const progress = await loadProgress({ bookId: BOOK_ID, userId });
+    const progress = await loadProgress({
+      bookId: BOOK_ID,
+      userId,
+      syncMode: enableCloudSync ? 'local+remote' : 'local-only',
+    });
     return toLegacyShape(progress);
   } catch (error) {
     console.error('Error getting reading progress:', error);
@@ -35,7 +48,12 @@ export const getReadingProgress = async (userId: string = DEFAULT_USER): Promise
   }
 };
 
-export const markSectionAsRead = async (sectionId: string, timeSpent: number = 0, userId: string = DEFAULT_USER): Promise<void> => {
+export const markSectionAsRead = async (
+  sectionId: string,
+  timeSpent: number = 0,
+  userId: string = DEFAULT_USER,
+  enableCloudSync: boolean = false
+): Promise<void> => {
   try {
     await updateSectionProgress({
       bookId: BOOK_ID,
@@ -44,14 +62,21 @@ export const markSectionAsRead = async (sectionId: string, timeSpent: number = 0
       timeSpentSec: timeSpent,
       markDone: true,
       totalSections: undefined,
-      syncMode: userId === DEFAULT_USER ? 'local-only' : 'local+remote',
+      syncMode: enableCloudSync ? 'local+remote' : 'local-only',
     });
+    if (enableCloudSync) {
+      void flushPendingRemotePushes();
+    }
   } catch (error) {
     console.error('Error marking section as read:', error);
   }
 };
 
-export const markSectionAsUnread = async (sectionId: string, userId: string = DEFAULT_USER): Promise<void> => {
+export const markSectionAsUnread = async (
+  sectionId: string,
+  userId: string = DEFAULT_USER,
+  enableCloudSync: boolean = false
+): Promise<void> => {
   try {
     // Reuse updateSectionProgress with in_progress
     await updateSectionProgress({
@@ -59,16 +84,27 @@ export const markSectionAsUnread = async (sectionId: string, userId: string = DE
       userId,
       sectionId,
       markDone: false,
-      syncMode: userId === DEFAULT_USER ? 'local-only' : 'local+remote',
+      syncMode: enableCloudSync ? 'local+remote' : 'local-only',
     });
+    if (enableCloudSync) {
+      void flushPendingRemotePushes();
+    }
   } catch (error) {
     console.error('Error marking section as unread:', error);
   }
 };
 
-export const isSectionRead = async (sectionId: string, userId: string = DEFAULT_USER): Promise<boolean> => {
+export const isSectionRead = async (
+  sectionId: string,
+  userId: string = DEFAULT_USER,
+  enableCloudSync: boolean = false
+): Promise<boolean> => {
   try {
-    const progress = await loadProgress({ bookId: BOOK_ID, userId });
+    const progress = await loadProgress({
+      bookId: BOOK_ID,
+      userId,
+      syncMode: enableCloudSync ? 'local+remote' : 'local-only',
+    });
     return progress.sections[sectionId]?.status === 'done';
   } catch (error) {
     console.error('Error checking if section is read:', error);
@@ -76,9 +112,17 @@ export const isSectionRead = async (sectionId: string, userId: string = DEFAULT_
   }
 };
 
-export const getChapterProgress = async (chapterSections: string[], userId: string = DEFAULT_USER): Promise<{ completed: number; total: number; percentage: number }> => {
+export const getChapterProgress = async (
+  chapterSections: string[],
+  userId: string = DEFAULT_USER,
+  enableCloudSync: boolean = false
+): Promise<{ completed: number; total: number; percentage: number }> => {
   try {
-    const progress = await loadProgress({ bookId: BOOK_ID, userId });
+    const progress = await loadProgress({
+      bookId: BOOK_ID,
+      userId,
+      syncMode: enableCloudSync ? 'local+remote' : 'local-only',
+    });
     const completed = chapterSections.filter(sectionId => progress.sections[sectionId]?.status === 'done').length;
     const total = chapterSections.length;
     const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
@@ -90,9 +134,16 @@ export const getChapterProgress = async (chapterSections: string[], userId: stri
   }
 };
 
-export const clearAllProgress = async (userId: string = DEFAULT_USER): Promise<void> => {
+export const clearAllProgress = async (
+  userId: string = DEFAULT_USER,
+  enableCloudSync: boolean = false
+): Promise<void> => {
   try {
-    await clearProgress(BOOK_ID, userId);
+    if (enableCloudSync) {
+      await clearProgress(BOOK_ID, userId);
+    } else {
+      await clearLocalOnlyProgress(BOOK_ID, userId);
+    }
   } catch (error) {
     console.error('Error clearing reading progress:', error);
   }

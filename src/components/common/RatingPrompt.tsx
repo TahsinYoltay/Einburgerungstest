@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Modal, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
-import { Surface, Text, Button, useTheme, IconButton, TextInput } from 'react-native-paper';
+import React, { useMemo, useState, useEffect } from 'react';
+import { View, Modal, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import { Surface, Text, Button, IconButton, TextInput } from 'react-native-paper';
 import Rate, { AndroidMarket } from 'react-native-rate-app';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch } from '../../store/hooks';
-import { useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { recordPromptOutcome, PromptOutcome, RatingStatus } from '../../store/slices/ratingSlice';
 import { APP_CONFIG } from '../../config/appConfig';
 import { submitRatingFeedback, RatingFeedbackSource } from '../../services/RatingFeedbackService';
 import { selectAuthState } from '../../store/slices/authSlice';
+import { useAppTheme } from '../../providers/ThemeProvider';
+import { createStyles } from './RatingPrompt.styles';
 
 interface RatingPromptProps {
   visible: boolean;
@@ -19,25 +20,6 @@ interface RatingPromptProps {
 }
 
 // Internal Star Component
-const StarRating: React.FC<{ rating: number; onRate: (rating: number) => void }> = ({ rating, onRate }) => {
-  const theme = useTheme();
-  
-  return (
-    <View style={styles.starContainer}>
-      {[1, 2, 3, 4, 5].map((star) => (
-        <IconButton
-          key={star}
-          icon={star <= rating ? 'star' : 'star-outline'}
-          size={32}
-          iconColor={star <= rating ? '#FFD700' : theme.colors.onSurfaceVariant}
-          onPress={() => onRate(star)}
-          style={styles.starButton}
-        />
-      ))}
-    </View>
-  );
-};
-
 export const RatingPrompt: React.FC<RatingPromptProps> = ({ 
   visible, 
   onDismiss,
@@ -45,7 +27,8 @@ export const RatingPrompt: React.FC<RatingPromptProps> = ({
   googlePackageName = APP_CONFIG.ANDROID_PACKAGE_NAME,
   source = 'auto'
 }) => {
-  const theme = useTheme();
+  const { theme } = useAppTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
   const { t, i18n } = useTranslation();
   const dispatch = useAppDispatch();
   const auth = useAppSelector(selectAuthState);
@@ -140,50 +123,69 @@ export const RatingPrompt: React.FC<RatingPromptProps> = ({
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView 
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
           style={styles.overlay}
         >
-          <Surface style={[styles.container, { backgroundColor: theme.colors.surface, borderRadius: 28 }]} elevation={5}>
+          <Surface style={styles.container} elevation={5}>
             
             {/* Close Button */}
             <IconButton 
               icon="close" 
               size={20} 
               style={styles.closeButton} 
+              iconColor={theme.colors.onSurface}
               onPress={() => handleClose('ignored')} 
             />
 
             {step === 'rate' ? (
               <View style={styles.content}>
-                <View style={[styles.iconPlaceholder, { backgroundColor: theme.colors.secondaryContainer }]}>
-                   <IconButton icon="thumb-up" size={32} iconColor={theme.colors.onSecondaryContainer} />
+                <View style={styles.iconPlaceholder}>
+                   <IconButton
+                     icon="thumb-up"
+                     size={28}
+                     iconColor={theme.colors.primary}
+                     style={styles.placeholderIconButton}
+                   />
                 </View>
 
-                <Text variant="headlineSmall" style={[styles.title, { color: theme.colors.onSurface }]}>
+                <Text variant="headlineSmall" style={styles.title}>
                   {t('rating.enjoy_title', 'Enjoying Life in the UK?')}
                 </Text>
                 
-                <Text variant="bodyMedium" style={[styles.subtitle, { color: theme.colors.onSurfaceVariant }]}>
+                <Text variant="bodyMedium" style={styles.subtitle}>
                   {t('rating.enjoy_message', 'Tap a star to rate it on the App Store.')}
                 </Text>
 
-                <StarRating rating={userRating} onRate={handleStarPress} />
+                <View style={styles.starContainer}>
+                  {[1, 2, 3, 4, 5].map(star => (
+                    <IconButton
+                      key={star}
+                      icon={star <= userRating ? 'star' : 'star-outline'}
+                      size={30}
+                      iconColor={star <= userRating ? '#FFD700' : theme.colors.onSurfaceVariant}
+                      onPress={() => handleStarPress(star)}
+                      style={styles.starButton}
+                    />
+                  ))}
+                </View>
 
                 <Button 
-                  mode="text" 
+                  mode="outlined"
                   onPress={() => handleClose('remind_later')}
-                  style={styles.notNowButton}
-                  textColor={theme.colors.onSurfaceVariant}
+                  style={styles.secondaryButton}
+                  contentStyle={styles.secondaryButtonContent}
+                  labelStyle={styles.secondaryButtonLabel}
                 >
                   {t('rating.not_now', 'Not Now')}
                 </Button>
               </View>
             ) : (
               <View style={styles.content}>
-                <Text variant="headlineSmall" style={[styles.title, { color: theme.colors.onSurface }]}>
+                <Text variant="headlineSmall" style={styles.title}>
                   {t('rating.feedback_title', 'How can we improve?')}
                 </Text>
                 
-                <Text variant="bodyMedium" style={[styles.subtitle, { color: theme.colors.onSurfaceVariant }]}>
+                <Text variant="bodyMedium" style={styles.subtitle}>
                   {t('rating.feedback_subtitle', 'We are sorry to hear that. Please let us know what we can do better.')}
                 </Text>
 
@@ -194,8 +196,12 @@ export const RatingPrompt: React.FC<RatingPromptProps> = ({
                   placeholder={t('rating.feedback_placeholder', 'Your feedback...')}
                   value={feedbackText}
                   onChangeText={setFeedbackText}
-                  style={[styles.input, { backgroundColor: theme.colors.surface }]}
-                  outlineStyle={{ borderRadius: 12 }}
+                  style={styles.input}
+                  outlineStyle={styles.inputOutline}
+                  outlineColor={theme.colors.outline}
+                  activeOutlineColor={theme.colors.primary}
+                  textColor={theme.colors.onSurface}
+                  selectionColor={theme.colors.primary}
                   returnKeyType="done"
                   blurOnSubmit={true}
                   onSubmitEditing={Keyboard.dismiss}
@@ -205,7 +211,8 @@ export const RatingPrompt: React.FC<RatingPromptProps> = ({
                   mode="contained" 
                   onPress={submitFeedback} 
                   style={styles.submitButton}
-                  contentStyle={{ height: 48 }}
+                  contentStyle={styles.submitButtonContent}
+                  labelStyle={styles.submitButtonLabel}
                   loading={isSubmittingFeedback}
                   disabled={!feedbackText.trim() || isSubmittingFeedback}
                 >
@@ -220,71 +227,3 @@ export const RatingPrompt: React.FC<RatingPromptProps> = ({
     </Modal>
   );
 };
-
-const styles = StyleSheet.create({
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.6)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  container: {
-    width: '100%',
-    maxWidth: 340,
-    paddingVertical: 32,
-    paddingHorizontal: 24,
-    alignItems: 'center',
-  },
-  closeButton: {
-    position: 'absolute',
-    top: 8,
-    right: 8,
-    zIndex: 1,
-    opacity: 0.6,
-  },
-  content: {
-    width: '100%',
-    alignItems: 'center',
-  },
-  iconPlaceholder: {
-    width: 72,
-    height: 72,
-    borderRadius: 36,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  title: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  subtitle: {
-    textAlign: 'center',
-    marginBottom: 32,
-    paddingHorizontal: 4,
-    lineHeight: 20,
-  },
-  starContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 4,
-    marginBottom: 24,
-  },
-  starButton: {
-    margin: 0,
-  },
-  notNowButton: {
-    marginTop: 8,
-  },
-  input: {
-    width: '100%',
-    marginBottom: 24,
-    minHeight: 100,
-  },
-  submitButton: {
-    width: '100%',
-    borderRadius: 24,
-  }
-});

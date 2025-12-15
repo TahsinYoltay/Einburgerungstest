@@ -5,6 +5,25 @@ service cloud.firestore {
       return request.auth != null;
     }
 
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function isNotAnonymous() {
+      // Allow support/rating flows for anonymous users, but block progress sync.
+      return request.auth.token.firebase.sign_in_provider != "anonymous"
+        || (request.auth.token.firebase.identities != null && request.auth.token.firebase.identities.size() > 0);
+    }
+
+    // User progress cloud sync (read/write own docs; block anonymous)
+    match /users/{uid} {
+      allow read, write: if isOwner(uid) && isNotAnonymous();
+
+      match /{document=**} {
+        allow read, write: if isOwner(uid) && isNotAnonymous();
+      }
+    }
+
     // App can create tickets, but cannot read/update/delete them from the client
     match /supportTickets/{ticketId} {
       allow create: if isSignedIn();

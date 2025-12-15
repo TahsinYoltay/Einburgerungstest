@@ -1,8 +1,11 @@
-import React from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
-import { Modal, Portal, Text, List, RadioButton, Button, ActivityIndicator, useTheme } from 'react-native-paper';
+import React, { useMemo } from 'react';
+import { View, ScrollView, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, Button, Dialog, IconButton, Portal, Text } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
+import Icon from '@react-native-vector-icons/material-design-icons';
 import { useAppSelector } from '../../store/hooks';
+import { useAppTheme } from '../../providers/ThemeProvider';
+import { createStyles } from './LanguageSelector.styles';
 
 interface LanguageSelectorProps {
   visible: boolean;
@@ -21,78 +24,80 @@ export const LanguageSelector = ({
   loading,
   downloadProgress
 }: LanguageSelectorProps) => {
-  const theme = useTheme();
+  const { theme } = useAppTheme();
+  const styles = useMemo(() => createStyles(theme), [theme]);
   const { t } = useTranslation();
   const { languages } = useAppSelector(state => state.content);
 
   return (
     <Portal>
-      <Modal visible={visible} onDismiss={loading ? undefined : onDismiss} contentContainerStyle={[styles.modalContent, { backgroundColor: theme.colors.surface }]}>
-        <Text variant="titleLarge" style={styles.title}>{t('settings.selectLanguage')}</Text>
-        
-        {loading ? (
-          <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" color={theme.colors.primary} />
-            <Text style={{ marginTop: 16 }}>{t('settings.downloadingLanguage')}</Text>
-            {downloadProgress !== undefined && (
-              <Text variant="bodySmall">{Math.round(downloadProgress * 100)}%</Text>
-            )}
-          </View>
-        ) : (
-          <View style={{ maxHeight: 400, width: '100%' }}>
-            <ScrollView>
-              <RadioButton.Group onValueChange={onSelectLanguage} value={currentLanguage}>
-                {languages.map((lang) => (
-                  <List.Item
-                    key={lang.code}
-                    title={lang.nativeName}
-                    description={lang.name}
-                    left={() => <RadioButton value={lang.code} />}
-                    onPress={() => onSelectLanguage(lang.code)}
-                  />
-                ))}
-              </RadioButton.Group>
-            </ScrollView>
-          </View>
-        )}
-        
-        {!loading && (
-          <View style={styles.footer}>
-            <Button mode="contained" onPress={onDismiss} style={styles.closeButton}>
-              {t('common.close')}
-            </Button>
-          </View>
-        )}
-      </Modal>
+      <Dialog visible={visible} onDismiss={loading ? undefined : onDismiss} style={styles.dialog}>
+        <Dialog.Title style={styles.title}>{t('settings.selectLanguage')}</Dialog.Title>
+        <IconButton
+          icon="close"
+          size={18}
+          disabled={Boolean(loading)}
+          onPress={onDismiss}
+          style={styles.closeIconButton}
+          iconColor={theme.colors.onSurface}
+        />
+
+        <Dialog.Content>
+          {loading ? (
+            <View style={styles.loadingContainer}>
+              <ActivityIndicator size="large" color={theme.colors.primary} />
+              <Text style={styles.loadingText}>{t('settings.downloadingLanguage')}</Text>
+              {downloadProgress !== undefined ? (
+                <Text style={styles.progressText}>{Math.round(downloadProgress * 100)}%</Text>
+              ) : null}
+            </View>
+          ) : (
+            <View style={styles.listCard}>
+              <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+                {languages.map((lang, index) => {
+                  const isSelected = lang.code === currentLanguage;
+                  return (
+                    <React.Fragment key={lang.code}>
+                      <TouchableOpacity
+                        style={styles.optionRow}
+                        activeOpacity={0.9}
+                        onPress={() => onSelectLanguage(lang.code)}
+                      >
+                        <View style={styles.optionLeft}>
+                          <View style={styles.optionIcon}>
+                            <Icon name="translate" size={22} color={theme.colors.primary} />
+                          </View>
+                          <View style={styles.optionText}>
+                            <Text style={styles.optionLabel}>{lang.nativeName}</Text>
+                            <Text style={styles.optionDescription}>{lang.name}</Text>
+                          </View>
+                        </View>
+                        {isSelected ? (
+                          <Icon name="check" size={20} color={theme.colors.primary} />
+                        ) : (
+                          <View style={styles.rightSpacer} />
+                        )}
+                      </TouchableOpacity>
+                      {index < languages.length - 1 ? <View style={styles.divider} /> : null}
+                    </React.Fragment>
+                  );
+                })}
+              </ScrollView>
+            </View>
+          )}
+        </Dialog.Content>
+
+        <Dialog.Actions style={styles.actions}>
+          <Button
+            mode="contained"
+            onPress={onDismiss}
+            disabled={Boolean(loading)}
+            style={styles.closeButton}
+          >
+            {t('common.close')}
+          </Button>
+        </Dialog.Actions>
+      </Dialog>
     </Portal>
   );
 };
-
-const styles = StyleSheet.create({
-  modalContent: {
-    marginHorizontal: 30,
-    padding: 20,
-    borderRadius: 12,
-    alignItems: 'center', // Help center content
-  },
-  title: {
-    marginBottom: 16,
-    textAlign: 'center',
-  },
-  scrollList: {
-    width: '100%', // Ensure list takes width
-  },
-  loadingContainer: {
-    alignItems: 'center',
-    padding: 20,
-  },
-  footer: {
-    marginTop: 20,
-    width: '100%',
-    alignItems: 'center',
-  },
-  closeButton: {
-    width: '80%',
-    paddingVertical: 4,
-  },
-});

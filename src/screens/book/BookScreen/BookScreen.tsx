@@ -34,7 +34,9 @@ const BookScreen = () => {
   const navigation = useNavigation<BookScreenNavigationProp>();
     const { theme } = useAppTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
-  const userId = useAppSelector(state => state.auth.firebaseUid);
+  const firebaseUid = useAppSelector(state => state.auth.firebaseUid);
+  const enableCloudSync = useAppSelector(state => state.auth.status === 'authenticated');
+  const userId = firebaseUid || 'local';
   const isPro = useAppSelector(state => state.subscription.status === 'active');
   const dispatch = useAppDispatch();
   
@@ -87,13 +89,13 @@ const BookScreen = () => {
   }, [bookData]);
 
   const loadReadingProgress = async () => {
-    const progress = await getReadingProgress(userId || undefined);
+    const progress = await getReadingProgress(userId, enableCloudSync);
     setReadingProgress(progress);
     
     const progresses: { [chapterId: string]: { completed: number; total: number; percentage: number } } = {};
     for (const chapter of chapters) {
       const sectionIds = chapter.subSections.map(section => section.id);
-      progresses[chapter.id] = await getChapterProgress(sectionIds, userId || undefined);
+      progresses[chapter.id] = await getChapterProgress(sectionIds, userId, enableCloudSync);
     }
     setChapterProgresses(progresses);
   };
@@ -102,7 +104,7 @@ const BookScreen = () => {
   useFocusEffect(
     useCallback(() => {
       loadReadingProgress();
-    }, [userId, chapters])
+    }, [userId, enableCloudSync, chapters])
   );
 
   const onRefresh = async () => {

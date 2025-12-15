@@ -18,8 +18,7 @@ import { RootStackParamList } from '../../../navigations/StackNavigator';
 import { purchaseService } from '../../../services/PurchaseService';
 import { getAuth, signInAnonymously as firebaseSignInAnonymously } from '@react-native-firebase/auth';
 import { clearAllProgress } from '../../../utils/readingProgress';
-import { RatingPrompt } from '../../../components/common/RatingPrompt';
-import { recordPromptShown } from '../../../store/slices/ratingSlice';
+import { progressSyncService } from '../../../services/ProgressSyncService';
 
 const SettingsScreen = () => {
   const { t, i18n } = useTranslation();
@@ -41,7 +40,6 @@ const SettingsScreen = () => {
   const [showExamLangDialog, setShowExamLangDialog] = useState(false);
   const [showBookLangDialog, setShowBookLangDialog] = useState(false);
   const [forceUpdateKey, setForceUpdateKey] = useState(0);
-  const [showRatingPrompt, setShowRatingPrompt] = useState(false);
 
   // Force re-render when screen comes into focus (to reflect auth state changes after login)
   useFocusEffect(
@@ -77,7 +75,28 @@ const SettingsScreen = () => {
         {
           text: t('exam.reset', { defaultValue: 'Reset' }),
           style: 'destructive',
-          onPress: () => dispatch(resetExamData({})),
+          onPress: async () => {
+            try {
+              const cloudOk =
+                !isAuthenticated || !firebaseUid
+                  ? true
+                  : await progressSyncService.clearRemoteExamProgress({ uid: firebaseUid, mode: 'history' });
+
+              dispatch(resetExamData({}));
+
+              Alert.alert(
+                t('common.success'),
+                cloudOk
+                  ? t('settings.resetAllProgressSuccess', { defaultValue: 'Exam progress has been reset.' })
+                  : t('settings.resetCloudWarning', {
+                      defaultValue:
+                        "Reset completed on this device, but we couldn't clear your cloud progress. Please check your internet and try again.",
+                    })
+              );
+            } catch (error) {
+              Alert.alert(t('common.error'), t('common.error'));
+            }
+          },
         },
       ]
     );
@@ -97,11 +116,21 @@ const SettingsScreen = () => {
           style: 'destructive',
           onPress: async () => {
             try {
-              await clearAllProgress(firebaseUid || 'local');
+              const cloudOk =
+                !isAuthenticated || !firebaseUid
+                  ? true
+                  : await progressSyncService.clearRemoteExamProgress({ uid: firebaseUid, mode: 'everything' });
+
+              await clearAllProgress(firebaseUid || 'local', isAuthenticated);
               dispatch(resetAllExamUserData());
               Alert.alert(
                 t('common.success'),
-                t('settings.resetAllDataSuccess', { defaultValue: 'Everything has been reset.' })
+                cloudOk
+                  ? t('settings.resetAllDataSuccess', { defaultValue: 'Everything has been reset.' })
+                  : t('settings.resetCloudWarning', {
+                      defaultValue:
+                        "Reset completed on this device, but we couldn't clear your cloud progress. Please check your internet and try again.",
+                    })
               );
             } catch (error) {
               Alert.alert(t('common.error'), t('common.error'));
@@ -128,11 +157,6 @@ const SettingsScreen = () => {
     } catch (error) {
       Alert.alert(t('common.error'), t('settings.downloadError', { msg: String(error) }));
     }
-  };
-
-  const handleManualRate = () => {
-    dispatch(recordPromptShown());
-    setShowRatingPrompt(true);
   };
 
   const handleRestorePurchases = async () => {
@@ -279,18 +303,6 @@ const SettingsScreen = () => {
             </View>
             <Button mode="text" onPress={handleRestorePurchases}>
               {t('settings.restore', 'Restore')}
-            </Button>
-          </View>
-
-          <Divider style={styles.divider} />
-
-          <View style={styles.row}>
-            <View>
-              <Text style={styles.rowTitle}>{t('settings.rateUs', 'Rate Us')}</Text>
-              <Text style={styles.rowSubtitle}>{t('settings.rateUsDesc', 'Share your experience on the store')}</Text>
-            </View>
-            <Button mode="text" onPress={handleManualRate}>
-              {t('settings.rateNow', 'Rate now')}
             </Button>
           </View>
 
@@ -509,8 +521,6 @@ const SettingsScreen = () => {
           </Dialog.Actions>
         </Dialog>
       </Portal>
-
-      <RatingPrompt visible={showRatingPrompt} onDismiss={() => setShowRatingPrompt(false)} source="manual" />
     </SafeAreaView>
   );
 };
