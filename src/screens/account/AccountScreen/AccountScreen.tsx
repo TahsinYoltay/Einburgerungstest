@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 
-import { createStyles } from './AccountScreen.style';
+import { createStyles } from './AccountScreen.styles';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 import { useAppSelector, useAppDispatch } from '../../../store/hooks';
 import { RootStackParamList } from '../../../navigations/StackNavigator';
@@ -17,10 +17,26 @@ import { useAuth } from '../../../providers/AuthProvider';
 import { selectHasActiveSubscription } from '../../../store/slices/subscriptionSlice';
 import ChangeAvatarDialog from '../../../components/account/ChangeAvatarDialog/ChangeAvatarDialog';
 import UserAvatar from '../../../components/account/UserAvatar/UserAvatar';
+import { RatingPrompt } from '../../../components/common/RatingPrompt';
 import { avatarService, AvatarServiceError } from '../../../services/AvatarService';
 import DeviceInfo from 'react-native-device-info';
+import { recordPromptShown } from '../../../store/slices/ratingSlice';
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
+
+type MenuItem = {
+  key: string;
+  icon: string;
+  label: string;
+  description?: string;
+  onPress: () => void;
+};
+
+type MenuSection = {
+  key: string;
+  title: string;
+  items: MenuItem[];
+};
 
 const AccountScreen = () => {
   const navigation = useNavigation<Nav>();
@@ -36,33 +52,104 @@ const AccountScreen = () => {
   const [avatarDialogVisible, setAvatarDialogVisible] = React.useState(false);
   const [avatarUploading, setAvatarUploading] = React.useState(false);
   const [avatarUploadProgress, setAvatarUploadProgress] = React.useState<number | undefined>(undefined);
+  const [showRatingPrompt, setShowRatingPrompt] = React.useState(false);
 
-  const menuItems = [
-    !isAnonymous && {
-      key: 'profile',
-      icon: 'account-circle',
-      label: t('account.menu.profile'),
-      onPress: () => navigation.navigate(ROUTES.PROFILE_INFO),
-    },
-    {
-      key: 'settings',
-      icon: 'cog',
-      label: t('account.menu.settings'),
-      onPress: () => navigation.navigate(ROUTES.SETTINGS),
-    },
-    {
-      key: 'help',
-      icon: 'help-circle-outline',
-      label: t('account.menu.help'),
-      onPress: () => navigation.navigate(ROUTES.HELP),
-    },
-    {
-      key: 'privacy',
-      icon: 'shield-outline',
-      label: t('account.menu.privacy'),
-      onPress: () => navigation.navigate(ROUTES.PRIVACY),
-    },
-  ];
+  const handleManualRate = React.useCallback(() => {
+    dispatch(recordPromptShown());
+    setShowRatingPrompt(true);
+  }, [dispatch]);
+
+  const menuSections: MenuSection[] = React.useMemo(() => {
+    const accountItems: MenuItem[] = [
+      ...(!isAnonymous
+        ? [
+            {
+              key: 'profile',
+              icon: 'account-circle',
+              label: t('account.menu.profile'),
+              description: t('account.menuDescriptions.profile', {
+                defaultValue: 'Name, email and account details',
+              }),
+              onPress: () => navigation.navigate(ROUTES.PROFILE_INFO),
+            },
+          ]
+        : []),
+      {
+        key: 'settings',
+        icon: 'cog',
+        label: t('account.menu.settings'),
+        description: t('account.menuDescriptions.settings', { defaultValue: 'Language, theme and data management' }),
+        onPress: () => navigation.navigate(ROUTES.SETTINGS),
+      },
+    ];
+
+    const supportItems: MenuItem[] = [
+      {
+        key: 'giveFeedback',
+        icon: 'message-alert-outline',
+        label: t('account.help.giveFeedback', { defaultValue: 'Give Feedback' }),
+        description: t('account.help.giveFeedbackDescription', {
+          defaultValue: 'Share feature requests or ideas to improve the app.',
+        }),
+        onPress: () => navigation.navigate(ROUTES.SUPPORT_REQUEST, { kind: 'feedback' }),
+      },
+      {
+        key: 'help',
+        icon: 'help-circle-outline',
+        label: t('account.menu.help'),
+        description: t('account.menuDescriptions.help', { defaultValue: 'FAQs and contact options' }),
+        onPress: () => navigation.navigate(ROUTES.HELP),
+      },
+    ];
+
+    const aboutItems: MenuItem[] = [
+      {
+        key: 'rateUs',
+        icon: 'star-outline',
+        label: t('settings.rateUs', 'Rate Us'),
+        description: t('account.menuDescriptions.rateUs', { defaultValue: 'Leave a review on the store' }),
+        onPress: handleManualRate,
+      },
+      {
+        key: 'privacy',
+        icon: 'shield-outline',
+        label: t('account.menu.privacy'),
+        description: t('account.menuDescriptions.privacy', { defaultValue: 'Read how we handle your data' }),
+        onPress: () => navigation.navigate(ROUTES.PRIVACY),
+      },
+    ];
+
+    return [
+      {
+        key: 'account',
+        title: t('account.sections.account', { defaultValue: 'Account' }),
+        items: accountItems,
+      },
+      {
+        key: 'support',
+        title: t('account.sections.support', { defaultValue: 'Support' }),
+        items: supportItems,
+      },
+      {
+        key: 'about',
+        title: t('account.sections.about', { defaultValue: 'About' }),
+        items: aboutItems,
+      },
+    ].filter(section => section.items.length > 0);
+  }, [handleManualRate, isAnonymous, navigation, t]);
+
+  const renderMenuItem = (item: MenuItem) => (
+    <TouchableOpacity style={styles.sectionItem} activeOpacity={0.9} onPress={item.onPress}>
+      <View style={styles.menuIcon}>
+        <Icon name={item.icon as any} size={22} color={theme.colors.primary} />
+      </View>
+      <View style={styles.menuText}>
+        <Text style={styles.menuLabel}>{item.label}</Text>
+        {!!item.description && <Text style={styles.menuDescription}>{item.description}</Text>}
+      </View>
+      <Icon name="chevron-right" size={20} color={theme.colors.onSurface} />
+    </TouchableOpacity>
+  );
 
   const handleAuthAction = async () => {
     if (!isAnonymous) {
@@ -195,19 +282,23 @@ const AccountScreen = () => {
         </View>
 
         <View style={styles.menuList}>
-          {menuItems.filter(Boolean).map(item => (
-            <TouchableOpacity key={item!.key} style={styles.menuItem} activeOpacity={0.9} onPress={item!.onPress}>
-              <View style={styles.menuIcon}>
-                <Icon name={item!.icon as any} size={22} color={theme.colors.onBackground} />
+          {menuSections.map(section => (
+            <View key={section.key} style={styles.sectionCard}>
+              <Text style={styles.sectionTitle}>{section.title}</Text>
+              <View style={styles.sectionList}>
+                {section.items.map((item, index) => (
+                  <React.Fragment key={item.key}>
+                    {renderMenuItem(item)}
+                    {index < section.items.length - 1 && <View style={styles.sectionDivider} />}
+                  </React.Fragment>
+                ))}
               </View>
-              <Text style={styles.menuLabel}>{item!.label}</Text>
-              <Icon name="chevron-right" size={20} color={theme.colors.onSurface} />
-            </TouchableOpacity>
+            </View>
           ))}
         </View>
 
         <TouchableOpacity style={styles.logoutButton} activeOpacity={0.9} onPress={handleAuthAction}>
-          <Icon name={!isAnonymous ? 'logout' : 'login'} size={20} color="#D32F2F" />
+          <Icon name={!isAnonymous ? 'logout' : 'login'} size={20} color={theme.colors.primary} />
           <Text style={styles.logoutText}>{!isAnonymous ? t('account.logout') : t('account.signIn')}</Text>
         </TouchableOpacity>
 
@@ -228,6 +319,8 @@ const AccountScreen = () => {
         onTakePhoto={() => handleAvatarUpdate('camera')}
         onRemovePhoto={handleAvatarRemove}
       />
+
+      <RatingPrompt visible={showRatingPrompt} onDismiss={() => setShowRatingPrompt(false)} source="manual" />
     </SafeAreaView>
   );
 };

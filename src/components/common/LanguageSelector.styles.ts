@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
-import { MD3Theme } from 'react-native-paper';
+import type { AppTheme } from '../../providers/ThemeProvider';
 
-export const createStyles = (theme: MD3Theme) =>
+export const createStyles = (theme: AppTheme) =>
   StyleSheet.create({
     dialog: {
       backgroundColor: theme.colors.surface,
@@ -25,9 +25,13 @@ export const createStyles = (theme: MD3Theme) =>
       borderRadius: 12,
       zIndex: 2,
     },
-    optionsList: {
+    listCard: {
+      width: '100%',
       borderRadius: 14,
       overflow: 'hidden',
+    },
+    scrollView: {
+      maxHeight: 420,
     },
     optionRow: {
       flexDirection: 'row',
@@ -51,11 +55,22 @@ export const createStyles = (theme: MD3Theme) =>
       justifyContent: 'center',
       marginRight: 12,
     },
-    optionLabel: {
+    optionText: {
       flex: 1,
+      gap: 2,
+    },
+    optionLabel: {
       fontSize: 16,
       fontWeight: '700',
       color: theme.colors.onSurface,
+    },
+    optionDescription: {
+      fontSize: 13,
+      color: theme.colors.onSurfaceVariant,
+      opacity: 0.85,
+    },
+    rightSpacer: {
+      width: 20,
     },
     divider: {
       height: 1,
@@ -63,21 +78,21 @@ export const createStyles = (theme: MD3Theme) =>
       opacity: theme.dark ? 0.6 : 0.4,
       marginHorizontal: 12,
     },
-    progressWrapper: {
-      marginTop: 12,
-      gap: 8,
+    loadingContainer: {
       alignItems: 'center',
+      paddingVertical: 16,
+      paddingHorizontal: 8,
+      gap: 10,
     },
-    progressText: {
+    loadingText: {
       color: theme.colors.onSurface,
       opacity: 0.8,
       textAlign: 'center',
     },
-    removeIcon: {
-      backgroundColor: theme.dark ? 'rgba(244,33,46,0.18)' : '#FBEAEA',
-    },
-    removeLabel: {
-      color: theme.colors.error,
+    progressText: {
+      color: theme.colors.onSurfaceVariant,
+      opacity: 0.85,
+      textAlign: 'center',
     },
     actions: {
       justifyContent: 'center',

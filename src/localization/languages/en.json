@@ -72,24 +72,51 @@
       "help": "Help & Support",
       "privacy": "Privacy Policy"
     },
+    "sections": {
+      "account": "Account",
+      "support": "Support",
+      "about": "About"
+    },
+    "menuDescriptions": {
+      "profile": "Name, email and account details",
+      "settings": "Language, theme and data management",
+      "help": "FAQs and contact options",
+      "rateUs": "Leave a review on the store",
+      "privacy": "Read how we handle your data"
+    },
     "versionLabel": "Version",
     "privacy": {
       "title": "Privacy Policy",
       "lastUpdated": "Last Updated: {{date}}"
     },
     "profile": {
+      "sections": {
+        "profile": "Profile",
+        "account": "Account",
+        "identifiers": "Identifiers"
+      },
       "signedInStatus": "Signed in",
       "name": "Name",
       "noName": "Not set",
       "email": "Email",
       "noEmail": "Not set",
+      "plan": "Plan",
+      "planFree": "Free",
+      "planPremium": "Premium",
+      "planPremiumMonthly": "Premium (Monthly)",
+      "planPremiumLifetime": "Premium (Lifetime)",
+      "planLoading": "Checking…",
       "provider": "Provider",
       "emailProvider": "Email",
       "unknownProvider": "Unknown",
       "userId": "User ID",
       "noUid": "Not available",
+      "edit": "Edit",
+      "editTitle": "Edit profile",
+      "updateSuccess": "Your profile has been updated.",
+      "updateError": "Unable to update your profile right now.",
       "signInRequiredTitle": "Sign in to view profile info",
-      "signInRequiredDesc": "Log in to see your email, provider, and account details."
+      "signInRequiredDesc": "Log in to see your email and subscription details."
     },
     "help": {
       "title": "Help & Support",
@@ -475,11 +502,13 @@
     "downloadingLanguage": "Downloading language pack...",
     "resetAllProgressData": "Reset All Progress Data",
     "resetAllProgressConfirmTitle": "Reset all progress data?",
-    "resetAllProgressConfirmMsg": "This will reset all exam progress and results. Favourites and wrong answers will stay.",
+    "resetAllProgressConfirmMsg": "This will reset all exam progress and results (including in the cloud if you're signed in). Favourites and wrong answers will stay.",
+    "resetAllProgressSuccess": "Exam progress has been reset.",
     "resetAllData": "Reset Everything",
     "resetAllDataConfirmTitle": "Reset everything?",
-    "resetAllDataConfirmMsg": "This will reset all progress on this device, including exam results, favourites, wrong answers, and reading progress. Your account will stay signed in.",
+    "resetAllDataConfirmMsg": "This will reset all progress on this device (and in the cloud if you're signed in), including exam results, favourites, wrong answers, and reading progress. Your account will stay signed in.",
     "resetAllDataSuccess": "Everything has been reset.",
+    "resetCloudWarning": "Reset completed on this device, but we couldn't clear your cloud progress. Please check your internet and try again.",
     "resetAction": "Delete",
     "deleteConfirm": "Delete this content?",
     "deleteBookConfirm": "Delete this book content?",

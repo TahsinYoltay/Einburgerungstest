@@ -2,6 +2,7 @@ import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import ImageResizer from '@bam.tech/react-native-image-resizer';
 import { firebaseAuth, firebaseStorage } from '../config/firebase';
 import * as RNFS from '@dr.pogodin/react-native-fs';
+import { userProfileService } from './UserProfileService';
 
 export type AvatarUploadProgressCallback = (progress: number) => void;
 
@@ -128,6 +129,20 @@ async function setUserPhotoURL(photoURL: string | null) {
   try {
     await user.updateProfile({ photoURL });
     await user.reload();
+    try {
+      await userProfileService.ensureUserProfileDoc(
+        {
+          uid: user.uid,
+          isAnonymous: false,
+          email: user.email ?? null,
+          displayName: user.displayName ?? null,
+          photoURL: user.photoURL ?? null,
+        },
+        { force: true }
+      );
+    } catch {
+      // Non-fatal: avatar was updated in Firebase Auth even if Firestore sync fails.
+    }
   } catch (error) {
     throw new AvatarServiceError(
       'profile_update_failed',

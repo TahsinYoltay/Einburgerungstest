@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { View, TouchableOpacity, Alert, ScrollView } from 'react-native';
+import { View, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text, ActivityIndicator, Button, Portal, Dialog, List, Divider } from 'react-native-paper';
+import { Text, ActivityIndicator, Button } from 'react-native-paper';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import Icon from '@react-native-vector-icons/material-design-icons';
 import { useTranslation } from 'react-i18next';
@@ -15,6 +15,7 @@ import { NormalizedQuestion } from '../../types/exam';
 import { createStyles } from './ReviewQuestionsScreen.style';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigations/StackNavigator';
+import { LanguageSelector } from '../../components/common/LanguageSelector';
 
 type RouteParams = {
   mode: 'favorites' | 'incorrect';
@@ -35,7 +36,7 @@ const ReviewQuestionsScreen = () => {
   const questionStats = useAppSelector(state => state.exam.questionStats);
   const chaptersData = useAppSelector(state => state.exam.chaptersData);
   const examHistory = useAppSelector(state => state.exam.examHistory);
-  const { currentLanguage, isDownloadingLanguage } = useAppSelector(state => state.exam);
+  const { currentLanguage, isDownloadingLanguage, downloadProgress } = useAppSelector(state => state.exam);
   const { languages: availableLanguages } = useAppSelector(state => state.content);
 
   const [questions, setQuestions] = useState<NormalizedQuestion[]>([]);
@@ -241,31 +242,14 @@ const ReviewQuestionsScreen = () => {
        </View>
 
        {/* Language Selection Dialog */}
-       <Portal>
-        <Dialog visible={showLanguageDialog} onDismiss={() => setShowLanguageDialog(false)} style={{ backgroundColor: theme.colors.surface }}>
-          <Dialog.Title style={{ color: theme.colors.onSurface }}>{t('settings.language')}</Dialog.Title>
-          <Dialog.ScrollArea style={{ maxHeight: 400, paddingHorizontal: 0 }}>
-            <ScrollView>
-              {languages.map((lang, index) => (
-                <React.Fragment key={lang.code}>
-                  <List.Item
-                    title={lang.nativeName}
-                    description={lang.name}
-                    titleStyle={{ color: theme.colors.onSurface }}
-                    descriptionStyle={{ color: theme.colors.onSurfaceVariant }}
-                    onPress={() => handleLanguageSelect(lang.code)}
-                    right={props => lang.code === currentLanguage && <List.Icon {...props} icon="check" color={theme.colors.primary} />}
-                  />
-                  {index < languages.length - 1 && <Divider />}
-                </React.Fragment>
-              ))}
-            </ScrollView>
-          </Dialog.ScrollArea>
-          <Dialog.Actions>
-            <Button onPress={() => setShowLanguageDialog(false)} textColor={theme.colors.primary}>{t('common.cancel')}</Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
+       <LanguageSelector
+         visible={showLanguageDialog}
+         onDismiss={() => setShowLanguageDialog(false)}
+         currentLanguage={currentLanguage}
+         onSelectLanguage={handleLanguageSelect}
+         loading={isDownloadingLanguage}
+         downloadProgress={downloadProgress}
+       />
     </SafeAreaView>
   );
 };

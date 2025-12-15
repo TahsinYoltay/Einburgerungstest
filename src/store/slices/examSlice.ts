@@ -66,6 +66,23 @@ type ExamState = {
   error: string | null;
 };
 
+const attachAttemptsToExams = (exams: ExamManifestEntry[], examHistory: ExamAttempt[]) => {
+  const perExam: Record<string, ExamAttempt[]> = {};
+  examHistory.forEach(att => {
+    if (!perExam[att.examId]) perExam[att.examId] = [];
+    perExam[att.examId].push(att);
+  });
+
+  return exams.map(exam => {
+    const attempts = perExam[exam.id] || [];
+    const lastAttempt =
+      attempts.length > 0
+        ? [...attempts].sort((a, b) => new Date(b.startTime).getTime() - new Date(a.startTime).getTime())[0]
+        : undefined;
+    return { ...exam, attempts, lastAttempt };
+  });
+};
+
 const defaultLanguages: LanguageOption[] = [
   { code: 'en', name: 'English', nativeName: 'English' },
   { code: 'es', name: 'Spanish', nativeName: 'Español' },
@@ -281,6 +298,23 @@ const examSlice = createSlice({
   name: 'exam',
   initialState,
   reducers: {
+    hydrateExamUserData: (
+      state,
+      action: PayloadAction<{
+        examHistory: ExamAttempt[];
+        inProgress: ExamState['inProgress'];
+        currentExam: ExamState['currentExam'];
+        questionStats: ExamState['questionStats'];
+        favoriteQuestions: string[];
+      }>
+    ) => {
+      state.examHistory = action.payload.examHistory || [];
+      state.inProgress = action.payload.inProgress || {};
+      state.currentExam = action.payload.currentExam || initialState.currentExam;
+      state.questionStats = action.payload.questionStats || {};
+      state.favoriteQuestions = action.payload.favoriteQuestions || [];
+      state.exams = attachAttemptsToExams(state.exams, state.examHistory);
+    },
     startExam: (state, action: PayloadAction<{ examId: string; forceRestart?: boolean }>) => {
       if (!state.inProgress) {
         state.inProgress = {};
@@ -463,24 +497,32 @@ const examSlice = createSlice({
 
         // Refresh the text of currently active questions to match the new language
         // This preserves the shuffled order and user progress
-        if (state.currentExam.questions.length > 0) {
-          // 1. Create a lookup map for the new translated questions
-          const newQuestionsMap: Record<string, NormalizedQuestion> = {};
-          const chaptersDataAny = (action.payload.data as any).data;
-          if (chaptersDataAny) {
-            Object.values(chaptersDataAny).forEach((ch: any) => {
-              ch.questions.forEach((q: NormalizedQuestion) => {
-                newQuestionsMap[q.id] = q;
-              });
+        // 1. Create a lookup map for the new translated questions
+        const newQuestionsMap: Record<string, NormalizedQuestion> = {};
+        const chaptersDataAny = (action.payload.data as any).data;
+        if (chaptersDataAny) {
+          Object.values(chaptersDataAny).forEach((ch: any) => {
+            ch.questions.forEach((q: NormalizedQuestion) => {
+              newQuestionsMap[q.id] = q;
             });
-          }
+          });
+        }
 
-          // 2. Update existing questions in place
-          state.currentExam.questions = state.currentExam.questions.map(oldQ => {
+        const refreshQuestionText = (questions: NormalizedQuestion[]) =>
+          questions.map(oldQ => {
             const newQ = newQuestionsMap[oldQ.id];
             return newQ ? { ...oldQ, ...newQ } : oldQ; // Update text fields, keep other state if any
           });
+
+        // 2. Update existing questions in place
+        if (state.currentExam.questions.length > 0) {
+          state.currentExam.questions = refreshQuestionText(state.currentExam.questions);
         }
+
+        Object.entries(state.inProgress || {}).forEach(([examId, progress]) => {
+          if (!progress.questions.length) return;
+          state.inProgress[examId].questions = refreshQuestionText(progress.questions);
+        });
       })
       .addCase(switchExamLanguage.rejected, (state, action) => {
         state.isDownloadingLanguage = false;
@@ -578,6 +620,7 @@ const examSlice = createSlice({
 });
 
 export const {
+  hydrateExamUserData,
   startExam,
   resetExam,
   resetExamData,

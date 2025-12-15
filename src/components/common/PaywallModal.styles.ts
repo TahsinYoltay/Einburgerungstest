@@ -57,7 +57,7 @@ export const createStyles = (theme: MD3Theme) => StyleSheet.create({
   featureRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 6,
+    // paddingVertical: 6,
   },
   featureIcon: {
     margin: 0,

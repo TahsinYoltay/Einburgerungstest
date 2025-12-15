@@ -22,6 +22,7 @@ const ProgressScreen = () => {
   const dispatch = useAppDispatch();
 
   const firebaseUid = useAppSelector(state => state.auth.firebaseUid);
+  const enableCloudSync = useAppSelector(state => state.auth.status === 'authenticated');
   const examHistory = useAppSelector(state => state.exam.examHistory);
   const chapters = useMemo(() => getAvailableChapters(), []);
 
@@ -44,16 +45,16 @@ const ProgressScreen = () => {
 
   const loadProgress = useCallback(async () => {
     const userId = firebaseUid || 'local';
-    const progress = await getReadingProgress(userId);
+    const progress = await getReadingProgress(userId, enableCloudSync);
     setReadingProgress(progress);
 
     const perChapter: Record<string, { completed: number; total: number; percentage: number }> = {};
     for (const chapter of chapters) {
       const sectionIds = chapter.subSections.map(section => section.id);
-      perChapter[chapter.id] = await getChapterProgress(sectionIds, userId);
+      perChapter[chapter.id] = await getChapterProgress(sectionIds, userId, enableCloudSync);
     }
     setChapterProgresses(perChapter);
-  }, [chapters, firebaseUid]);
+  }, [chapters, firebaseUid, enableCloudSync]);
 
   useEffect(() => {
     dispatch(loadExams());

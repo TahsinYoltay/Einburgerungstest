@@ -86,6 +86,10 @@ export const authSlice = createSlice({
     setUserPhotoURL: (state, action: PayloadAction<string | null>) => {
       state.photoURL = action.payload;
     },
+
+    setUserDisplayName: (state, action: PayloadAction<string | null>) => {
+      state.displayName = action.payload;
+    },
   },
 });
 
@@ -97,6 +101,7 @@ export const {
   clearAuth,
   setAuthError,
   setUserPhotoURL,
+  setUserDisplayName,
 } = authSlice.actions;
 
 // Selectors
