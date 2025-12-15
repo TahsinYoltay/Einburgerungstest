@@ -12,8 +12,10 @@ import SettingsScreen from '../screens/settings/SettingsScreen/SettingsScreen';
 import AccountScreen from '../screens/account/AccountScreen/AccountScreen';
 import ProfileInfoScreen from '../screens/account/ProfileInfoScreen/ProfileInfoScreen';
 import HelpSupportScreen from '../screens/account/HelpSupportScreen/HelpSupportScreen';
+import SupportRequestScreen from '../screens/account/SupportRequestScreen/SupportRequestScreen';
 import SupportTopicScreen from '../screens/account/SupportTopicScreen/SupportTopicScreen';
 import PrivacyPolicyScreen from '../screens/account/PrivacyPolicyScreen/PrivacyPolicyScreen';
+import BillingSupportScreen from '../screens/account/BillingSupportScreen/BillingSupportScreen';
 import { SupportTopicKey } from '../constants/supportTopics';
 import ReviewQuestionsScreen from '../screens/review/ReviewQuestionsScreen';
 
@@ -26,6 +28,8 @@ export type RootStackParamList = {
   [ROUTES.ACCOUNT]: undefined;
   [ROUTES.PROFILE_INFO]: undefined;
   [ROUTES.HELP]: undefined;
+  [ROUTES.SUPPORT_REQUEST]: { kind: 'feedback' | 'bug'; initialCategory?: string; initialSubject?: string; initialMessage?: string };
+  [ROUTES.BILLING]: undefined;
   [ROUTES.PRIVACY]: undefined;
   [ROUTES.HELP_TOPIC]: { topicKey: SupportTopicKey };
   HomeTab: undefined;
@@ -68,6 +72,16 @@ function RootNavigator() {
       <Stack.Screen
         name={ROUTES.HELP}
         component={HelpSupportScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={ROUTES.BILLING}
+        component={BillingSupportScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={ROUTES.SUPPORT_REQUEST}
+        component={SupportRequestScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen

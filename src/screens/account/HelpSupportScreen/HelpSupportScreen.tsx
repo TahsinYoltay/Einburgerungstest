@@ -12,6 +12,7 @@ import { RootStackParamList } from '../../../navigations/StackNavigator';
 import { ROUTES } from '../../../constants/routes';
 import { createStyles } from './HelpSupportScreen.styles';
 import { supportTopics } from '../../../constants/supportTopics';
+import { APP_CONFIG } from '../../../config/appConfig';
 
 type IconName = ComponentProps<typeof Icon>['name'];
 type LocalizedTopic = (typeof supportTopics)[number] & { label: string; description: string };
@@ -24,11 +25,24 @@ const HelpSupportScreen = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleClose = () => navigation.popToTop();
-  const handleNavigate = (topicKey: (typeof supportTopics)[number]['key']) =>
+  const handleNavigate = (topicKey: (typeof supportTopics)[number]['key']) => {
+    if (topicKey === 'feedback') {
+      navigation.navigate(ROUTES.SUPPORT_REQUEST, { kind: 'feedback' });
+      return;
+    }
+    if (topicKey === 'reportBug') {
+      navigation.navigate(ROUTES.SUPPORT_REQUEST, { kind: 'bug' });
+      return;
+    }
+    if (topicKey === 'billingPayments') {
+      navigation.navigate(ROUTES.BILLING);
+      return;
+    }
     navigation.navigate(ROUTES.HELP_TOPIC, { topicKey });
+  };
 
   const handleEmailPress = async () => {
-    const mailto = 'mailto:support@eywasoft.uk';
+    const mailto = `mailto:${APP_CONFIG.SUPPORT_EMAIL}`;
     try {
       const canOpen = await Linking.canOpenURL(mailto);
       if (canOpen) {
@@ -156,7 +170,7 @@ const HelpSupportScreen = () => {
           >
             <Icon name="email-outline" size={26} color={theme.colors.primary} />
             <Text style={styles.contactLabel}>{t('account.help.emailSupport')}</Text>
-            <Text style={styles.contactEmail}>support@eywasoft.uk</Text>
+            <Text style={styles.contactEmail}>{APP_CONFIG.SUPPORT_EMAIL}</Text>
           </TouchableOpacity>
         </View>
 

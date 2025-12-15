@@ -43,8 +43,6 @@ export const createStyles = (theme: MD3Theme) =>
       shadowOffset: { width: 0, height: 4 },
       shadowRadius: 10,
       elevation: 4,
-    //   alignItems: 'flex-start',
-    //   gap: 10,
     },
     heroIcon: {
       width: 46,
@@ -64,8 +62,12 @@ export const createStyles = (theme: MD3Theme) =>
       fontSize: 14,
       color: theme.colors.onSurface,
       opacity: 0.75,
+      marginTop: 2,
     },
-    bodyCard: {
+    heroText: {
+      flex: 1,
+    },
+    card: {
       backgroundColor: theme.colors.surface,
       borderRadius: 16,
       padding: 16,
@@ -76,114 +78,70 @@ export const createStyles = (theme: MD3Theme) =>
       shadowOffset: { width: 0, height: 4 },
       shadowRadius: 10,
       elevation: 4,
-      gap: 10,
-    },
-    bodyText: {
-      fontSize: 15,
-      lineHeight: 22,
-      color: theme.colors.onSurface,
-    },
-    section: {
-      gap: 8,
+      gap: 12,
     },
     sectionTitle: {
-      fontSize: 16,
-      fontWeight: '700',
+      fontSize: 14,
+      fontWeight: '800',
       color: theme.colors.onSurface,
     },
-    paragraph: {
-      fontSize: 15,
-      lineHeight: 22,
-      color: theme.colors.onSurface,
-      opacity: 0.9,
-    },
-    bulletRow: {
+    chipRow: {
       flexDirection: 'row',
-      alignItems: 'flex-start',
+      flexWrap: 'wrap',
       gap: 8,
     },
-    bulletIcon: {
-      marginTop: 2,
+    chip: {
+      borderRadius: 999,
     },
-    statGrid: {
+    chipUnselected: {
+      backgroundColor: theme.colors.surfaceVariant,
+    },
+    chipSelected: {
+      backgroundColor: theme.colors.primary,
+    },
+    chipText: {
+      color: theme.colors.onSurfaceVariant,
+    },
+    chipTextSelected: {
+      color: theme.colors.onPrimary,
+    },
+    input: {
+      backgroundColor: theme.colors.surface,
+    },
+    helperText: {
+      fontSize: 13,
+      color: theme.colors.onSurface,
+      opacity: 0.7,
+      lineHeight: 18,
+    },
+    toggleRow: {
       flexDirection: 'row',
+      alignItems: 'center',
       justifyContent: 'space-between',
       gap: 12,
     },
-    statCard: {
+    toggleTextWrap: {
       flex: 1,
-      backgroundColor: theme.colors.surface,
-      borderRadius: 14,
-      borderWidth: theme.dark ? 1 : 0,
-      borderColor: theme.colors.outline,
-      paddingVertical: 12,
-      paddingHorizontal: 10,
-      alignItems: 'center',
-      shadowColor: '#000',
-      shadowOpacity: theme.dark ? 0.2 : 0.05,
-      shadowOffset: { width: 0, height: 3 },
-      shadowRadius: 8,
-      elevation: 3,
+      gap: 2,
     },
-    statLabel: {
-      fontSize: 13,
-      color: theme.colors.onSurface,
-      opacity: 0.75,
-      marginBottom: 4,
-      textAlign: 'center',
-    },
-    statValue: {
-      fontSize: 20,
-      fontWeight: '800',
-      color: theme.colors.primary,
-      textAlign: 'center',
-    },
-    statValueSmall: {
+    toggleTitle: {
       fontSize: 14,
-      fontWeight: '600',
-      color: theme.colors.primary,
-    },
-    helpfulRow: {
-      flexDirection: 'column',
-      gap: 10,
-      marginTop: 8,
-    },
-    pillButton: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: 6,
-      paddingVertical: 12,
-      paddingHorizontal: 16,
-      borderRadius: 999,
-      borderWidth: 1,
-      borderColor: theme.colors.outline,
-      backgroundColor: theme.dark ? theme.colors.surfaceVariant : theme.colors.surface,
-      width: '100%',
-    },
-    pillLabel: {
-      fontSize: 14,
-      fontWeight: '600',
-      color: theme.colors.onSurface,
-      textAlign: 'center',
-    },
-    emailButton: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: 8,
-      backgroundColor: theme.colors.primary,
-      borderRadius: 14,
-      paddingVertical: 14,
-      shadowColor: '#000',
-      shadowOpacity: theme.dark ? 0.25 : 0.15,
-      shadowOffset: { width: 0, height: 6 },
-      shadowRadius: 10,
-      elevation: 5,
-    },
-    emailButtonText: {
-      color: '#FFFFFF',
-      fontSize: 15,
       fontWeight: '700',
+      color: theme.colors.onSurface,
+    },
+    toggleSubtitle: {
+      fontSize: 12,
+      color: theme.colors.onSurface,
+      opacity: 0.7,
+    },
+    submitButton: {
+      borderRadius: 14,
+      paddingVertical: 6,
+    },
+    dangerNote: {
+      fontSize: 12,
+      color: theme.colors.onSurface,
+      opacity: 0.65,
+      lineHeight: 18,
     },
   });

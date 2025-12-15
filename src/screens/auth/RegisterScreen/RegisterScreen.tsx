@@ -24,6 +24,7 @@ const RegisterScreen = () => {
   const navigation = useNavigation<RegisterScreenNavigationProp>();
 
   // Local state
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -66,6 +67,7 @@ const RegisterScreen = () => {
     }
   };
 
+  const hasNameError = name.length === 0;
   const hasEmailError = email.length > 0 && !isEmailValid(email);
   const hasPasswordError = password.length > 0 && !isPasswordValid(password);
   const hasConfirmPasswordError = confirmPassword.length > 0 && !doPasswordsMatch(password, confirmPassword);
@@ -73,6 +75,11 @@ const RegisterScreen = () => {
   // No longer needed - we handle navigation directly after registration success
 
   const handleRegister = async () => {
+    if (!name.trim()) {
+      setError(t('auth.errors.missingName', { defaultValue: 'Please enter your name' }));
+      return;
+    }
+
     if (!isEmailValid(email)) {
       setError(t('auth.errors.invalidEmail'));
       return;
@@ -91,7 +98,7 @@ const RegisterScreen = () => {
     setError(null);
     setIsLoading(true);
 
-    const result = await authService.createUserWithEmailAndPassword(email, password);
+    const result = await authService.createUserWithEmailAndPassword(email, password, name.trim());
     
     if (!result.success) {
       setIsLoading(false);
@@ -179,7 +186,7 @@ const RegisterScreen = () => {
           <View style={styles.socialContainer}>
             <Button 
               mode="outlined" 
-              icon="google" 
+              icon="google"
               onPress={handleGoogleSignIn} 
               style={[styles.socialButton, { borderColor: theme.colors.outline }]}
               disabled={isLoading}
@@ -189,7 +196,7 @@ const RegisterScreen = () => {
             </Button>
             <Button 
               mode="outlined" 
-              icon="apple" 
+              icon="apple"
               onPress={() => Alert.alert('Coming Soon', 'Apple Sign-In integration pending.')} 
               style={[styles.socialButton, { borderColor: theme.colors.outline }]}
               disabled={isLoading}
@@ -208,6 +215,22 @@ const RegisterScreen = () => {
 
           {error && (
             <Text style={styles.errorText}>{error}</Text>
+          )}
+
+          <TextInput
+            label={t('auth.name', { defaultValue: 'Name' })}
+            value={name}
+            onChangeText={setName}
+            style={styles.input}
+            mode="outlined"
+            autoCapitalize="words"
+            error={hasNameError && !!error}
+            disabled={isLoading}
+          />
+          {hasNameError && (
+            <HelperText type="error" visible={hasNameError}>
+              {t('auth.errors.missingName', { defaultValue: 'Please enter your name' })}
+            </HelperText>
           )}
 
           <TextInput
@@ -278,7 +301,7 @@ const RegisterScreen = () => {
             onPress={handleRegister}
             style={styles.registerButton}
             loading={isLoading}
-            disabled={isLoading || !email || !password || !confirmPassword}
+            disabled={isLoading || !name.trim() || !email || !password || !confirmPassword}
           >
             {t('auth.register')}
           </Button>

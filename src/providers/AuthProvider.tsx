@@ -38,6 +38,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [revenueCatConfigured, setRevenueCatConfigured] = useState(false);
   const dispatch = useAppDispatch();
   const lastRevenueCatSyncIdentity = useRef<{ uid: string; isAnonymous: boolean } | null>(null);
+  const ensuringAnonymousSignIn = useRef(false);
   
   // Initialize RevenueCat on mount (BEFORE auth listener)
   // RevenueCat Best Practice: Configure once at app startup, let it create anonymous ID
@@ -64,6 +65,29 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     
     const authInstance = getAuth();
     const subscriber = authInstance.onUserChanged(async (currentUser: FirebaseAuthTypes.User | null) => {
+      // Ensure we always have a Firebase user session (anonymous if needed).
+      if (!currentUser) {
+        if (ensuringAnonymousSignIn.current) {
+          return;
+        }
+
+        ensuringAnonymousSignIn.current = true;
+        try {
+          await signInAnonymously(authInstance);
+          return;
+        } catch (error) {
+          console.error('[AuthProvider] ❌ Anonymous sign-in error:', error);
+        } finally {
+          ensuringAnonymousSignIn.current = false;
+        }
+
+        setUser(null);
+        dispatch(clearAuth());
+        dispatch(setSubscriptionNone());
+        lastRevenueCatSyncIdentity.current = null;
+        setLoading(false);
+        return;
+      }
       
       // Fix: If user has providers but isAnonymous is true (stale state after linking), force reload
       if (currentUser && currentUser.isAnonymous && currentUser.providerData.length > 0) {
@@ -183,10 +207,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         }
 
         lastRevenueCatSyncIdentity.current = identity;
-      } else {
-        dispatch(clearAuth());
-        dispatch(setSubscriptionNone());
-        lastRevenueCatSyncIdentity.current = null;
       }
       
       setLoading(false);
@@ -248,9 +268,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       // 3. Logout from Firebase
       await signOut(authInstance);
-      
-      // 4. Sign in anonymously
-      await signInAnonymously(authInstance);
     } catch (error) {
       console.error('[AuthProvider] ❌ Sign out error:', error);
     } finally {

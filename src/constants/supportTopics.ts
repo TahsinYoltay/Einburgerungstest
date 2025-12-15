@@ -57,7 +57,7 @@ export const supportTopics: SupportTopic[] = [
     key: 'billingPayments',
     labelKey: 'account.help.billingPayments',
     descriptionKey: 'account.help.billingPaymentsDescription',
-    defaultLabel: 'Billing & Payments',
+    defaultLabel: 'Billing & Subscriptions',
     defaultDescription: 'Manage subscriptions, receipts, and in-app purchase questions.',
     icon: 'credit-card-outline',
     section: 'faq',

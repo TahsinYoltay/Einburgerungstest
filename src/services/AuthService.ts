@@ -213,7 +213,7 @@ class AuthService {
    * IMPORTANT: Links to anonymous user to preserve subscriptions (same as Google flow).
    * @returns success, error, suggestionKey, and uidChanged flag for auto-restore
    */
-  async createUserWithEmailAndPassword(email: string, password: string): Promise<{ success: boolean; error?: string; suggestionKey?: string; previousUid?: string; uidChanged?: boolean }> {
+  async createUserWithEmailAndPassword(email: string, password: string, displayName: string): Promise<{ success: boolean; error?: string; suggestionKey?: string; previousUid?: string; uidChanged?: boolean }> {
     try {
       console.log('[AuthService] Creating account with email...');
       
@@ -245,6 +245,9 @@ class AuthService {
         
         try {
           await currentUser.linkWithCredential(credential);
+          if (displayName) {
+            await currentUser.updateProfile({ displayName });
+          }
           console.log('[AuthService] ✅ Successfully linked email to anonymous user (UID preserved)');
           return { success: true };
         } catch (linkError: any) {

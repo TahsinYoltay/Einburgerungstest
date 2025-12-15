@@ -416,6 +416,7 @@ const WebReaderScreen = () => {
       <RatingPrompt 
         visible={showRatingPrompt} 
         onDismiss={() => setShowRatingPrompt(false)} 
+        source="auto"
       />
       <PaywallModal 
         visible={showPaywall} 

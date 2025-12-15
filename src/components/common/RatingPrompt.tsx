@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Modal, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, StyleSheet, Modal, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import { Surface, Text, Button, useTheme, IconButton, TextInput } from 'react-native-paper';
 import Rate, { AndroidMarket } from 'react-native-rate-app';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../store/hooks';
+import { useAppSelector } from '../../store/hooks';
 import { recordPromptOutcome, PromptOutcome, RatingStatus } from '../../store/slices/ratingSlice';
 import { APP_CONFIG } from '../../config/appConfig';
+import { submitRatingFeedback, RatingFeedbackSource } from '../../services/RatingFeedbackService';
+import { selectAuthState } from '../../store/slices/authSlice';
 
 interface RatingPromptProps {
   visible: boolean;
   onDismiss: () => void;
   appleAppID?: string;
   googlePackageName?: string;
+  source?: RatingFeedbackSource;
 }
 
 // Internal Star Component
@@ -38,15 +42,18 @@ export const RatingPrompt: React.FC<RatingPromptProps> = ({
   visible, 
   onDismiss,
   appleAppID = APP_CONFIG.IOS_APP_ID, 
-  googlePackageName = APP_CONFIG.ANDROID_PACKAGE_NAME
+  googlePackageName = APP_CONFIG.ANDROID_PACKAGE_NAME,
+  source = 'auto'
 }) => {
   const theme = useTheme();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const dispatch = useAppDispatch();
+  const auth = useAppSelector(selectAuthState);
   
   const [step, setStep] = useState<'rate' | 'feedback'>('rate');
   const [userRating, setUserRating] = useState(0);
   const [feedbackText, setFeedbackText] = useState('');
+  const [isSubmittingFeedback, setIsSubmittingFeedback] = useState(false);
 
   // Reset state when visible changes
   useEffect(() => {
@@ -94,18 +101,31 @@ export const RatingPrompt: React.FC<RatingPromptProps> = ({
     }, 300);
   };
 
-  const submitFeedback = () => {
-    // Mock submission log
-    console.log('------------------------------------------------');
-    console.log('FEEDBACK SUBMITTED');
-    console.log('Rating:', userRating);
-    console.log('Message:', feedbackText);
-    console.log('------------------------------------------------');
-    
-    // Here you would typically make an API call to your backend
-    // e.g. await api.sendFeedback({ rating: userRating, message: feedbackText });
+  const submitFeedback = async () => {
+    if (!feedbackText.trim()) {
+      return;
+    }
 
-    handleClose('negative_feedback');
+    try {
+      setIsSubmittingFeedback(true);
+      await submitRatingFeedback({
+        rating: userRating,
+        message: feedbackText.trim(),
+        appLanguage: i18n.language,
+        source,
+        user: {
+          uid: auth.firebaseUid,
+          email: auth.email,
+          isAnonymous: auth.status !== 'authenticated',
+          authProvider: auth.authProvider,
+        },
+      });
+    } catch (error) {
+      Alert.alert(t('common.error'), t('rating.feedbackSubmitError', 'Unable to send feedback right now.'));
+    } finally {
+      setIsSubmittingFeedback(false);
+      handleClose('negative_feedback');
+    }
   };
 
   if (!visible) return null;
@@ -186,7 +206,8 @@ export const RatingPrompt: React.FC<RatingPromptProps> = ({
                   onPress={submitFeedback} 
                   style={styles.submitButton}
                   contentStyle={{ height: 48 }}
-                  disabled={!feedbackText.trim()}
+                  loading={isSubmittingFeedback}
+                  disabled={!feedbackText.trim() || isSubmittingFeedback}
                 >
                   {t('rating.submit_feedback', 'Send Feedback')}
                 </Button>

@@ -8,22 +8,18 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { createStyles } from './SettingsScreen.style';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { selectAuthState, selectIsAnonymous } from '../../../store/slices/authSlice';
-import { 
-  selectHasActiveSubscription,
-  setSubscriptionActive,
-  setSubscriptionNone
-} from '../../../store/slices/subscriptionSlice';
-import { resetExamData, switchExamLanguage } from '../../../store/slices/examSlice';
+import { selectIsAuthenticated } from '../../../store/slices/authSlice';
+import { setSubscriptionActive, setSubscriptionNone } from '../../../store/slices/subscriptionSlice';
+import { resetAllExamUserData, resetExamData, switchExamLanguage } from '../../../store/slices/examSlice';
 import { switchBookLanguage } from '../../../store/slices/bookSlice';
 import { languageManager } from '../../../services/LanguageManager';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 import { RootStackParamList } from '../../../navigations/StackNavigator';
-import { ROUTES } from '../../../constants/routes';
 import { purchaseService } from '../../../services/PurchaseService';
-import { authService } from '../../../services/AuthService';
-import { useAuth } from '../../../providers/AuthProvider';
-import auth, { getAuth, signInAnonymously as firebaseSignInAnonymously } from '@react-native-firebase/auth';
+import { getAuth, signInAnonymously as firebaseSignInAnonymously } from '@react-native-firebase/auth';
+import { clearAllProgress } from '../../../utils/readingProgress';
+import { RatingPrompt } from '../../../components/common/RatingPrompt';
+import { recordPromptShown } from '../../../store/slices/ratingSlice';
 
 const SettingsScreen = () => {
   const { t, i18n } = useTranslation();
@@ -31,14 +27,12 @@ const SettingsScreen = () => {
   const dispatch = useAppDispatch();
   const { isDarkMode, toggleTheme, theme } = useAppTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
-  const { signOut } = useAuth();
   
-  const { isDownloadingLanguage, downloadProgress, currentLanguage: examContentLang } = useAppSelector(state => state.exam);
+  const { isDownloadingLanguage, currentLanguage: examContentLang } = useAppSelector(state => state.exam);
   const { loading: isBookDownloading, currentLanguage: bookContentLang } = useAppSelector(state => state.book);
   const { languages: availableLanguages } = useAppSelector(state => state.content);
-  const authState = useAppSelector(selectAuthState);
-  const isAnonymous = useAppSelector(selectIsAnonymous);
-  const hasActiveSubscription = useAppSelector(selectHasActiveSubscription);
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  const firebaseUid = useAppSelector(state => state.auth.firebaseUid);
   
   const languages = availableLanguages;
   const [examDownloadedStatus, setExamDownloadedStatus] = useState<Record<string, boolean>>({});
@@ -47,6 +41,7 @@ const SettingsScreen = () => {
   const [showExamLangDialog, setShowExamLangDialog] = useState(false);
   const [showBookLangDialog, setShowBookLangDialog] = useState(false);
   const [forceUpdateKey, setForceUpdateKey] = useState(0);
+  const [showRatingPrompt, setShowRatingPrompt] = useState(false);
 
   // Force re-render when screen comes into focus (to reflect auth state changes after login)
   useFocusEffect(
@@ -71,7 +66,50 @@ const SettingsScreen = () => {
   }, [languages, isDownloadingLanguage, isBookDownloading]); 
 
   const handleResetExam = () => {
-    dispatch(resetExamData({}));
+    Alert.alert(
+      t('settings.resetAllProgressConfirmTitle', { defaultValue: 'Reset all progress data?' }),
+      t('settings.resetAllProgressConfirmMsg', {
+        defaultValue:
+          'This will reset all exam progress and results. Favourites and wrong answers will stay.',
+      }),
+      [
+        { text: t('common.cancel'), style: 'cancel' },
+        {
+          text: t('exam.reset', { defaultValue: 'Reset' }),
+          style: 'destructive',
+          onPress: () => dispatch(resetExamData({})),
+        },
+      ]
+    );
+  };
+
+  const handleResetAllData = () => {
+    Alert.alert(
+      t('settings.resetAllDataConfirmTitle', { defaultValue: 'Reset everything?' }),
+      t('settings.resetAllDataConfirmMsg', {
+        defaultValue:
+          'This will reset all progress on this device, including exam results, favourites, wrong answers, and reading progress. Your account will stay signed in.',
+      }),
+      [
+        { text: t('common.cancel'), style: 'cancel' },
+        {
+          text: t('exam.reset', { defaultValue: 'Reset' }),
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              await clearAllProgress(firebaseUid || 'local');
+              dispatch(resetAllExamUserData());
+              Alert.alert(
+                t('common.success'),
+                t('settings.resetAllDataSuccess', { defaultValue: 'Everything has been reset.' })
+              );
+            } catch (error) {
+              Alert.alert(t('common.error'), t('common.error'));
+            }
+          },
+        },
+      ]
+    );
   };
 
   const handleExamLanguageChange = async (langCode: string) => {
@@ -90,6 +128,11 @@ const SettingsScreen = () => {
     } catch (error) {
       Alert.alert(t('common.error'), t('settings.downloadError', { msg: String(error) }));
     }
+  };
+
+  const handleManualRate = () => {
+    dispatch(recordPromptShown());
+    setShowRatingPrompt(true);
   };
 
   const handleRestorePurchases = async () => {
@@ -121,31 +164,6 @@ const SettingsScreen = () => {
     } catch (e) {
       Alert.alert(t('common.error'), t('settings.restoreError', { defaultValue: 'Failed to restore purchases.' }));
     }
-  };
-
-  const handleSignOut = async () => {
-    const hasSubscription = useAppSelector(selectHasActiveSubscription);
-    
-    Alert.alert(
-      t('auth.logoutConfirmTitle', { defaultValue: 'Sign Out?' }),
-      hasSubscription 
-        ? t('auth.logoutWithSubscriptionWarning', { 
-            defaultValue: 'If you sign out, you will lose access to your subscription on this device until you sign in again or restore purchases.\n\nYour subscription will NOT be cancelled.' 
-          })
-        : t('auth.logoutWarning', { 
-            defaultValue: 'Are you sure you want to sign out?' 
-          }),
-      [
-        { text: t('common.cancel'), style: 'cancel' },
-        { 
-          text: t('common.signOut', { defaultValue: 'Sign Out' }), 
-          style: 'destructive',
-          onPress: async () => {
-            await signOut();
-          }
-        }
-      ]
-    );
   };
 
   const handleDeleteAccount = async () => {
@@ -266,89 +284,29 @@ const SettingsScreen = () => {
 
           <Divider style={styles.divider} />
 
-          {!isAnonymous && authState.email ? (
-            <>
-              <View style={styles.row}>
-                <View>
-                  <Text style={styles.rowTitle}>{t('settings.loggedInAs', { defaultValue: 'Logged in as' })}</Text>
-                  <Text style={styles.rowSubtitle}>{authState.email}</Text>
-                </View>
-                <Button mode="outlined" onPress={handleSignOut} textColor="red">
-                  {t('settings.signOut', 'Sign Out')}
-                </Button>
-              </View>
+          <View style={styles.row}>
+            <View>
+              <Text style={styles.rowTitle}>{t('settings.rateUs', 'Rate Us')}</Text>
+              <Text style={styles.rowSubtitle}>{t('settings.rateUsDesc', 'Share your experience on the store')}</Text>
+            </View>
+            <Button mode="text" onPress={handleManualRate}>
+              {t('settings.rateNow', 'Rate now')}
+            </Button>
+          </View>
 
+          {isAuthenticated && (
+            <>
               <Divider style={styles.divider} />
-
               <View style={styles.row}>
-                <Text style={[styles.rowTitle, { color: theme.colors.error }]}>{t('settings.deleteAccount')}</Text>
-                <Button mode="outlined" onPress={handleDeleteAccount} textColor={theme.colors.error} style={{ borderColor: theme.colors.error }}>
-                  {t('common.delete')}
+                <Text style={[styles.rowTitle, styles.destructiveLabel]}>{t('settings.deleteAccount')}</Text>
+                <Button
+                  mode="outlined"
+                  onPress={handleDeleteAccount}
+                  textColor={theme.colors.error}
+                  style={[styles.rowButton, styles.destructiveButton]}
+                >
+                  {t('common.delete', { defaultValue: 'Delete' })}
                 </Button>
-              </View>
-            </>
-          ) : (
-            <>
-              <View style={styles.row}>
-                 <Text style={styles.rowTitle}>{t('settings.syncProgress', 'Sync Progress')}</Text>
-              </View>
-              <View style={{ paddingHorizontal: 16, paddingBottom: 16, flexDirection: 'row', gap: 10 }}>
-                 <Button 
-                   mode="outlined" 
-                   icon="google" 
-                   onPress={async () => {
-                     console.log('[SettingsScreen] Linking Google account...');
-                     const result = await authService.linkGoogleAccount();
-                     
-                     if (result.success) {
-                       // Check if UID changed (account switched scenario)
-                       if (result.uidChanged && result.previousUid) {
-                         console.log('[SettingsScreen] ⚠️ UID changed! Auto-restoring purchases...');
-                         console.log('[SettingsScreen] Previous UID:', result.previousUid);
-                         console.log('[SettingsScreen] New UID:', auth().currentUser?.uid);
-                         
-                         // Auto-restore purchases to transfer from old UID to new UID
-                         try {
-                           const restored = await purchaseService.restorePurchases();
-                           if (restored) {
-                             Alert.alert(
-                               t('common.success'), 
-                               t('settings.accountSwitchedWithSubscription', { 
-                                 defaultValue: 'Account linked successfully! Your subscription has been transferred.' 
-                               })
-                             );
-                           } else {
-                             Alert.alert(
-                               t('common.success'),
-                               t('settings.accountSwitchedNoSubscription', {
-                                 defaultValue: 'Account linked successfully!'
-                               })
-                             );
-                           }
-                         } catch (error) {
-                           console.error('[SettingsScreen] ❌ Restore error:', error);
-                           Alert.alert(
-                             t('common.success'),
-                             t('settings.linkSuccessRestoreFailed', { 
-                               defaultValue: 'Account linked! Please use "Restore Purchases" to transfer your subscription.' 
-                             })
-                           );
-                         }
-                       } else {
-                         // Normal linking (UID preserved)
-                         Alert.alert(t('common.success'), t('settings.linkSuccess', { defaultValue: 'Account linked successfully!' }));
-                       }
-                     } else {
-                       Alert.alert(t('common.error'), result.error || t('common.error'));
-                     }
-                   }}
-                   style={{ flex: 1 }}
-                 >
-                   Google
-                 </Button>
-                 <Button mode="outlined" icon="apple" onPress={() => Alert.alert('Coming Soon', 'Apple Sign-In integration pending.')} style={{ flex: 1 }}>
-                   Apple
-                 </Button>
               </View>
             </>
           )}
@@ -357,9 +315,32 @@ const SettingsScreen = () => {
         <View style={styles.sectionCard}>
           <Text style={styles.sectionTitle}>{t('settings.dataManagement')}</Text>
           <View style={styles.row}>
-            <Text style={styles.rowTitle}>{t('exam.resetExams')}</Text>
-            <Button mode="outlined" icon="delete" onPress={handleResetExam} textColor="red">
-              {t('settings.resetAction', 'Delete')}
+            <Text style={styles.rowTitle}>
+              {t('settings.resetAllProgressData', { defaultValue: 'Reset All Progress Data' })}
+            </Text>
+            <Button
+              mode="outlined"
+              onPress={handleResetExam}
+              textColor={theme.colors.error}
+              style={[styles.rowButton, styles.destructiveButton]}
+            >
+              {t('exam.reset', { defaultValue: 'Reset' })}
+            </Button>
+          </View>
+
+          <Divider style={styles.divider} />
+
+          <View style={styles.row}>
+            <Text style={[styles.rowTitle, styles.destructiveLabel]}>
+              {t('settings.resetAllData', { defaultValue: 'Reset Everything' })}
+            </Text>
+            <Button
+              mode="outlined"
+              onPress={handleResetAllData}
+              textColor={theme.colors.error}
+              style={[styles.rowButton, styles.destructiveButton]}
+            >
+              {t('exam.reset', { defaultValue: 'Reset' })}
             </Button>
           </View>
         </View>
@@ -528,6 +509,8 @@ const SettingsScreen = () => {
           </Dialog.Actions>
         </Dialog>
       </Portal>
+
+      <RatingPrompt visible={showRatingPrompt} onDismiss={() => setShowRatingPrompt(false)} source="manual" />
     </SafeAreaView>
   );
 };

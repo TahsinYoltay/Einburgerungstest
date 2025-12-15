@@ -18,6 +18,7 @@ import { selectHasActiveSubscription } from '../../../store/slices/subscriptionS
 import ChangeAvatarDialog from '../../../components/account/ChangeAvatarDialog/ChangeAvatarDialog';
 import UserAvatar from '../../../components/account/UserAvatar/UserAvatar';
 import { avatarService, AvatarServiceError } from '../../../services/AvatarService';
+import DeviceInfo from 'react-native-device-info';
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
 
@@ -37,7 +38,7 @@ const AccountScreen = () => {
   const [avatarUploadProgress, setAvatarUploadProgress] = React.useState<number | undefined>(undefined);
 
   const menuItems = [
-    {
+    !isAnonymous && {
       key: 'profile',
       icon: 'account-circle',
       label: t('account.menu.profile'),
@@ -194,12 +195,12 @@ const AccountScreen = () => {
         </View>
 
         <View style={styles.menuList}>
-          {menuItems.map(item => (
-            <TouchableOpacity key={item.key} style={styles.menuItem} activeOpacity={0.9} onPress={item.onPress}>
+          {menuItems.filter(Boolean).map(item => (
+            <TouchableOpacity key={item!.key} style={styles.menuItem} activeOpacity={0.9} onPress={item!.onPress}>
               <View style={styles.menuIcon}>
-                <Icon name={item.icon as any} size={22} color={theme.colors.onBackground} />
+                <Icon name={item!.icon as any} size={22} color={theme.colors.onBackground} />
               </View>
-              <Text style={styles.menuLabel}>{item.label}</Text>
+              <Text style={styles.menuLabel}>{item!.label}</Text>
               <Icon name="chevron-right" size={20} color={theme.colors.onSurface} />
             </TouchableOpacity>
           ))}
@@ -209,6 +210,12 @@ const AccountScreen = () => {
           <Icon name={!isAnonymous ? 'logout' : 'login'} size={20} color="#D32F2F" />
           <Text style={styles.logoutText}>{!isAnonymous ? t('account.logout') : t('account.signIn')}</Text>
         </TouchableOpacity>
+
+        <View style={styles.footer}>
+          <Text style={styles.versionText}>
+            {t('account.versionLabel', { defaultValue: 'Version' })} {DeviceInfo.getVersion()}
+          </Text>
+        </View>
       </ScrollView>
 
       <ChangeAvatarDialog

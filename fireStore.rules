@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // App can create tickets, but cannot read/update/delete them from the client
+    match /supportTickets/{ticketId} {
+      allow create: if isSignedIn();
+      allow read, update, delete: if false;
+    }
+
+    // App can submit rating feedback (low-star flow); no client read/update/delete
+    match /ratingFeedback/{feedbackId} {
+      allow create: if isSignedIn();
+      allow read, update, delete: if false;
+    }
+
+    // App can only queue emails to support@... (prevents abuse)
+    match /mail/{mailId} {
+      allow create: if isSignedIn()
+        && request.resource.data.to == "support@eywasoft.co.uk";
+      allow read, update, delete: if false;
+    }
+
+    // Default: deny everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
