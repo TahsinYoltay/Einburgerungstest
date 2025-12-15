@@ -122,4 +122,16 @@ export const createStyles = (theme: MD3Theme) =>
       fontWeight: '800',
       fontSize: 16,
     },
+    footer: {
+      marginTop: 12,
+      paddingHorizontal: 4,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+    },
+    versionText: {
+      fontSize: 12,
+      color: theme.colors.onSurfaceVariant,
+      opacity: 0.8,
+    },
   });

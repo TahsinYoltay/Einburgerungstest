@@ -342,6 +342,16 @@ const examSlice = createSlice({
         state.currentExam = initialState.currentExam;
       }
     },
+    resetAllExamUserData: (state) => {
+      state.examHistory = [];
+      state.exams = state.exams.map(e => ({ ...e, attempts: [], lastAttempt: undefined }));
+      state.inProgress = {};
+      state.currentExam = initialState.currentExam;
+      state.questionStats = {};
+      state.favoriteQuestions = [];
+      state.loading = false;
+      state.error = null;
+    },
     resetExam: (state) => {
       state.currentExam = initialState.currentExam;
     },
@@ -571,6 +581,7 @@ export const {
   startExam,
   resetExam,
   resetExamData,
+  resetAllExamUserData,
   setCurrentQuestionIndex,
   goToNextQuestion,
   goToPreviousQuestion,

@@ -324,6 +324,7 @@ const ExamResults = () => {
       <RatingPrompt 
         visible={showRatingPrompt} 
         onDismiss={() => setShowRatingPrompt(false)} 
+        source="auto"
       />
     </SafeAreaView>
   );

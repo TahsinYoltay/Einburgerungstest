@@ -67,4 +67,14 @@ export const createStyles = (theme: MD3Theme) => StyleSheet.create({
     backgroundColor: theme.colors.outline,
     height: 1,
   },
+  rowButton: {
+    borderRadius: 12,
+    minWidth: 110,
+  },
+  destructiveLabel: {
+    color: theme.colors.error,
+  },
+  destructiveButton: {
+    borderColor: theme.colors.error,
+  },
 });

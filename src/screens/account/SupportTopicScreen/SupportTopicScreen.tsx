@@ -24,6 +24,7 @@ import { supportTopics, SupportTopicKey, IconName } from '../../../constants/sup
 import { createStyles } from './SupportTopicScreen.styles';
 import { contentManager } from '../../../services/ContentManager';
 import { HelpContentData, ContentBlock, SectionData } from '../../../types/content';
+import { APP_CONFIG } from '../../../config/appConfig';
 
 // Enable LayoutAnimation on Android
 if (Platform.OS === 'android') {
@@ -47,7 +48,31 @@ const SupportTopicScreen = () => {
   const handleClose = () => navigation.popToTop();
   const handleBack = () => navigation.goBack();
   const handleEmailPress = async () => {
-    const mailto = 'mailto:support@eywasoft.uk';
+    const mailto = `mailto:${APP_CONFIG.SUPPORT_EMAIL}`;
+    try {
+      const canOpen = await Linking.canOpenURL(mailto);
+      if (canOpen) {
+        await Linking.openURL(mailto);
+      }
+    } catch (error) {
+      console.warn('Unable to open email client', error);
+    }
+  };
+
+  const handleAccountSupportForm = () => {
+    navigation.navigate(ROUTES.SUPPORT_REQUEST, {
+      kind: 'bug',
+      initialCategory: 'account',
+      initialSubject: t('account.help.accountSupportSubject', { defaultValue: 'Account issue' }),
+      initialMessage: t('account.help.accountSupportPrefill', {
+        defaultValue: 'Describe your sign-in or account issue. Include the email you use (or want to use).',
+      }),
+    });
+  };
+
+  const handleAccountSupportEmail = async () => {
+    const subject = `[LifeInTheUK] Account issue`;
+    const mailto = `mailto:${APP_CONFIG.SUPPORT_EMAIL}?subject=${encodeURIComponent(subject)}`;
     try {
       const canOpen = await Linking.canOpenURL(mailto);
       if (canOpen) {
@@ -61,6 +86,7 @@ const SupportTopicScreen = () => {
   const params = (route.params || {}) as Partial<{ topicKey: SupportTopicKey }>;
   const topicKey = params.topicKey;
   const isDynamicTopic = topicKey === 'exams' || topicKey === 'gettingStarted';
+  const isAccountTopic = topicKey === 'accountIssues';
 
   useEffect(() => {
     if (isDynamicTopic) {
@@ -210,6 +236,54 @@ const SupportTopicScreen = () => {
     );
   };
 
+  const renderAccountTopic = () => {
+    const bullets = [
+      t('account.help.accountIssuesHint1', { defaultValue: 'Use the same sign-in method (Apple/Google/Email) you used to purchase.' }),
+      t('account.help.accountIssuesHint2', { defaultValue: 'If you changed devices, try “Restore purchases” in Settings.' }),
+      t('account.help.accountIssuesHint3', { defaultValue: 'To change email, contact us with the current and new email.' }),
+    ];
+
+    return (
+      <>
+        <View style={styles.hero}>
+          <View style={styles.heroIcon}>
+            <Icon name={iconName} size={26} color={theme.colors.primary} />
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.heroTitle}>{title}</Text>
+            <Text style={styles.heroSubtitle}>{t('account.help.accountIssuesDescription')}</Text>
+          </View>
+        </View>
+
+        <View style={styles.bodyCard}>
+          <Text style={styles.sectionTitle}>{t('account.help.accountIssuesChecklistTitle', { defaultValue: 'Quick checks' })}</Text>
+          <View style={{ gap: 8 }}>
+            {bullets.map((b, idx) => renderBullet(b, idx))}
+          </View>
+        </View>
+
+        <View style={styles.bodyCard}>
+          <Text style={styles.sectionTitle}>{t('account.help.accountSupportCtaTitle', { defaultValue: 'Still stuck?' })}</Text>
+          <Text style={[styles.paragraph, { marginBottom: 12 }]}>
+            {t('account.help.accountSupportCtaDesc', {
+              defaultValue: 'Send us your account email and a short description. We will help you get back in.',
+            })}
+          </Text>
+          <View style={styles.helpfulRow}>
+            <TouchableOpacity style={styles.pillButton} activeOpacity={0.9} onPress={handleAccountSupportForm}>
+              <Icon name="chat-processing" size={18} color={theme.colors.primary} />
+              <Text style={styles.pillLabel}>{t('account.help.accountSupportButton', { defaultValue: 'Open support form' })}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.pillButton} activeOpacity={0.9} onPress={handleAccountSupportEmail}>
+              <Icon name="email-outline" size={18} color={theme.colors.primary} />
+              <Text style={styles.pillLabel}>{t('account.help.accountEmailButton', { defaultValue: 'Email support' })}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       <StatusBar barStyle={theme.dark ? 'light-content' : 'dark-content'} />
@@ -232,6 +306,8 @@ const SupportTopicScreen = () => {
       >
         {isDynamicTopic ? (
           renderDynamicContent()
+        ) : isAccountTopic ? (
+          renderAccountTopic()
         ) : (
           <>
             <View style={styles.hero}>
