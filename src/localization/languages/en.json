@@ -7,6 +7,14 @@
     "progress": "Progress",
     "settings": "Settings"
   },
+  "splash": {
+    "title": "Life in the UK Test",
+    "tagline": "Master the material.\nSecure your citizenship.",
+    "loading": "Loading content...",
+    "version": "v{{version}}",
+    "retry": "Retry",
+    "genericError": "Unable to load content right now."
+  },
   "home": {
     "welcome": "Welcome to Life in the UK Test",
     "greeting": "Good Morning, {{name}}",

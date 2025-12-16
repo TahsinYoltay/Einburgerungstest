@@ -20,6 +20,19 @@ const lightColors = {
   card: '#FFFFFF',
   border: '#E0E0E0',
   outline: '#E0E0E0', // Lighter outline for separators in Light Mode
+
+  // Splash screen (app bootstrap)
+  splashGradientStart: '#1A4AB0',
+  splashGradientMid: '#256AF4',
+  splashGradientEnd: '#5A8EF7',
+  splashGlowTop: 'rgba(255,255,255,0.10)',
+  splashGlowBottom: 'rgba(16,22,34,0.20)',
+  splashCardBackground: 'rgba(255,255,255,0.10)',
+  splashCardBorder: 'rgba(255,255,255,0.20)',
+  splashTextPrimary: '#FFFFFF',
+  splashTextSecondary: 'rgba(239,246,255,0.90)',
+  splashProgressTrack: 'rgba(0,0,0,0.20)',
+  splashProgressFill: '#FFFFFF',
 };
 
 const darkColors = {
@@ -36,6 +49,19 @@ const darkColors = {
   notification: '#F4212E',
   card: '#273340', // Matches surface for cards
   border: '#5F6C7B', // Lighter border for better visibility
+
+  // Splash screen (app bootstrap)
+  splashGradientStart: '#1A4AB0',
+  splashGradientMid: '#256AF4',
+  splashGradientEnd: '#5A8EF7',
+  splashGlowTop: 'rgba(255,255,255,0.08)',
+  splashGlowBottom: 'rgba(0,0,0,0.25)',
+  splashCardBackground: 'rgba(255,255,255,0.10)',
+  splashCardBorder: 'rgba(255,255,255,0.20)',
+  splashTextPrimary: '#FFFFFF',
+  splashTextSecondary: 'rgba(239,246,255,0.90)',
+  splashProgressTrack: 'rgba(0,0,0,0.25)',
+  splashProgressFill: '#FFFFFF',
 };
 
 // Define MD3 font configuration

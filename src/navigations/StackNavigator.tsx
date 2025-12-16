@@ -18,8 +18,10 @@ import PrivacyPolicyScreen from '../screens/account/PrivacyPolicyScreen/PrivacyP
 import BillingSupportScreen from '../screens/account/BillingSupportScreen/BillingSupportScreen';
 import { SupportTopicKey } from '../constants/supportTopics';
 import ReviewQuestionsScreen from '../screens/review/ReviewQuestionsScreen';
+import SplashScreen from '../screens/splash/SplashScreen/SplashScreen';
 
 export type RootStackParamList = {
+  [ROUTES.SPLASH]: undefined;
   [ROUTES.AUTH]: undefined;
   [ROUTES.LOGIN]: undefined;
   [ROUTES.REGISTER]: undefined;
@@ -54,8 +56,9 @@ function RootNavigator() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName={ROUTES.HOME}
+      initialRouteName={ROUTES.SPLASH}
     >
+      <Stack.Screen name={ROUTES.SPLASH} component={SplashScreen} />
       <Stack.Screen name={ROUTES.LOGIN} component={LoginScreen} />
       <Stack.Screen name={ROUTES.REGISTER} component={RegisterScreen} />
       <Stack.Screen name={ROUTES.FORGOT_PASSWORD} component={ForgotPasswordScreen} />

@@ -6,4 +6,11 @@
         <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
     </style>
 
+    <!-- Launch theme shown while React Native loads. MainActivity switches to AppTheme onCreate. -->
+    <style name="AppTheme.Splash" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
 </resources>

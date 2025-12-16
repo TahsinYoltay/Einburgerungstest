@@ -1,4 +1,5 @@
 export const ROUTES = {
+  SPLASH: 'Splash',
   AUTH: 'Auth',
   LOGIN: 'Login',
   REGISTER: 'Register',

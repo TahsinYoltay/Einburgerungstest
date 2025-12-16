@@ -58,6 +58,15 @@ class ContentEngine {
       return JSON.parse(content);
     } catch (error) {
       console.warn('ContentEngine: Failed to fetch master manifest', error);
+      // Fallback to cached manifest (offline / transient failures)
+      try {
+        if (await RNFS.exists(localPath)) {
+          const content = await RNFS.readFile(localPath, 'utf8');
+          return JSON.parse(content);
+        }
+      } catch (readError) {
+        console.error('ContentEngine: Failed to read cached manifest', readError);
+      }
       return null;
     }
   }

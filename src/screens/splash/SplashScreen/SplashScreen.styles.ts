@@ -1,0 +1,138 @@
+import { StyleSheet } from 'react-native';
+import type { AppTheme } from '../../../providers/ThemeProvider';
+
+export const createStyles = (theme: AppTheme) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.colors.splashGradientMid,
+    },
+    background: {
+      ...StyleSheet.absoluteFillObject,
+      overflow: 'hidden',
+    },
+    gradientStart: {
+      position: 'absolute',
+      top: '-35%',
+      left: '-35%',
+      width: '120%',
+      height: '120%',
+      backgroundColor: theme.colors.splashGradientStart,
+      opacity: 0.6,
+      transform: [{ rotate: '-18deg' }],
+    },
+    gradientEnd: {
+      position: 'absolute',
+      bottom: '-35%',
+      right: '-35%',
+      width: '120%',
+      height: '120%',
+      backgroundColor: theme.colors.splashGradientEnd,
+      opacity: 0.6,
+      transform: [{ rotate: '-18deg' }],
+    },
+    glowTop: {
+      position: 'absolute',
+      top: '-20%',
+      right: '-20%',
+      width: '80%',
+      height: '50%',
+      borderRadius: 9999,
+      backgroundColor: theme.colors.splashGlowTop,
+      opacity: 0.9,
+    },
+    glowBottom: {
+      position: 'absolute',
+      top: '40%',
+      left: '-20%',
+      width: '60%',
+      height: '40%',
+      borderRadius: 9999,
+      backgroundColor: theme.colors.splashGlowBottom,
+      opacity: 0.9,
+    },
+    content: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingHorizontal: 32,
+    },
+    logoCard: {
+      marginBottom: 32,
+      padding: 24,
+      borderRadius: 18,
+      backgroundColor: theme.colors.splashCardBackground,
+      borderWidth: 1,
+      borderColor: theme.colors.splashCardBorder,
+    },
+    logo: {
+      width: 80,
+      height: 80,
+      resizeMode: 'contain',
+    },
+    title: {
+      color: theme.colors.splashTextPrimary,
+      fontSize: 40,
+      fontWeight: '800',
+      letterSpacing: -0.5,
+      textAlign: 'center',
+      marginBottom: 12,
+    },
+    tagline: {
+      color: theme.colors.splashTextSecondary,
+      fontSize: 18,
+      fontWeight: '600',
+      lineHeight: 26,
+      textAlign: 'center',
+      maxWidth: 320,
+      opacity: 0.95,
+    },
+    bottom: {
+      width: '100%',
+      paddingHorizontal: 32,
+      paddingBottom: 24,
+    },
+    progressWrapper: {
+      width: '100%',
+      maxWidth: 320,
+      alignSelf: 'center',
+      gap: 10,
+    },
+    loadingText: {
+      color: theme.colors.splashTextSecondary,
+      fontSize: 14,
+      fontWeight: '600',
+      letterSpacing: 0.2,
+    },
+    progressTrack: {
+      height: 6,
+      width: '100%',
+      borderRadius: 999,
+      overflow: 'hidden',
+      backgroundColor: theme.colors.splashProgressTrack,
+    },
+    progressFill: {
+      height: '100%',
+      borderRadius: 999,
+      backgroundColor: theme.colors.splashProgressFill,
+    },
+    versionText: {
+      color: theme.colors.splashTextSecondary,
+      fontSize: 12,
+      textAlign: 'center',
+      marginTop: 12,
+      opacity: 0.75,
+    },
+    errorText: {
+      color: theme.colors.splashTextPrimary,
+      fontSize: 14,
+      textAlign: 'center',
+      marginTop: 12,
+      opacity: 0.9,
+    },
+    retryButton: {
+      marginTop: 12,
+      alignSelf: 'center',
+    },
+  });
+

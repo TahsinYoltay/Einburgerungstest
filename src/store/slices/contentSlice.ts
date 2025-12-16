@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { contentEngine } from '../../services/ContentEngine';
-import { HomeContent, MasterManifest } from '../../types/content';
+import { HomeContent } from '../../types/content';
 import { ExamManifestEntry, LanguageOption } from '../../types/exam';
 
 // Default/Fallback Data
@@ -31,11 +31,20 @@ const initialState: ContentState = {
 
 export const syncContent = createAsyncThunk(
   'content/sync',
-  async (_, { getState, dispatch }) => {
+  async () => {
     // 1. Fetch Master Manifest
     const manifest = await contentEngine.fetchMasterManifest();
     if (!manifest) {
-      throw new Error("Failed to fetch manifest");
+      // Offline/first-run fallback: use cached modules if available, otherwise bundled defaults.
+      const cachedExams = await contentEngine.loadLocalModuleData<ExamManifestEntry[]>('exams');
+      const cachedLanguages = await contentEngine.loadLocalModuleData<LanguageOption[]>('languages');
+      const cachedHome = await contentEngine.loadLocalModuleData<HomeContent>('home');
+
+      return {
+        exams: cachedExams || defaultExams,
+        languages: cachedLanguages || defaultLanguages,
+        home: cachedHome || null,
+      };
     }
 
     // 2. Get Local Versions

@@ -55,19 +55,9 @@ const AppContent = () => {
   /**
    * Initial Load - Phase 6: App Initialization Fix
    * RevenueCat and Auth initialization moved to AuthProvider
-   * App.tsx now only handles content sync
+   * Initial content sync is handled by SplashScreen
+   * App.tsx handles foreground refresh and flushes
    */
-  useEffect(() => {
-    console.log('[App] 🚀 Syncing content on app launch...');
-    
-    dispatch(syncContent()).then(() => {
-      // Ensure content is loaded on startup for the current language
-      dispatch(switchExamLanguage(currentLanguage));
-      dispatch(switchBookLanguage(currentLanguage));
-      console.log('[App] ✅ Content sync complete');
-    });
-  }, [dispatch]); // Run once on mount (using initial currentLanguage)
-
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
       if (appState.current === 'active' && nextAppState.match(/inactive|background/)) {
