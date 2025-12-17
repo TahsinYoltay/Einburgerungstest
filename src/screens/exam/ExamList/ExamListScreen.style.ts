@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { MD3Theme } from 'react-native-paper';
 
 export const createStyles = (theme: MD3Theme) => StyleSheet.create({
@@ -8,7 +8,7 @@ export const createStyles = (theme: MD3Theme) => StyleSheet.create({
   },
   scrollContent: {
     paddingHorizontal: 16,
-    paddingBottom: 32,
+    paddingBottom: Platform.OS === 'android' ? 12 : 32,
   },
   heroCard: {
     backgroundColor: '#1E63F0',

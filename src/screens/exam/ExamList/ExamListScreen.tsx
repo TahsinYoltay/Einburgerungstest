@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
-import { ScrollView, View, Pressable, RefreshControl, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Pressable, RefreshControl, TouchableOpacity, Platform } from 'react-native';
 import Icon from '@react-native-vector-icons/material-design-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Text } from 'react-native-paper';
@@ -207,7 +207,7 @@ const ExamListScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={Platform.OS === 'android' ? ['top'] : undefined}>
       <ScrollView 
         contentContainerStyle={styles.scrollContent}
         refreshControl={

@@ -2,6 +2,7 @@ import { RouteProp, useRoute, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useMemo, useRef, useState, useEffect } from 'react';
 import { View } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { WebView } from 'react-native-webview';
 import { Appbar, IconButton, Divider, Surface, Button, Text, ActivityIndicator } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
@@ -27,6 +28,7 @@ type ReaderRouteProp = RouteProp<RootStackParamList, typeof ROUTES.READER>;
 const WebReaderScreen = () => {
   const { theme, isDarkMode, toggleTheme } = useAppTheme();
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const styles = useMemo(() => createStyles(theme), [theme]);
   const route = useRoute<ReaderRouteProp>();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -56,6 +58,7 @@ const WebReaderScreen = () => {
   const [currentMatch, setCurrentMatch] = useState(0);
   const [showRatingPrompt, setShowRatingPrompt] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
+  const bottomBarPadding = Math.max(insets.bottom, 16) + 8;
 
   const targetSection = useMemo(() => {
     if (!bookData) return null;
@@ -336,7 +339,7 @@ const WebReaderScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top']}>
       <Appbar.Header style={{ backgroundColor: theme.colors.surface, elevation: 0 }}>
         <Appbar.Action icon="close" onPress={() => navigation.popToTop()} />
         <View style={{ flex: 1 }} />
@@ -392,7 +395,7 @@ const WebReaderScreen = () => {
         )}
       />
       
-      <Surface style={[styles.bottomBar, { backgroundColor: theme.colors.surface, borderTopColor: theme.colors.outline }]}>
+      <Surface style={[styles.bottomBar, { paddingBottom: bottomBarPadding, backgroundColor: theme.colors.surface, borderTopColor: theme.colors.outline }]}>
         <Button 
           mode={isRead ? "contained" : "outlined"} 
           onPress={handleMarkRead}
@@ -422,7 +425,7 @@ const WebReaderScreen = () => {
         visible={showPaywall} 
         onDismiss={() => setShowPaywall(false)}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

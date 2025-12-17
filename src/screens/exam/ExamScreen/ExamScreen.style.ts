@@ -1,8 +1,5 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { MD3Theme } from 'react-native-paper';
-
-const { width } = Dimensions.get('window');
-const buttonWidth = (width - 64) / 3; // Calculate button width (screen width minus padding, divided by 3)
 
 export const createStyles = (theme: MD3Theme) => StyleSheet.create({
   container: {
@@ -66,12 +63,19 @@ export const createStyles = (theme: MD3Theme) => StyleSheet.create({
     flexGrow: 1,
   },
   footer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 16,
     borderTopWidth: 1,
     borderTopColor: theme.colors.outline,
     backgroundColor: theme.colors.surface, // Footer might need to stand out or match bg
+  },
+  footerButtonsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+  },
+  footerInset: {
+    backgroundColor: theme.colors.surface,
   },
   button: {
     // width: buttonWidth, // Removing fixed width to allow flex sizing in footer
@@ -82,6 +86,8 @@ export const createStyles = (theme: MD3Theme) => StyleSheet.create({
   buttonContent: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
+    height: 44,
   },
   loadingText: {
     marginTop: 16,

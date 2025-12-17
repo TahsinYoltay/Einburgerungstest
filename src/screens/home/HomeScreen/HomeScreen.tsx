@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
-import { ScrollView, RefreshControl, View, Image, TouchableOpacity } from 'react-native';
+import { ScrollView, RefreshControl, View, Image, TouchableOpacity, Platform } from 'react-native';
 import { useNavigation, useFocusEffect, CompositeNavigationProp } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -206,7 +206,7 @@ const HomeScreen = () => {
   const goToAccount = () => navigation.navigate(ROUTES.ACCOUNT);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={Platform.OS === 'android' ? ['top'] : undefined}>
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         refreshControl={

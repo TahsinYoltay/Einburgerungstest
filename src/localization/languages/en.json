@@ -599,6 +599,9 @@
     "featureStudyGuide": "Official Study Guide Content",
     "featureAdFree": "Ad-Free Experience",
     "featureOffline": "Offline Access",
+    "offeringsUnavailableTitle": "Plans unavailable",
+    "offeringsUnavailable": "We couldn't load subscription plans right now. Please try again later.",
+    "offeringsUnavailableAndroid": "We couldn't load subscription plans from Google Play. Make sure the app is installed from Google Play (Internal Testing/Internal App Sharing) with a tester account, and that your products are active and attached to the RevenueCat offering.",
     "restorePurchases": "Restore Purchases",
     "renewalText": "Renewals are automatic unless cancelled 24h prior.",
     "disclaimer": "Payment will be charged to your Store Account at confirmation of purchase. Subscription automatically renews unless auto-renew is turned off at least 24 hours before the end of the current period."

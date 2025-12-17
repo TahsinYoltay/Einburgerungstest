@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { View, ScrollView, TouchableOpacity, ActivityIndicator, RefreshControl } from 'react-native';
+import { View, ScrollView, TouchableOpacity, ActivityIndicator, RefreshControl, Platform } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
@@ -32,7 +32,7 @@ interface EnhancedChapter extends Omit<Chapter, 'subSections'> {
 const BookScreen = () => {
   const { t } = useTranslation();
   const navigation = useNavigation<BookScreenNavigationProp>();
-    const { theme } = useAppTheme();
+  const { theme } = useAppTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
   const firebaseUid = useAppSelector(state => state.auth.firebaseUid);
   const enableCloudSync = useAppSelector(state => state.auth.status === 'authenticated');
@@ -321,7 +321,7 @@ const BookScreen = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={Platform.OS === 'android' ? ['top'] : undefined}>
       <ScrollView 
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}

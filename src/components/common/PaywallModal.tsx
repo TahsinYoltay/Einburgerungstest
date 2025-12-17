@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { View, ScrollView, Linking, Alert, Modal as RNModal } from 'react-native';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { View, ScrollView, Linking, Alert, Modal as RNModal, Platform } from 'react-native';
 import { Text, Button, Card, ActivityIndicator, IconButton } from 'react-native-paper';
 import { PurchasesPackage } from 'react-native-purchases';
 import { purchaseService } from '../../services/PurchaseService';
@@ -33,24 +33,45 @@ const PaywallModal: React.FC<PaywallModalProps> = ({ visible, onDismiss, onPurch
   const [loading, setLoading] = useState(false);
   const [purchasing, setPurchasing] = useState(false);
   const [selectedPackageId, setSelectedPackageId] = useState<string | null>(null);
+  const [offeringsError, setOfferingsError] = useState<string | null>(null);
+
+  const loadOfferings = useCallback(async () => {
+    setLoading(true);
+    setOfferingsError(null);
+    try {
+      const offering = await purchaseService.getOfferings();
+
+      const availablePackages = offering?.availablePackages ?? [];
+      setPackages(availablePackages);
+
+      if (availablePackages.length > 0) {
+        setSelectedPackageId(availablePackages[0].identifier);
+      } else {
+        setSelectedPackageId(null);
+        setOfferingsError(
+          Platform.OS === 'android'
+            ? t('paywall.offeringsUnavailableAndroid')
+            : t('paywall.offeringsUnavailable')
+        );
+      }
+    } catch (error) {
+      console.error('[PaywallModal] Failed to load offerings:', error);
+      setPackages([]);
+      setSelectedPackageId(null);
+      setOfferingsError(
+        Platform.OS === 'android'
+          ? t('paywall.offeringsUnavailableAndroid')
+          : t('paywall.offeringsUnavailable')
+      );
+    } finally {
+      setLoading(false);
+    }
+  }, [t]);
 
   useEffect(() => {
-    const loadOfferings = async () => {
-      setLoading(true);
-      const offerings = await purchaseService.getOfferings();
-      if (offerings && offerings.availablePackages) {
-        setPackages(offerings.availablePackages);
-        if (offerings.availablePackages.length > 0) {
-          setSelectedPackageId(offerings.availablePackages[0].identifier);
-        }
-      }
-      setLoading(false);
-    };
-
-    if (visible) {
-      loadOfferings();
-    }
-  }, [visible]);
+    if (!visible) return;
+    void loadOfferings();
+  }, [loadOfferings, visible]);
 
   const handlePurchase = async (pack: PurchasesPackage) => {
     setPurchasing(true);
@@ -234,6 +255,19 @@ const PaywallModal: React.FC<PaywallModalProps> = ({ visible, onDismiss, onPurch
 
             {loading ? (
               <ActivityIndicator size="large" color={theme.colors.primary} />
+            ) : offeringsError ? (
+              <View style={styles.emptyState}>
+                <Text style={styles.emptyStateTitle}>{t('paywall.offeringsUnavailableTitle')}</Text>
+                <Text style={styles.emptyStateMessage}>{offeringsError}</Text>
+                <Button
+                  mode="outlined"
+                  onPress={() => void loadOfferings()}
+                  style={styles.emptyStateButton}
+                  textColor={theme.colors.primary}
+                >
+                  {t('common.retry')}
+                </Button>
+              </View>
             ) : (
               <View style={styles.packagesContainer}>
                 {packages.map((pack, index) => {

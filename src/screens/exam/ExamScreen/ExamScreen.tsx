@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { View, ScrollView, Alert, ActivityIndicator, Platform } from 'react-native';
+import { Dimensions, View, ScrollView, Alert, ActivityIndicator, Platform } from 'react-native';
 import { Button, Text, ProgressBar, Dialog, Portal, IconButton } from 'react-native-paper';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import QuestionCard from '../../../components/exam/QuestionCard/QuestionCard';
 import { RootStackParamList } from '../../../navigations/StackNavigator';
 import { ROUTES } from '../../../constants/routes';
@@ -36,9 +36,18 @@ const ExamScreen = () => {
   const { t, i18n } = useTranslation();
   const { theme } = useAppTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
+  const insets = useSafeAreaInsets();
   const route = useRoute<ExamScreenRouteProp>();
   const navigation = useNavigation<ExamScreenNavigationProp>();
   const dispatch = useAppDispatch();
+  const isAndroid = Platform.OS === 'android';
+
+  const screenWindowHeightDiff =
+    Dimensions.get('screen').height - Dimensions.get('window').height;
+  const isEdgeToEdgeAndroid = isAndroid && Math.abs(screenWindowHeightDiff) < 2;
+  const footerInset = isAndroid
+    ? (isEdgeToEdgeAndroid ? Math.max(insets.bottom, 16) : insets.bottom)
+    : insets.bottom;
 
   // Get the exam ID from route params
   const { id: examId, restart } = route.params as { id: string; restart?: boolean };
@@ -386,7 +395,7 @@ const ExamScreen = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       <View style={styles.header}>
         <View style={styles.headerRow}>
           <View style={styles.headerLeft}>
@@ -443,46 +452,47 @@ const ExamScreen = () => {
       </ScrollView>
 
       <View style={styles.footer}>
-        <Button
-          mode="outlined"
-          onPress={handlePrevious}
-          disabled={currentQuestionIndex === 0}
-          style={styles.button}
-          contentStyle={styles.buttonContent}
-        >
-          {t('exam.previous')}
-        </Button>
+        <View style={styles.footerButtonsRow}>
+          <Button
+            mode="outlined"
+            onPress={handlePrevious}
+            disabled={currentQuestionIndex === 0}
+            style={styles.button}
+            contentStyle={styles.buttonContent}
+          >
+            {t('exam.previous')}
+          </Button>
 
-        {/* Removed Flag button from here */}
-
-        {reviewFlaggedOnly ? (
-          <Button
-            mode="contained"
-            onPress={handleNext}
-            style={styles.button}
-            contentStyle={styles.buttonContent}
-          >
-            {flaggedCursor < flaggedOrder.length - 1 ? t('exam.next') : t('exam.finishReview')}
-          </Button>
-        ) : currentQuestionIndex < questions.length - 1 ? (
-          <Button
-            mode="contained"
-            onPress={handleNext}
-            style={styles.button}
-            contentStyle={styles.buttonContent}
-          >
-            {t('exam.next')}
-          </Button>
-        ) : (
-          <Button
-            mode="contained"
-            onPress={handleSubmitExam}
-            style={styles.button}
-            contentStyle={styles.buttonContent}
-          >
-            {t('exam.submit')}
-          </Button>
-        )}
+          {reviewFlaggedOnly ? (
+            <Button
+              mode="contained"
+              onPress={handleNext}
+              style={styles.button}
+              contentStyle={styles.buttonContent}
+            >
+              {flaggedCursor < flaggedOrder.length - 1 ? t('exam.next') : t('exam.finishReview')}
+            </Button>
+          ) : currentQuestionIndex < questions.length - 1 ? (
+            <Button
+              mode="contained"
+              onPress={handleNext}
+              style={styles.button}
+              contentStyle={styles.buttonContent}
+            >
+              {t('exam.next')}
+            </Button>
+          ) : (
+            <Button
+              mode="contained"
+              onPress={handleSubmitExam}
+              style={styles.button}
+              contentStyle={styles.buttonContent}
+            >
+              {t('exam.submit')}
+            </Button>
+          )}
+        </View>
+        {footerInset > 0 ? <View style={[styles.footerInset, { height: footerInset }]} /> : null}
       </View>
 
       {/* Language Selection Dialog */}

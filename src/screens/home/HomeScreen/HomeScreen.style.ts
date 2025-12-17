@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { MD3Theme } from 'react-native-paper';
 
 export const createStyles = (theme: MD3Theme) =>
@@ -9,8 +9,8 @@ export const createStyles = (theme: MD3Theme) =>
     },
     scrollContent: {
       paddingHorizontal: 16,
-    //   paddingTop: 12,
-      paddingBottom: 24,
+      //   paddingTop: 12,
+      paddingBottom: Platform.OS === 'android' ? 0 : 24,
     },
     headerRow: {
       flexDirection: 'row',

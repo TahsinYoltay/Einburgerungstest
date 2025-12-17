@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { View, TouchableOpacity, Alert } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Dimensions, Platform, View, TouchableOpacity, Alert } from 'react-native';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Text, ActivityIndicator, Button } from 'react-native-paper';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import Icon from '@react-native-vector-icons/material-design-icons';
@@ -28,6 +28,14 @@ const ReviewQuestionsScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 //   const navigation = useNavigation();
   const dispatch = useAppDispatch();
+  const insets = useSafeAreaInsets();
+  const isAndroid = Platform.OS === 'android';
+
+  // Protect the swipe deck from Android system navigation bar overlay (edge-to-edge)
+  const screenWindowHeightDiff =
+    Dimensions.get('screen').height - Dimensions.get('window').height;
+  const isEdgeToEdgeAndroid = isAndroid && Math.abs(screenWindowHeightDiff) < 2;
+  const androidBottomPadding = isEdgeToEdgeAndroid ? Math.max(insets.bottom, 24) : 0;
   
   const params = route.params as RouteParams;
   const mode = params?.mode || 'favorites';
@@ -207,7 +215,7 @@ const ReviewQuestionsScreen = () => {
        </View>
 
        {/* Content */}
-       <View style={styles.deckContainer}>
+       <View style={[styles.deckContainer, isAndroid ? { paddingBottom: androidBottomPadding } : undefined]}>
           {questions.length === 0 ? (
             <View style={styles.emptyContainer}>
                 <Text style={styles.emptyText}>

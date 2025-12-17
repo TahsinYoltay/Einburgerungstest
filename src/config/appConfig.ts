@@ -8,7 +8,7 @@
 
 export const APP_CONFIG = {
   // Bundle IDs / Package Names (Found in build.gradle / project.pbxproj)
-  ANDROID_PACKAGE_NAME: 'com.lif',
+  ANDROID_PACKAGE_NAME: 'com.eywasoft.lifeintheuk',
   IOS_BUNDLE_ID: 'org.eywasoft.LIF',
 
   // Store IDs
