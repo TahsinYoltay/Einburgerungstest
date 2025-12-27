@@ -321,7 +321,10 @@ const BookScreen = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container} edges={Platform.OS === 'android' ? ['top'] : undefined}>
+    <SafeAreaView
+      style={styles.container}
+      edges={Platform.OS === 'ios' ? ['top', 'left', 'right'] : ['top']}
+    >
       <ScrollView 
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}

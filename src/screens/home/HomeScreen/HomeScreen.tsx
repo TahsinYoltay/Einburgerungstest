@@ -55,7 +55,6 @@ const HomeScreen = () => {
 
   const authState = useAppSelector(state => state.auth);
   const homeContent = useAppSelector(state => state.content.home);
-  const exams = useAppSelector(state => state.exam.exams);
   const subscriptionStatus = useAppSelector(state => state.subscription.status);
   const isPro = subscriptionStatus === 'active';
 
@@ -157,29 +156,24 @@ const HomeScreen = () => {
       });
   }, [chapters, chapterProgresses, readingProgress, isPro, forceUpdateKey]);
 
-  const firstExamId = exams[0]?.id;
-
   const tabNavigate = (routeName: 'HomeTab' | 'BookTab' | 'ExamTab' | 'ProgressTab') => {
     navigation.navigate(routeName as never);
   };
 
-  const handlePracticePress = (examId?: string) => {
-    if (examId) {
-      // Safety check: If we ever link to a locked exam here, block it.
-      // Currently pointing to exams[0] (Exam 1) which is free.
-      // But if we change logic to random exam, we need this:
-      const examIndex = exams.findIndex(e => e.id === examId);
-      const isLocked = examIndex >= 5 && !isPro;
-      
-      if (isLocked) {
-        setShowPaywall(true);
-        return;
-      }
-
-      navigation.navigate(ROUTES.EXAM, { id: examId });
+  const handleMockExamPress = () => {
+    if (!isPro) {
+      setShowPaywall(true);
       return;
     }
-    tabNavigate('ExamTab');
+    navigation.navigate(ROUTES.MOCK_EXAMS);
+  };
+
+  const handleChapterExamPress = () => {
+    if (!isPro) {
+      setShowPaywall(true);
+      return;
+    }
+    navigation.navigate(ROUTES.CHAPTER_EXAMS);
   };
 
   const handleOpenChapter = (chapter: ChapterCard) => {
@@ -206,7 +200,10 @@ const HomeScreen = () => {
   const goToAccount = () => navigation.navigate(ROUTES.ACCOUNT);
 
   return (
-    <SafeAreaView style={styles.container} edges={Platform.OS === 'android' ? ['top'] : undefined}>
+    <SafeAreaView
+      style={styles.container}
+      edges={Platform.OS === 'ios' ? ['top', 'left', 'right'] : ['top']}
+    >
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         refreshControl={
@@ -306,7 +303,7 @@ const HomeScreen = () => {
               icon: 'clipboard-text' as const,
               title: t('home.practice.fullMock', 'Full Mock Exam'),
               description: t('home.practice.fullMockDescription', 'Simulate the full 24-question test.'),
-              onPress: () => handlePracticePress(firstExamId),
+              onPress: handleMockExamPress,
             },
             {
               key: 'quick',
@@ -320,7 +317,7 @@ const HomeScreen = () => {
               icon: 'checkbox-multiple-marked-outline' as const,
               title: t('home.practice.chapterTest', 'Chapter-Specific Test'),
               description: t('home.practice.chapterTestDescription', 'Focus on a single chapter from the guide.'),
-              onPress: () => tabNavigate('BookTab'),
+              onPress: handleChapterExamPress,
             },
           ].map(item => (
             <TouchableOpacity key={item.key} style={styles.practiceCard} activeOpacity={0.9} onPress={item.onPress}>

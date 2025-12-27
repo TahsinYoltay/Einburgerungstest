@@ -4450,5 +4450,677 @@
     "is_free": false,
     "version": 1,
     "updated_at": "2025-11-30T14:34:13.210Z"
+  },
+  {
+    "id": "mock-1",
+    "title": "Mock Exam 1",
+    "mode": "mock",
+    "chapter_ids": [
+      74
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": true,
+    "version": 1,
+    "updated_at": "2025-12-21T10:55:31.821Z"
+  },
+  {
+    "id": "mock-2",
+    "title": "Mock Exam 2",
+    "mode": "mock",
+    "chapter_ids": [
+      75
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T10:55:31.822Z"
+  },
+  {
+    "id": "mock-3",
+    "title": "Mock Exam 3",
+    "mode": "mock",
+    "chapter_ids": [
+      76
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T10:55:31.822Z"
+  },
+  {
+    "id": "mock-4",
+    "title": "Mock Exam 4",
+    "mode": "mock",
+    "chapter_ids": [
+      77
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T10:55:31.822Z"
+  },
+  {
+    "id": "mock-5",
+    "title": "Mock Exam 5",
+    "mode": "mock",
+    "chapter_ids": [
+      78
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T10:55:31.822Z"
+  },
+  {
+    "id": "mock-6",
+    "title": "Mock Exam 6",
+    "mode": "mock",
+    "chapter_ids": [
+      79
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T10:55:31.822Z"
+  },
+  {
+    "id": "mock-7",
+    "title": "Mock Exam 7",
+    "mode": "mock",
+    "chapter_ids": [
+      80
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T10:55:31.822Z"
+  },
+  {
+    "id": "mock-8",
+    "title": "Mock Exam 8",
+    "mode": "mock",
+    "chapter_ids": [
+      81
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T10:55:31.822Z"
+  },
+  {
+    "id": "mock-9",
+    "title": "Mock Exam 9",
+    "mode": "mock",
+    "chapter_ids": [
+      82
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T10:55:31.822Z"
+  },
+  {
+    "id": "mock-10",
+    "title": "Mock Exam 10",
+    "mode": "mock",
+    "chapter_ids": [
+      83
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T10:55:31.822Z"
+  },
+  {
+    "id": "mock-11",
+    "title": "Mock Exam 11",
+    "mode": "mock",
+    "chapter_ids": [
+      84
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T10:55:31.822Z"
+  },
+  {
+    "id": "mock-12",
+    "title": "Mock Exam 12",
+    "mode": "mock",
+    "chapter_ids": [
+      85
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T10:55:31.822Z"
+  },
+  {
+    "id": "mock-13",
+    "title": "Mock Exam 13",
+    "mode": "mock",
+    "chapter_ids": [
+      86
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T10:55:31.822Z"
+  },
+  {
+    "id": "mock-14",
+    "title": "Mock Exam 14",
+    "mode": "mock",
+    "chapter_ids": [
+      87
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T10:55:31.822Z"
+  },
+  {
+    "id": "mock-15",
+    "title": "Mock Exam 15",
+    "mode": "mock",
+    "chapter_ids": [
+      88
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T10:55:31.822Z"
+  },
+  {
+    "id": "chapter-41",
+    "title": "Chapter 1-2",
+    "mode": "chapter",
+    "chapter_ids": [
+      41
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": true,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-42",
+    "title": "Chapter 3.1",
+    "mode": "chapter",
+    "chapter_ids": [
+      42
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-43",
+    "title": "Chapter 3.2",
+    "mode": "chapter",
+    "chapter_ids": [
+      43
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-44",
+    "title": "Chapter 3.3",
+    "mode": "chapter",
+    "chapter_ids": [
+      44
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-45",
+    "title": "Chapter 3.4",
+    "mode": "chapter",
+    "chapter_ids": [
+      45
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-46",
+    "title": "Chapter 3.5",
+    "mode": "chapter",
+    "chapter_ids": [
+      46
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-47",
+    "title": "Chapter 3.6",
+    "mode": "chapter",
+    "chapter_ids": [
+      47
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-48",
+    "title": "Chapter 3.7",
+    "mode": "chapter",
+    "chapter_ids": [
+      48
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-49",
+    "title": "Chapter 3.8",
+    "mode": "chapter",
+    "chapter_ids": [
+      49
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-50",
+    "title": "Chapter 3.9",
+    "mode": "chapter",
+    "chapter_ids": [
+      50
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-51",
+    "title": "Chapter 3.10",
+    "mode": "chapter",
+    "chapter_ids": [
+      51
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-52",
+    "title": "Chapter 4.1",
+    "mode": "chapter",
+    "chapter_ids": [
+      52
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-53",
+    "title": "Chapter 4.2",
+    "mode": "chapter",
+    "chapter_ids": [
+      53
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-54",
+    "title": "Chapter 4.3",
+    "mode": "chapter",
+    "chapter_ids": [
+      54
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-55",
+    "title": "Chapter 4.4",
+    "mode": "chapter",
+    "chapter_ids": [
+      55
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-56",
+    "title": "Chapter 4.5",
+    "mode": "chapter",
+    "chapter_ids": [
+      56
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-57",
+    "title": "Chapter 4.6",
+    "mode": "chapter",
+    "chapter_ids": [
+      57
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-58",
+    "title": "Chapter 4.7",
+    "mode": "chapter",
+    "chapter_ids": [
+      58
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-59",
+    "title": "Chapter 4.8",
+    "mode": "chapter",
+    "chapter_ids": [
+      59
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-60",
+    "title": "Chapter 4.9",
+    "mode": "chapter",
+    "chapter_ids": [
+      60
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-61",
+    "title": "Chapter 4.10",
+    "mode": "chapter",
+    "chapter_ids": [
+      61
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-62",
+    "title": "Chapter 4.11",
+    "mode": "chapter",
+    "chapter_ids": [
+      62
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-63",
+    "title": "Chapter 4.12",
+    "mode": "chapter",
+    "chapter_ids": [
+      63
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-64",
+    "title": "Chapter 5.1",
+    "mode": "chapter",
+    "chapter_ids": [
+      64
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-65",
+    "title": "Chapter 5.2",
+    "mode": "chapter",
+    "chapter_ids": [
+      65
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-66",
+    "title": "Chapter 5.3",
+    "mode": "chapter",
+    "chapter_ids": [
+      66
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-67",
+    "title": "Chapter 5.4",
+    "mode": "chapter",
+    "chapter_ids": [
+      67
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-68",
+    "title": "Chapter 5.5",
+    "mode": "chapter",
+    "chapter_ids": [
+      68
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-69",
+    "title": "Chapter 5.6",
+    "mode": "chapter",
+    "chapter_ids": [
+      69
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-70",
+    "title": "Chapter 5.7",
+    "mode": "chapter",
+    "chapter_ids": [
+      70
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-71",
+    "title": "Chapter 5.8",
+    "mode": "chapter",
+    "chapter_ids": [
+      71
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-72",
+    "title": "Chapter 5.9",
+    "mode": "chapter",
+    "chapter_ids": [
+      72
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
+  },
+  {
+    "id": "chapter-73",
+    "title": "Chapter 5.10",
+    "mode": "chapter",
+    "chapter_ids": [
+      73
+    ],
+    "questions_per_exam": 24,
+    "time_limit_minutes": 45,
+    "pass_mark": 0.75,
+    "is_free": false,
+    "version": 1,
+    "updated_at": "2025-12-21T12:00:00.000Z"
   }
 ]

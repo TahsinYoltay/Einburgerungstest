@@ -1,7 +1,7 @@
 import { RouteProp, useRoute, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useMemo, useRef, useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { WebView } from 'react-native-webview';
 import { Appbar, IconButton, Divider, Surface, Button, Text, ActivityIndicator } from 'react-native-paper';
@@ -66,6 +66,12 @@ const WebReaderScreen = () => {
     if (!chapter) return null;
     return chapter.subSections.find(s => s.id === subSectionId);
   }, [bookData, chapterId, subSectionId]);
+  const currentChapterTitle = useMemo(() => {
+    if (!bookData) return '';
+    const chapter = bookData.chapters.find(c => c.id === chapterId);
+    return chapter?.title || '';
+  }, [bookData, chapterId]);
+  const headerTitle = targetSection?.title || currentChapterTitle;
 
   // Check read status on mount
   useEffect(() => {
@@ -340,9 +346,15 @@ const WebReaderScreen = () => {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      <Appbar.Header style={{ backgroundColor: theme.colors.surface, elevation: 0 }}>
+      <Appbar.Header style={styles.header} statusBarHeight={Platform.OS === 'ios' ? 0 : undefined}>
         <Appbar.Action icon="close" onPress={() => navigation.popToTop()} />
-        <View style={{ flex: 1 }} />
+        <Appbar.Content
+          title={headerTitle}
+          titleStyle={styles.headerTitle}
+          style={styles.headerContent}
+          titleNumberOfLines={1}
+          titleEllipsizeMode="tail"
+        />
         <Appbar.Action icon="format-size" onPress={toggleFontControl} iconColor={showFontControl ? theme.colors.primary : undefined} />
         <Appbar.Action icon="magnify" onPress={toggleSearch} iconColor={searchVisible ? theme.colors.primary : undefined} />
         <Appbar.Action icon="translate" onPress={() => setShowLanguageSelector(true)} />

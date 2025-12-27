@@ -9,16 +9,25 @@ export const createStyles = (theme: AppTheme) => StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     paddingHorizontal: 16,
     paddingVertical: 12,
     backgroundColor: theme.colors.background,
   },
   headerTitle: {
-    flex: 1,
     textAlign: 'center',
     fontWeight: '800',
     fontSize: 18,
     color: theme.colors.text,
+  },
+  iconButton: {
+    padding: 8,
+    borderRadius: 12,
+    backgroundColor: theme.dark ? theme.colors.surfaceVariant : '#E8EAED',
+  },
+  iconButtonSpacer: {
+    width: 38,
+    height: 38,
   },
   scrollContent: {
     flexGrow: 1,

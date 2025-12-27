@@ -14,6 +14,7 @@ type QuestionCardProps = {
   isFlagged: boolean;
   isFavorite?: boolean;
   onToggleFavorite?: () => void;
+  hideExplanation?: boolean;
 };
 
 const QuestionCard = ({
@@ -23,11 +24,13 @@ const QuestionCard = ({
   isFlagged,
   isFavorite = false,
   onToggleFavorite,
+  hideExplanation = false,
 }: QuestionCardProps) => {
   const { t } = useTranslation();
   const { theme } = useAppTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
   const [showExplanation, setShowExplanation] = useState(false);
+  const canShowExplanation = !hideExplanation && (question.hint || question.explanation);
   
   const palette = {
     primary: theme.colors.primary,
@@ -96,21 +99,25 @@ const QuestionCard = ({
         })}
 
         {/* Hint/Explanation + Favorite aligned on bottom row */}
-        {(question.hint || question.explanation) && (
+        {(canShowExplanation || onToggleFavorite) && (
           <View style={styles.explainButtonContainer}>
-            <Pressable 
-              onPress={() => setShowExplanation(!showExplanation)}
-              style={{ flexDirection: 'row', alignItems: 'center' }}
-            >
-              <Icon
-                name="lightbulb-outline"
-                size={22} // Matched size with favorite icon
-                color={theme.colors.primary}
-              />
-              <Text style={styles.hintText}>
-                {showExplanation ? t('exam.hideHint') : t('exam.showHint')}
-              </Text>
-            </Pressable>
+            {canShowExplanation ? (
+              <Pressable
+                onPress={() => setShowExplanation(!showExplanation)}
+                style={{ flexDirection: 'row', alignItems: 'center' }}
+              >
+                <Icon
+                  name="lightbulb-outline"
+                  size={22} // Matched size with favorite icon
+                  color={theme.colors.primary}
+                />
+                <Text style={styles.hintText}>
+                  {showExplanation ? t('exam.hideHint') : t('exam.showHint')}
+                </Text>
+              </Pressable>
+            ) : (
+              <View style={{ flex: 1 }} />
+            )}
             {onToggleFavorite && (
               <IconButton
                 icon={isFavorite ? 'thumb-up' : 'thumb-up-outline'}
@@ -126,7 +133,7 @@ const QuestionCard = ({
         )}
 
         {/* Explanation content only shown when expanded */}
-        {(question.hint || question.explanation) && showExplanation && (
+        {canShowExplanation && showExplanation && (
           <>
             <Divider style={styles.divider} />
             <View style={styles.explanationContainer}>

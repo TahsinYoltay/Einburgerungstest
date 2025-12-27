@@ -81,3 +81,4 @@ yarn-error.log
 
 # Android signing (keep secrets out of git)
 android/keystore.properties
+android/keystore.env

@@ -42,6 +42,8 @@ export type LanguageOption = {
   name: string;
   nativeName: string;
   version?: number;
+  mockVersion?: number;
+  chapterVersion?: number;
 };
 
 // Normalized schema for new exam/question model

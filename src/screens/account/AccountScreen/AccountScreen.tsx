@@ -264,22 +264,45 @@ const AccountScreen = () => {
       </View>
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-        <View style={styles.profileCard}>
-          <UserAvatar
-            uri={authState.photoURL}
-            size={64}
-            shape="rounded"
-            onPress={handleAvatarPress}
-            disabled={avatarUploading}
-            accessibilityLabel={t('account.avatar.changeTitle')}
-            showEditBadge={!isAnonymous}
-            containerStyle={styles.avatarWrapper}
-          />
-          <View style={styles.profileText}>
-            <Text style={styles.profileName}>{authState?.displayName || t('account.guestName')}</Text>
-            <Text style={styles.profileEmail}>{authState?.email || t('account.notSignedIn')}</Text>
+        {isAnonymous ? (
+          <TouchableOpacity
+            style={styles.profileCard}
+            activeOpacity={0.9}
+            onPress={() => navigation.navigate(ROUTES.LOGIN)}
+          >
+            <UserAvatar
+              uri={authState.photoURL}
+              size={64}
+              shape="rounded"
+              onPress={handleAvatarPress}
+              disabled={avatarUploading}
+              accessibilityLabel={t('account.avatar.changeTitle')}
+              showEditBadge={!isAnonymous}
+              containerStyle={styles.avatarWrapper}
+            />
+            <View style={styles.profileText}>
+              <Text style={styles.profileName}>{authState?.displayName || t('account.guestName')}</Text>
+              <Text style={styles.profileEmail}>{authState?.email || t('account.notSignedIn')}</Text>
+            </View>
+          </TouchableOpacity>
+        ) : (
+          <View style={styles.profileCard}>
+            <UserAvatar
+              uri={authState.photoURL}
+              size={64}
+              shape="rounded"
+              onPress={handleAvatarPress}
+              disabled={avatarUploading}
+              accessibilityLabel={t('account.avatar.changeTitle')}
+              showEditBadge={!isAnonymous}
+              containerStyle={styles.avatarWrapper}
+            />
+            <View style={styles.profileText}>
+              <Text style={styles.profileName}>{authState?.displayName || t('account.guestName')}</Text>
+              <Text style={styles.profileEmail}>{authState?.email || t('account.notSignedIn')}</Text>
+            </View>
           </View>
-        </View>
+        )}
 
         <View style={styles.menuList}>
           {menuSections.map(section => (

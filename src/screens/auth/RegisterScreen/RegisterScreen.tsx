@@ -1,11 +1,12 @@
 import React, { useState, useMemo } from 'react';
-import { View, ScrollView, Image, KeyboardAvoidingView, Platform, SafeAreaView, Alert } from 'react-native';
-import { TextInput, Button, Text, HelperText, IconButton, Divider } from 'react-native-paper';
+import { View, ScrollView, Image, KeyboardAvoidingView, Platform, SafeAreaView, Alert, TouchableOpacity } from 'react-native';
+import { TextInput, Button, Text, HelperText, Divider } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../../navigations/StackNavigator';
+import Icon from '@react-native-vector-icons/material-design-icons';
 import auth from '@react-native-firebase/auth';
 import { purchaseService } from '../../../services/PurchaseService';
 import { ROUTES } from '../../../constants/routes';
@@ -32,6 +33,7 @@ const RegisterScreen = () => {
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [nameTouched, setNameTouched] = useState(false);
 
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
@@ -67,7 +69,7 @@ const RegisterScreen = () => {
     }
   };
 
-  const hasNameError = name.length === 0;
+  const showNameError = nameTouched && name.trim().length === 0;
   const hasEmailError = email.length > 0 && !isEmailValid(email);
   const hasPasswordError = password.length > 0 && !isPasswordValid(password);
   const hasConfirmPasswordError = confirmPassword.length > 0 && !doPasswordsMatch(password, confirmPassword);
@@ -76,6 +78,7 @@ const RegisterScreen = () => {
 
   const handleRegister = async () => {
     if (!name.trim()) {
+      setNameTouched(true);
       setError(t('auth.errors.missingName', { defaultValue: 'Please enter your name' }));
       return;
     }
@@ -151,16 +154,17 @@ const RegisterScreen = () => {
     <SafeAreaView style={styles.container}>
       {/* Sticky Header */}
       <View style={styles.header}>
-        <IconButton 
-          icon="arrow-left" 
-          onPress={() => navigation.goBack()} 
-          size={24}
-          iconColor={theme.colors.onBackground}
-        />
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.iconButton}
+          activeOpacity={0.8}
+        >
+          <Icon name="arrow-left" size={22} color={theme.colors.onBackground} />
+        </TouchableOpacity>
         <Text style={styles.headerTitle}>
           {t('auth.register')}
         </Text>
-        <View style={{ width: 48 }} />
+        <View style={styles.iconButtonSpacer} />
       </View>
       
       <KeyboardAvoidingView 
@@ -194,15 +198,6 @@ const RegisterScreen = () => {
             >
               Continue with Google
             </Button>
-            <Button 
-              mode="outlined" 
-              icon="apple"
-              onPress={() => Alert.alert('Coming Soon', 'Apple Sign-In integration pending.')} 
-              style={[styles.socialButton, { borderColor: theme.colors.outline }]}
-              disabled={isLoading}
-            >
-              Continue with Apple
-            </Button>
           </View>
 
           <View style={styles.dividerContainer}>
@@ -221,14 +216,15 @@ const RegisterScreen = () => {
             label={t('auth.name', { defaultValue: 'Name' })}
             value={name}
             onChangeText={setName}
+            onBlur={() => setNameTouched(true)}
             style={styles.input}
             mode="outlined"
             autoCapitalize="words"
-            error={hasNameError && !!error}
+            error={showNameError}
             disabled={isLoading}
           />
-          {hasNameError && (
-            <HelperText type="error" visible={hasNameError}>
+          {showNameError && (
+            <HelperText type="error" visible={showNameError}>
               {t('auth.errors.missingName', { defaultValue: 'Please enter your name' })}
             </HelperText>
           )}

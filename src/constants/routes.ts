@@ -21,4 +21,6 @@ export const ROUTES = {
   SETTINGS: 'Settings',
   REVIEW_QUESTIONS: 'ReviewQuestions',
   BILLING: 'Billing',
+  MOCK_EXAMS: 'MockExams',
+  CHAPTER_EXAMS: 'ChapterExams',
 } as const;

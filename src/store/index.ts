@@ -259,9 +259,19 @@ startAppListening({
     }
 
     await progressSyncService.saveLocalExamProgress(nextUid, merged);
+    const mergedChaptersData = (() => {
+      const examState = (listenerApi.getState() as RootState).exam;
+      return {
+        data: {
+          ...(examState.chaptersData as any)?.data,
+          ...(examState.mockChaptersData as any)?.data,
+          ...(examState.chapterQuestionsData as any)?.data,
+        },
+      };
+    })();
     const hydration = progressSyncService.materializeExamHydrationPayload({
       snapshot: merged,
-      chaptersData: (listenerApi.getState() as RootState).exam.chaptersData,
+      chaptersData: mergedChaptersData,
     });
 
     listenerApi.dispatch(resetAllExamUserData());
@@ -352,9 +362,19 @@ startAppListening({
     }
 
     await progressSyncService.saveLocalExamProgress(nextUid, local);
+    const mergedChaptersData = (() => {
+      const examState = (listenerApi.getState() as RootState).exam;
+      return {
+        data: {
+          ...(examState.chaptersData as any)?.data,
+          ...(examState.mockChaptersData as any)?.data,
+          ...(examState.chapterQuestionsData as any)?.data,
+        },
+      };
+    })();
     const hydration = progressSyncService.materializeExamHydrationPayload({
       snapshot: local,
-      chaptersData: (listenerApi.getState() as RootState).exam.chaptersData,
+      chaptersData: mergedChaptersData,
     });
 
     listenerApi.dispatch(resetAllExamUserData());

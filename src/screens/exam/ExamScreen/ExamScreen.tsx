@@ -61,25 +61,25 @@ const ExamScreen = () => {
     currentLanguage,
     isDownloadingLanguage,
     downloadProgress,
+    exams: examStateExams,
   } = useAppSelector(state => state.exam);
   
-  const { languages: availableLanguages } = useAppSelector(state => state.content);
+  const { languages: availableLanguages, exams: contentExams } = useAppSelector(state => state.content);
 
-  const {
-    questions,
-    currentQuestionIndex,
-    answers,
-    flaggedQuestions,
-    timeRemaining,
-    timeSpentInSeconds,
-    examStarted,
-    examCompleted,
-    examId: currentExamId,
-  } = currentExam;
+  const questions = currentExam.questions ?? [];
+  const currentQuestionIndex = currentExam.currentQuestionIndex ?? 0;
+  const answers = currentExam.answers ?? {};
+  const flaggedQuestions = currentExam.flaggedQuestions ?? [];
+  const timeRemaining = currentExam.timeRemaining ?? 0;
+  const timeSpentInSeconds = currentExam.timeSpentInSeconds ?? 0;
+  const examStarted = Boolean(currentExam.examStarted);
+  const examCompleted = Boolean(currentExam.examCompleted);
+  const currentExamId = currentExam.examId ?? null;
 
   // Local state for UI
   const [showFlaggedDialog, setShowFlaggedDialog] = useState(false);
   const [showTimeWarning, setShowTimeWarning] = useState(false);
+  const [showTimeUpDialog, setShowTimeUpDialog] = useState(false);
   const [showExitConfirmDialog, setShowExitConfirmDialog] = useState(false);
   const [showLanguageDialog, setShowLanguageDialog] = useState(false);
   const [reviewFlaggedOnly, setReviewFlaggedOnly] = useState(false);
@@ -89,12 +89,18 @@ const ExamScreen = () => {
 
   const languages = availableLanguages;
   const currentLangName = languages.find(l => l.code === currentLanguage)?.nativeName || 'English';
+  const exams = contentExams.length > 0 ? contentExams : examStateExams;
+  const examMode = useMemo(
+    () => exams.find(exam => exam.id === examId)?.mode,
+    [exams, examId],
+  );
 
   // References
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const startLeftRef = useRef(timeRemaining);
   const timeLeftRef = useRef(timeRemaining);
   const initialSpentRef = useRef(timeSpentInSeconds);
+  const timeExpiredRef = useRef(false);
 
   // Get current question
   const currentQuestion = questions[currentQuestionIndex];
@@ -135,12 +141,12 @@ const ExamScreen = () => {
     if (!examId) return;
     const needsQuestions =
       currentExamId !== examId ||
-      currentExam.questions.length === 0 ||
+      questions.length === 0 ||
       (restart && !examCompleted);
     if (needsQuestions) {
       dispatch(loadExamQuestions(examId));
     }
-  }, [dispatch, examId, restart, currentExamId, currentExam.questions.length, examCompleted]);
+  }, [dispatch, examId, restart, currentExamId, questions.length, examCompleted]);
 
   // Sync local timer when redux value changes (e.g., resume)
   useEffect(() => {
@@ -184,10 +190,15 @@ const ExamScreen = () => {
   // Auto-submit when time is up
   useEffect(() => {
     if (examStarted && !examCompleted && timeLeft <= 0) {
+      if (timeExpiredRef.current) return;
+      timeExpiredRef.current = true;
       if (timerRef.current) {
         clearInterval(timerRef.current);
       }
-      dispatch(submitExam());
+      const delta = Math.max(0, startLeftRef.current - timeLeftRef.current);
+      dispatch(updateTimeRemaining(0));
+      dispatch(updateTimeSpent(initialSpentRef.current + delta));
+      setShowTimeUpDialog(true);
     }
   }, [dispatch, examStarted, examCompleted, timeLeft]);
 
@@ -342,6 +353,15 @@ const ExamScreen = () => {
     }
   };
 
+  const handleTimeUpSubmit = async () => {
+    try {
+      await dispatch(submitExam({ forceStatus: 'failed' })).unwrap();
+      navigateToResults();
+    } catch (err) {
+      Alert.alert(t('exam.submitError', 'Could not submit exam'), String(err));
+    }
+  };
+
   // Go to a flagged question
   const handleGoToFlaggedQuestion = () => {
     setShowFlaggedDialog(false);
@@ -448,6 +468,7 @@ const ExamScreen = () => {
           isFlagged={isQuestionFlagged(currentQuestion.id)}
           isFavorite={favoriteQuestions?.includes(currentQuestion.id)}
           onToggleFavorite={() => dispatch(toggleFavoriteQuestion(currentQuestion.id))}
+          hideExplanation={examMode === 'mock'}
         />
       </ScrollView>
 
@@ -554,6 +575,22 @@ const ExamScreen = () => {
           </Dialog.Content>
           <Dialog.Actions>
             <Button onPress={() => setShowTimeWarning(false)} textColor={theme.colors.primary}>{t('common.ok')}</Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
+
+      <Portal>
+        <Dialog visible={showTimeUpDialog} dismissable={false} style={styles.dialog}>
+          <Dialog.Title style={styles.dialogTitle}>{t('exam.timeUpTitle', "Time's Up")}</Dialog.Title>
+          <Dialog.Content>
+            <Text style={styles.dialogContentText}>
+              {t('exam.timeUpMessage', 'You ran out of time. This attempt is marked as failed.')}
+            </Text>
+          </Dialog.Content>
+          <Dialog.Actions style={styles.dialogActions}>
+            <Button mode="contained" onPress={handleTimeUpSubmit} style={styles.dialogActionButton}>
+              {t('exam.timeUpAction', 'View Results')}
+            </Button>
           </Dialog.Actions>
         </Dialog>
       </Portal>

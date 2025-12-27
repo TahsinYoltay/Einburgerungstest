@@ -1,10 +1,11 @@
 import React, { useState, useMemo } from 'react';
-import { View, ScrollView, Image, Alert, KeyboardAvoidingView, Platform } from 'react-native';
-import { TextInput, Button, Text, HelperText, IconButton, Divider } from 'react-native-paper';
+import { View, ScrollView, Image, Alert, KeyboardAvoidingView, Platform, TouchableOpacity } from 'react-native';
+import { TextInput, Button, Text, HelperText, Divider } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Icon from '@react-native-vector-icons/material-design-icons';
 import { RootStackParamList } from '../../../navigations/StackNavigator';
 import { ROUTES } from '../../../constants/routes';
 import { useAppTheme } from '../../../providers/ThemeProvider';
@@ -98,16 +99,17 @@ const LoginScreen = () => {
     <SafeAreaView style={styles.container}>
       {/* Sticky Header */}
       <View style={styles.header}>
-        <IconButton 
-          icon="arrow-left" 
-          onPress={() => navigation.goBack()} 
-          size={24}
-          iconColor={theme.colors.onBackground}
-        />
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.iconButton}
+          activeOpacity={0.8}
+        >
+          <Icon name="arrow-left" size={22} color={theme.colors.onBackground} />
+        </TouchableOpacity>
         <Text style={styles.headerTitle}>
           {t('auth.signIn')}
         </Text>
-        <View style={{ width: 48 }} />
+        <View style={styles.iconButtonSpacer} />
       </View>
       
       <KeyboardAvoidingView 
@@ -140,15 +142,6 @@ const LoginScreen = () => {
                 loading={isLoading} 
             >
                 Continue with Google
-            </Button>
-            <Button 
-                mode="outlined" 
-                icon="apple" 
-                onPress={() => Alert.alert('Coming Soon', 'Apple Sign-In integration pending.')} 
-                style={[styles.socialButton, { borderColor: theme.colors.outline }]}
-                disabled={isLoading}
-            >
-                Continue with Apple
             </Button>
           </View>
 

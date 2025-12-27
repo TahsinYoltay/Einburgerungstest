@@ -35,6 +35,7 @@ function SwipeDeck<T extends { id: string }>({
   containerStyle,
 }: SwipeDeckProps<T>) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [frozenNextItem, setFrozenNextItem] = React.useState<T | null>(null);
   const translateX = useSharedValue(0);
   const rotate = useSharedValue(0);
   
@@ -47,6 +48,12 @@ function SwipeDeck<T extends { id: string }>({
       }
   }, [currentIndex, translateX, rotate, onIndexChange]);
 
+  useEffect(() => {
+    if (frozenNextItem) {
+      setFrozenNextItem(null);
+    }
+  }, [currentIndex, frozenNextItem]);
+
   // Handle data shrinking (e.g. unfavoriting the last item)
   useEffect(() => {
       if (currentIndex >= data.length && data.length > 0) {
@@ -55,10 +62,10 @@ function SwipeDeck<T extends { id: string }>({
   }, [data.length, currentIndex]);
 
   const handleSwipeComplete = useCallback((direction: 'left' | 'right') => {
-    // Reset gesture state before swapping cards to avoid a 1-frame "blink"
-    // where the next card mounts while translateX is still off-screen.
-    translateX.value = 0;
-    rotate.value = 0;
+    const nextItem = data[currentIndex + 1];
+    if (nextItem) {
+      setFrozenNextItem(nextItem);
+    }
 
     const item = data[currentIndex];
     if (direction === 'left') {
@@ -75,7 +82,7 @@ function SwipeDeck<T extends { id: string }>({
     } else {
       onFinished?.();
     }
-  }, [currentIndex, data, onSwipeLeft, onSwipeRight, onFinished, rotate, translateX]);
+  }, [currentIndex, data, onSwipeLeft, onSwipeRight, onFinished]);
 
   const panGesture = Gesture.Pan()
     .activeOffsetX([-12, 12])
@@ -136,7 +143,7 @@ function SwipeDeck<T extends { id: string }>({
   }
 
   const currentItem = data[currentIndex];
-  const nextItem = data[currentIndex + 1];
+  const nextItem = frozenNextItem ?? data[currentIndex + 1];
 
   return (
     <View style={[styles.container, containerStyle]}>

@@ -43,6 +43,8 @@ const ReviewQuestionsScreen = () => {
   const favoriteIds = useAppSelector(state => state.exam.favoriteQuestions);
   const questionStats = useAppSelector(state => state.exam.questionStats);
   const chaptersData = useAppSelector(state => state.exam.chaptersData);
+  const mockChaptersData = useAppSelector(state => state.exam.mockChaptersData);
+  const chapterQuestionsData = useAppSelector(state => state.exam.chapterQuestionsData);
   const examHistory = useAppSelector(state => state.exam.examHistory);
   const { currentLanguage, isDownloadingLanguage, downloadProgress } = useAppSelector(state => state.exam);
   const { languages: availableLanguages } = useAppSelector(state => state.content);
@@ -65,14 +67,18 @@ const ReviewQuestionsScreen = () => {
       setLoading(true);
       // ... existing load logic ...
       const allQuestionsMap: Record<string, NormalizedQuestion> = {};
-      const dataAny = (chaptersData as any).data;
-      if (dataAny) {
-        Object.values(dataAny).forEach((ch: any) => {
-           ch.questions.forEach((q: NormalizedQuestion) => {
-             allQuestionsMap[q.id] = q;
-           });
+      const mergeQuestions = (data: any) => {
+        if (!data) return;
+        Object.values(data).forEach((ch: any) => {
+          ch.questions.forEach((q: NormalizedQuestion) => {
+            allQuestionsMap[q.id] = q;
+          });
         });
-      }
+      };
+
+      mergeQuestions((chaptersData as any).data);
+      mergeQuestions((mockChaptersData as any).data);
+      mergeQuestions((chapterQuestionsData as any).data);
 
       let filteredQuestions: NormalizedQuestion[] = [];
       
@@ -115,7 +121,7 @@ const ReviewQuestionsScreen = () => {
     };
 
     loadData();
-  }, [mode, favoriteIds, questionStats, chaptersData, examHistory]);
+  }, [mode, favoriteIds, questionStats, chaptersData, mockChaptersData, chapterQuestionsData, examHistory]);
 
   const styles = useMemo(() => createStyles(theme), [theme]);
 

@@ -114,11 +114,12 @@ Google Play Billing testing requires a Play-distributed build.
    - Generate a keystore (example):
      - `keytool -genkeypair -v -storetype JKS -keystore android/app/upload.keystore -alias upload -keyalg RSA -keysize 2048 -validity 10000`
    - Keep this file safe. Do **not** commit it.
-2. Create `android/keystore.properties` (one-time)
-   - Copy `android/keystore.properties.example` → `android/keystore.properties`
+2. Create `android/keystore.env` (one-time)
+   - Copy `android/keystore.env.example` → `android/keystore.env`
    - Fill in your keystore path + passwords (this file is gitignored)
-3. Build a release AAB:
-   - `cd android && ./gradlew bundleRelease`
+   - See `Doc/ANDROID_RELEASE_AUTOMATION.md` for the secure setup
+3. Build a release AAB (one command):
+   - `./scripts/android/build-closed-testing.sh`
 4. Upload the AAB to **Release → Testing → Internal testing**
 5. Publish the Internal Testing release
 6. Install the app using the Internal Testing link (or Internal App Sharing)

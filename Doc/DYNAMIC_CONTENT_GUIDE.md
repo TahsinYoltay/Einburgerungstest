@@ -130,17 +130,23 @@ Open `firebase_config/manifest.json`. Find the `"home"` module and **increment t
 
 1.  **Create Content:** Create `allChaptersData.it.json` (Exam Questions).
 2.  **Upload Content:** Upload to `exam/translations/allChaptersData.it.json`.
-3.  **Register Language:** Edit `firebase_config/languages.json`.
+3.  **Create Mock Exam Content:** Create `mockExam.it.json` (Mock Exam Questions).
+4.  **Upload Mock Content:** Upload to `exam/mockExam/mockExam.it.json`.
+5.  **Create Chapter Exam Content:** Create `questionsByChapter.it.json` (Chapter Exam Questions).
+6.  **Upload Chapter Content:** Upload to `exam/chapterName/questionsByChapter.it.json`.
+7.  **Register Language:** Edit `firebase_config/languages.json`.
     ```json
     {
       "code": "it",
       "name": "Italian",
       "nativeName": "Italiano",
-      "version": 1
+      "version": 1,
+      "mockVersion": 1,
+      "chapterVersion": 1
     }
     ```
-4.  **Upload Config:** Upload to `config/languages.json`.
-5.  **Trigger Update:** Increment `"languages"` version in `manifest.json` and upload `manifest.json` to `config/`.
+8.  **Upload Config:** Upload to `config/languages.json`.
+9.  **Trigger Update:** Increment `"languages"` version in `manifest.json` and upload `manifest.json` to `config/`.
 
 ---
 
@@ -152,5 +158,7 @@ Open `firebase_config/manifest.json`. Find the `"home"` module and **increment t
 | **Available Languages** | `languages.json` | `/config/languages.json` | `manifest.json` (bump "languages" ver) |
 | **Available Exams** | `exams.json` | `/config/exams.json` | `manifest.json` (bump "exams" ver) |
 | **Specific Exam Content** | `allChaptersData.xx.json` | `/exam/translations/...` | `languages.json` (bump lang ver) |
+| **Mock Exam Content** | `mockExam.xx.json` | `/exam/mockExam/...` | `languages.json` (bump lang ver) |
+| **Chapter Exam Content** | `questionsByChapter.xx.json` | `/exam/chapterName/...` | `languages.json` (bump lang ver) |
 
 **Important:** The app ONLY checks `manifest.json` first. If you don't update the manifest, the app won't know to look for your other changes.

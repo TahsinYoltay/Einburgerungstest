@@ -19,6 +19,8 @@ import BillingSupportScreen from '../screens/account/BillingSupportScreen/Billin
 import { SupportTopicKey } from '../constants/supportTopics';
 import ReviewQuestionsScreen from '../screens/review/ReviewQuestionsScreen';
 import SplashScreen from '../screens/splash/SplashScreen/SplashScreen';
+import MockExamListScreen from '../screens/exam/MockExamList/MockExamListScreen';
+import ChapterExamListScreen from '../screens/exam/ChapterExamList/ChapterExamListScreen';
 
 export type RootStackParamList = {
   [ROUTES.SPLASH]: undefined;
@@ -46,6 +48,8 @@ export type RootStackParamList = {
   [ROUTES.TEST]: undefined;
   [ROUTES.SETTINGS]: undefined;
   [ROUTES.REVIEW_QUESTIONS]: { mode: 'favorites' | 'incorrect' };
+  [ROUTES.MOCK_EXAMS]: undefined;
+  [ROUTES.CHAPTER_EXAMS]: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -119,6 +123,16 @@ function RootNavigator() {
       <Stack.Screen
         name={ROUTES.REVIEW_QUESTIONS}
         component={ReviewQuestionsScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={ROUTES.MOCK_EXAMS}
+        component={MockExamListScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={ROUTES.CHAPTER_EXAMS}
+        component={ChapterExamListScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

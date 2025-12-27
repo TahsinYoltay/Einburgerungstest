@@ -9,6 +9,10 @@ This document captures the current implementation of the “Exam” experience i
 - Questions: `src/data/exam/normalized/allChaptersData.normalized.json`  
   - Contains normalized questions keyed by chapter, each with:
     - `id`, `type` (`single_choice|multiple_choice|true_false|statement_choice`), `prompt`, `options[]`, `correct_option_indexes[]`, `min_selections`, `max_selections`, `explanation`, optional `hint`, `media`, `meta` (chapter_id, tags, difficulty, source, updated_at).
+ - Mock Questions: `src/data/exam/normalized/mockExam.en.json`
+   - Contains normalized mock exam questions keyed by mock exam chapter IDs (74–88), same schema as practice.
+ - Chapter Questions: `src/data/exam/normalized/questionsByChapter.en.json`
+   - Contains normalized chapter test questions keyed by chapter IDs (41–73), same schema as practice.
 
 ## Redux state (slice: `src/store/slices/examSlice.ts`)
 State shape:
@@ -135,6 +139,8 @@ Exports: slice reducer + thunks (`loadExams`, `loadExamQuestions`, `submitExam`)
 
 ## Product constraints
 - Practice exams are fixed sets (practice-1..40), 24 questions each, shuffled order per start/retake, no cross-mixing between exams.
+- Mock exams are fixed sets (mock-1..15), 24 questions each, using the mock dataset (`mockExam.*`), and follow the same UI/flow as practice exams.
+- Chapter tests are fixed sets (chapter-41..73), 24 questions each, using the chapter dataset (`questionsByChapter.*`).
 - Pass mark typically 75% (manifest-driven).
 - Timer 45 minutes (manifest-driven).
 - All-or-nothing scoring; no partial credit.

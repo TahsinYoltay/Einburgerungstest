@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "482157943468-tfeosrh911400tegqasffok76o8m54ih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eywasoft.lifeintheuk",
+            "certificate_hash": "8a641e0aab0af9d29777ca67dd3500900cf984f5"
+          }
+        },
+        {
           "client_id": "482157943468-uq0vuabptkv6mdsk2nssp6ct1d2dlb0v.apps.googleusercontent.com",
           "client_type": 3
         }

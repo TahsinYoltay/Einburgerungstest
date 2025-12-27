@@ -79,9 +79,6 @@ const SupportRequestScreen = () => {
   const [category, setCategory] = useState<string>(initialCategoryParam && categoryOptions.find(c => c.key === initialCategoryParam) ? initialCategoryParam : defaultCategory);
   const [subject, setSubject] = useState(initialSubjectParam || '');
   const [message, setMessage] = useState(initialMessageParam || '');
-  const [stepsToReproduce, setStepsToReproduce] = useState('');
-  const [expectedBehavior, setExpectedBehavior] = useState('');
-  const [actualBehavior, setActualBehavior] = useState('');
   const [contactEmail, setContactEmail] = useState(authState.email || '');
   const [includeDiagnostics, setIncludeDiagnostics] = useState(true);
   const [alsoEmailSupport, setAlsoEmailSupport] = useState(false);
@@ -119,20 +116,6 @@ const SupportRequestScreen = () => {
       message,
       '',
     ];
-
-    if (kind === 'bug') {
-      bodyLines.push(
-        'Steps to reproduce:',
-        stepsToReproduce || '-',
-        '',
-        'Expected behavior:',
-        expectedBehavior || '-',
-        '',
-        'Actual behavior:',
-        actualBehavior || '-',
-        ''
-      );
-    }
 
     bodyLines.push(
       '—',
@@ -185,9 +168,6 @@ const SupportRequestScreen = () => {
         category,
         subject: subject.trim(),
         message: message.trim(),
-        stepsToReproduce: kind === 'bug' ? stepsToReproduce.trim() : undefined,
-        expectedBehavior: kind === 'bug' ? expectedBehavior.trim() : undefined,
-        actualBehavior: kind === 'bug' ? actualBehavior.trim() : undefined,
         contactEmail: contactEmail.trim() || undefined,
         includeDiagnostics,
         appLanguage: i18n.language,
@@ -329,50 +309,6 @@ const SupportRequestScreen = () => {
             scrollEnabled={false}
             textAlignVertical="top"
           />
-
-          {kind === 'bug' && (
-            <>
-              <TextInput
-                mode="outlined"
-                label={t('supportForm.steps', { defaultValue: 'Steps to reproduce' })}
-                value={stepsToReproduce}
-                onChangeText={setStepsToReproduce}
-                outlineColor={theme.colors.outline}
-                activeOutlineColor={theme.colors.primary}
-                style={styles.input}
-                multiline
-                numberOfLines={5}
-                scrollEnabled={false}
-                textAlignVertical="top"
-              />
-              <TextInput
-                mode="outlined"
-                label={t('supportForm.expected', { defaultValue: 'Expected behavior' })}
-                value={expectedBehavior}
-                onChangeText={setExpectedBehavior}
-                outlineColor={theme.colors.outline}
-                activeOutlineColor={theme.colors.primary}
-                style={styles.input}
-                multiline
-                numberOfLines={3}
-                scrollEnabled={false}
-                textAlignVertical="top"
-              />
-              <TextInput
-                mode="outlined"
-                label={t('supportForm.actual', { defaultValue: 'Actual behavior' })}
-                value={actualBehavior}
-                onChangeText={setActualBehavior}
-                outlineColor={theme.colors.outline}
-                activeOutlineColor={theme.colors.primary}
-                style={styles.input}
-                multiline
-                numberOfLines={3}
-                scrollEnabled={false}
-                textAlignVertical="top"
-              />
-            </>
-          )}
 
           <TextInput
             mode="outlined"
