@@ -9,7 +9,9 @@
     "ios:simulator": "react-native run-ios --simulator 'iPhone 16 Pro'",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "android:closed-testing": "./scripts/android/build-closed-testing.sh",
+    "android:production": "./scripts/android/build-production.sh"
   },
   "dependencies": {
     "@bam.tech/react-native-image-resizer": "^3.0.11",

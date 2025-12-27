@@ -1,4 +1,4 @@
-package com.lif
+package com.eywasoft.lifeintheuk
 
 import android.app.Application
 import com.facebook.react.PackageList

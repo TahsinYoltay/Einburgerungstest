@@ -29,7 +29,7 @@ const ExamResults = () => {
   const { examId } = route.params;
 
   // Get results from the store, including dynamic chapters data
-  const { examHistory, exams, currentExam, favoriteQuestions, chaptersData } = useAppSelector(state => state.exam);
+  const { examHistory, exams, currentExam, favoriteQuestions, chaptersData, mockChaptersData, chapterQuestionsData } = useAppSelector(state => state.exam);
   const rating = useAppSelector(state => state.rating);
 
   // Find this exam's latest attempt (search backwards for the most recent)
@@ -40,7 +40,7 @@ const ExamResults = () => {
           examId,
           score: 0,
           correctAnswers: 0,
-          totalQuestions: currentExam.questions.length,
+          totalQuestions: currentExam.questions?.length ?? 0,
           flaggedQuestions: currentExam.flaggedQuestions,
           timeSpentInSeconds: currentExam.timeSpentInSeconds,
           status: 'failed',
@@ -118,10 +118,15 @@ const ExamResults = () => {
   // Build a question index for review using dynamic chapters data
   const questionIndex = useMemo(() => {
     const map: Record<string, NormalizedQuestion> = {};
-    
-    // Use chaptersData from Redux state instead of static import
-    const chaptersDataAny = (chaptersData as any).data;
-    
+
+    const sourceData =
+      examDetails?.mode === 'mock'
+        ? mockChaptersData
+        : examDetails?.mode === 'chapter'
+        ? chapterQuestionsData
+        : chaptersData;
+    const chaptersDataAny = (sourceData as any).data;
+
     if (chaptersDataAny) {
       Object.values(chaptersDataAny).forEach((ch: any) => {
         ch.questions.forEach((q: any) => {
@@ -130,7 +135,7 @@ const ExamResults = () => {
       });
     }
     return map;
-  }, [chaptersData]);
+  }, [chaptersData, mockChaptersData, chapterQuestionsData, examDetails?.mode]);
 
   const wrongQuestions = useMemo(() => {
     if (!lastAttempt) return [];

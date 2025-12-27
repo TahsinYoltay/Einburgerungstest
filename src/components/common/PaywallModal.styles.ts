@@ -72,6 +72,33 @@ export const createStyles = (theme: MD3Theme) => StyleSheet.create({
   packagesContainer: {
     marginBottom: 14,
   },
+  emptyState: {
+    marginBottom: 14,
+    padding: 14,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: theme.colors.outlineVariant,
+    backgroundColor: theme.colors.surfaceVariant,
+    alignItems: 'center',
+  },
+  emptyStateTitle: {
+    fontSize: 15,
+    fontWeight: '800',
+    color: theme.colors.onSurface,
+    textAlign: 'center',
+    marginBottom: 6,
+  },
+  emptyStateMessage: {
+    fontSize: 12,
+    color: theme.colors.onSurfaceVariant,
+    textAlign: 'center',
+    lineHeight: 16,
+    marginBottom: 12,
+  },
+  emptyStateButton: {
+    borderRadius: 10,
+    alignSelf: 'stretch',
+  },
   packageCard: {
     marginBottom: 10,
     borderRadius: 12,

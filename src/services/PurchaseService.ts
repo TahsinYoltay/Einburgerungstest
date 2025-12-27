@@ -322,12 +322,30 @@ class PurchaseService {
   }
 
   async getOfferings(): Promise<PurchasesOffering | null> {
-    if (!this.isConfigured) await this.configureWithUser();
+    if (!this.isConfigured) {
+      try {
+        await this.configureWithUser();
+      } catch (error) {
+        console.error('[PurchaseService] Failed to configure before fetching offerings:', error);
+        return null;
+      }
+    }
     try {
       const offerings = await Purchases.getOfferings();
-      if (offerings.current !== null) {
-        return offerings.current;
+      const offering = offerings.current ?? offerings.all?.['default'] ?? null;
+
+      if (offering) {
+        console.log(
+          `[PurchaseService] ✅ Loaded offering "${offering.identifier}" with ${offering.availablePackages?.length ?? 0} package(s)`
+        );
+
+        if (Platform.OS === 'android' && (offering.availablePackages?.length ?? 0) === 0) {
+          console.warn(
+            '[PurchaseService] Android offering has 0 packages. This usually means Play Store products are not active/linked in RevenueCat or the app is not installed from Google Play (Internal Testing/Internal App Sharing).'
+          );
+        }
       }
+      return offering;
     } catch (e) {
       console.error('[PurchaseService] Error fetching offerings:', e);
     }

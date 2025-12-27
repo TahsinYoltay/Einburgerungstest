@@ -52,6 +52,16 @@ Your Firebase Storage bucket must be organized into two main folders at the root
         ├── allChaptersData.es.json
         ├── allChaptersData.tr.json
         └── ...
+    └── mockExam/
+        ├── mockExam.en.json
+        ├── mockExam.es.json
+        ├── mockExam.tr.json
+        └── ...
+    └── chapterName/
+        ├── questionsByChapter.en.json
+        ├── questionsByChapter.es.json
+        ├── questionsByChapter.tr.json
+        └── ...
 ```
 
 ---
@@ -77,7 +87,7 @@ Each text field is an object containing the translations.
 **Benefit:** Changing a title updates it for everyone instantly. No need to manage 10 small files.
 
 ### Strategy B: "File Per Language" (For Exams)
-For large datasets like **Exam Questions**, we use **separate files** for each language (e.g., `allChaptersData.es.json`).
+For large datasets like **Exam Questions**, we use **separate files** for each language (e.g., `allChaptersData.es.json`, `mockExam.es.json`, `questionsByChapter.es.json`).
 **Benefit:** A Spanish user only downloads the Spanish questions (5MB), not the Chinese ones.
 
 ---

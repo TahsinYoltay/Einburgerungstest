@@ -1,7 +1,54 @@
 apply plugin: "com.android.application"
-apply plugin: 'com.google.gms.google-services' 
+apply plugin: 'com.google.gms.google-services'
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
+
+def readSigningValue = { String key ->
+    def envValue = System.getenv(key)
+    if (envValue != null && envValue.trim()) {
+        return envValue.trim()
+    }
+    def propValue = project.findProperty(key)
+    if (propValue != null && propValue.toString().trim()) {
+        return propValue.toString().trim()
+    }
+    return null
+}
+
+def readVersionInt = { String key, int fallback ->
+    def value = readSigningValue(key)
+    if (value != null) {
+        try {
+            return Integer.parseInt(value)
+        } catch (Exception ignored) {
+        }
+    }
+    return fallback
+}
+
+def readVersionString = { String key, String fallback ->
+    def value = readSigningValue(key)
+    return value != null ? value : fallback
+}
+
+def releaseSigning = [
+        ANDROID_KEYSTORE_PATH    : readSigningValue("ANDROID_KEYSTORE_PATH"),
+        ANDROID_KEYSTORE_PASSWORD: readSigningValue("ANDROID_KEYSTORE_PASSWORD"),
+        ANDROID_KEY_ALIAS        : readSigningValue("ANDROID_KEY_ALIAS"),
+        ANDROID_KEY_PASSWORD     : readSigningValue("ANDROID_KEY_PASSWORD"),
+]
+
+def releaseSigningMissing = releaseSigning.findAll { !it.value }.collect { it.key }
+def releaseSigningConfigured = releaseSigningMissing.isEmpty()
+
+gradle.taskGraph.whenReady { graph ->
+    def needsRelease = graph.allTasks.any { it.name.toLowerCase().contains("release") }
+    if (needsRelease && !releaseSigningConfigured) {
+        throw new GradleException(
+                "Missing Android signing env/gradle properties: " + releaseSigningMissing.join(", ")
+        )
+    }
+}
 
 /**
  * This is the configuration block to customize your React Native Android app.
@@ -78,13 +125,13 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.lif"
+    namespace "com.eywasoft.lifeintheuk"
     defaultConfig {
-        applicationId "com.lif"
+        applicationId "com.eywasoft.lifeintheuk"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "2.0"
+        versionCode readVersionInt("ANDROID_VERSION_CODE", 1)
+        versionName readVersionString("ANDROID_VERSION_NAME", "1.0.0")
     }
     signingConfigs {
         debug {
@@ -92,6 +139,14 @@ android {
             storePassword 'android'
             keyAlias 'androiddebugkey'
             keyPassword 'android'
+        }
+        release {
+            if (releaseSigningConfigured) {
+                storeFile rootProject.file(releaseSigning.ANDROID_KEYSTORE_PATH)
+                storePassword releaseSigning.ANDROID_KEYSTORE_PASSWORD
+                keyAlias releaseSigning.ANDROID_KEY_ALIAS
+                keyPassword releaseSigning.ANDROID_KEY_PASSWORD
+            }
         }
     }
     buildTypes {
@@ -101,7 +156,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }

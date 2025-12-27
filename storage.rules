@@ -37,13 +37,29 @@ service firebase.storage {
       allow write: if false; 
     }
 
-    // 3. Allow reading dynamic UI content (e.g., home.json)
+    // 3. Allow reading Mock Exam content (mockExam.xx.json)
+    match /exam/mockExam/{fileName=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // 4. Allow reading Chapter Test content (questionsByChapter.xx.json)
+    match /exam/chapterName/{fileName=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /exam/chapterQuestions/{fileName=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // 5. Allow reading dynamic UI content (e.g., home.json)
     match /content/{fileName=**} {
       allow read: if true;
       allow write: if false; 
     }
 
-    // 4. Allow reading Book Content (bookContent.xx.json)
+    // 6. Allow reading Book Content (bookContent.xx.json)
     match /book/content/{fileName=**} {
       allow read: if true;
       allow write: if false; 

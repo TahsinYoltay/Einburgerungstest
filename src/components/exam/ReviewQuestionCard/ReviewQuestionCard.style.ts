@@ -15,9 +15,10 @@ export const createStyles = (theme: any) => StyleSheet.create({
     height: CARD_HEIGHT,
     overflow: 'hidden', // Important for rounded corners with scrollview
   },
+  scrollView: {
+    // flex: 1,
+  },
   scrollContent: {
-    flexGrow: 1,
-    justifyContent: 'center', // Center content vertically if it's short
     paddingVertical: 16,
   },
   questionHeader: {
@@ -61,6 +62,9 @@ export const createStyles = (theme: any) => StyleSheet.create({
   optionText: {
     fontSize: 16,
     color: theme.colors.onSurface,
+  },
+  optionTextContainer: {
+    flex: 1,
   },
   correctText: {
       color: theme.colors.onPrimaryContainer,

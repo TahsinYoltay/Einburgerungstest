@@ -6,6 +6,7 @@ import Icon from '@react-native-vector-icons/material-design-icons';
 import { useAppSelector } from '../../store/hooks';
 import { useAppTheme } from '../../providers/ThemeProvider';
 import { createStyles } from './LanguageSelector.styles';
+import type { LanguageOption } from '../../types/exam';
 
 interface LanguageSelectorProps {
   visible: boolean;
@@ -14,6 +15,9 @@ interface LanguageSelectorProps {
   onSelectLanguage: (langCode: string) => void;
   loading?: boolean;
   downloadProgress?: number;
+  title?: string;
+  languages?: LanguageOption[];
+  languageFilter?: (language: LanguageOption) => boolean;
 }
 
 export const LanguageSelector = ({
@@ -22,17 +26,24 @@ export const LanguageSelector = ({
   currentLanguage,
   onSelectLanguage,
   loading,
-  downloadProgress
+  downloadProgress,
+  title,
+  languages,
+  languageFilter,
 }: LanguageSelectorProps) => {
   const { theme } = useAppTheme();
   const styles = useMemo(() => createStyles(theme), [theme]);
   const { t } = useTranslation();
-  const { languages } = useAppSelector(state => state.content);
+  const { languages: availableLanguages } = useAppSelector(state => state.content);
+  const resolvedLanguages = useMemo(() => {
+    const base = languages ?? availableLanguages ?? [];
+    return languageFilter ? base.filter(languageFilter) : base;
+  }, [availableLanguages, languageFilter, languages]);
 
   return (
     <Portal>
       <Dialog visible={visible} onDismiss={loading ? undefined : onDismiss} style={styles.dialog}>
-        <Dialog.Title style={styles.title}>{t('settings.selectLanguage')}</Dialog.Title>
+        <Dialog.Title style={styles.title}>{title || t('settings.selectLanguage')}</Dialog.Title>
         <IconButton
           icon="close"
           size={18}
@@ -54,7 +65,7 @@ export const LanguageSelector = ({
           ) : (
             <View style={styles.listCard}>
               <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-                {languages.map((lang, index) => {
+                {resolvedLanguages.map((lang, index) => {
                   const isSelected = lang.code === currentLanguage;
                   return (
                     <React.Fragment key={lang.code}>
@@ -78,7 +89,7 @@ export const LanguageSelector = ({
                           <View style={styles.rightSpacer} />
                         )}
                       </TouchableOpacity>
-                      {index < languages.length - 1 ? <View style={styles.divider} /> : null}
+                      {index < resolvedLanguages.length - 1 ? <View style={styles.divider} /> : null}
                     </React.Fragment>
                   );
                 })}

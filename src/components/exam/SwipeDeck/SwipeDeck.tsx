@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
-import { Dimensions, View, StyleSheet, ViewStyle } from 'react-native';
-import { GestureDetector, Gesture, GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Dimensions, View, ViewStyle } from 'react-native';
+import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -10,6 +10,7 @@ import Animated, {
   interpolate,
   Extrapolate,
 } from 'react-native-reanimated';
+import { styles } from './SwipeDeck.styles';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = SCREEN_WIDTH * 0.25;
@@ -34,6 +35,7 @@ function SwipeDeck<T extends { id: string }>({
   containerStyle,
 }: SwipeDeckProps<T>) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [frozenNextItem, setFrozenNextItem] = React.useState<T | null>(null);
   const translateX = useSharedValue(0);
   const rotate = useSharedValue(0);
   
@@ -46,6 +48,12 @@ function SwipeDeck<T extends { id: string }>({
       }
   }, [currentIndex, translateX, rotate, onIndexChange]);
 
+  useEffect(() => {
+    if (frozenNextItem) {
+      setFrozenNextItem(null);
+    }
+  }, [currentIndex, frozenNextItem]);
+
   // Handle data shrinking (e.g. unfavoriting the last item)
   useEffect(() => {
       if (currentIndex >= data.length && data.length > 0) {
@@ -54,6 +62,11 @@ function SwipeDeck<T extends { id: string }>({
   }, [data.length, currentIndex]);
 
   const handleSwipeComplete = useCallback((direction: 'left' | 'right') => {
+    const nextItem = data[currentIndex + 1];
+    if (nextItem) {
+      setFrozenNextItem(nextItem);
+    }
+
     const item = data[currentIndex];
     if (direction === 'left') {
       onSwipeLeft(item);
@@ -72,6 +85,8 @@ function SwipeDeck<T extends { id: string }>({
   }, [currentIndex, data, onSwipeLeft, onSwipeRight, onFinished]);
 
   const panGesture = Gesture.Pan()
+    .activeOffsetX([-12, 12])
+    .failOffsetY([-12, 12])
     .onUpdate((event) => {
       translateX.value = event.translationX;
       rotate.value = interpolate(
@@ -104,22 +119,23 @@ function SwipeDeck<T extends { id: string }>({
 
   // Next card style (fades in and scales up slightly)
   const nextCardStyle = useAnimatedStyle(() => {
-      const scale = interpolate(
-          Math.abs(translateX.value),
-          [0, SCREEN_WIDTH],
-          [0.9, 1],
-          Extrapolate.CLAMP
-      );
-      const opacity = interpolate(
-          Math.abs(translateX.value),
-          [0, SCREEN_WIDTH * 0.5],
-          [0.6, 1],
-          Extrapolate.CLAMP
-      );
-      return {
-          transform: [{ scale }],
-          opacity
-      };
+    const scale = interpolate(
+      Math.abs(translateX.value),
+      [0, SWIPE_THRESHOLD],
+      [0.97, 1],
+      Extrapolate.CLAMP
+    );
+    const translateY = interpolate(
+      Math.abs(translateX.value),
+      [0, SWIPE_THRESHOLD],
+      [12, 0],
+      Extrapolate.CLAMP
+    );
+
+    return {
+      transform: [{ translateY }, { scale }],
+      opacity: 1,
+    };
   });
 
   if (currentIndex >= data.length) {
@@ -127,40 +143,34 @@ function SwipeDeck<T extends { id: string }>({
   }
 
   const currentItem = data[currentIndex];
-  const nextItem = data[currentIndex + 1];
+  const nextItem = frozenNextItem ?? data[currentIndex + 1];
 
   return (
-    <GestureHandlerRootView style={[styles.container, containerStyle]}>
+    <View style={[styles.container, containerStyle]}>
       {/* Next Card (Underneath) */}
       {nextItem && (
-        <Animated.View style={[styles.cardContainer, nextCardStyle]}>
-           {renderCard(nextItem, currentIndex + 1)}
+        <Animated.View
+          pointerEvents="none"
+          renderToHardwareTextureAndroid
+          shouldRasterizeIOS
+          style={[styles.cardContainer, styles.nextCard, nextCardStyle]}
+        >
+          {renderCard(nextItem, currentIndex + 1)}
         </Animated.View>
       )}
 
       {/* Top Card (Interactive) */}
       <GestureDetector gesture={panGesture}>
-        <Animated.View style={[styles.cardContainer, animatedCardStyle]}>
+        <Animated.View
+          renderToHardwareTextureAndroid
+          shouldRasterizeIOS
+          style={[styles.cardContainer, styles.topCard, animatedCardStyle]}
+        >
           {renderCard(currentItem, currentIndex)}
         </Animated.View>
       </GestureDetector>
-    </GestureHandlerRootView>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-  },
-  cardContainer: {
-    width: SCREEN_WIDTH,
-    position: 'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default SwipeDeck;

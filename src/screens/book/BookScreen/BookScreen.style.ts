@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { MD3Theme } from 'react-native-paper';
 
 export const createStyles = (theme: MD3Theme) => StyleSheet.create({
@@ -9,7 +9,7 @@ export const createStyles = (theme: MD3Theme) => StyleSheet.create({
   scrollContent: {
          paddingHorizontal: 16,
     //   paddingTop: 12,
-      paddingBottom: 24,
+      paddingBottom: Platform.OS === 'android' ? 12 : 24,
   },
   title: {
     fontSize: 24,

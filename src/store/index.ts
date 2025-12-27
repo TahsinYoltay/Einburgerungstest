@@ -59,6 +59,20 @@ const examPersistTransform = createTransform(
   { whitelist: ['exam'] }
 );
 
+const bookPersistTransform = createTransform(
+  (inboundState: any) => ({
+    currentLanguage: inboundState?.currentLanguage ?? 'en',
+  }),
+  (outboundState: any) => {
+    const initialBookState = bookReducer(undefined, { type: '@@INIT' } as any);
+    return {
+      ...initialBookState,
+      currentLanguage: outboundState?.currentLanguage ?? initialBookState.currentLanguage ?? 'en',
+    };
+  },
+  { whitelist: ['book'] }
+);
+
 // Combine reducers
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -76,7 +90,7 @@ const persistConfig: PersistConfig<ReturnType<typeof rootReducer>> = {
   // Whitelist defines which reducers will be persisted
   // NOTE: subscription is NOT persisted - it must always come fresh from RevenueCat
   whitelist: ['auth', 'exam', 'content', 'book', 'rating'],
-  transforms: [examPersistTransform],
+  transforms: [examPersistTransform, bookPersistTransform],
 };
 
 // Create persisted reducer
@@ -245,9 +259,19 @@ startAppListening({
     }
 
     await progressSyncService.saveLocalExamProgress(nextUid, merged);
+    const mergedChaptersData = (() => {
+      const examState = (listenerApi.getState() as RootState).exam;
+      return {
+        data: {
+          ...(examState.chaptersData as any)?.data,
+          ...(examState.mockChaptersData as any)?.data,
+          ...(examState.chapterQuestionsData as any)?.data,
+        },
+      };
+    })();
     const hydration = progressSyncService.materializeExamHydrationPayload({
       snapshot: merged,
-      chaptersData: (listenerApi.getState() as RootState).exam.chaptersData,
+      chaptersData: mergedChaptersData,
     });
 
     listenerApi.dispatch(resetAllExamUserData());
@@ -338,9 +362,19 @@ startAppListening({
     }
 
     await progressSyncService.saveLocalExamProgress(nextUid, local);
+    const mergedChaptersData = (() => {
+      const examState = (listenerApi.getState() as RootState).exam;
+      return {
+        data: {
+          ...(examState.chaptersData as any)?.data,
+          ...(examState.mockChaptersData as any)?.data,
+          ...(examState.chapterQuestionsData as any)?.data,
+        },
+      };
+    })();
     const hydration = progressSyncService.materializeExamHydrationPayload({
       snapshot: local,
-      chaptersData: (listenerApi.getState() as RootState).exam.chaptersData,
+      chaptersData: mergedChaptersData,
     });
 
     listenerApi.dispatch(resetAllExamUserData());

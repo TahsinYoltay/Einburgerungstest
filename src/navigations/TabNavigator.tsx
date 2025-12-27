@@ -2,14 +2,15 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/material-design-icons';
-import { useTheme } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
+import { Dimensions, Platform } from 'react-native';
 
 // Screens
 import HomeScreen from '../screens/home/HomeScreen/HomeScreen';
 import BookScreen from '../screens/book/BookScreen/BookScreen';
 import ExamListScreen from '../screens/exam/ExamList/ExamListScreen';
 import ProgressScreen from '../screens/progress/ProgressScreen/ProgressScreen';
+import { useAppTheme } from '../providers/ThemeProvider';
 
 // No need for ROUTES import as we're using direct string names
 
@@ -33,40 +34,44 @@ const renderProgressIcon = ({ color, size }: { color: string; size: number }) =>
 );
 
 const TabNavigator = () => {
-  const theme = useTheme();
+  const { theme } = useAppTheme();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  
-  // Calculate dynamic tab bar height based on device
-  const isIphoneWithNotch = insets.bottom > 0;
-  
-  // Determine bottom tab bar height and padding
-  const tabBarHeight = isIphoneWithNotch ? 85 : 60;
-  const bottomPadding = isIphoneWithNotch ? Math.max(insets.bottom - 5, 15) : 8;
+  const isAndroid = Platform.OS === 'android';
+
+  // On some Android builds (edge-to-edge), the system nav can overlay the tab bar.
+  // If RN reports a full-height window, apply a conservative bottom inset.
+  const screenWindowHeightDiff =
+    Dimensions.get('screen').height - Dimensions.get('window').height;
+  const isEdgeToEdgeAndroid = isAndroid && Math.abs(screenWindowHeightDiff) < 2;
+  const baseAndroidInset = isEdgeToEdgeAndroid ? Math.max(insets.bottom, 16) : 0;
+  const androidExtraBottomGap = 12;
+  const androidTabBarInset = baseAndroidInset + androidExtraBottomGap;
 
   return (
     <Tab.Navigator
       initialRouteName="HomeTab"
+      safeAreaInsets={isAndroid ? { bottom: androidTabBarInset } : undefined}
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: theme.colors.primary,
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
-          height: tabBarHeight,
-          paddingBottom: bottomPadding,
-          paddingTop: 8,
+          backgroundColor: theme.colors.surface,
+          borderTopColor: theme.colors.outline,
+          borderTopWidth: 0.5,
           // Add shadow for iOS
           shadowColor: '#000',
           shadowOffset: { width: 0, height: -2 },
           shadowOpacity: 0.1,
           shadowRadius: 3,
           // Add elevation for Android
-          elevation: 10,
+          elevation: 12,
         },
         tabBarHideOnKeyboard: true,
         tabBarLabelStyle: {
           fontSize: 12,
-          paddingBottom: 4,
+          marginBottom: isAndroid ? 2 : 4,
         },
         // Disable animation between tabs
         animation: 'none',

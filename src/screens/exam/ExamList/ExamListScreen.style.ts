@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { MD3Theme } from 'react-native-paper';
 
 export const createStyles = (theme: MD3Theme) => StyleSheet.create({
@@ -6,9 +6,27 @@ export const createStyles = (theme: MD3Theme) => StyleSheet.create({
     flex: 1,
     backgroundColor: theme.colors.background,
   },
+  containerWithHeader: {
+    backgroundColor: Platform.OS === 'ios' ? theme.colors.surface : theme.colors.background,
+  },
   scrollContent: {
     paddingHorizontal: 16,
-    paddingBottom: 32,
+    paddingBottom: Platform.OS === 'android' ? 12 : 32,
+  },
+  scrollContentWithHeader: {
+    paddingTop: 8,
+  },
+  header: {
+    backgroundColor: theme.colors.surface,
+    elevation: 0,
+    height: Platform.OS === 'ios' ? 44 : undefined,
+    borderBottomWidth: Platform.OS === 'ios' ? StyleSheet.hairlineWidth : 0,
+    borderBottomColor: theme.colors.outline,
+  },
+  headerTitle: {
+    color: theme.colors.onSurface,
+    fontSize: Platform.OS === 'ios' ? 17 : 16,
+    fontWeight: '600',
   },
   heroCard: {
     backgroundColor: '#1E63F0',

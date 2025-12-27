@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
-import { ScrollView, View, Pressable, RefreshControl, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Pressable, RefreshControl, TouchableOpacity, Platform } from 'react-native';
 import Icon from '@react-native-vector-icons/material-design-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text } from 'react-native-paper';
+import { Appbar, Text } from 'react-native-paper';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +11,7 @@ import { ROUTES } from '../../../constants/routes';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { loadExams, switchExamLanguage } from '../../../store/slices/examSlice';
 import { syncContent } from '../../../store/slices/contentSlice';
-import { ExamAttempt } from '../../../types/exam';
+import { ExamAttempt, ExamMode } from '../../../types/exam';
 import { createStyles } from './ExamListScreen.style';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 import AccountHeader from '../../../components/account/AccountHeader/AccountHeader';
@@ -19,14 +19,30 @@ import PaywallModal from '../../../components/common/PaywallModal';
 
 type Nav = NativeStackNavigationProp<RootStackParamList>;
 
-const ExamListScreen = () => {
+type ExamListScreenProps = {
+  modeFilter?: ExamMode;
+  titleOverride?: string;
+  showHeader?: boolean;
+  showAccountHeader?: boolean;
+};
+
+const ExamListScreen = ({
+  modeFilter = 'practice',
+  titleOverride,
+  showHeader = false,
+  showAccountHeader = true,
+}: ExamListScreenProps) => {
   const dispatch = useAppDispatch();
   const navigation = useNavigation<Nav>();
   const { exams: examStateExams, examHistory, currentExam, inProgress, loading, currentLanguage, favoriteQuestions, questionStats } = useAppSelector(state => state.exam);
   const { exams: contentExams } = useAppSelector(state => state.content);
   
   // Use content exams if available (they are synced from Firebase), fallback to exam slice (legacy)
-  const exams = contentExams.length > 0 ? contentExams : examStateExams;
+  const exams = Array.isArray(contentExams) && contentExams.length > 0 ? contentExams : examStateExams;
+  const filteredExams = useMemo(
+    () => exams.filter(exam => (modeFilter ? exam.mode === modeFilter : true)),
+    [exams, modeFilter],
+  );
 
   const { t } = useTranslation();
   const { theme } = useAppTheme();
@@ -36,10 +52,17 @@ const ExamListScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
   const [forceUpdateKey, setForceUpdateKey] = useState(0);
+  const isPremiumOnly = modeFilter === 'mock' || modeFilter === 'chapter';
+  const resolvedTitle =
+    titleOverride ||
+    (modeFilter === 'mock'
+      ? t('exam.mockTitle', 'Mock Exams')
+      : modeFilter === 'chapter'
+      ? t('exam.chapterTitle', 'Chapter Tests')
+      : t('exam.practiceTitle', 'Practice Exams'));
 
   const handleExamPress = (examId: string, index: number) => {
-    // Logic: First 5 exams (0-4) are free. Others need Pro.
-    const isLocked = index >= 5 && !isPro;
+    const isLocked = !isPro && (isPremiumOnly || index >= 5);
 
     if (isLocked) {
       setShowPaywall(true);
@@ -69,7 +92,7 @@ const ExamListScreen = () => {
           await dispatch(syncContent());
           
           // 2. If valid and active, check current language version
-          if (isActive && currentLanguage !== 'en') {
+          if (isActive) {
              dispatch(switchExamLanguage(currentLanguage));
           }
         } catch (err) {
@@ -97,9 +120,7 @@ const ExamListScreen = () => {
       await dispatch(syncContent()).unwrap();
       
       // 2. Check current language
-      if (currentLanguage !== 'en') {
-        await dispatch(switchExamLanguage(currentLanguage)).unwrap();
-      }
+      await dispatch(switchExamLanguage(currentLanguage)).unwrap();
     } catch (e) {
       console.log('Failed to refresh config', e);
     } finally {
@@ -129,7 +150,7 @@ const ExamListScreen = () => {
           selectedAnswers: selected,
         })),
         score: undefined,
-        totalQuestions: p.questions.length,
+        totalQuestions: p.questions?.length ?? 0,
         correctAnswers: 0,
         flaggedQuestions: p.flaggedQuestions,
         timeSpentInSeconds: p.timeSpentInSeconds,
@@ -146,7 +167,7 @@ const ExamListScreen = () => {
           selectedAnswers: selected,
         })),
         score: undefined,
-        totalQuestions: currentExam.questions.length,
+        totalQuestions: currentExam.questions?.length ?? 0,
         correctAnswers: 0,
         flaggedQuestions: currentExam.flaggedQuestions,
         timeSpentInSeconds: currentExam.timeSpentInSeconds,
@@ -157,15 +178,21 @@ const ExamListScreen = () => {
 
   const avgScore = useMemo(() => {
     if (!examHistory.length) return 0;
-    const total = examHistory.reduce((sum, a) => sum + (a.score ?? 0), 0);
-    return Math.round(total / examHistory.length);
-  }, [examHistory]);
+    const examIds = new Set(filteredExams.map(exam => exam.id));
+    const relevant = examHistory.filter(att => examIds.has(att.examId));
+    if (!relevant.length) return 0;
+    const total = relevant.reduce((sum, a) => sum + (a.score ?? 0), 0);
+    return Math.round(total / relevant.length);
+  }, [examHistory, filteredExams]);
 
   const completedCount = useMemo(() => {
-    return Object.values(latestByExam).filter(a => a.status === 'passed' || a.status === 'failed').length;
-  }, [latestByExam]);
+    const examIds = new Set(filteredExams.map(exam => exam.id));
+    return Object.values(latestByExam).filter(
+      a => examIds.has(a.examId) && (a.status === 'passed' || a.status === 'failed'),
+    ).length;
+  }, [latestByExam, filteredExams]);
 
-  const totalExams = exams.length || 1;
+  const totalExams = filteredExams.length || 1;
   const completedPct = Math.round((completedCount / totalExams) * 100);
 
   const handleStart = (examId: string, restart?: boolean) => {
@@ -207,15 +234,36 @@ const ExamListScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[styles.container, showHeader && styles.containerWithHeader]}
+      edges={
+        showHeader
+          ? Platform.OS === 'android'
+            ? ['top']
+            : undefined
+          : Platform.OS === 'ios'
+          ? ['top', 'left', 'right']
+          : ['top']
+      }
+    >
+      {showHeader && (
+        <Appbar.Header style={styles.header} statusBarHeight={Platform.OS === 'ios' ? 0 : undefined}>
+          <Appbar.BackAction onPress={() => navigation.goBack()} />
+          <Appbar.Content title={resolvedTitle} titleStyle={styles.headerTitle} />
+        </Appbar.Header>
+      )}
       <ScrollView 
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, showHeader && styles.scrollContentWithHeader]}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} tintColor={theme.colors.primary} />
         }
       >
-        <AccountHeader showText={false} showChevron={false} />
-        <Text style={styles.screenTitle}>{t('exam.practiceTitle', 'Practice Exams')}</Text>
+        {showAccountHeader && <AccountHeader showText={false} showChevron={false} />}
+        {!showHeader && (
+          <Text style={styles.screenTitle}>
+            {resolvedTitle}
+          </Text>
+        )}
         {/* <Text style={styles.screenSubtitle}>{t('exam.practiceSubtitle', '42 exams to prepare you for test day.')}</Text> */}
         <View style={styles.heroCard}>
           <Text style={styles.heroTitle}>{t('exam.overallProgress', 'Overall Progress')}</Text>
@@ -255,14 +303,23 @@ const ExamListScreen = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Practice list */}
-        <Text style={styles.sectionTitle}>{t('exam.practiceTests', 'All Practice Tests')}</Text>
-        {exams.map((exam, index) => {
+        {/* Exam list */}
+        <Text style={styles.sectionTitle}>
+          {modeFilter === 'mock'
+            ? t('exam.mockTests', 'All Mock Exams')
+            : modeFilter === 'chapter'
+            ? t('exam.chapterTests', 'All Chapter Tests')
+            : t('exam.practiceTests', 'All Practice Tests')}
+        </Text>
+        {filteredExams.map((exam, index) => {
           const titleText = exam.title || '';
-          const numberMatch = titleText.match(/(\\d+)/);
+          const numberMatch = titleText.match(/(\d+)/);
           const isPracticeTitle = /practice\\s*exam/i.test(titleText);
+          const isMockTitle = /mock\\s*exam/i.test(titleText);
           const displayTitle =
-            isPracticeTitle && numberMatch
+            isMockTitle && numberMatch
+              ? t('exam.mockExam', { number: numberMatch[1] })
+              : isPracticeTitle && numberMatch
               ? t('exam.practiceExam', { number: numberMatch[1] })
               : titleText || exam.id;
           const latest = latestByExam[exam.id];
@@ -293,8 +350,7 @@ const ExamListScreen = () => {
               ? `${lastAttempt?.correctAnswers ?? 0}/${totalQuestions}`
               : t('exam.status.not-started');
 
-          // Locking Logic
-          const isLocked = index >= 5 && !isPro;
+          const isLocked = !isPro && (isPremiumOnly || index >= 5);
 
           return (
             <View key={exam.id} style={[styles.accordionCard, isLocked && { opacity: 0.7 }]}>

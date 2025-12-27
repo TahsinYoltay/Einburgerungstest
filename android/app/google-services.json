@@ -8,6 +8,66 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:482157943468:android:360aa14048cbba79211d09",
+        "android_client_info": {
+          "package_name": "com.eywasoft.lifeintheuk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "482157943468-khvc4p3a0lstt694i4tfeeo22guqeods.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eywasoft.lifeintheuk",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "482157943468-lcjgps3ns7v8p3fkg84eleg5a70vahr8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eywasoft.lifeintheuk",
+            "certificate_hash": "09b3b883f2a850eff1e84e52dc684e3ff504cfc3"
+          }
+        },
+        {
+          "client_id": "482157943468-tfeosrh911400tegqasffok76o8m54ih.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eywasoft.lifeintheuk",
+            "certificate_hash": "8a641e0aab0af9d29777ca67dd3500900cf984f5"
+          }
+        },
+        {
+          "client_id": "482157943468-uq0vuabptkv6mdsk2nssp6ct1d2dlb0v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAS1pH6YW2TunFQGn9xURPhN3Fm1ktBwUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "482157943468-ijg129jkbs5erqa61jsluvdsl79o02ce.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "482157943468-ck0dkar5rjun6ktm1mmpl65jb50br9vv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.eywasoft.LIF"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:482157943468:android:6273d387e3764969211d09",
         "android_client_info": {
           "package_name": "com.lif"
@@ -38,6 +98,13 @@
             {
               "client_id": "482157943468-ijg129jkbs5erqa61jsluvdsl79o02ce.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "482157943468-ck0dkar5rjun6ktm1mmpl65jb50br9vv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.eywasoft.LIF"
+              }
             }
           ]
         }

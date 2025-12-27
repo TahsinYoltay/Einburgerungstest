@@ -1,12 +1,12 @@
 {
   "modules": {
     "exams": {
-      "version": 1,
+      "version": 6,
       "path": "config/exams.json",
       "required": true
     },
     "languages": {
-      "version": 1,
+      "version": 6,
       "path": "config/languages.json",
       "required": true
     },

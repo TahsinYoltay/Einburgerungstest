@@ -8,6 +8,8 @@ import {
 } from '../../types/exam';
 import examsManifest from '../../data/exam/normalized/exams.json';
 import defaultChaptersData from '../../data/exam/normalized/allChaptersData.normalized.json';
+import defaultMockChaptersData from '../../data/exam/normalized/mockExam.en.json';
+import defaultChapterQuestionsData from '../../data/exam/normalized/questionsByChapter.en.json';
 import { languageManager, ChaptersData } from '../../services/LanguageManager';
 
 type AnswerMap = Record<string, string[]>; // questionId -> array of option index strings
@@ -17,6 +19,8 @@ type ExamState = {
   availableLanguages: LanguageOption[];
   // Store the chapters data in Redux to allow dynamic switching
   chaptersData: ChaptersData;
+  mockChaptersData: ChaptersData;
+  chapterQuestionsData: ChaptersData;
   currentLanguage: string;
   isDownloadingLanguage: boolean;
   downloadProgress: number;
@@ -105,6 +109,8 @@ const initialState: ExamState = {
   exams: examsManifest as ExamManifestEntry[],
   availableLanguages: defaultLanguages,
   chaptersData: defaultChaptersData as ChaptersData,
+  mockChaptersData: defaultMockChaptersData as ChaptersData,
+  chapterQuestionsData: defaultChapterQuestionsData as ChaptersData,
   currentLanguage: 'en',
   isDownloadingLanguage: false,
   downloadProgress: 0,
@@ -193,13 +199,21 @@ export const switchExamLanguage = createAsyncThunk(
       // Look up in content slice first
       const targetLang = state.content?.languages?.find((l: any) => l.code === langCode);
       const remoteVersion = targetLang?.version || 1;
+      const remoteMockVersion = targetLang?.mockVersion || 1;
+      const remoteChapterVersion = targetLang?.chapterVersion || 1;
 
       // 1. Check if downloaded and version match
       const isDownloaded = await languageManager.isLanguageDownloaded(langCode);
       const localVersion = await languageManager.getDownloadedVersion(langCode);
+      const isMockDownloaded = await languageManager.isMockDownloaded(langCode);
+      const localMockVersion = await languageManager.getDownloadedMockVersion(langCode);
+      const isChapterDownloaded = await languageManager.isChapterQuestionsDownloaded(langCode);
+      const localChapterVersion = await languageManager.getDownloadedChapterQuestionsVersion(langCode);
       
       // Update if not downloaded OR if remote version is newer
       const needsUpdate = !isDownloaded || (localVersion < remoteVersion);
+      const needsMockUpdate = !isMockDownloaded || (localMockVersion < remoteMockVersion);
+      const needsChapterUpdate = !isChapterDownloaded || (localChapterVersion < remoteChapterVersion);
       
       if (needsUpdate) {
         // 2. Download if needed (reporting progress)
@@ -210,9 +224,23 @@ export const switchExamLanguage = createAsyncThunk(
         });
       }
 
+      if (needsMockUpdate) {
+        await languageManager.downloadMockExam(langCode, remoteMockVersion, (progress) => {
+          dispatch(setDownloadProgress(progress.bytesTransferred / progress.totalBytes));
+        });
+      }
+
+      if (needsChapterUpdate) {
+        await languageManager.downloadChapterQuestions(langCode, remoteChapterVersion, (progress) => {
+          dispatch(setDownloadProgress(progress.bytesTransferred / progress.totalBytes));
+        });
+      }
+
       // 3. Load the data
       const data = await languageManager.loadLanguageData(langCode);
-      return { langCode, data };
+      const mockData = await languageManager.loadMockExamData(langCode);
+      const chapterData = await languageManager.loadChapterQuestionsData(langCode);
+      return { langCode, data, mockData, chapterData };
     } catch (error) {
       return rejectWithValue((error as Error).message);
     }
@@ -228,8 +256,14 @@ export const loadExamQuestions = createAsyncThunk(
       
       if (!manifest) throw new Error(`Exam not found: ${examId}`);
       
-      // Use the dynamic chapters data from state instead of static import
-      const pool = getQuestionsForExam(manifest, state.exam.chaptersData);
+      // Use the correct dataset based on exam mode
+      const chaptersData =
+        manifest.mode === 'mock'
+          ? state.exam.mockChaptersData
+          : manifest.mode === 'chapter'
+          ? state.exam.chapterQuestionsData
+          : state.exam.chaptersData;
+      const pool = getQuestionsForExam(manifest, chaptersData);
       
       if (!pool.length) throw new Error(`No questions for exam ${examId}`);
       const questions = pickQuestions(pool, manifest.questions_per_exam || pool.length);
@@ -247,7 +281,7 @@ export const loadExamQuestions = createAsyncThunk(
 
 export const submitExam = createAsyncThunk(
   'exam/submitExam',
-  async (_, { getState, rejectWithValue }) => {
+  async (params: { forceStatus?: ExamStatus } | undefined, { getState, rejectWithValue }) => {
     try {
       const state = getState() as { exam: ExamState };
       const { questions, answers, examId } = state.exam.currentExam;
@@ -269,7 +303,7 @@ export const submitExam = createAsyncThunk(
       });
 
       const score = Math.round((correctCount / questions.length) * 100);
-      const status: ExamStatus = score >= passMark * 100 ? 'passed' : 'failed';
+      const status: ExamStatus = params?.forceStatus ?? (score >= passMark * 100 ? 'passed' : 'failed');
       
       // Use the actively tracked timeSpentInSeconds from the state
       let timeSpentSeconds = state.exam.currentExam.timeSpentInSeconds;
@@ -336,6 +370,9 @@ const examSlice = createSlice({
       if (saved) {
         state.currentExam = {
           ...saved,
+          questions: saved.questions || [],
+          answers: saved.answers || {},
+          flaggedQuestions: saved.flaggedQuestions || [],
           examCompleted: false,
           examStarted: true,
           attemptId,
@@ -493,35 +530,54 @@ const examSlice = createSlice({
         state.isDownloadingLanguage = false;
         state.currentLanguage = action.payload.langCode;
         state.chaptersData = action.payload.data;
+        state.mockChaptersData = action.payload.mockData;
+        state.chapterQuestionsData = action.payload.chapterData;
         state.downloadProgress = 100;
 
         // Refresh the text of currently active questions to match the new language
         // This preserves the shuffled order and user progress
         // 1. Create a lookup map for the new translated questions
-        const newQuestionsMap: Record<string, NormalizedQuestion> = {};
-        const chaptersDataAny = (action.payload.data as any).data;
-        if (chaptersDataAny) {
-          Object.values(chaptersDataAny).forEach((ch: any) => {
-            ch.questions.forEach((q: NormalizedQuestion) => {
-              newQuestionsMap[q.id] = q;
+        const buildQuestionsMap = (data: ChaptersData) => {
+          const map: Record<string, NormalizedQuestion> = {};
+          const dataAny = (data as any).data;
+          if (dataAny) {
+            Object.values(dataAny).forEach((ch: any) => {
+              ch.questions.forEach((q: NormalizedQuestion) => {
+                map[q.id] = q;
+              });
             });
-          });
-        }
+          }
+          return map;
+        };
 
-        const refreshQuestionText = (questions: NormalizedQuestion[]) =>
+        const practiceMap = buildQuestionsMap(action.payload.data);
+        const mockMap = buildQuestionsMap(action.payload.mockData);
+        const chapterMap = buildQuestionsMap(action.payload.chapterData);
+
+        const modeById = new Map(state.exams.map(exam => [exam.id, exam.mode]));
+        const pickMap = (examId?: string | null) =>
+          examId && modeById.get(examId) === 'mock'
+            ? mockMap
+            : examId && modeById.get(examId) === 'chapter'
+            ? chapterMap
+            : practiceMap;
+
+        const refreshQuestionText = (questions: NormalizedQuestion[], map: Record<string, NormalizedQuestion>) =>
           questions.map(oldQ => {
-            const newQ = newQuestionsMap[oldQ.id];
-            return newQ ? { ...oldQ, ...newQ } : oldQ; // Update text fields, keep other state if any
+            const newQ = map[oldQ.id];
+            return newQ ? { ...oldQ, ...newQ } : oldQ;
           });
 
         // 2. Update existing questions in place
         if (state.currentExam.questions.length > 0) {
-          state.currentExam.questions = refreshQuestionText(state.currentExam.questions);
+          const map = pickMap(state.currentExam.examId);
+          state.currentExam.questions = refreshQuestionText(state.currentExam.questions, map);
         }
 
         Object.entries(state.inProgress || {}).forEach(([examId, progress]) => {
           if (!progress.questions.length) return;
-          state.inProgress[examId].questions = refreshQuestionText(progress.questions);
+          const map = pickMap(examId);
+          state.inProgress[examId].questions = refreshQuestionText(progress.questions, map);
         });
       })
       .addCase(switchExamLanguage.rejected, (state, action) => {

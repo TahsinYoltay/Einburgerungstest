@@ -72,8 +72,10 @@ const ReviewQuestionCard = ({
   return (
     <Card style={styles.card}>
        <ScrollView 
+         style={styles.scrollView}
          contentContainerStyle={styles.scrollContent} 
          showsVerticalScrollIndicator={false}
+         removeClippedSubviews={false}
          nestedScrollEnabled={true} // Important for nested interactions
        >
           <Card.Content>
@@ -103,7 +105,7 @@ const ReviewQuestionCard = ({
                   key={optionId}
                   style={getOptionStyle(optionId)}
                 >
-                  <View style={{ flex: 1 }}>
+                  <View style={styles.optionTextContainer}>
                     <Text style={getTextStyle(optionId)} numberOfLines={0}>
                       {option}
                     </Text>

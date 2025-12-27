@@ -1,10 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { MD3Theme } from 'react-native-paper';
 
 export const createStyles = (theme: MD3Theme) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    backgroundColor: Platform.OS === 'ios' ? theme.colors.surface : theme.colors.background,
   },
   loading: {
     position: 'absolute',
@@ -27,6 +27,23 @@ export const createStyles = (theme: MD3Theme) => StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: 200,
+  },
+  header: {
+    backgroundColor: theme.colors.surface,
+    elevation: 0,
+    height: Platform.OS === 'ios' ? 44 : undefined,
+    borderBottomWidth: Platform.OS === 'ios' ? StyleSheet.hairlineWidth : 0,
+    borderBottomColor: theme.colors.outline,
+  },
+  headerContent: {
+    alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start',
+    paddingHorizontal: 8,
+  },
+  headerTitle: {
+    color: theme.colors.onSurface,
+    fontSize: Platform.OS === 'ios' ? 17 : 16,
+    fontWeight: '600',
+    textAlign: Platform.OS === 'ios' ? 'center' : 'left',
   },
   bottomBar: {
     flexDirection: 'row',

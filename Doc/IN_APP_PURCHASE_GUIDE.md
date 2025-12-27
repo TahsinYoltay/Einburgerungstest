@@ -77,13 +77,74 @@ We created a *new* set of products for v2.0 to separate them from the legacy v1.
 
 ## 5. Google Play Console (Android) Setup
 
-*Status: Pending Implementation*
+Unlike iOS, **Google Play Billing requires the app to be installed from Google Play** (Internal Testing / Internal App Sharing) to reliably return product details. If you run `yarn android` (debug APK), the paywall will often show **no packages** even if the code is correct.
 
-To complete the Android side, the following must be done:
-1.  **Create Subscription:** ID `uk_life_monthly_v2` in Google Play Console.
-2.  **Create One-Time Product:** ID `uk_life_lifetime_v2`.
-3.  **Link to RevenueCat:** Go to RevenueCat -> Products -> Click "+ New" -> Select "Play Store" -> Enter these IDs.
-4.  **Entitlements:** Attach these new Android products to the `pro_access` entitlement in RevenueCat.
+### 5.1 Prerequisites (Must Match the App)
+
+1. **Android package name** must match:
+   - **`applicationId`** in `android/app/build.gradle` (currently `com.eywasoft.lifeintheuk`)
+2. **Product IDs** (recommended to keep identical to iOS):
+   - `uk_life_monthly_v2` (subscription)
+   - `uk_life_lifetime_v2` (one-time)
+
+### 5.2 Google Play Console → Monetization Setup
+
+1. **Complete Play Console payments setup**
+   - Ensure your payments/merchant profile is created and monetization is enabled.
+2. **Create the subscription**
+   - Go to **Monetize → Products → Subscriptions**
+   - Create subscription ID: `uk_life_monthly_v2`
+   - Create a **Base plan** (monthly), set price, and activate it
+3. **Create the one-time (lifetime) product**
+   - Go to **Monetize → Products → In-app products**
+   - Create product ID: `uk_life_lifetime_v2`
+   - Type: **Managed product** (non-consumable), set price, and activate it
+
+### 5.3 Testing Accounts (Required)
+
+1. Add your testers under **Setup → License testing**
+2. Add those same testers to your **Internal testing** track testers list
+3. On the device/emulator, sign into Google Play with that tester account
+
+### 5.4 Upload a Build (Internal Testing)
+
+Google Play Billing testing requires a Play-distributed build.
+
+1. Create an **upload keystore** (one-time)
+   - Generate a keystore (example):
+     - `keytool -genkeypair -v -storetype JKS -keystore android/app/upload.keystore -alias upload -keyalg RSA -keysize 2048 -validity 10000`
+   - Keep this file safe. Do **not** commit it.
+2. Create `android/keystore.env` (one-time)
+   - Copy `android/keystore.env.example` → `android/keystore.env`
+   - Fill in your keystore path + passwords (this file is gitignored)
+   - See `Doc/ANDROID_RELEASE_AUTOMATION.md` for the secure setup
+3. Build a release AAB (one command):
+   - `./scripts/android/build-closed-testing.sh`
+4. Upload the AAB to **Release → Testing → Internal testing**
+5. Publish the Internal Testing release
+6. Install the app using the Internal Testing link (or Internal App Sharing)
+
+### 5.5 RevenueCat Dashboard (Android)
+
+1. Add your **Android app** inside the same RevenueCat project
+   - Package name must match Play Console + `applicationId` (`com.eywasoft.lifeintheuk`)
+2. Configure **Google Play credentials**
+   - Add a dedicated **Service Account JSON key** in RevenueCat (do not ship this in the app)
+   - Grant that service account Play Console access with least-privilege permissions needed for subscriptions/products
+3. Add **Play Store products** in RevenueCat
+   - `uk_life_monthly_v2` (subscription)
+   - `uk_life_lifetime_v2` (in-app product)
+4. Attach both products to entitlement **`pro_access`**
+5. Ensure offering **`default`** is **Current** and contains packages:
+   - Monthly → `uk_life_monthly_v2`
+   - Lifetime → `uk_life_lifetime_v2`
+
+### 5.6 Common Android Pitfalls
+
+- **Paywall shows no packages** → App not installed from Google Play (Internal Testing/Internal App Sharing) or products are not Active.
+- **Products exist but still missing** → Product IDs don’t match, or the Play Console app package name doesn’t match `applicationId`.
+- **Purchase succeeds but entitlement missing** → Products not attached to `pro_access`, or you’re using a different RevenueCat project/API key on Android.
+- **RevenueCat: “Could not validate subscriptions API permissions”** → In Google Cloud enable **Google Play Android Developer API** (Android Publisher), link the same Cloud project in **Play Console → Setup → API access**, then grant the service account access to the app with permissions to view/manage subscriptions/orders; wait a few minutes and re-validate.
 
 ---
 
