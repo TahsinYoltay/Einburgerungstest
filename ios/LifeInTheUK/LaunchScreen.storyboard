@@ -23,7 +23,7 @@
 	                                    <constraint firstAttribute="height" constant="96" id="ceg-b4-PRW"/>
 	                                </constraints>
 	                            </imageView>
-	                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Life in the UK Test" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" adjustsFontSizeToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
+	                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Einbürgerungstest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" adjustsFontSizeToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
 	                                <rect key="frame" x="32" y="307.5" width="311" height="48"/>
 	                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
 	                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

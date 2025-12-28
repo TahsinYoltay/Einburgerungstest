@@ -195,7 +195,6 @@ const PaywallModal: React.FC<PaywallModalProps> = ({ visible, onDismiss, onPurch
 
   const featureItems = useMemo(() => ([
     { icon: 'infinity', label: t('paywall.featureUnlimited', 'Unlimited Practice Exams') },
-    { icon: 'book-open-page-variant', label: t('paywall.featureStudyGuide', 'Official Study Guide Content') },
     { icon: 'shield-check', label: t('paywall.featureAdFree', 'Ad-Free Experience') },
     { icon: 'cloud-download', label: t('paywall.featureOffline', 'Offline Access') },
   ]), [t]);
@@ -235,7 +234,7 @@ const PaywallModal: React.FC<PaywallModalProps> = ({ visible, onDismiss, onPurch
                 {t('paywall.title', 'Premium Access')}
               </Text>
               <Text style={styles.subtitle}>
-                {t('paywall.subtitle', 'Pass your Life in the UK test.')}
+                {t('paywall.subtitle', 'Pass your Einbürgerungstest.')}
               </Text>
             </View>
 

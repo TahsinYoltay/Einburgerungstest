@@ -8,7 +8,7 @@
     "progress": "進捗"
   },
   "home": {
-    "welcome": "Life in the UK Testへようこそ",
+    "welcome": "Einbürgerungstestへようこそ",
     "examTitle": "模擬試験",
     "examDescription": "練習問題で知識を確認しましょう",
     "startExam": "試験を開始",
@@ -150,14 +150,14 @@
     "practiceExam": "模擬試験 {{number}}"
   },
   "book": {
-    "title": "Life in the UK: 新居住者のためのガイド",
-    "description": "Life in the UKテストの公式学習ガイド",
+    "title": "Einbürgerungstest: 新居住者のためのガイド",
+    "description": "Einbürgerungstestテストの公式学習ガイド",
     "chapters": "章",
     "chapter": "章",
     "readEbook": "電子書籍を読む",
     "ebook": "電子書籍リーダー",
-    "lifeInTheUk": "Life in the UK: 学習ガイド",
-    "studyGuideDescription": "公式学習ガイドの章でLife in the UKテストに備えましょう",
+    "lifeInTheUk": "Einbürgerungstest: 学習ガイド",
+    "studyGuideDescription": "公式学習ガイドの章でEinbürgerungstestテストに備えましょう",
     "readChapter": "章を読む",
     "loadingBook": "本を読み込み中...",
     "loadingSection": "セクションを読み込み中...",
@@ -294,7 +294,7 @@
     "no_book_loaded": "本が読み込まれていません",
     "load_book": "本を読み込む",
     "retry": "再試行",
-    "life_in_uk_guide": "Life in the UK ガイド",
+    "life_in_uk_guide": "Einbürgerungstest ガイド",
     "error": "エラー",
     "ok": "OK",
     "chapter": "章",
@@ -376,7 +376,7 @@
     },
     "examFaq": {
       "title": "試験に関するFAQ",
-      "heroTitle": "Life in the UK 試験",
+      "heroTitle": "Einbürgerungstest 試験",
       "heroSubtitle": "予約から結果取得まで、試験に関するすべての情報。",
       "coreFacts": "試験の基本情報",
       "scoring": "採点と合格基準",
@@ -408,7 +408,7 @@
     "noAttempts": "まだ受験がありません"
   },
   "rating": {
-    "enjoy_title": "Life in the UK は気に入っていますか？",
+    "enjoy_title": "Einbürgerungstest は気に入っていますか？",
     "enjoy_message": "App Storeで評価するには星をタップしてください。",
     "feedback_title": "どのように改善できますか？",
     "feedback_subtitle": "ご不満をおかけして申し訳ありません。改善点をお知らせください。",

@@ -8,7 +8,7 @@
     "settings": "Settings"
   },
   "splash": {
-    "title": "Life in the UK Test",
+    "title": "Einbürgerungstest",
     "tagline": "Master the material.\nSecure your citizenship.",
     "loading": "Loading content...",
     "version": "v{{version}}",
@@ -16,7 +16,7 @@
     "genericError": "Unable to load content right now."
   },
   "home": {
-    "welcome": "Welcome to Life in the UK Test",
+    "welcome": "Welcome to Einbürgerungstest",
     "greeting": "Good Morning, {{name}}",
     "defaultName": "Explorer",
     "subtitle": "Track your learning and pick up where you left off.",
@@ -166,7 +166,7 @@
     },
     "examFaq": {
       "title": "Exams FAQ",
-      "heroTitle": "Life in the UK Exam",
+      "heroTitle": "Einbürgerungstest",
       "heroSubtitle": "Everything you need to know about the exam process, from booking to getting your results.",
       "coreFacts": "Core exam facts",
       "scoring": "Scoring & pass mark",
@@ -213,7 +213,7 @@
     "defaultSubject": "Billing / subscription issue"
   },
   "rating": {
-    "enjoy_title": "Enjoying Life in the UK?",
+    "enjoy_title": "Enjoying Einbürgerungstest?",
     "enjoy_message": "Tap a star to rate it on the App Store.",
     "feedback_title": "How can we improve?",
     "feedback_subtitle": "We are sorry to hear that. Please let us know what we can do better.",
@@ -343,14 +343,14 @@
     "mockExam": "Mock Exam {{number}}"
   },
   "book": {
-    "title": "Life in the UK: A Guide for New Residents",
-    "description": "The official study guide for the Life in the UK test",
+    "title": "Einbürgerungstest: A Guide for New Residents",
+    "description": "The official study guide for the Einbürgerungstest",
     "chapters": "Chapters",
     "chapter": "Chapter",
     "readEbook": "Read E-Book",
     "ebook": "E-Book Reader",
-    "lifeInTheUk": "Life in the UK: Study Guide",
-    "studyGuideDescription": "Prepare for your Life in the UK test with the official study guide chapters",
+    "lifeInTheUk": "Einbürgerungstest: Study Guide",
+    "studyGuideDescription": "Prepare for your Einbürgerungstest with the official study guide chapters",
     "readChapter": "Read Chapter",
     "loadingBook": "Loading book...",
     "loadingSection": "Loading section...",
@@ -510,7 +510,7 @@
     "language": "Language",
     "darkMode": "Dark Mode",
     "lightMode": "Light Mode",
-    "appLanguage": "App Language",
+    "appLanguage": "Language",
     "selectLanguage": "Select Language",
     "examContent": "Exam Content Packages",
     "bookContent": "Book Content Packages",
@@ -602,7 +602,7 @@
   },
   "paywall": {
     "title": "Premium Access",
-    "subtitle": "Pass your Life in the UK test.",
+    "subtitle": "Pass your Einbürgerungstest.",
     "featureUnlimited": "Unlimited Practice Exams",
     "featureStudyGuide": "Official Study Guide Content",
     "featureAdFree": "Ad-Free Experience",
@@ -629,7 +629,7 @@
     "no_book_loaded": "No book loaded",
     "load_book": "Load Book",
     "retry": "Retry",
-    "life_in_uk_guide": "Life in the UK Guide",
+    "life_in_uk_guide": "Einbürgerungstest",
     "error": "Error",
     "ok": "OK",
     "chapter": "Chapter",

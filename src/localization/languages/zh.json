@@ -8,7 +8,7 @@
     "progress": "进度"
   },
   "home": {
-    "welcome": "欢迎使用 Life in the UK Test",
+    "welcome": "欢迎使用 Einbürgerungstest",
     "examTitle": "模拟考试",
     "examDescription": "用练习题测试你的知识",
     "startExam": "开始考试",
@@ -150,14 +150,14 @@
     "practiceExam": "模拟考试 {{number}}"
   },
   "book": {
-    "title": "Life in the UK: 新居民指南",
-    "description": "Life in the UK 测试的官方学习指南",
+    "title": "Einbürgerungstest: 新居民指南",
+    "description": "Einbürgerungstest 测试的官方学习指南",
     "chapters": "章节",
     "chapter": "章节",
     "readEbook": "阅读电子书",
     "ebook": "电子书阅读器",
-    "lifeInTheUk": "Life in the UK: 学习指南",
-    "studyGuideDescription": "通过官方学习指南章节备考 Life in the UK 测试",
+    "lifeInTheUk": "Einbürgerungstest: 学习指南",
+    "studyGuideDescription": "通过官方学习指南章节备考 Einbürgerungstest 测试",
     "readChapter": "阅读章节",
     "loadingBook": "正在加载书籍...",
     "loadingSection": "正在加载章节...",
@@ -294,7 +294,7 @@
     "no_book_loaded": "未加载书籍",
     "load_book": "加载书籍",
     "retry": "重试",
-    "life_in_uk_guide": "Life in the UK 指南",
+    "life_in_uk_guide": "Einbürgerungstest 指南",
     "error": "错误",
     "ok": "确定",
     "chapter": "章节",
@@ -376,7 +376,7 @@
     },
     "examFaq": {
       "title": "考试常见问题",
-      "heroTitle": "Life in the UK 考试",
+      "heroTitle": "Einbürgerungstest 考试",
       "heroSubtitle": "关于考试的一切信息，从预约到获取结果。",
       "coreFacts": "考试核心信息",
       "scoring": "评分与及格线",
@@ -408,7 +408,7 @@
     "noAttempts": "还没有尝试"
   },
   "rating": {
-    "enjoy_title": "Life in the UK 用得满意吗？",
+    "enjoy_title": "Einbürgerungstest 用得满意吗？",
     "enjoy_message": "点亮星星在 App Store 上评分。",
     "feedback_title": "我们如何改进？",
     "feedback_subtitle": "很抱歉听到您的反馈。请告诉我们如何做得更好。",

@@ -7,7 +7,6 @@ import { Dimensions, Platform } from 'react-native';
 
 // Screens
 import HomeScreen from '../screens/home/HomeScreen/HomeScreen';
-import BookScreen from '../screens/book/BookScreen/BookScreen';
 import ExamListScreen from '../screens/exam/ExamList/ExamListScreen';
 import ProgressScreen from '../screens/progress/ProgressScreen/ProgressScreen';
 import { useAppTheme } from '../providers/ThemeProvider';
@@ -19,10 +18,6 @@ const Tab = createBottomTabNavigator();
 // Define icon components outside of the render function
 const renderHomeIcon = ({ color, size }: { color: string; size: number }) => (
   <Icon name="home" color={color} size={size} />
-);
-
-const renderBookIcon = ({ color, size }: { color: string; size: number }) => (
-  <Icon name="book" color={color} size={size} />
 );
 
 const renderExamIcon = ({ color, size }: { color: string; size: number }) => (
@@ -83,14 +78,6 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: t('screens.home'),
           tabBarIcon: renderHomeIcon,
-        }}
-      />
-      <Tab.Screen
-        name="BookTab"
-        component={BookScreen}
-        options={{
-          tabBarLabel: t('screens.book'),
-          tabBarIcon: renderBookIcon,
         }}
       />
       <Tab.Screen

@@ -5,7 +5,6 @@ import RegisterScreen from '../screens/auth/RegisterScreen/RegisterScreen';
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen/ForgotPasswordScreen';
 import ExamResults from '../screens/exam/ExamResults/ExamResults';
 import ExamScreen from '../screens/exam/ExamScreen/ExamScreen';
-import WebReaderScreen from '../screens/book/WebReaderScreen';
 import { ROUTES } from '../constants/routes';
 import TabNavigator from './TabNavigator';
 import SettingsScreen from '../screens/settings/SettingsScreen/SettingsScreen';
@@ -37,14 +36,10 @@ export type RootStackParamList = {
   [ROUTES.PRIVACY]: undefined;
   [ROUTES.HELP_TOPIC]: { topicKey: SupportTopicKey };
   HomeTab: undefined;
-  BookTab: undefined;
   ExamTab: { id?: string };
   ProgressTab: undefined;
   [ROUTES.EXAM]: { id: string; restart?: boolean };
   [ROUTES.EXAM_RESULTS]: { examId: string };
-  [ROUTES.BOOK]: undefined;
-  [ROUTES.CHAPTER]: { id: string };
-  [ROUTES.READER]: { chapterId: string; subSectionId: string };
   [ROUTES.TEST]: undefined;
   [ROUTES.SETTINGS]: undefined;
   [ROUTES.REVIEW_QUESTIONS]: { mode: 'favorites' | 'incorrect' };
@@ -101,7 +96,7 @@ function RootNavigator() {
         component={PrivacyPolicyScreen}
         options={{ headerShown: false }}
       />
-      {/* TabNavigator contains HomeTab, BookTab, ExamTab, TestTab, and ProgressTab screens */}
+      {/* TabNavigator contains HomeTab, ExamTab, and ProgressTab screens */}
       <Stack.Screen name={ROUTES.HOME} component={TabNavigator} />
       {/* Screens that should open as standalone pages with back navigation */}
       <Stack.Screen
@@ -110,11 +105,6 @@ function RootNavigator() {
         options={{ headerShown: false }}
       />
       <Stack.Screen name={ROUTES.EXAM_RESULTS} component={ExamResults} />
-      <Stack.Screen
-        name={ROUTES.READER}
-        component={WebReaderScreen}
-        options={{ headerShown: false }}
-      />
       <Stack.Screen
         name={ROUTES.SETTINGS}
         component={SettingsScreen}

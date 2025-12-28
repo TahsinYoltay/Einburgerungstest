@@ -8,7 +8,7 @@
     "progress": "प्रगति"
   },
   "home": {
-    "welcome": "Life in the UK Test में आपका स्वागत है",
+    "welcome": "Einbürgerungstest में आपका स्वागत है",
     "examTitle": "प्रैक्टिस परीक्षा",
     "examDescription": "अभ्यास प्रश्नों के साथ अपना ज्ञान जांचें",
     "startExam": "परीक्षा शुरू करें",
@@ -151,13 +151,13 @@
   },
   "book": {
     "title": "लाइफ इन द यूके: नए निवासियों के लिए मार्गदर्शिका",
-    "description": "Life in the UK परीक्षण के लिए आधिकारिक अध्ययन मार्गदर्शिका",
+    "description": "Einbürgerungstest परीक्षण के लिए आधिकारिक अध्ययन मार्गदर्शिका",
     "chapters": "अध्याय",
     "chapter": "अध्याय",
     "readEbook": "ई-पुस्तक पढ़ें",
     "ebook": "ई-पुस्तक रीडर",
-    "lifeInTheUk": "Life in the UK: अध्ययन मार्गदर्शिका",
-    "studyGuideDescription": "आधिकारिक अध्ययन मार्गदर्शिका के अध्यायों के साथ Life in the UK टेस्ट की तैयारी करें",
+    "lifeInTheUk": "Einbürgerungstest: अध्ययन मार्गदर्शिका",
+    "studyGuideDescription": "आधिकारिक अध्ययन मार्गदर्शिका के अध्यायों के साथ Einbürgerungstest टेस्ट की तैयारी करें",
     "readChapter": "अध्याय पढ़ें",
     "loadingBook": "पुस्तक लोड हो रही है...",
     "loadingSection": "अनुभाग लोड हो रहा है...",
@@ -294,7 +294,7 @@
     "no_book_loaded": "कोई पुस्तक लोड नहीं हुई",
     "load_book": "पुस्तक लोड करें",
     "retry": "फिर से प्रयास करें",
-    "life_in_uk_guide": "Life in the UK गाइड",
+    "life_in_uk_guide": "Einbürgerungstest गाइड",
     "error": "त्रुटि",
     "ok": "ठीक है",
     "chapter": "अध्याय",
@@ -376,7 +376,7 @@
     },
     "examFaq": {
       "title": "परीक्षा FAQ",
-      "heroTitle": "Life in the UK परीक्षा",
+      "heroTitle": "Einbürgerungstest परीक्षा",
       "heroSubtitle": "बुकिंग से लेकर परिणाम पाने तक परीक्षा प्रक्रिया की सारी जानकारी।",
       "coreFacts": "परीक्षा के मुख्य तथ्य",
       "scoring": "स्कोरिंग और उत्तीर्ण मानक",
@@ -408,7 +408,7 @@
     "noAttempts": "अभी तक कोई प्रयास नहीं"
   },
   "rating": {
-    "enjoy_title": "क्या आप Life in the UK का आनंद ले रहे हैं?",
+    "enjoy_title": "क्या आप Einbürgerungstest का आनंद ले रहे हैं?",
     "enjoy_message": "App Store पर रेट करने के लिए एक स्टार टैप करें।",
     "feedback_title": "हम कैसे बेहतर हो सकते हैं?",
     "feedback_subtitle": "यह सुनकर खेद है। कृपया बताएं कि हम क्या सुधार सकते हैं।",

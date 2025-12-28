@@ -72,7 +72,7 @@ async function collectDiagnostics(): Promise<Record<string, unknown>> {
 
 function formatEmailSubject(input: { ticketId: string; kind: SupportTicketKind; subject: string }) {
   const safeSubject = input.subject.replace(/[\r\n]+/g, ' ').trim().slice(0, 120);
-  return `[LifeInTheUK] New ${input.kind} ticket: ${safeSubject} (Ticket ${input.ticketId})`;
+  return `[Einburgerungstest] New ${input.kind} ticket: ${safeSubject} (Ticket ${input.ticketId})`;
 }
 
 function formatEmailBody(input: {

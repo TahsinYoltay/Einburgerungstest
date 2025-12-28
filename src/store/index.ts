@@ -8,7 +8,6 @@ import authReducer from './slices/authSlice';
 import subscriptionReducer from './slices/subscriptionSlice';
 import examReducer from './slices/examSlice';
 import contentReducer from './slices/contentSlice';
-import bookReducer from './slices/bookSlice';
 import ratingReducer from './slices/ratingSlice';
 import reactotron from '../../ReactotronConfig';
 import { progressSyncListenerMiddleware } from './progressSyncListenerMiddleware';
@@ -34,7 +33,6 @@ import {
 import { progressSyncService } from '../services/ProgressSyncService';
 import { ratingSyncService, type RatingStatePayloadV1 } from '../services/RatingSyncService';
 import { userProfileService } from '../services/UserProfileService';
-import { loadProgress as loadBookProgress, flushPendingRemotePushes } from '../services/readingProgressService';
 import {
   hydrateRatingState,
   recordChapterCompleted as recordRatingChapterCompleted,
@@ -47,30 +45,16 @@ import {
 
 const examPersistTransform = createTransform(
   (inboundState: any) => ({
-    currentLanguage: inboundState?.currentLanguage ?? 'en',
+    currentLanguage: inboundState?.currentLanguage ?? 'de',
   }),
   (outboundState: any) => {
     const initialExamState = examReducer(undefined, { type: '@@INIT' } as any);
     return {
       ...initialExamState,
-      currentLanguage: outboundState?.currentLanguage ?? initialExamState.currentLanguage ?? 'en',
+      currentLanguage: outboundState?.currentLanguage ?? initialExamState.currentLanguage ?? 'de',
     };
   },
   { whitelist: ['exam'] }
-);
-
-const bookPersistTransform = createTransform(
-  (inboundState: any) => ({
-    currentLanguage: inboundState?.currentLanguage ?? 'en',
-  }),
-  (outboundState: any) => {
-    const initialBookState = bookReducer(undefined, { type: '@@INIT' } as any);
-    return {
-      ...initialBookState,
-      currentLanguage: outboundState?.currentLanguage ?? initialBookState.currentLanguage ?? 'en',
-    };
-  },
-  { whitelist: ['book'] }
 );
 
 // Combine reducers
@@ -79,7 +63,6 @@ const rootReducer = combineReducers({
   subscription: subscriptionReducer,
   exam: examReducer,
   content: contentReducer,
-  book: bookReducer,
   rating: ratingReducer,
 });
 
@@ -89,8 +72,8 @@ const persistConfig: PersistConfig<ReturnType<typeof rootReducer>> = {
   storage: AsyncStorage,
   // Whitelist defines which reducers will be persisted
   // NOTE: subscription is NOT persisted - it must always come fresh from RevenueCat
-  whitelist: ['auth', 'exam', 'content', 'book', 'rating'],
-  transforms: [examPersistTransform, bookPersistTransform],
+  whitelist: ['auth', 'exam', 'content', 'rating'],
+  transforms: [examPersistTransform],
 };
 
 // Create persisted reducer
@@ -141,8 +124,6 @@ const EMPTY_CURRENT_EXAM = {
 };
 
 const PERSIST_ROOT_KEY = 'persist:root';
-const BOOK_PROGRESS_BOOK_ID = 'life-in-the-uk';
-
 function selectRatingPayloadForSync(rating: RootState['rating']): RatingStatePayloadV1 {
   const { ownerUid: _ownerUid, ...payload } = rating;
   return payload;
@@ -290,18 +271,6 @@ startAppListening({
       photoURL: authState.photoURL,
     });
 
-    void (async () => {
-      try {
-        await loadBookProgress({
-          bookId: BOOK_PROGRESS_BOOK_ID,
-          userId: uid,
-          syncMode: 'local+remote',
-        });
-        await flushPendingRemotePushes();
-      } catch (error) {
-        console.warn('ProgressSync: failed to bootstrap book progress', error);
-      }
-    })();
   },
 });
 

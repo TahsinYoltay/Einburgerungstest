@@ -8,7 +8,7 @@
     "progress": "Progression"
   },
   "home": {
-    "welcome": "Bienvenue au test Life in the UK",
+    "welcome": "Bienvenue au test Einbürgerungstest",
     "examTitle": "Examen d'entraînement",
     "examDescription": "Testez vos connaissances avec des questions pratiques",
     "startExam": "Commencer l'examen",
@@ -150,13 +150,13 @@
     "practiceExam": "Examen d'entraînement {{number}}"
   },
   "book": {
-    "title": "Life in the UK : Guide pour les nouveaux résidents",
+    "title": "Einbürgerungstest : Guide pour les nouveaux résidents",
     "description": "Le guide d'étude officiel",
     "chapters": "Chapitres",
     "chapter": "Chapitre",
     "readEbook": "Lire l'E-Book",
     "ebook": "Lecteur E-Book",
-    "lifeInTheUk": "Life in the UK : Guide",
+    "lifeInTheUk": "Einbürgerungstest : Guide",
     "studyGuideDescription": "Préparez-vous pour votre test",
     "readChapter": "Lire le chapitre",
     "loadingBook": "Chargement du livre...",
@@ -294,7 +294,7 @@
     "no_book_loaded": "Aucun livre",
     "load_book": "Charger livre",
     "retry": "Réessayer",
-    "life_in_uk_guide": "Guide Life in the UK",
+    "life_in_uk_guide": "Guide Einbürgerungstest",
     "error": "Erreur",
     "ok": "OK",
     "chapter": "Chapitre",
@@ -376,7 +376,7 @@
     },
     "examFaq": {
       "title": "FAQ sur les examens",
-      "heroTitle": "Examen Life in the UK",
+      "heroTitle": "Examen Einbürgerungstest",
       "heroSubtitle": "Tout ce que vous devez savoir sur l'examen, de la réservation à l'obtention des résultats.",
       "coreFacts": "Faits essentiels sur l'examen",
       "scoring": "Notation et seuil de réussite",
@@ -408,7 +408,7 @@
     "noAttempts": "Aucune tentative pour le moment"
   },
   "rating": {
-    "enjoy_title": "Vous appréciez Life in the UK ?",
+    "enjoy_title": "Vous appréciez Einbürgerungstest ?",
     "enjoy_message": "Touchez une étoile pour noter sur l'App Store.",
     "feedback_title": "Comment pouvons-nous nous améliorer ?",
     "feedback_subtitle": "Nous sommes désolés de l'apprendre. Dites-nous ce que nous pouvons faire de mieux.",

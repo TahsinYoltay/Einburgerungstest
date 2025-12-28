@@ -8,7 +8,7 @@
     "progress": "Voortgang"
   },
   "home": {
-    "welcome": "Welkom bij de Life in the UK Test",
+    "welcome": "Welkom bij de Einbürgerungstest",
     "examTitle": "Oefenexamen",
     "examDescription": "Test je kennis met oefenvragen",
     "startExam": "Start examen",
@@ -150,14 +150,14 @@
     "practiceExam": "Oefenexamen {{number}}"
   },
   "book": {
-    "title": "Life in the UK: Gids voor nieuwe bewoners",
-    "description": "De officiële studiegids voor de Life in the UK test",
+    "title": "Einbürgerungstest: Gids voor nieuwe bewoners",
+    "description": "De officiële studiegids voor de Einbürgerungstest",
     "chapters": "Hoofdstukken",
     "chapter": "Hoofdstuk",
     "readEbook": "Lees e-book",
     "ebook": "E-booklezer",
-    "lifeInTheUk": "Life in the UK: Studiegids",
-    "studyGuideDescription": "Bereid je voor op de Life in the UK test met de hoofdstukken van de officiële gids",
+    "lifeInTheUk": "Einbürgerungstest: Studiegids",
+    "studyGuideDescription": "Bereid je voor op de Einbürgerungstest met de hoofdstukken van de officiële gids",
     "readChapter": "Lees hoofdstuk",
     "loadingBook": "Boek wordt geladen...",
     "loadingSection": "Sectie wordt geladen...",
@@ -294,7 +294,7 @@
     "no_book_loaded": "Geen boek geladen",
     "load_book": "Boek laden",
     "retry": "Opnieuw proberen",
-    "life_in_uk_guide": "Life in the UK-gids",
+    "life_in_uk_guide": "Einbürgerungstest-gids",
     "error": "Fout",
     "ok": "OK",
     "chapter": "Hoofdstuk",
@@ -376,7 +376,7 @@
     },
     "examFaq": {
       "title": "Examen-FAQ",
-      "heroTitle": "Life in the UK-examen",
+      "heroTitle": "Einbürgerungstest-examen",
       "heroSubtitle": "Alles wat je moet weten over het examen, van boeken tot je resultaten.",
       "coreFacts": "Belangrijke examengegevens",
       "scoring": "Beoordeling & cesuur",
@@ -408,7 +408,7 @@
     "noAttempts": "Nog geen pogingen"
   },
   "rating": {
-    "enjoy_title": "Geniet je van Life in the UK?",
+    "enjoy_title": "Geniet je van Einbürgerungstest?",
     "enjoy_message": "Tik op een ster om in de App Store te beoordelen.",
     "feedback_title": "Hoe kunnen we verbeteren?",
     "feedback_subtitle": "Jammer om te horen. Laat ons weten wat beter kan.",

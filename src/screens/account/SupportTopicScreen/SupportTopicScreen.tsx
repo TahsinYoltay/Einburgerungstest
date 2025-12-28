@@ -71,7 +71,7 @@ const SupportTopicScreen = () => {
   };
 
   const handleAccountSupportEmail = async () => {
-    const subject = `[LifeInTheUK] Account issue`;
+    const subject = `[Einburgerungstest] Account issue`;
     const mailto = `mailto:${APP_CONFIG.SUPPORT_EMAIL}?subject=${encodeURIComponent(subject)}`;
     try {
       const canOpen = await Linking.canOpenURL(mailto);

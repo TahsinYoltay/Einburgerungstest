@@ -8,7 +8,7 @@
     "progress": "التقدم"
   },
   "home": {
-    "welcome": "مرحبًا بك في اختبار Life in the UK",
+    "welcome": "مرحبًا بك في اختبار Einbürgerungstest",
     "examTitle": "امتحان تجريبي",
     "examDescription": "اختبر معرفتك بأسئلة تدريبية",
     "startExam": "ابدأ الامتحان",
@@ -151,13 +151,13 @@
   },
   "book": {
     "title": "الحياة في المملكة المتحدة: دليل للمقيمين الجدد",
-    "description": "الدليل الرسمي لاختبار Life in the UK",
+    "description": "الدليل الرسمي لاختبار Einbürgerungstest",
     "chapters": "الفصول",
     "chapter": "الفصل",
     "readEbook": "قراءة الكتاب الإلكتروني",
     "ebook": "قارئ الكتاب الإلكتروني",
     "lifeInTheUk": "الحياة في المملكة المتحدة: دليل الدراسة",
-    "studyGuideDescription": "استعد لاختبار Life in the UK بفصول الدليل الرسمي",
+    "studyGuideDescription": "استعد لاختبار Einbürgerungstest بفصول الدليل الرسمي",
     "readChapter": "قراءة الفصل",
     "loadingBook": "جاري تحميل الكتاب...",
     "loadingSection": "جاري تحميل القسم...",
@@ -376,7 +376,7 @@
     },
     "examFaq": {
       "title": "الأسئلة الشائعة حول الامتحان",
-      "heroTitle": "امتحان Life in the UK",
+      "heroTitle": "امتحان Einbürgerungstest",
       "heroSubtitle": "كل ما تحتاج معرفته عن الامتحان، من الحجز إلى استلام النتائج.",
       "coreFacts": "حقائق أساسية عن الامتحان",
       "scoring": "التسجيل ونسبة النجاح",
@@ -408,7 +408,7 @@
     "noAttempts": "لا توجد محاولات بعد"
   },
   "rating": {
-    "enjoy_title": "هل تستمتع بتطبيق Life in the UK؟",
+    "enjoy_title": "هل تستمتع بتطبيق Einbürgerungstest؟",
     "enjoy_message": "اضغط نجمة لتقييمه في App Store.",
     "feedback_title": "كيف يمكننا التحسين؟",
     "feedback_subtitle": "نأسف لسماع ذلك. أخبرنا بما يمكننا تحسينه.",

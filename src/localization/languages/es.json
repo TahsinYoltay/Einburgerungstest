@@ -8,7 +8,7 @@
     "progress": "Progreso"
   },
   "home": {
-    "welcome": "Bienvenido a Life in the UK Test",
+    "welcome": "Bienvenido a Einbürgerungstest",
     "examTitle": "Examen de Práctica",
     "examDescription": "Pon a prueba tus conocimientos",
     "startExam": "Comenzar Examen",
@@ -150,13 +150,13 @@
     "practiceExam": "Examen de práctica {{number}}"
   },
   "book": {
-    "title": "Life in the UK: Guía para Nuevos Residentes",
+    "title": "Einbürgerungstest: Guía para Nuevos Residentes",
     "description": "La guía oficial de estudio",
     "chapters": "Capítulos",
     "chapter": "Capítulo",
     "readEbook": "Leer E-Book",
     "ebook": "Lector de E-Book",
-    "lifeInTheUk": "Life in the UK: Guía",
+    "lifeInTheUk": "Einbürgerungstest: Guía",
     "studyGuideDescription": "Prepárate para tu examen",
     "readChapter": "Leer Capítulo",
     "loadingBook": "Cargando libro...",
@@ -294,7 +294,7 @@
     "no_book_loaded": "Ningún libro cargado",
     "load_book": "Cargar Libro",
     "retry": "Reintentar",
-    "life_in_uk_guide": "Guía Life in the UK",
+    "life_in_uk_guide": "Guía Einbürgerungstest",
     "error": "Error",
     "ok": "OK",
     "chapter": "Capítulo",
@@ -376,7 +376,7 @@
     },
     "examFaq": {
       "title": "Preguntas frecuentes de exámenes",
-      "heroTitle": "Examen Life in the UK",
+      "heroTitle": "Examen Einbürgerungstest",
       "heroSubtitle": "Todo lo que necesitas saber sobre el examen, desde la reserva hasta la obtención de resultados.",
       "coreFacts": "Datos básicos del examen",
       "scoring": "Puntuación y nota de aprobación",
@@ -408,7 +408,7 @@
     "noAttempts": "Aún no hay intentos"
   },
   "rating": {
-    "enjoy_title": "¿Te gusta Life in the UK?",
+    "enjoy_title": "¿Te gusta Einbürgerungstest?",
     "enjoy_message": "Toca una estrella para valorar en App Store.",
     "feedback_title": "¿Cómo podemos mejorar?",
     "feedback_subtitle": "Lamentamos oír eso. Cuéntanos qué podemos mejorar.",

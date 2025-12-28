@@ -8,7 +8,7 @@
     "progress": "İlerleme"
   },
   "home": {
-    "welcome": "Life in the UK Testine Hoş Geldiniz",
+    "welcome": "Einbürgerungstestine Hoş Geldiniz",
     "examTitle": "Pratik Sınavı",
     "examDescription": "Bilginizi test edin",
     "startExam": "Sınava Başla",
@@ -150,13 +150,13 @@
     "practiceExam": "Pratik Sınav {{number}}"
   },
   "book": {
-    "title": "Life in the UK: Yeni Sakinler İçin Rehber",
+    "title": "Einbürgerungstest: Yeni Sakinler İçin Rehber",
     "description": "Resmi çalışma rehberi",
     "chapters": "Bölümler",
     "chapter": "Bölüm",
     "readEbook": "E-Kitabı Oku",
     "ebook": "E-Kitap Okuyucu",
-    "lifeInTheUk": "Life in the UK: Rehber",
+    "lifeInTheUk": "Einbürgerungstest: Rehber",
     "studyGuideDescription": "Sınava hazırlanın",
     "readChapter": "Bölümü Oku",
     "loadingBook": "Kitap yükleniyor...",
@@ -294,7 +294,7 @@
     "no_book_loaded": "Kitap yok",
     "load_book": "Kitabı Yükle",
     "retry": "Tekrar Dene",
-    "life_in_uk_guide": "Life in the UK Rehberi",
+    "life_in_uk_guide": "Einbürgerungstest Rehberi",
     "error": "Hata",
     "ok": "Tamam",
     "chapter": "Bölüm",
@@ -376,7 +376,7 @@
     },
     "examFaq": {
       "title": "Sınav SSS",
-      "heroTitle": "Life in the UK Sınavı",
+      "heroTitle": "Einbürgerungstest Sınavı",
       "heroSubtitle": "Sınav süreci hakkında, rezervasyondan sonuç almaya kadar bilmeniz gereken her şey.",
       "coreFacts": "Temel sınav bilgileri",
       "scoring": "Puanlama ve geçme notu",
@@ -408,7 +408,7 @@
     "noAttempts": "Henüz deneme yok"
   },
   "rating": {
-    "enjoy_title": "Life in the UK uygulamasını beğendiniz mi?",
+    "enjoy_title": "Einbürgerungstest uygulamasını beğendiniz mi?",
     "enjoy_message": "App Store'da puanlamak için bir yıldıza dokunun.",
     "feedback_title": "Nasıl geliştirebiliriz?",
     "feedback_subtitle": "Bunu duyduğumuza üzüldük. Lütfen nasıl daha iyi yapabileceğimizi söyleyin.",

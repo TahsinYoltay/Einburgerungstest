@@ -57,7 +57,7 @@ async function collectDiagnostics(): Promise<Record<string, unknown>> {
 }
 
 function formatEmailSubject(input: { feedbackId: string; rating: number }) {
-  return `[LifeInTheUK] Rating feedback: ${input.rating} star(s) (Ref ${input.feedbackId})`;
+  return `[Einburgerungstest] Rating feedback: ${input.rating} star(s) (Ref ${input.feedbackId})`;
 }
 
 function formatEmailBody(input: {

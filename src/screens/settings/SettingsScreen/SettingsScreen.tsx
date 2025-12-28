@@ -1,23 +1,21 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { View, ScrollView, Alert, TouchableOpacity } from 'react-native';
 import { Button, Switch, Text, ActivityIndicator, Divider } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/material-design-icons';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { createStyles } from './SettingsScreen.style';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { selectIsAuthenticated } from '../../../store/slices/authSlice';
 import { setSubscriptionActive, setSubscriptionNone } from '../../../store/slices/subscriptionSlice';
 import { resetAllExamUserData, resetExamData, switchExamLanguage } from '../../../store/slices/examSlice';
-import { switchBookLanguage } from '../../../store/slices/bookSlice';
 import { languageManager } from '../../../services/LanguageManager';
 import { useAppTheme } from '../../../providers/ThemeProvider';
 import { RootStackParamList } from '../../../navigations/StackNavigator';
 import { purchaseService } from '../../../services/PurchaseService';
 import { getAuth, signInAnonymously as firebaseSignInAnonymously } from '@react-native-firebase/auth';
-import { clearAllProgress } from '../../../utils/readingProgress';
 import { progressSyncService } from '../../../services/ProgressSyncService';
 import { LanguageSelector } from '../../../components/common/LanguageSelector';
 import LanguagePackageSelector from '../../../components/common/LanguagePackageSelector';
@@ -30,40 +28,26 @@ const SettingsScreen = () => {
   const styles = useMemo(() => createStyles(theme), [theme]);
   
   const { isDownloadingLanguage, currentLanguage: examContentLang, downloadProgress: examDownloadProgress } = useAppSelector(state => state.exam);
-  const { loading: isBookDownloading, currentLanguage: bookContentLang, downloadProgress: bookDownloadProgress } = useAppSelector(state => state.book);
   const { languages: availableLanguages } = useAppSelector(state => state.content);
   const isAuthenticated = useAppSelector(selectIsAuthenticated);
   const firebaseUid = useAppSelector(state => state.auth.firebaseUid);
   
   const languages = availableLanguages;
   const [examDownloadedStatus, setExamDownloadedStatus] = useState<Record<string, boolean>>({});
-  const [bookDownloadedStatus, setBookDownloadedStatus] = useState<Record<string, boolean>>({});
   const [showAppLangDialog, setShowAppLangDialog] = useState(false);
   const [showExamLangDialog, setShowExamLangDialog] = useState(false);
-  const [showBookLangDialog, setShowBookLangDialog] = useState(false);
-  const [forceUpdateKey, setForceUpdateKey] = useState(0);
-
-  // Force re-render when screen comes into focus (to reflect auth state changes after login)
-  useFocusEffect(
-    useCallback(() => {
-      setForceUpdateKey(prev => prev + 1);
-    }, [])
-  );
 
   // Check which languages are downloaded on mount
   useEffect(() => {
     const checkDownloads = async () => {
       const eStatus: Record<string, boolean> = {};
-      const bStatus: Record<string, boolean> = {};
       for (const lang of languages) {
         eStatus[lang.code] = await languageManager.isLanguageDownloaded(lang.code);
-        bStatus[lang.code] = await languageManager.isBookDownloaded(lang.code);
       }
       setExamDownloadedStatus(eStatus);
-      setBookDownloadedStatus(bStatus);
     };
     checkDownloads();
-  }, [languages, isDownloadingLanguage, isBookDownloading]); 
+  }, [languages, isDownloadingLanguage]); 
 
   const handleResetExam = () => {
     Alert.alert(
@@ -123,7 +107,6 @@ const SettingsScreen = () => {
                   ? true
                   : await progressSyncService.clearRemoteExamProgress({ uid: firebaseUid, mode: 'everything' });
 
-              await clearAllProgress(firebaseUid || 'local', isAuthenticated);
               dispatch(resetAllExamUserData());
               Alert.alert(
                 t('common.success'),
@@ -147,15 +130,6 @@ const SettingsScreen = () => {
     if (isDownloadingLanguage) return;
     try {
       await dispatch(switchExamLanguage(langCode)).unwrap();
-    } catch (error) {
-      Alert.alert(t('common.error'), t('settings.downloadError', { msg: String(error) }));
-    }
-  };
-
-  const handleBookLanguageChange = async (langCode: string) => {
-    if (isBookDownloading) return;
-    try {
-      await dispatch(switchBookLanguage(langCode)).unwrap();
     } catch (error) {
       Alert.alert(t('common.error'), t('settings.downloadError', { msg: String(error) }));
     }
@@ -233,7 +207,6 @@ const SettingsScreen = () => {
 
   const currentAppLangName = languages.find(l => l.code === i18n.language)?.nativeName || 'English';
   const currentExamLangName = languages.find(l => l.code === examContentLang)?.nativeName || 'English';
-  const currentBookLangName = languages.find(l => l.code === bookContentLang)?.nativeName || 'English';
   const appLanguageCodes = useMemo(
     () => new Set(['en', 'es', 'tr', 'fr', 'de', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'ar', 'hi', 'pl', 'nl']),
     []
@@ -249,11 +222,6 @@ const SettingsScreen = () => {
     setShowExamLangDialog(false);
   };
 
-  const handleBookPackageSelect = (langCode: string) => {
-    handleBookLanguageChange(langCode);
-    setShowBookLangDialog(false);
-  };
-
   const handleDeleteExamPackage = (langCode: string) => {
     Alert.alert(
       t('common.delete'),
@@ -266,24 +234,6 @@ const SettingsScreen = () => {
           onPress: async () => {
             await languageManager.deleteExamContent(langCode);
             setExamDownloadedStatus(prev => ({ ...prev, [langCode]: false }));
-          },
-        },
-      ]
-    );
-  };
-
-  const handleDeleteBookPackage = (langCode: string) => {
-    Alert.alert(
-      t('common.delete'),
-      t('settings.deleteBookConfirm'),
-      [
-        { text: t('common.cancel'), style: 'cancel' },
-        {
-          text: t('common.delete'),
-          style: 'destructive',
-          onPress: async () => {
-            await languageManager.deleteBookContent(langCode);
-            setBookDownloadedStatus(prev => ({ ...prev, [langCode]: false }));
           },
         },
       ]
@@ -335,18 +285,6 @@ const SettingsScreen = () => {
               </Text>
             </View>
             {isDownloadingLanguage ? <ActivityIndicator size="small" /> : <Icon name="chevron-right" size={20} color={theme.colors.onSurface} />}
-          </TouchableOpacity>
-
-          <Divider style={styles.divider} />
-
-          <TouchableOpacity style={styles.row} onPress={() => setShowBookLangDialog(true)} activeOpacity={0.85}>
-            <View>
-              <Text style={styles.rowTitle}>{t('settings.bookContent', 'Book Content')}</Text>
-              <Text style={styles.rowSubtitle}>
-                {isBookDownloading ? t('settings.downloadingLanguage') : currentBookLangName}
-              </Text>
-            </View>
-            {isBookDownloading ? <ActivityIndicator size="small" /> : <Icon name="chevron-right" size={20} color={theme.colors.onSurface} />}
           </TouchableOpacity>
         </View>
 
@@ -437,20 +375,6 @@ const SettingsScreen = () => {
         onDeleteLanguage={handleDeleteExamPackage}
         loading={isDownloadingLanguage}
         downloadProgress={examDownloadProgress}
-      />
-
-      <LanguagePackageSelector
-        visible={showBookLangDialog}
-        onDismiss={() => setShowBookLangDialog(false)}
-        title={t('settings.bookContent')}
-        currentLanguage={bookContentLang}
-        languages={languages}
-        downloadedStatus={bookDownloadedStatus}
-        onSelectLanguage={handleBookPackageSelect}
-        onDownloadLanguage={handleBookPackageSelect}
-        onDeleteLanguage={handleDeleteBookPackage}
-        loading={isBookDownloading}
-        downloadProgress={bookDownloadProgress}
       />
     </SafeAreaView>
   );

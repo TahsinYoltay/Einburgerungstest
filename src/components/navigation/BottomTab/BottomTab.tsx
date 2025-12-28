@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity, Animated } from 'react-native';
-import { useTheme } from 'react-native-paper';
+import { useAppTheme } from '../../../providers/ThemeProvider';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import Icon from '@react-native-vector-icons/material-design-icons';
@@ -17,9 +17,9 @@ interface TabItemProps {
 }
 
 const TabItem = ({ label, icon, isActive, onPress }: TabItemProps) => {
-  const theme = useTheme();
+  const { theme } = useAppTheme();
   const activeColor = theme.colors.primary;
-  const inactiveColor = 'gray';
+  const inactiveColor = theme.colors.onSurfaceVariant;
   
   return (
     <TouchableOpacity style={styles.tabItem} onPress={onPress} accessibilityRole="button" accessibilityLabel={label}>
@@ -46,7 +46,6 @@ const BottomTab = () => {
 
   const tabs = [
     { route: 'HomeTab', label: t('screens.home'), icon: 'home' },
-    { route: 'BookTab', label: t('screens.book'), icon: 'book' },
     { route: 'ExamTab', label: t('screens.test'), icon: 'book-open-variant' },
     { route: 'ProgressTab', label: t('screens.progress'), icon: 'chart-bar' },
   ];

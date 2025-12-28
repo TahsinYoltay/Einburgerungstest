@@ -8,7 +8,7 @@
     "progress": "Прогресс"
   },
   "home": {
-    "welcome": "Добро пожаловать в Life in the UK Test",
+    "welcome": "Добро пожаловать в Einbürgerungstest",
     "examTitle": "Практический экзамен",
     "examDescription": "Проверьте свои знания с помощью тренировочных вопросов",
     "startExam": "Начать экзамен",
@@ -150,14 +150,14 @@
     "practiceExam": "Тренировочный экзамен {{number}}"
   },
   "book": {
-    "title": "Life in the UK: Руководство для новых жителей",
-    "description": "Официальное учебное пособие для теста Life in the UK",
+    "title": "Einbürgerungstest: Руководство для новых жителей",
+    "description": "Официальное учебное пособие для теста Einbürgerungstest",
     "chapters": "Главы",
     "chapter": "Глава",
     "readEbook": "Читать электронную книгу",
     "ebook": "Читалка",
-    "lifeInTheUk": "Life in the UK: Учебник",
-    "studyGuideDescription": "Готовьтесь к тесту Life in the UK по главам официального руководства",
+    "lifeInTheUk": "Einbürgerungstest: Учебник",
+    "studyGuideDescription": "Готовьтесь к тесту Einbürgerungstest по главам официального руководства",
     "readChapter": "Читать главу",
     "loadingBook": "Загрузка книги...",
     "loadingSection": "Загрузка раздела...",
@@ -294,7 +294,7 @@
     "no_book_loaded": "Книга не загружена",
     "load_book": "Загрузить книгу",
     "retry": "Повторить",
-    "life_in_uk_guide": "Путеводитель Life in the UK",
+    "life_in_uk_guide": "Путеводитель Einbürgerungstest",
     "error": "Ошибка",
     "ok": "OK",
     "chapter": "Глава",
@@ -376,7 +376,7 @@
     },
     "examFaq": {
       "title": "FAQ об экзамене",
-      "heroTitle": "Экзамен Life in the UK",
+      "heroTitle": "Экзамен Einbürgerungstest",
       "heroSubtitle": "Всё о процессе экзамена: от бронирования до получения результата.",
       "coreFacts": "Основные факты об экзамене",
       "scoring": "Оценивание и проходной балл",
@@ -408,7 +408,7 @@
     "noAttempts": "Пока нет попыток"
   },
   "rating": {
-    "enjoy_title": "Нравится Life in the UK?",
+    "enjoy_title": "Нравится Einbürgerungstest?",
     "enjoy_message": "Нажмите звезду, чтобы оценить в App Store.",
     "feedback_title": "Как мы можем улучшить приложение?",
     "feedback_subtitle": "Жаль это слышать. Подскажите, что можно сделать лучше.",

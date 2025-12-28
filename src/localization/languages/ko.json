@@ -8,7 +8,7 @@
     "progress": "진행 상황"
   },
   "home": {
-    "welcome": "Life in the UK Test에 오신 것을 환영합니다",
+    "welcome": "Einbürgerungstest에 오신 것을 환영합니다",
     "examTitle": "모의시험",
     "examDescription": "연습 문제로 실력을 확인하세요",
     "startExam": "시험 시작",
@@ -150,14 +150,14 @@
     "practiceExam": "모의시험 {{number}}"
   },
   "book": {
-    "title": "Life in the UK: 신규 거주자를 위한 안내서",
-    "description": "Life in the UK 시험 공식 학습 가이드",
+    "title": "Einbürgerungstest: 신규 거주자를 위한 안내서",
+    "description": "Einbürgerungstest 시험 공식 학습 가이드",
     "chapters": "챕터",
     "chapter": "챕터",
     "readEbook": "전자책 읽기",
     "ebook": "전자책 리더",
-    "lifeInTheUk": "Life in the UK: 학습 가이드",
-    "studyGuideDescription": "공식 학습 가이드의 챕터로 Life in the UK 시험을 준비하세요",
+    "lifeInTheUk": "Einbürgerungstest: 학습 가이드",
+    "studyGuideDescription": "공식 학습 가이드의 챕터로 Einbürgerungstest 시험을 준비하세요",
     "readChapter": "챕터 읽기",
     "loadingBook": "책을 불러오는 중...",
     "loadingSection": "섹션을 불러오는 중...",
@@ -294,7 +294,7 @@
     "no_book_loaded": "로드된 책이 없습니다",
     "load_book": "책 불러오기",
     "retry": "다시 시도",
-    "life_in_uk_guide": "Life in the UK 가이드",
+    "life_in_uk_guide": "Einbürgerungstest 가이드",
     "error": "오류",
     "ok": "확인",
     "chapter": "챕터",
@@ -376,7 +376,7 @@
     },
     "examFaq": {
       "title": "시험 FAQ",
-      "heroTitle": "Life in the UK 시험",
+      "heroTitle": "Einbürgerungstest 시험",
       "heroSubtitle": "예약부터 결과 수령까지 시험에 관한 모든 것.",
       "coreFacts": "시험 기본 정보",
       "scoring": "채점 및 합격 기준",
@@ -408,7 +408,7 @@
     "noAttempts": "아직 시도가 없습니다"
   },
   "rating": {
-    "enjoy_title": "Life in the UK가 마음에 드시나요?",
+    "enjoy_title": "Einbürgerungstest가 마음에 드시나요?",
     "enjoy_message": "App Store에서 별을 눌러 평가해 주세요.",
     "feedback_title": "어떻게 개선할 수 있을까요?",
     "feedback_subtitle": "불편을 드려 죄송합니다. 더 나아질 점을 알려주세요.",

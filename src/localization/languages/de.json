@@ -8,7 +8,7 @@
     "progress": "Fortschritt"
   },
   "home": {
-    "welcome": "Willkommen beim Life in the UK Test",
+    "welcome": "Willkommen beim Einbürgerungstest",
     "examTitle": "Übungsprüfung",
     "examDescription": "Teste dein Wissen mit Übungsfragen",
     "startExam": "Prüfung starten",
@@ -150,14 +150,14 @@
     "practiceExam": "Übungsprüfung {{number}}"
   },
   "book": {
-    "title": "Life in the UK: Ein Leitfaden für neue Einwohner",
-    "description": "Der offizielle Studienführer für den Life in the UK Test",
+    "title": "Einbürgerungstest: Ein Leitfaden für neue Einwohner",
+    "description": "Der offizielle Studienführer für den Einbürgerungstest",
     "chapters": "Kapitel",
     "chapter": "Kapitel",
     "readEbook": "E-Book lesen",
     "ebook": "E-Book-Reader",
-    "lifeInTheUk": "Life in the UK: Studienführer",
-    "studyGuideDescription": "Bereite dich mit den Kapiteln des offiziellen Studienführers auf deinen Life in the UK Test vor",
+    "lifeInTheUk": "Einbürgerungstest: Studienführer",
+    "studyGuideDescription": "Bereite dich mit den Kapiteln des offiziellen Studienführers auf deinen Einbürgerungstest vor",
     "readChapter": "Kapitel lesen",
     "loadingBook": "Buch wird geladen...",
     "loadingSection": "Abschnitt wird geladen...",
@@ -294,7 +294,7 @@
     "no_book_loaded": "Kein Buch geladen",
     "load_book": "Buch laden",
     "retry": "Erneut versuchen",
-    "life_in_uk_guide": "Life in the UK Leitfaden",
+    "life_in_uk_guide": "Einbürgerungstest Leitfaden",
     "error": "Fehler",
     "ok": "OK",
     "chapter": "Kapitel",
@@ -376,7 +376,7 @@
     },
     "examFaq": {
       "title": "Prüfungs-FAQ",
-      "heroTitle": "Life in the UK Exam",
+      "heroTitle": "Einbürgerungstest",
       "heroSubtitle": "Alles, was du über den Prüfungsprozess wissen musst – von der Buchung bis zum Ergebnis.",
       "coreFacts": "Wesentliche Prüfungsfakten",
       "scoring": "Bewertung & Bestehensgrenze",
@@ -408,7 +408,7 @@
     "noAttempts": "Noch keine Versuche"
   },
   "rating": {
-    "enjoy_title": "Gefällt dir Life in the UK?",
+    "enjoy_title": "Gefällt dir Einbürgerungstest?",
     "enjoy_message": "Tippe auf einen Stern, um im App Store zu bewerten.",
     "feedback_title": "Wie können wir uns verbessern?",
     "feedback_subtitle": "Das tut uns leid. Sag uns, was wir besser machen können.",

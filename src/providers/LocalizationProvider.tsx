@@ -1,4 +1,3 @@
-// filepath: /Users/tahsinyoltay/Developer/LIF4/LifeInTheUK/src/providers/LocalizationProvider.tsx
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import i18n from '../localization/i18n';
 
@@ -8,14 +7,14 @@ type LocalizationContextType = {
 };
 
 const LocalizationContext = createContext<LocalizationContextType>({
-  language: 'en',
+  language: 'de',
   setLanguage: () => {},
 });
 
 export const useLocalization = () => useContext(LocalizationContext);
 
 export const LocalizationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguageState] = useState(i18n.language || 'en');
+  const [language, setLanguageState] = useState(i18n.language || 'de');
 
   const setLanguage = (lang: string) => {
     i18n.changeLanguage(lang);

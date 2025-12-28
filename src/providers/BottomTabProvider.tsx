@@ -8,9 +8,9 @@ interface BottomTabContextType {
 }
 
 const { width } = Dimensions.get('window');
-// Assuming 4 tabs, modify if dynamic.
+// Assuming 3 tabs, modify if dynamic.
 // Ideally, we measure tab widths. For now, we can estimate or leave animation logic to the component.
-const TAB_WIDTH = width / 4; 
+const TAB_WIDTH = width / 3; 
 
 export const BottomTabContext = createContext<BottomTabContextType>({
   activeTab: 0,

@@ -1,10 +1,11 @@
 {
   "heroImage": "https://via.placeholder.com/600x300",
   "welcomeMessage": {
-    "en": "Welcome to the Life in the UK Test Prep!",
-    "es": "¡Bienvenido a la prueba de Life in the UK!",
-    "tr": "Life in the UK Testine Hoşgeldiniz!",
-    "pl": "Witamy w teście Life in the UK!"
+    "de": "Willkommen zum Einbürgerungstest!",
+    "en": "Welcome to the Einbürgerungstest!",
+    "es": "¡Bienvenido al Einbürgerungstest!",
+    "tr": "Einbürgerungstest'e hoş geldiniz!",
+    "pl": "Witamy w Einbürgerungstest!"
   },
   "promoBanner": {
     "visible": true,

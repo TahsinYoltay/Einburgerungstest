@@ -149,7 +149,7 @@ export const RatingPrompt: React.FC<RatingPromptProps> = ({
                 </View>
 
                 <Text variant="headlineSmall" style={styles.title}>
-                  {t('rating.enjoy_title', 'Enjoying Life in the UK?')}
+                  {t('rating.enjoy_title', 'Enjoying Einbürgerungstest?')}
                 </Text>
                 
                 <Text variant="bodyMedium" style={styles.subtitle}>

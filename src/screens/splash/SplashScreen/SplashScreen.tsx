@@ -11,7 +11,6 @@ import { useAppTheme } from '../../../providers/ThemeProvider';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { syncContent } from '../../../store/slices/contentSlice';
 import { switchExamLanguage } from '../../../store/slices/examSlice';
-import { switchBookLanguage } from '../../../store/slices/bookSlice';
 import { createStyles } from './SplashScreen.styles';
 import { useTranslation } from 'react-i18next';
 
@@ -39,8 +38,6 @@ const SplashScreen = ({ navigation }: Props) => {
   const contentLoading = useAppSelector(state => state.content.loading);
   const examLoading = useAppSelector(state => state.exam.isDownloadingLanguage);
   const examProgressRaw = useAppSelector(state => state.exam.downloadProgress);
-  const bookLoading = useAppSelector(state => state.book.loading);
-  const bookProgressRaw = useAppSelector(state => state.book.downloadProgress);
 
   const startedRef = useRef(false);
   const [error, setError] = useState<string | null>(null);
@@ -49,12 +46,10 @@ const SplashScreen = ({ navigation }: Props) => {
   const derivedProgress = useMemo(() => {
     const contentPart = contentLoading ? 0 : 1;
     const examPart = examLoading ? clamp01(normalizeProgress(examProgressRaw)) : 1;
-    const bookPart = bookLoading ? clamp01(normalizeProgress(bookProgressRaw)) : 1;
-
     // Weights: content manifest/modules is the key blocker.
-    const weighted = 0.5 * contentPart + 0.25 * examPart + 0.25 * bookPart;
+    const weighted = 0.6 * contentPart + 0.4 * examPart;
     return clamp01(Math.max(0.05, weighted));
-  }, [bookLoading, bookProgressRaw, contentLoading, examLoading, examProgressRaw]);
+  }, [contentLoading, examLoading, examProgressRaw]);
 
   useEffect(() => {
     setProgress(derivedProgress);
@@ -68,10 +63,9 @@ const SplashScreen = ({ navigation }: Props) => {
       await dispatch(syncContent()).unwrap();
 
       const examPromise = dispatch(switchExamLanguage(currentLanguage)).unwrap();
-      const bookPromise = dispatch(switchBookLanguage(currentLanguage)).unwrap();
-      const results = await Promise.allSettled([examPromise, bookPromise]);
+      const results = await Promise.allSettled([examPromise]);
       const hasFailure = results.some(result => result.status === 'rejected');
-      if (hasFailure && currentLanguage !== 'en') {
+      if (hasFailure && currentLanguage !== 'de') {
         setError(t('splash.genericError'));
         return;
       }

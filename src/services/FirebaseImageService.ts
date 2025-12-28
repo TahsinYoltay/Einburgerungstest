@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { firebaseStorage } from '../config/firebase';
 
 export interface ImageDownloadResult {
   success: boolean;
@@ -104,7 +105,11 @@ class FirebaseImageService {
   private async fetchImageWithRetry(imagePath: string, attempt: number = 1): Promise<ImageDownloadResult> {
     try {
       // Construct Firebase Storage URL
-      const baseUrl = 'https://firebasestorage.googleapis.com/v0/b/lifeuk-6dff5.appspot.com/o/';
+      const storageBucket = firebaseStorage.app.options.storageBucket;
+      if (!storageBucket) {
+        throw new Error('Firebase storage bucket is not configured');
+      }
+      const baseUrl = `https://firebasestorage.googleapis.com/v0/b/${storageBucket}/o/`;
       const encodedPath = encodeURIComponent(imagePath);
       const url = `${baseUrl}${encodedPath}?alt=media`;
 

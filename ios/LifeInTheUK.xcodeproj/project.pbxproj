@@ -297,14 +297,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.eywasoft.LIF;
-				PRODUCT_NAME = LifeInTheUK;
+				PRODUCT_BUNDLE_IDENTIFIER = org.eywasoft.einburgerungs;
+				PRODUCT_NAME = Einburgerungstest;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -326,14 +326,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.eywasoft.LIF;
-				PRODUCT_NAME = LifeInTheUK;
+				PRODUCT_BUNDLE_IDENTIFIER = org.eywasoft.einburgerungs;
+				PRODUCT_NAME = Einburgerungstest;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

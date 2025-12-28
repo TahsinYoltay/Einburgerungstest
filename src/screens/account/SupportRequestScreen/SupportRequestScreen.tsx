@@ -94,7 +94,7 @@ const SupportRequestScreen = () => {
         ? t('supportForm.emailSubjectBug', { defaultValue: 'Bug report' })
         : t('supportForm.emailSubjectFeedback', { defaultValue: 'Feedback' });
 
-    const emailSubject = `[LifeInTheUK] ${subjectPrefix}: ${subject} (Ticket ${ticketId})`;
+    const emailSubject = `[Einburgerungstest] ${subjectPrefix}: ${subject} (Ticket ${ticketId})`;
 
     const appVersion = DeviceInfo.getReadableVersion();
     const osVersion = DeviceInfo.getSystemVersion();

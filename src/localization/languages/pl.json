@@ -8,7 +8,7 @@
     "progress": "Postępy"
   },
   "home": {
-    "welcome": "Witamy w Life in the UK Test",
+    "welcome": "Witamy w Einbürgerungstest",
     "examTitle": "Egzamin próbny",
     "examDescription": "Sprawdź swoją wiedzę na pytaniach treningowych",
     "startExam": "Rozpocznij egzamin",
@@ -150,14 +150,14 @@
     "practiceExam": "Egzamin próbny {{number}}"
   },
   "book": {
-    "title": "Life in the UK: Przewodnik dla nowych mieszkańców",
-    "description": "Oficjalny podręcznik do testu Life in the UK",
+    "title": "Einbürgerungstest: Przewodnik dla nowych mieszkańców",
+    "description": "Oficjalny podręcznik do testu Einbürgerungstest",
     "chapters": "Rozdziały",
     "chapter": "Rozdział",
     "readEbook": "Czytaj e-book",
     "ebook": "Czytnik e-booków",
-    "lifeInTheUk": "Life in the UK: Podręcznik",
-    "studyGuideDescription": "Przygotuj się do testu Life in the UK z rozdziałami oficjalnego przewodnika",
+    "lifeInTheUk": "Einbürgerungstest: Podręcznik",
+    "studyGuideDescription": "Przygotuj się do testu Einbürgerungstest z rozdziałami oficjalnego przewodnika",
     "readChapter": "Czytaj rozdział",
     "loadingBook": "Ładowanie książki...",
     "loadingSection": "Ładowanie sekcji...",
@@ -294,7 +294,7 @@
     "no_book_loaded": "Brak załadowanej książki",
     "load_book": "Załaduj książkę",
     "retry": "Spróbuj ponownie",
-    "life_in_uk_guide": "Przewodnik Life in the UK",
+    "life_in_uk_guide": "Przewodnik Einbürgerungstest",
     "error": "Błąd",
     "ok": "OK",
     "chapter": "Rozdział",
@@ -376,7 +376,7 @@
     },
     "examFaq": {
       "title": "FAQ dotyczące egzaminu",
-      "heroTitle": "Egzamin Life in the UK",
+      "heroTitle": "Egzamin Einbürgerungstest",
       "heroSubtitle": "Wszystko, co musisz wiedzieć o egzaminie, od rezerwacji po uzyskanie wyników.",
       "coreFacts": "Kluczowe fakty o egzaminie",
       "scoring": "Ocenianie i próg zaliczenia",
@@ -408,7 +408,7 @@
     "noAttempts": "Brak prób"
   },
   "rating": {
-    "enjoy_title": "Czy podoba Ci się Life in the UK?",
+    "enjoy_title": "Czy podoba Ci się Einbürgerungstest?",
     "enjoy_message": "Dotknij gwiazdki, aby ocenić w App Store.",
     "feedback_title": "Jak możemy się poprawić?",
     "feedback_subtitle": "Przykro nam to słyszeć. Powiedz, co możemy zrobić lepiej.",

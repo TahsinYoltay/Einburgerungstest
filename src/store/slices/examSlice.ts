@@ -111,7 +111,7 @@ const initialState: ExamState = {
   chaptersData: defaultChaptersData as ChaptersData,
   mockChaptersData: defaultMockChaptersData as ChaptersData,
   chapterQuestionsData: defaultChapterQuestionsData as ChaptersData,
-  currentLanguage: 'en',
+  currentLanguage: 'de',
   isDownloadingLanguage: false,
   downloadProgress: 0,
   inProgress: {},
