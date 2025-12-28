@@ -329,6 +329,7 @@ class AuthService {
   async signOut(): Promise<void> {
       console.log('[AuthService] ⚠️ Using deprecated signOut - prefer AuthProvider.signOut()');
       console.log('[AuthService] Signing out...');
+      const authInstance = getAuth();
       
       try {
           await GoogleSignin.signOut();
@@ -341,13 +342,12 @@ class AuthService {
           console.log('[AuthService] RevenueCat logged out');
           Purchases.invalidateCustomerInfoCache();
           // Small delay to ensure state clears
-          await new Promise(resolve => setTimeout(resolve, 300));
+          await new Promise<void>(resolve => setTimeout(() => resolve(), 300));
       } catch (e) {
           console.error('[AuthService] RevenueCat Log out error:', e);
       }
 
       try {
-          const authInstance = getAuth();
           await firebaseSignOut(authInstance);
           console.log('[AuthService] Firebase signed out');
       } catch (e) {

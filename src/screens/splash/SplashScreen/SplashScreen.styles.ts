@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import type { AppTheme } from '../../../providers/ThemeProvider';
+import type { AppTheme } from '../../../providers/themeTypes';
 
 export const createStyles = (theme: AppTheme) =>
   StyleSheet.create({
@@ -135,4 +135,3 @@ export const createStyles = (theme: AppTheme) =>
       alignSelf: 'center',
     },
   });
-

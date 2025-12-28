@@ -36,7 +36,7 @@ const ProgressScreen = () => {
     } finally {
       setRefreshing(false);
     }
-  }, [dispatch, loadProgress]);
+  }, [dispatch]);
 
   const avgScore = useMemo(() => {
     if (!examHistory.length) return 0;

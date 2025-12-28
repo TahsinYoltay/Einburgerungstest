@@ -3,6 +3,7 @@ import { useColorScheme, Platform } from 'react-native';
 import { MD3LightTheme, MD3DarkTheme, configureFonts } from 'react-native-paper';
 import { DefaultTheme as NavigationDefaultTheme, DarkTheme as NavigationDarkTheme } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import type { AppTheme } from './themeTypes';
 
 // Define our custom colors
 const lightColors = {
@@ -216,7 +217,7 @@ const CustomNavigationDarkTheme = {
 // Theme context
 type ThemeContextType = {
   isDarkMode: boolean;
-  theme: typeof LightTheme;
+  theme: AppTheme;
   navigationTheme: typeof CustomNavigationLightTheme;
   toggleTheme: () => void;
 };
@@ -280,4 +281,4 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   );
 };
 
-export type AppTheme = typeof LightTheme;
+export type { AppTheme, Theme } from './themeTypes';

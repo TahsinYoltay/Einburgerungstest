@@ -26,7 +26,8 @@
       "subtitleGuest": "Melde dich an, um deinen Fortschritt geräteübergreifend zu synchronisieren.",
       "menuTitle": "Navigation",
       "loginCta": "Anmelden",
-      "logoutCta": "Abmelden"
+      "logoutCta": "Abmelden",
+      "signInCta": "Anmelden"
     },
     "progressTitle": "Dein Fortschritt",
     "modulesDone": "{{completed}}/{{total}} Module erledigt",
@@ -44,7 +45,8 @@
       "quickQuizDescription": "Starte eine kurze Übungseinheit.",
       "chapterTest": "Kapitel-spezifischer Test",
       "chapterTestDescription": "Konzentriere dich auf ein einzelnes Kapitel des Leitfadens."
-    }
+    },
+    "signIn": "Anmelden"
   },
   "exam": {
     "question": "Frage",
@@ -147,7 +149,15 @@
     "none": "Keine",
     "hideReview": "Ausblenden",
     "reviewWrong": "Überprüfen",
-    "practiceExam": "Übungsprüfung {{number}}"
+    "practiceExam": "Übungsprüfung {{number}}",
+    "timeUpTitle": "Zeit abgelaufen",
+    "timeUpMessage": "Die Zeit ist abgelaufen. Dieser Versuch wird als nicht bestanden gewertet.",
+    "timeUpAction": "Ergebnisse ansehen",
+    "mockTitle": "Probeprüfungen",
+    "chapterTitle": "Kapiteltests",
+    "mockTests": "Alle Probeprüfungen",
+    "chapterTests": "Alle Kapiteltests",
+    "mockExam": "Probeprüfung {{number}}"
   },
   "book": {
     "title": "Einbürgerungstest: Ein Leitfaden für neue Einwohner",
@@ -253,7 +263,38 @@
       "passwordMismatch": "Passwörter stimmen nicht überein",
       "loginFailed": "Anmeldung fehlgeschlagen. Bitte überprüfe deine Zugangsdaten.",
       "registerFailed": "Registrierung fehlgeschlagen. Bitte versuche es erneut.",
-      "resetFailed": "Passwortzurücksetzung fehlgeschlagen. Bitte versuche es erneut."
+      "resetFailed": "Passwortzurücksetzung fehlgeschlagen. Bitte versuche es erneut.",
+      "missingName": "Bitte gib deinen Namen ein",
+      "signInFailed": "Anmeldung fehlgeschlagen. Bitte überprüfe deine Zugangsdaten.",
+      "invalidCredentials": "Ungültige E-Mail oder Passwort",
+      "emailInUse": "E-Mail wird bereits verwendet"
+    },
+    "signInPrompt": "Zum Fortfahren anmelden",
+    "name": "Name",
+    "signIn": "Anmelden",
+    "backToSignIn": "Zurück zur Anmeldung",
+    "logoutWarning": "Möchtest du dich wirklich abmelden?",
+    "logoutWithSubscriptionWarning": "Wenn du dich abmeldest, verlierst du auf diesem Gerät den Zugriff auf dein Abo, bis du dich wieder anmeldest oder Käufe wiederherstellst.\n\nDein Abo wird NICHT gekündigt.",
+    "accountCreationPromptTitle": "Schütze deinen Kauf",
+    "accountCreationPromptMessage": "Erstelle ein kostenloses Konto, damit dein Abo geräteübergreifend sicher ist und du jederzeit Zugriff hast.",
+    "restorePromptMessage": "Deine Käufe wurden wiederhergestellt! Erstelle ein kostenloses Konto, damit du nächstes Mal nicht manuell wiederherstellen musst.",
+    "providerConflict": {
+      "title": "Konto existiert bereits",
+      "accountNotFound": "Kein Konto mit dieser E-Mail gefunden. Bitte zuerst registrieren.",
+      "alreadyHasPassword": "Diese E-Mail ist bereits registriert. Bitte melde dich stattdessen an.",
+      "registeredWithGoogle": "Diese E-Mail ist mit Google registriert. Bitte mit Google anmelden oder eine andere E-Mail verwenden.",
+      "registeredWithApple": "Diese E-Mail ist mit Apple registriert. Bitte mit Apple anmelden oder eine andere E-Mail verwenden.",
+      "registeredWithOther": "Diese E-Mail ist bereits mit einer anderen Anmeldemethode registriert.",
+      "useGoogle": "Dieses Konto ist mit Google registriert. Bitte „Mit Google fortfahren“ verwenden.",
+      "useApple": "Dieses Konto ist mit Apple registriert. Bitte „Mit Apple fortfahren“ verwenden.",
+      "usePassword": "Dieses Konto nutzt E-Mail und Passwort. Bitte gib dein Passwort ein.",
+      "useOtherMethod": "Dieses Konto nutzt eine andere Anmeldemethode. Bitte versuche eine andere Option.",
+      "cantLinkGoogle": "Google-Konto kann nicht verknüpft werden. Diese E-Mail wird bereits verwendet.",
+      "cantLinkApple": "Apple-Konto kann nicht verknüpft werden. Diese E-Mail wird bereits verwendet.",
+      "suggestGoogle": "Mit Google anmelden",
+      "suggestApple": "Mit Apple anmelden",
+      "suggestPassword": "Mit E-Mail und Passwort anmelden",
+      "differentEmail": "Eine andere E-Mail-Adresse verwenden"
     }
   },
   "common": {
@@ -277,7 +318,13 @@
     "downloading": "Inhalt wird heruntergeladen...",
     "goBack": "Zurück",
     "goToHome": "Zur Startseite",
-    "exit": "Beenden"
+    "exit": "Beenden",
+    "success": "Erfolg",
+    "info": "Information",
+    "notNow": "Nicht jetzt",
+    "restore": "Wiederherstellen",
+    "privacyPolicy": "Datenschutzerklärung",
+    "termsOfUse": "Nutzungsbedingungen"
   },
   "firebase": {
     "imageLoading": "Bild wird geladen...",
@@ -318,7 +365,30 @@
     "deleteConfirm": "Diesen Inhalt löschen?",
     "deleteBookConfirm": "Diesen Buchinhalt löschen?",
     "downloadError": "Herunterladen des Inhalts fehlgeschlagen: {{msg}}",
-    "resetAction": "Löschen"
+    "resetAction": "Löschen",
+    "resetAllProgressData": "Alle Fortschrittsdaten zurücksetzen",
+    "resetAllProgressConfirmTitle": "Alle Fortschrittsdaten zurücksetzen?",
+    "resetAllProgressConfirmMsg": "Dadurch werden alle Prüfungsfortschritte und Ergebnisse zurückgesetzt (auch in der Cloud, wenn du angemeldet bist). Favoriten und falsche Antworten bleiben.",
+    "resetAllProgressSuccess": "Prüfungsfortschritt wurde zurückgesetzt.",
+    "resetAllData": "Alles zurücksetzen",
+    "resetAllDataConfirmTitle": "Alles zurücksetzen?",
+    "resetAllDataConfirmMsg": "Dadurch werden alle Fortschritte auf diesem Gerät (und in der Cloud, wenn du angemeldet bist) zurückgesetzt, einschließlich Prüfungsergebnisse, Favoriten, falsche Antworten und Lesefortschritt. Dein Konto bleibt angemeldet.",
+    "resetAllDataSuccess": "Alles wurde zurückgesetzt.",
+    "resetCloudWarning": "Auf diesem Gerät zurückgesetzt, Cloud‑Fortschritt konnte nicht gelöscht werden. Bitte Internet prüfen und erneut versuchen.",
+    "rateUs": "Bewerte uns",
+    "rateUsDesc": "Teile deine Erfahrung im Store",
+    "rateNow": "Jetzt bewerten",
+    "linkSuccess": "Konto erfolgreich verknüpft!",
+    "accountSwitchedWithSubscription": "Konto verknüpft! Dein Abo wurde übertragen.",
+    "accountSwitchedNoSubscription": "Konto erfolgreich verknüpft!",
+    "linkSuccessRestoreFailed": "Konto verknüpft! Bitte „Käufe wiederherstellen“, um dein Abo zu übertragen.",
+    "restoreSuccess": "Käufe erfolgreich wiederhergestellt!",
+    "restoreError": "Wiederherstellen der Käufe fehlgeschlagen.",
+    "deleteAccount": "Konto löschen",
+    "deleteAccountConfirmTitle": "Konto löschen?",
+    "deleteAccountConfirmMsg": "Dies löscht dein Konto und deine Daten dauerhaft. Diese Aktion kann nicht rückgängig gemacht werden.\n\nDein Abo (falls vorhanden) wird NICHT automatisch gekündigt. Bitte verwalte es über den App Store.",
+    "deleteAccountSuccess": "Konto erfolgreich gelöscht.",
+    "deleteAccountReAuth": "Aus Sicherheitsgründen bitte abmelden und erneut anmelden, bevor du dein Konto löschst."
   },
   "drawer": {
     "subtitle": "Vorbereitungs-App"
@@ -333,7 +403,8 @@
       "profile": "Profilinformationen",
       "settings": "Einstellungen",
       "help": "Hilfe & Support",
-      "privacy": "Datenschutzrichtlinie"
+      "privacy": "Datenschutzrichtlinie",
+      "billing": "Abrechnung & Zahlungen"
     },
     "placeholders": {
       "profile": "Profildetails werden hier angezeigt.",
@@ -372,7 +443,17 @@
       "reportBug": "Fehler melden",
       "reportBugDescription": "Melde Probleme oder Abstürze, damit wir sie schnell beheben.",
       "topicFallbackTitle": "Support",
-      "topicFallbackDescription": "Wir sind für dich da. Wenn etwas nicht stimmt, melde dich und wir kümmern uns."
+      "topicFallbackDescription": "Wir sind für dich da. Wenn etwas nicht stimmt, melde dich und wir kümmern uns.",
+      "accountIssuesChecklistTitle": "Schnellchecks",
+      "accountIssuesHint1": "Nutze dieselbe Anmeldemethode (Apple/Google/E-Mail), mit der du gekauft hast.",
+      "accountIssuesHint2": "Wenn du das Gerät gewechselt hast, versuche in den Einstellungen „Käufe wiederherstellen“.",
+      "accountIssuesHint3": "Für eine E-Mail-Änderung kontaktiere uns mit der aktuellen und der neuen E-Mail.",
+      "accountSupportCtaTitle": "Kommst du nicht weiter?",
+      "accountSupportCtaDesc": "Sende uns deine Konto-E-Mail und eine kurze Beschreibung. Wir helfen dir weiter.",
+      "accountSupportButton": "Supportformular öffnen",
+      "accountEmailButton": "Support per E-Mail",
+      "accountSupportSubject": "Kontoproblem",
+      "accountSupportPrefill": "Beschreibe dein Anmelde- oder Kontoproblem. Gib die E-Mail an, die du nutzt (oder nutzen möchtest)."
     },
     "examFaq": {
       "title": "Prüfungs-FAQ",
@@ -396,6 +477,62 @@
       "helpful": "War das hilfreich?",
       "yes": "Ja",
       "no": "Nein"
+    },
+    "signIn": "Anmelden",
+    "avatar": {
+      "changeTitle": "Foto ändern",
+      "chooseFromLibrary": "Aus der Galerie wählen",
+      "takePhoto": "Foto aufnehmen",
+      "removePhoto": "Foto entfernen",
+      "uploading": "Wird hochgeladen… {{percent}}%",
+      "uploadError": "Foto konnte nicht aktualisiert werden. Bitte erneut versuchen.",
+      "removeError": "Foto konnte nicht entfernt werden. Bitte erneut versuchen.",
+      "signInRequiredTitle": "Anmeldung erforderlich",
+      "signInRequiredMessage": "Melde dich an, um dein Profilfoto zu ändern.",
+      "removeConfirmTitle": "Foto entfernen?",
+      "removeConfirmMessage": "Dadurch wird dein Profilfoto von diesem Konto entfernt."
+    },
+    "sections": {
+      "account": "Konto",
+      "support": "Support",
+      "about": "Über"
+    },
+    "menuDescriptions": {
+      "profile": "Name, E-Mail und Kontodetails",
+      "settings": "Sprache, Design und Datenverwaltung",
+      "help": "FAQs und Kontaktmöglichkeiten",
+      "rateUs": "Bewertung im Store hinterlassen",
+      "privacy": "Erfahre, wie wir deine Daten verwenden"
+    },
+    "versionLabel": "Version",
+    "profile": {
+      "sections": {
+        "profile": "Profil",
+        "account": "Konto",
+        "identifiers": "Kennungen"
+      },
+      "signedInStatus": "Angemeldet",
+      "name": "Name",
+      "noName": "Nicht festgelegt",
+      "email": "E-Mail",
+      "noEmail": "Nicht festgelegt",
+      "plan": "Plan",
+      "planFree": "Kostenlos",
+      "planPremium": "Premium",
+      "planPremiumMonthly": "Premium (Monatlich)",
+      "planPremiumLifetime": "Premium (Lebenslang)",
+      "planLoading": "Wird geprüft…",
+      "provider": "Anbieter",
+      "emailProvider": "E-Mail",
+      "unknownProvider": "Unbekannt",
+      "userId": "Benutzer-ID",
+      "noUid": "Nicht verfügbar",
+      "edit": "Bearbeiten",
+      "editTitle": "Profil bearbeiten",
+      "updateSuccess": "Dein Profil wurde aktualisiert.",
+      "updateError": "Profil konnte derzeit nicht aktualisiert werden.",
+      "signInRequiredTitle": "Anmelden, um Profildaten zu sehen",
+      "signInRequiredDesc": "Melde dich an, um E-Mail- und Abodetails zu sehen."
     }
   },
   "progress": {
@@ -414,6 +551,102 @@
     "feedback_subtitle": "Das tut uns leid. Sag uns, was wir besser machen können.",
     "feedback_placeholder": "Dein Feedback...",
     "submit_feedback": "Feedback senden",
-    "not_now": "Nicht jetzt"
+    "not_now": "Nicht jetzt",
+    "feedbackSubmitError": "Feedback kann gerade nicht gesendet werden."
+  },
+  "splash": {
+    "title": "Einbürgerungstest",
+    "tagline": "Meistere den Stoff.\nSichere dir die Staatsbürgerschaft.",
+    "loading": "Inhalte werden geladen...",
+    "version": "v{{version}}",
+    "retry": "Erneut versuchen",
+    "genericError": "Inhalte können gerade nicht geladen werden."
+  },
+  "billing": {
+    "title": "Abrechnung & Abonnements",
+    "subtitle": "Verwalte dein Abo oder löse Kaufprobleme.",
+    "manageTitle": "Abo verwalten",
+    "manageSubtitleIos": "App‑Store‑Abo ansehen oder kündigen.",
+    "manageSubtitleAndroid": "Google‑Play‑Abo ansehen oder kündigen.",
+    "manageOnStore": "App‑Store‑Abos öffnen",
+    "manageOnPlay": "Google‑Play‑Abos öffnen",
+    "manageOpenError": "Aboseite konnte gerade nicht geöffnet werden.",
+    "restoreTitle": "Käufe wiederherstellen",
+    "restoreSubtitle": "Schon bezahlt, aber nicht freigeschaltet? Stelle deine Käufe wieder her.",
+    "contactTitle": "Noch Hilfe nötig?",
+    "contactSubtitle": "Erzähl uns von Abrechnungs- oder Kaufproblemen.",
+    "contactButton": "Support kontaktieren",
+    "activeStatus": "Aktueller Status: Aktiv",
+    "defaultSubject": "Abrechnungs- / Abo‑Problem"
+  },
+  "supportForm": {
+    "feedbackTitle": "Feedback geben",
+    "feedbackSubtitle": "Sag uns, was wir verbessern oder als Nächstes hinzufügen sollen.",
+    "bugTitle": "Fehler melden",
+    "bugSubtitle": "Hilf uns, Probleme schneller zu beheben, indem du beschreibst, was passiert ist.",
+    "categoryTitle": "Kategorie",
+    "severityTitle": "Schweregrad",
+    "subject": "Betreff",
+    "message": "Nachricht",
+    "steps": "Schritte zur Reproduktion",
+    "expected": "Erwartetes Verhalten",
+    "actual": "Tatsächliches Verhalten",
+    "contactEmail": "E-Mail (optional)",
+    "includeDiagnostics": "Diagnosedaten hinzufügen",
+    "includeDiagnosticsDesc": "App-Version und Geräteinfos helfen uns bei der Analyse.",
+    "alsoEmailSupport": "Support per E-Mail",
+    "alsoEmailSupportDesc": "Wir öffnen deine E-Mail-App, damit du eine Kopie an den Support senden kannst.",
+    "privacyNote": "Bitte keine Passwörter oder sensiblen persönlichen Daten angeben.",
+    "submitBug": "Fehler melden",
+    "submitFeedback": "Feedback senden",
+    "successMessage": "Danke! Deine Nachricht wurde gespeichert. Ticket-ID: {{id}}",
+    "successMessageNotified": "Danke! Deine Nachricht wurde gespeichert und der Support wurde benachrichtigt. Ticket-ID: {{id}}",
+    "successMessageNoNotify": "Danke! Deine Nachricht wurde gespeichert, aber wir konnten den Support nicht automatisch benachrichtigen. Ticket-ID: {{id}}",
+    "emailSupport": "Support per E-Mail",
+    "submitError": "Senden derzeit nicht möglich. Bitte erneut versuchen.",
+    "submitErrorAuth": "Senden derzeit nicht möglich. Bitte App neu starten und erneut versuchen.",
+    "submitErrorNetwork": "Verbindung derzeit nicht möglich. Bitte Internet prüfen und erneut versuchen.",
+    "validationSubject": "Bitte gib einen kurzen Betreff ein.",
+    "validationMessage": "Bitte gib die Details ein.",
+    "unableToOpenEmail": "Es konnte kein E-Mail-Client auf diesem Gerät geöffnet werden.",
+    "emailSubjectBug": "Fehlerbericht",
+    "emailSubjectFeedback": "Feedback",
+    "category": {
+      "crash": "Absturz",
+      "performance": "Leistung",
+      "content": "Inhalte",
+      "billing": "Abrechnung",
+      "account": "Konto",
+      "other": "Sonstiges",
+      "featureRequest": "Funktionswunsch",
+      "uiUx": "UI/UX"
+    },
+    "severity": {
+      "low": "Niedrig",
+      "medium": "Mittel",
+      "high": "Hoch",
+      "crash": "Absturz"
+    }
+  },
+  "subscription": {
+    "noPurchasesToRestore": "Wir konnten keine aktiven Käufe für dieses Store-Konto finden. Wenn du denkst, dass dies ein Fehler ist, kontaktiere bitte den Support.",
+    "restoreFailed": "Käufe konnten nicht wiederhergestellt werden. Bitte später erneut versuchen.",
+    "noActiveSubscription": "Kein aktives Abo gefunden.",
+    "subscriptionExpired": "Dein Abo ist abgelaufen. Um wieder auf Premium-Inhalte zuzugreifen, bitte abonnieren.",
+    "billingIssue": "Es gibt ein Abrechnungsproblem mit deinem Abo. Bitte prüfe deine Zahlungsmethode."
+  },
+  "paywall": {
+    "title": "Premium-Zugang",
+    "subtitle": "Bestehe deinen Einbürgerungstest.",
+    "featureUnlimited": "Unbegrenzte Übungsprüfungen",
+    "featureStudyGuide": "Offizieller Studienführer",
+    "featureAdFree": "Werbefreies Erlebnis",
+    "featureOffline": "Offline-Zugriff",
+    "offeringsUnavailableTitle": "Pläne nicht verfügbar",
+    "offeringsUnavailable": "Abos konnten gerade nicht geladen werden. Bitte später erneut versuchen.",
+    "offeringsUnavailableAndroid": "Abos konnten nicht von Google Play geladen werden. Stelle sicher, dass die App über Google Play (Internes Testen/Internes App-Sharing) installiert ist, du mit einem Testkonto angemeldet bist und die Produkte aktiv und der RevenueCat-Offering zugeordnet sind.",
+    "restorePurchases": "Käufe wiederherstellen",
+    "renewalText": "Verlängerungen erfolgen automatisch, sofern nicht 24 Std. vorher gekündigt.",
+    "disclaimer": "Die Zahlung wird deinem Store-Konto bei Bestätigung des Kaufs belastet. Das Abo verlängert sich automatisch, sofern die automatische Verlängerung nicht mindestens 24 Stunden vor Ablauf der aktuellen Laufzeit deaktiviert wird."
   }
 }

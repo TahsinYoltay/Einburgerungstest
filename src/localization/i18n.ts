@@ -41,7 +41,7 @@ i18n
     resources: resources as any,
     lng: 'de',
     fallbackLng: 'de',
-    compatibilityJSON: 'v3',
+    compatibilityJSON: 'v4',
     interpolation: {
       escapeValue: false,
     },

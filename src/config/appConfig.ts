@@ -23,5 +23,5 @@ export const APP_CONFIG = {
 
   // Firebase / Google Sign-In
   // TODO: Verify this matches Firebase Console -> Authentication -> Sign-in method -> Google -> Web SDK configuration
-  WEB_CLIENT_ID: 'REPLACE_WITH_NEW_WEB_CLIENT_ID',
+  WEB_CLIENT_ID: '72946125051-jnnukjct50h1cq2kt7uh4qv80fkms9k4.apps.googleusercontent.com',
 };

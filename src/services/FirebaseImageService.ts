@@ -140,7 +140,7 @@ class FirebaseImageService {
 
       if (attempt < this.MAX_RETRIES) {
         // Wait before retrying
-        await new Promise(resolve => setTimeout(resolve, this.RETRY_DELAY * attempt));
+        await new Promise<void>(resolve => setTimeout(() => resolve(), this.RETRY_DELAY * attempt));
         return this.fetchImageWithRetry(imagePath, attempt + 1);
       }
 

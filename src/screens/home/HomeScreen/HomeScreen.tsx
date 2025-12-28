@@ -60,7 +60,7 @@ const HomeScreen = () => {
     } finally {
       setRefreshing(false);
     }
-  }, [dispatch, loadReadingState]);
+  }, [dispatch]);
 
   const tabNavigate = (routeName: 'HomeTab' | 'ExamTab' | 'ProgressTab') => {
     navigation.navigate(routeName as never);
